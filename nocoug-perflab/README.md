@@ -13,8 +13,11 @@ The scripts have been modified for the purpose of the lab and to make them easy 
 Run script lab-setup.sql as a user in the database with DBA rights (E.G. SYS or SYSTEM)
 
 `cd nocoug-perflab
+
 sqlplus /nolog
+
 SQL> connect / as sysdba
+
 SQL> @lab-setup`
 
 Under each directory are examples for each topic area
@@ -25,8 +28,11 @@ Change into the plans directory.  Connect to the database using the perflab user
 The example scripts will step through, Press ENTER when prompted at each step
 
 `cd plans
+
 sqlplus /nolog
+
 SQL> connect perflab/perf$lab
+
 SQL> @ctables.sql `
 
 1. Explain with all sections:
@@ -74,9 +80,11 @@ Example looking at object and system stats
 Change into the plans directory.  Connect to the database using a user with DBA privileges (E.G. SYS or SYSTEM)
 
 `cd stats
+
 sqlplus /nolog
-SQL> connect / as sysdba
-`
+
+SQL> connect / as sysdba`
+
 1. Show table and column statistics for the objects used in the plans lab.
 
    `SQL> @eg1.sql`
@@ -86,6 +94,7 @@ SQL> connect / as sysdba
 2. Enable or Disable the automated statistics job based on current status
 
    `SQL> @dis_auto_stats.sql
+
     SQL> @en_auto_stats.sql`
 
    Be sure you leave the job in the state you want (enabled or disabled)
@@ -109,6 +118,7 @@ The first script will set your system back to no workload system stats based on 
 The second script will show the values of your system stats.
 
 `SQL> @sysstat_del.sql
+
 SQL> @sysstat_val.sql`
 
 ## SQL Plan Management
@@ -117,9 +127,12 @@ Change into the patch directory.  Create the needed tables, and step through the
 The example scripts will step through, Press ENTER when prompted at each step
 
 `cd spm
+
 sqlplus /nolog
+
 SQL> @ctables
 `
+
 1. testsRun through first test – two plans for the same SQL
 
 `SQL> @test1`
@@ -139,7 +152,9 @@ Change into the patch directory.  Create the needed tables, and step through the
 The example scripts will step through, Press ENTER when prompted at each step
 
 `cd patch
+
 sqlplus /nolog
+
 SQL> @ctables
 `
 1. Run through first test – simple patch using outline hint
