@@ -1,0 +1,6 @@
+SELECT   SQL_ID, CHILD_NUMBER AS "Child Num",
+         PLAN_HASH_VALUE AS "Plan Hash",
+         OPTIMIZER_ENV_HASH_VALUE AS "Opt Env Hash"
+FROM     V$SQL
+WHERE    SQL_TEXT LIKE '%t1%'
+/

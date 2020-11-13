@@ -1,0 +1,5 @@
+# sqlplus buffer file
+afiedit.buf
+
+# ignore list files generated while running labs
+*.lst
