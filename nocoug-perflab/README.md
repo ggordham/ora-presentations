@@ -21,7 +21,6 @@ Run script lab-setup.sql as a user in the database with DBA rights (E.G. SYS or 
 `sqlplus /nolog`  
 `SQL> connect / as sysdba`  
 `SQL> @lab-setup`  
-`exit`  
 
 Under each directory are examples for each topic area
 

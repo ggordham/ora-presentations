@@ -11,11 +11,11 @@ declare
    v_sql CLOB;
    v_hint CLOB;
 begin
-   v_hint :='FULL(@"SEL$1" "TAB1"@"SEL$1")'; 
+   v_hint :='FULL(@"SEL$1" "TAB1"@"SEL$1")';
 
-   select sql_fulltext 
-   into   v_sql 
-   from   v$sqlarea 
+   select sql_fulltext
+   into   v_sql
+   from   v$sqlarea
    where  sql_id='37090abayamah';
 
    sys.dbms_sqldiag_internal.i_create_patch(
@@ -32,11 +32,11 @@ DECLARE
   l_patch_name VARCHAR2(4000);
 BEGIN
   l_patch_name := sys.dbms_sqldiag.create_sql_patch(
-                                sql_id => '37090abayamah',
-                                hint_text => 'FULL(@"SEL$1" "TAB1"@"SEL$1")', 
+                                -- sql_id => '37090abayamah',
+                                sql_id => 'adps0u414xj2s',
+                                hint_text => 'FULL(@"SEL$1" "TAB1"@"SEL$1")',
                                 name      =>'q0_patch');
 END;
 /
 
 set echo off
-

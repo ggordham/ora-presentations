@@ -6,8 +6,8 @@ prompt Press Enter to continue:
 accept next1
 
 set echo on
--- explain plan for
-select e.ename, r.rname 
+explain plan for
+select e.ename, r.rname
   from employees  e
     join roles r on (r.id = e.role_id)
     join departments d on (d.id = e.dept_id)
