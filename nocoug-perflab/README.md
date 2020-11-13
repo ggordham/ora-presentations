@@ -9,16 +9,19 @@ These are for training purposes and should not be run in a production or product
 
 The scripts have been modified for the purpose of the lab and to make them easy to step through for instructional purposes.
 
+## Download the Scripts
+You can run the following command from Linux or MAC OSX or Cygwin to download all the items in the repository.
+
+`curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1`
+
 ## Basic Setup Steps
 Run script lab-setup.sql as a user in the database with DBA rights (E.G. SYS or SYSTEM)
 
-`cd nocoug-perflab
-
-sqlplus /nolog
-
-SQL> connect / as sysdba
-
-SQL> @lab-setup`
+`cd nocoug-perflab`  
+`sqlplus /nolog`  
+`SQL> connect / as sysdba`  
+`SQL> @lab-setup`  
+`exit`  
 
 Under each directory are examples for each topic area
 
@@ -27,13 +30,10 @@ Walks through examples of generating explain plans.  Note the outline informatio
 Change into the plans directory.  Connect to the database using the perflab user.
 The example scripts will step through, Press ENTER when prompted at each step
 
-`cd plans
-
-sqlplus /nolog
-
-SQL> connect perflab/perf$lab
-
-SQL> @ctables.sql `
+`cd plans`  
+`sqlplus /nolog`  
+`SQL> connect perflab/perf$lab`  
+`SQL> @ctables.sql `  
 
 1. Explain with all sections:
 
@@ -75,15 +75,16 @@ SQL> @ctables.sql `
 
    `SQL> @last.sql`
 
+Exit SQLPlus
+
 ## Stats
 Example looking at object and system stats
 Change into the plans directory.  Connect to the database using a user with DBA privileges (E.G. SYS or SYSTEM)
 
-`cd stats
-
-sqlplus /nolog
-
-SQL> connect / as sysdba`
+`cd stats`  
+`sqlplus /nolog`  
+`SQL> connect / as sysdba`  
+`exit`  
 
 1. Show table and column statistics for the objects used in the plans lab.
 
@@ -93,9 +94,8 @@ SQL> connect / as sysdba`
 
 2. Enable or Disable the automated statistics job based on current status
 
-   `SQL> @dis_auto_stats.sql
-
-    SQL> @en_auto_stats.sql`
+   `SQL> @dis_auto_stats.sql`  
+    `SQL> @en_auto_stats.sql`  
 
    Be sure you leave the job in the state you want (enabled or disabled)
 
@@ -117,21 +117,19 @@ SQL> connect / as sysdba`
 The first script will set your system back to no workload system stats based on your hardware.
 The second script will show the values of your system stats.
 
-`SQL> @sysstat_del.sql
+`SQL> @sysstat_del.sql`  
+`SQL> @sysstat_val.sql`  
 
-SQL> @sysstat_val.sql`
+Exit SQLPlus
 
 ## SQL Plan Management
 Examples using SQL Plan Management
 Change into the patch directory.  Create the needed tables, and step through the examples.  Note user connections are hard coded into these scripts.
 The example scripts will step through, Press ENTER when prompted at each step
 
-`cd spm
-
-sqlplus /nolog
-
-SQL> @ctables
-`
+`cd spm`  
+`sqlplus /nolog`  
+`SQL> @ctables`  
 
 1. testsRun through first test – two plans for the same SQL
 
@@ -147,16 +145,16 @@ SQL> @ctables
 
 **Be sure to copy the plan hash value from the query to the SPM create baseline!**
 
+Exit SQLPlus
+
 ## SQL patch
 Change into the patch directory.  Create the needed tables, and step through the examples.  Note user connections are hard coded into these scripts.
 The example scripts will step through, Press ENTER when prompted at each step
 
-`cd patch
+`cd patch`  
+`sqlplus /nolog`  
+`SQL> @ctables`  
 
-sqlplus /nolog
-
-SQL> @ctables
-`
 1. Run through first test – simple patch using outline hint
 
 `SQL> @test1`
@@ -168,6 +166,8 @@ SQL> @ctables
 3.	Run through third test – copy plan from one SQL to another
 
 `SQL> @test3`
+
+Exit SQLPlus
 
 ## Further information
 Hopefully these scripts / labs will help increase the number of tools you can use for performance issues on Oracle database.
