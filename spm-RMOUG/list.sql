@@ -11,7 +11,7 @@ column sql_text format a65
 
 set echo on
 
-SELECT plan_name, sql_handle, origin, enabled, accepted,
+SELECT sql_handle, plan_name, origin, enabled, accepted,
        fixed, optimizer_cost, executions, elapsed_time,
        cpu_time, buffer_gets, disk_reads
   FROM dba_sql_plan_baselines;
