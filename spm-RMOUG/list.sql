@@ -5,7 +5,9 @@ REM
 set linesize 200
 set trims on
 set tab off
-column plan_name format a35
+column sql_handle format a22
+column plan_name format a32
+column origin format a15
 column last_executed format a30
 column sql_text format a65
 
