@@ -20,14 +20,14 @@ You can run the following command from Linux or MAC OSX or Cygwin to download al
 Run script lab-setup.sql as a user in the database with DBA rights (E.G. SYS or SYSTEM).
 This script creates a user called perflab that will be used throughout the demo.
 
-`cd spm-RMOUG`  
-`sqlplus /nolog`  
-`SQL> connect / as sysdba`  
-`SQL> @lab-setup`  
+`cd spm-RMOUG`
+`sqlplus /nolog`
+`SQL> connect / as sysdba`
+`SQL> @lab-setup`
 
 ## Setup the test tables used during the demo
 
-`sqlplus /nolog`  
+`sqlplus /nolog`
 `SQL> @ctables`
 
 This will create two tables, T1 and T2.  The tables have skewed data distribution in the column D.  24,999 rows are unique, and 25,001 rows contain the value 10.
