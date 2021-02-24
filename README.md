@@ -6,8 +6,12 @@ Everything here is intended for test or lab type use.
 
 
 NOCOUG - Nov 19, 2020 - Oracle 19c performance tuning
-/nocoug-perflab
+```/nocoug-perflab```
 
-RMOUG - Feb 10, 2021 - Oracle SQL Plan Management (SPM)
-Your imperative performance tool
-/spm-RMOUG
+RMOUG - Feb 10, 2021 - Oracle SQL Plan Management (SPM) Your imperative performance tool
+```/spm-RMOUG```
+
+UTOUG - Mar 17, 2021 - Oracle SQL Plan Management (SPM) Your imperative performance tool
+```/spm-UTOUG```
+
+*Note: these scripts have been updated to run all test steps as the perflab user by granting the needed privileges to use the DBMS_SPM package as well as ADDM.*
