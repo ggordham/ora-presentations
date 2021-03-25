@@ -11,7 +11,10 @@ NOCOUG - Nov 19, 2020 - Oracle 19c performance tuning
 RMOUG - Feb 10, 2021 - Oracle SQL Plan Management (SPM) Your imperative performance tool
 ```/spm-RMOUG```
 
-UTOUG - Mar 17, 2021 - Oracle SQL Plan Management (SPM) Your imperative performance tool
+UTOUG - Mar 17, 2021 - Oracle SQL Plan Management (SPM) Your imperative performance tool *
 ```/spm-UTOUG```
+
+INSYNC - Apr 1, 2021 - Oracle SQL Plan Management (SPM) Your imperative performance tool *
+```/spm-INSYNC```
 
 *Note: these scripts have been updated to run all test steps as the perflab user by granting the needed privileges to use the DBMS_SPM package as well as ADDM.*
