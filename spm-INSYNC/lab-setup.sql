@@ -9,6 +9,7 @@ GRANT connect TO perflab;
 GRANT select_catalog_role TO perflab;
 GRANT administer sql management object TO perflab;
 GRANT advisor TO perflab;
+GRANT alter session TO perflab;
 
 ALTER USER perflab QUOTA UNLIMITED ON users;
 
