@@ -16,8 +16,8 @@ You can also read them directly in your browser through GIT
 ## File list / descriptions
 | link | File Name | Description |
 | ---- |  -------- | ----------- |
-| `README.md` | This readme file |
-| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-INSYNC/sql_monitor_output.html) | `sql_monitor_output.html` | Example of SQL Monitor |
+| | `README.md` | This readme file |
+| | `sql_monitor_output.html` | Example of SQL Monitor |
 | [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-INSYNC/sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html) | `sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html` | SQL Health Check main report |
 | [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-INSYNC/sqlhc_20210304_1556_fua0hb5hfst77_2_diagnostics.html) | `sqlhc_20210304_1556_fua0hb5hfst77_2_diagnostics.html` | SQL Health Check diagnostics details |
 | [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-INSYNC/sqlhc_20210304_1556_fua0hb5hfst77_3_execution_plans.html) | `sqlhc_20210304_1556_fua0hb5hfst77_3_execution_plans.html` | SQL Health Check execution plans |
