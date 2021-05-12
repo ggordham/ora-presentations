@@ -1,0 +1,84 @@
+Trace file /u01/app/oracle/diag/rdbms/t1db/t1db/trace/t1db_ora_32309_tdemo1.trc
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.6.0.0.0
+Build label:    RDBMS_19.3.0.0.0DBRU_LINUX.X64_190417
+ORACLE_HOME:    /u01/app/oracle/product/19.6.0/dbhome_1
+System name:	Linux
+Node name:	srvr03.gg.wi.rr.com
+Release:	4.14.35-1902.11.3.1.el7uek.x86_64
+Version:	#2 SMP Sat Mar 14 20:57:52 PDT 2020
+Machine:	x86_64
+Instance name: t1db
+Redo thread mounted by this instance: 1
+Oracle process number: 56
+Unix process pid: 32309, image: oracle@srvr03.gg.wi.rr.com (TNS V1-V3)
+
+
+*** 2021-03-19T15:40:49.624238-05:00
+*** SESSION ID:(18.28603) 2021-03-19T15:40:49.625668-05:00
+*** CLIENT ID:() 2021-03-19T15:40:49.627120-05:00
+*** SERVICE NAME:(SYS$USERS) 2021-03-19T15:40:49.628543-05:00
+*** MODULE NAME:(SQL*Plus) 2021-03-19T15:40:49.630016-05:00
+*** ACTION NAME:() 2021-03-19T15:40:49.631443-05:00
+*** CLIENT DRIVER:(SQL*PLUS) 2021-03-19T15:40:49.633503-05:00
+ 
+CLOSE #140058365044944:c=3,e=3,dep=1,type=1,tim=1294663673881
+=====================
+PARSING IN CURSOR #140058365072304 len=58 dep=0 uid=136 oct=47 lid=136 tim=1294663827049 hv=3390868929 ad='702ccd98' sqlid='0g5n01r51t3f1'
+BEGIN DBMS_SESSION.SET_SQL_TRACE(sql_trace => true); END;
+
+END OF STMT
+EXEC #140058365072304:c=26686,e=153439,p=0,cr=0,cu=0,mis=0,r=1,dep=0,og=1,plh=0,tim=1294663827046
+
+*** 2021-03-19T15:41:06.832436-05:00
+CLOSE #140058365072304:c=46,e=46,dep=0,type=0,tim=1294680997699
+=====================
+PARSING IN CURSOR #140058365043304 len=27 dep=0 uid=136 oct=47 lid=136 tim=1294681004905 hv=1196393762 ad='7e4d1ca8' sqlid='02tj2zp3nz192'
+BEGIN :idnum := 1000; END;
+
+END OF STMT
+PARSE #140058365043304:c=64,e=64,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=0,tim=1294681004904
+EXEC #140058365043304:c=839,e=839,p=0,cr=0,cu=0,mis=0,r=1,dep=0,og=1,plh=0,tim=1294681014515
+
+*** 2021-03-19T15:41:06.851592-05:00
+CLOSE #140058365043304:c=19,e=19,dep=0,type=1,tim=1294681016876
+=====================
+PARSING IN CURSOR #140058365072304 len=122 dep=0 uid=136 oct=3 lid=136 tim=1294681019884 hv=1626105063 ad='682c4ee0' sqlid='fua0hb5hfst77'
+SELECT /*+ gather_plan_statistics NO_ADAPTIVE_PLAN */ sum(t1.c), sum(t2.c) FROM t1, t2 WHERE t1.a = t2.a AND t1.d = :idnum
+END OF STMT
+PARSE #140058365072304:c=599,e=599,p=0,cr=0,cu=0,mis=1,r=0,dep=0,og=1,plh=0,tim=1294681019884
+=====================
+PARSING IN CURSOR #140058365069800 len=221 dep=1 uid=0 oct=3 lid=0 tim=1294681029024 hv=2723145788 ad='7112a798' sqlid='50vxqdkj4zu1w'
+select user#,password,datats#,tempts#,type#,defrole,resource$,ptime,decode(defschclass,NULL,'DEFAULT_CONSUMER_GROUP',defschclass),spare1,spare4,ext_username,spare2,nvl(spare3,16382),spare9,spare10 from user$ where name=:1
+END OF STMT
+PARSE #140058365069800:c=2313,e=2306,p=0,cr=0,cu=0,mis=1,r=0,dep=1,og=4,plh=0,tim=1294681029024
+EXEC #140058365069800:c=2479,e=2993,p=0,cr=0,cu=0,mis=1,r=0,dep=1,og=4,plh=1457651150,tim=1294681038617
+FETCH #140058365069800:c=45,e=45,p=0,cr=2,cu=0,mis=0,r=1,dep=1,og=4,plh=1457651150,tim=1294681040170
+STAT #140058365069800 id=1 cnt=1 pid=0 pos=1 obj=22 op='TABLE ACCESS BY INDEX ROWID USER$ (cr=2 pr=0 pw=0 str=1 time=38 us cost=1 size=168 card=1)'
+STAT #140058365069800 id=2 cnt=1 pid=1 pos=1 obj=46 op='INDEX UNIQUE SCAN I_USER1 (cr=1 pr=0 pw=0 str=1 time=28 us cost=0 size=0 card=1)'
+CLOSE #140058365069800:c=4,e=4,dep=1,type=3,tim=1294681054550
+EXEC #140058365072304:c=10204,e=31706,p=0,cr=2,cu=0,mis=1,r=0,dep=0,og=1,plh=3534348942,tim=1294681057900
+FETCH #140058365072304:c=13830,e=14041,p=0,cr=1981,cu=0,mis=0,r=1,dep=0,og=1,plh=3534348942,tim=1294681073287
+STAT #140058365072304 id=1 cnt=1 pid=0 pos=1 obj=0 op='SORT AGGREGATE (cr=1981 pr=0 pw=0 str=1 time=14040 us)'
+STAT #140058365072304 id=2 cnt=1 pid=1 pos=1 obj=0 op='NESTED LOOPS  (cr=1981 pr=0 pw=0 str=1 time=14019 us cost=553 size=22 card=1)'
+STAT #140058365072304 id=3 cnt=1 pid=2 pos=1 obj=0 op='NESTED LOOPS  (cr=1980 pr=0 pw=0 str=1 time=13994 us cost=553 size=22 card=1)'
+STAT #140058365072304 id=4 cnt=1 pid=3 pos=1 obj=139459 op='TABLE ACCESS FULL T1 (cr=1977 pr=0 pw=0 str=1 time=13968 us cost=550 size=13 card=1)'
+STAT #140058365072304 id=5 cnt=1 pid=3 pos=2 obj=139465 op='INDEX RANGE SCAN T2I (cr=3 pr=0 pw=0 str=1 time=21 us cost=2 size=0 card=1)'
+STAT #140058365072304 id=6 cnt=1 pid=2 pos=2 obj=139463 op='TABLE ACCESS BY INDEX ROWID T2 (cr=1 pr=0 pw=0 str=1 time=11 us cost=3 size=9 card=1)'
+FETCH #140058365072304:c=2,e=1,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=0,plh=3534348942,tim=1294681110097
+
+*** 2021-03-19T15:41:18.985407-05:00
+CLOSE #140058365072304:c=0,e=29,dep=0,type=0,tim=1294693150646
+=====================
+PARSING IN CURSOR #140058365072304 len=59 dep=0 uid=136 oct=47 lid=136 tim=1294693161059 hv=4208041157 ad='6aa8b120' sqlid='75w5d6vxd3765'
+BEGIN DBMS_SESSION.SET_SQL_TRACE(sql_trace => false); END;
+
+END OF STMT
+PARSE #140058365072304:c=3244,e=3244,p=0,cr=0,cu=0,mis=1,r=0,dep=0,og=1,plh=0,tim=1294693161055
+=====================
+PARSING IN CURSOR #140058365025080 len=33 dep=1 uid=136 oct=42 lid=136 tim=1294693170902 hv=525901419 ad='0' sqlid='aam2chsgpj7mb'
+alter session set sql_trace=false
+END OF STMT
+PARSE #140058365025080:c=455,e=455,p=0,cr=0,cu=0,mis=0,r=0,dep=1,og=0,plh=0,tim=1294693170902
+EXEC #140058365025080:c=121,e=121,p=0,cr=0,cu=0,mis=0,r=0,dep=1,og=0,plh=0,tim=1294693178426
+EXEC #140058365072304:c=2038,e=9523,p=0,cr=0,cu=0,mis=0,r=1,dep=0,og=1,plh=0,tim=1294693179744
