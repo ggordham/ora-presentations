@@ -20,4 +20,7 @@ INSYNC - Apr 1, 2021 - Oracle SQL Plan Management (SPM) Your imperative performa
 INSYNC - Mar 30, 2021 - Deep Dive into SQL Tuning
 ```/indepth-sql-INSYNC```
 
+RMOUG - May 19, 2021 - Deep Dive into SQL Tuning - expanded
+```/indepth-sql-RMOUG```
+
 *Note: these scripts have been updated to run all test steps as the perflab user by granting the needed privileges to use the DBMS_SPM package as well as ADDM.*
