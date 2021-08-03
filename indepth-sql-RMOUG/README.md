@@ -18,11 +18,11 @@ You can also read them directly in your browser through GIT
 | ---- |  -------- | ----------- |
 | | `README.md` | This readme file |
 | | `sql_monitor_output.html` | Example of SQL Monitor |
-| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-INSYNC/sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html) | `sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html` | SQL Health Check main report |
-| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-INSYNC/sqlhc_20210304_1556_fua0hb5hfst77_2_diagnostics.html) | `sqlhc_20210304_1556_fua0hb5hfst77_2_diagnostics.html` | SQL Health Check diagnostics details |
-| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-INSYNC/sqlhc_20210304_1556_fua0hb5hfst77_3_execution_plans.html) | `sqlhc_20210304_1556_fua0hb5hfst77_3_execution_plans.html` | SQL Health Check execution plans |
-| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-INSYNC/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html ) | `sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html` | SQL Health Check diagnostic and DB info |
-| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-INSYNC/sqlt_s39943_main.html ) | `sqlt_s39943_main.html` | SQLTXPlain main file |
+| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-RMOUG/sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html) | `sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html` | SQL Health Check main report |
+| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-RMOUG/sqlhc_20210304_1556_fua0hb5hfst77_2_diagnostics.html) | `sqlhc_20210304_1556_fua0hb5hfst77_2_diagnostics.html` | SQL Health Check diagnostics details |
+| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-RMOUG/sqlhc_20210304_1556_fua0hb5hfst77_3_execution_plans.html) | `sqlhc_20210304_1556_fua0hb5hfst77_3_execution_plans.html` | SQL Health Check execution plans |
+| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-RMOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html ) | `sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html` | SQL Health Check diagnostic and DB info |
+| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-RMOUG/sqlt_s39943_main.html ) | `sqlt_s39943_main.html` | SQLTXPlain main file |
 | | `sqlt_s39943_tc_script.sql` | SQLTXPlain script to re-run same SQL |
 | | `t1db_ora_32527_s39943_10053.trc` | SQLTXPlain CBO trace |
 | | `t1db_ora_32309_trace.out` | Simple SQL Trace run through TKPROF |
@@ -46,7 +46,7 @@ Run script lab-setup.sql as a user in the database with DBA rights (E.G. SYS or 
 This script creates a user called perflab that will be used throughout the demo.
 
 ```bash
-cd spm-UTOUG
+cd indepth-sql-RMOUG
 sqlplus /nolog
 ```
 ```sql
