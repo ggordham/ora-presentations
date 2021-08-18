@@ -101,7 +101,6 @@ SQL> @show-hist
 To clean up the lab run the following two items as a DBA user:
 
 ```sql
-SQL> @drop
 SQL> DROP USER PERFLAB CASCADE;
 ```
 
