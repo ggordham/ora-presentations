@@ -31,6 +31,7 @@ jobs
 while sleep 1; do
   tput clear
   jobs
+  echo "When all jobs have completed press CTL+C to exit the script"
 done
 
 # or use tput rc to not clear the screen
