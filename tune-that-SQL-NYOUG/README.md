@@ -100,7 +100,7 @@ SQL> alter session set optimizer_capture_sql_plan_baselines = FALSE;
 
 Be sure you disable capturing baselines before continuing.
 
-Now lest verify that the baseline exists.
+Now lets verify that the baseline exists.
 
 ```sql
 SQL> @plan
