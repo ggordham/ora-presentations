@@ -26,5 +26,8 @@ RMOUG - May 19, 2021 - Deep Dive into SQL Tuning - expanded
 QUEST - Aug 23, 2021 - Deep Div into SQL Tuning
 ```/indepth-sql-QUEST```
 
+NYOUG - Sep 14, 2021 - Tune that SQL
+```/tune-that-SQL-NYOUG```
+
 
 *Note: these scripts have been updated to run all test steps as the perflab user by granting the needed privileges to use the DBMS_SPM package as well as ADDM.*
