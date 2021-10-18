@@ -1,5 +1,5 @@
 # indepth-sql-MOUG
-Files from the MOUG Deep Dive into SQL Tuning pesentation October 26, 2021
+Files from the MOUG Deep Dive into SQL Tuning presentation October 26, 2021
 
 These files are from the examples that are used during the presentation.
 You may want to look at the files / read through them to get better knowledge or compare to what we discuss during the presentation.
@@ -31,13 +31,13 @@ You can also read them directly in your browser through GIT
 | | `t1db_ora_32683_trace_10046_lvl12.trc` | 10046 Trace level 12|
 | | `t1db_ora_4813_trace_10053.out` | Manual 10053 Trace run through TKPROF |
 | | `t1db_ora_4813_trace_10053.trc` | Manual 10053 Trace |
-| | `t1db_ora_6494_nostats.trc` | CBO Trace of sample SQL from presentation with no object statictis |
-| | `t1db_ora_30672_stats.trc` | CBO Trace of sample SQL from presentation with basic object statictis |
-| | `t1db_ora_31265_histogram.trc` | CBO Trace of sample SQL from presentation with object statictis and column histograms |
-| | `t1db_ora_4062_nostats-dynamic.trc` | CBO Trace of sample SQL from presentation with no statictis, but dynamic sampling |
+| | `t1db_ora_6494_nostats.trc` | CBO Trace of sample SQL from presentation with no object statistics |
+| | `t1db_ora_30672_stats.trc` | CBO Trace of sample SQL from presentation with basic object statistics |
+| | `t1db_ora_31265_histogram.trc` | CBO Trace of sample SQL from presentation with object statistics and column histograms |
+| | `t1db_ora_4062_nostats-dynamic.trc` | CBO Trace of sample SQL from presentation with no statistics, but dynamic sampling |
 
-## Make your onw trace files
-As with any scirpts I have for demos, these are use at your own risk and should not be run on any system that is used by your company for any reason.
+## Make your own trace files
+As with any scripts I have for demos, these are use at your own risk and should not be run on any system that is used by your company for any reason.
 
 I run these on a VM that I can throw away.  So a docker container with an Oracle database is a good place to try these out on your own.
 
@@ -82,7 +82,7 @@ SQL> @test2
 
 ## Third test - trace again with histograms added
 
-Now we will add histograms to the columns of the tables and then run the CBO trace for a final time.  This third test includes gathering histagram statistics so be sure to look at how that is done in the script.
+Now we will add histograms to the columns of the tables and then run the CBO trace for a final time.  This third test includes gathering histogram statistics so be sure to look at how that is done in the script.
 
 ```sql
 SQL> @test3
