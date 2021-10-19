@@ -32,4 +32,7 @@ NYOUG - Sep 14, 2021 - Tune that SQL
 MOUG - Oct 26, 2021 - Deep Dive into SQL Tuning
 ```/indepth-sql-MOUG```
 
-*Note: these scripts have been updated to run all test steps as the perflab user by granting the needed privileges to use the DBMS_SPM package as well as ADDM.*
+MOUG - Oct 27, 2021 - Oracle SQL Plan Management (SPM) your imperative performance tool *
+```/spm-MOUG```
+
+*Note: * these scripts have been updated to run all test steps as the perflab user by granting the needed privileges to use the DBMS_SPM package as well as ADDM.*
