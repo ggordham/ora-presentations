@@ -49,7 +49,7 @@ SQL> CONNECT perflab/perf$lab
 SQL> @show-hist
 ```
 
-Here we can see that the two tables have 50,000 rows each and that the 2nd bucket (ENDPOINT_VALUE = 10) has more than one row, while the other four values have only one row.
+In the first query results we can see that the two tables (T1, T2) have 500,000 rows each.  In the second set of results, we see that for column D the 2nd bucket (ENDPOINT_VALUE = 10) has more than one row, while the other four values have only one row.
 
 ## Current Baselines
 
@@ -82,6 +82,14 @@ Now we will evolve the baseline, basically test the new captured plan and let Or
 
 ```sql
 SQL> @test3
+```
+
+## Look at the Baselines
+
+You can view more information about baselines and how they are used by joining the DBA_SQL_PLAN_BASELINES and GV$SQL views.  Note the example script to see how to properly join the two views.
+
+```sql
+SQL> @show_baseline.sql
 ```
 
 ## Clean up

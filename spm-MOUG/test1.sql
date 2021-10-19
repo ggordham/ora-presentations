@@ -20,15 +20,20 @@ prompt
 
 prompt  Disable baseline capture before we look at the plan.
 prompt
+set echo on
 alter session set optimizer_capture_sql_plan_baselines = FALSE;
+set echo off
 
 @plan
 prompt Note: that the explain plan uses Nested Loops (NL)
 prompt  as there is only one row that matches in each table
-prompt  Oracle only has to be read each table in full once.
+prompt  Oracle only has to be read the table in full once.
+prompt  While using an index to lookup the second single row.
 prompt -> Press return to continue
 accept next1
 
 PROMPT
 PROMPT We will now show that the baseline has been captured
 @list
+
+PROMPT Note that the baseline is based on SQL_HANDLE not on SQL_ID
