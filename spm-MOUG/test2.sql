@@ -19,8 +19,8 @@ accept next1
 
 PROMPT
 PROMPT There is a better plan for this execution, but it
-PROMPT  is not used as the profile is picked up.  The
-PROMPT  explain plan shows that the profile is being
+PROMPT  is not used as the baseline is picked up.  The
+PROMPT  explain plan shows that the baseline is being
 PROMPT  used in the Note section.
 prompt Press ENTER to continue
 
