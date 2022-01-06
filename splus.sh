@@ -2,6 +2,7 @@
 
 # Simple script to use for labs to get to a PDB when needed
 #  can be run inside a docker container
+preso=$1
 
 # Set the following items to overide the discovered items
 # if you leave these blank, everything will be discovered
@@ -9,6 +10,19 @@ MY_SID=
 MY_PDB=
 MY_HOME=
 MY_TNS=
+
+#######################################################
+# figure out presentation specific settings
+if [ "$preso" == "" ]; then
+  echo "ERROR please provide a presentation id from the preso-list"
+  exit 2
+else
+  preso_dir=$( grep "$preso" preso-list | cut -f 2 )
+  if [ "$preso_dir" == "" ]; then
+    echo "ERROR preso ID $preso is not in the preso-list"
+    exit 2
+  fi
+fi
 
 #######################################################
 
@@ -48,8 +62,7 @@ if [ "$MY_PDB" == "" ]; then
     # we need to get rid of the login.sql or it will mess up this bit
     rm "$working_dir"/login.sql
     set -o pipefail; ORACLE_PDB_SID=$("${ORACLE_HOME}/bin/sqlplus" -s /nolog  <<!EOF 
-          WHENEVER sqlerror EXIT sql.sqlcode;
-          CONNECT / AS SYSDBA
+          WHENEVER sqlerror EXIT sql.sqlcode; CONNECT / AS SYSDBA
           set pagesize 0
           select pdb_name from cdb_pdbs where con_id = 3;
           exit
@@ -80,16 +93,18 @@ export LD_LIBRARY_PATH="$ORACLE_HOME"/lib:/usr/lib
 
 # Create a SQL login profile, this will define 
 #  a PDB connect string for us to use in lab scripts
-echo "" > "$working_dir"/login.sql 
-echo "set pagesize 999" >> "$working_dir"/login.sql
-echo "set linesize 200" >> "$working_dir"/login.sql
-echo "ALTER SESSION SET nls_date_format = 'HH:MI:SS';" >> "$working_dir"/login.sql
-echo "SET SQLPROMPT \"_USER'@'_CONNECT_IDENTIFIER _DATE> \"" >> "$working_dir"/login.sql
+splus_profile="$working_dir/$preso_dir"/login.sql
+echo "" > "$splus_profile"
+echo "set pagesize 999" >> "$splus_profile"
+echo "set linesize 200" >> "$splus_profile"
+echo "ALTER SESSION SET nls_date_format = 'HH:MI:SS';" >> "$splus_profile"
+echo "SET SQLPROMPT \"_USER'@'_CONNECT_IDENTIFIER _DATE> \"" >> "$splus_profile"
 if [ "$ORACLE_PDB_SID" == "" ]; then
-  echo "define con_pdb =''"  >> "$working_dir"/login.sql
+  echo "define con_pdb =''"  >> "$splus_profile"
 else
-  echo "define con_pdb ='@$ORACLE_PDB_SID'"  >> "$working_dir"/login.sql
+  echo "define con_pdb ='@$ORACLE_PDB_SID'"  >> "$splus_profile"
 fi
 
+cd "$preso_dir" || exit 2
 sqlplus /nolog
 
