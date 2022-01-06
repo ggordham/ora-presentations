@@ -34,13 +34,14 @@ fi
 
 if [ "$MY_PDB" == "" ]; then
   if [ "$ORACLE_PDB"  == "" ]; then
-    set -o pipefail; ORACLE_PDB_SID=$("${ORACLE_HOME}/bin/sqlplus" -s /nolog  ) <<!EOF 
+    set -o pipefail; ORACLE_PDB_SID=$("${ORACLE_HOME}/bin/sqlplus" -s /nolog  <<!EOF 
           WHENEVER sqlerror EXIT sql.sqlcode;
           CONNECT / AS SYSDBA
           set pagesize 0
-           select pdb_name from cdb_pdbs where con_id =3;
+          select pdb_name from cdb_pdbs where con_id = 3;
           exit
 !EOF
+)
     export ORACLE_PDB_SID 
   else
     export ORACLE_PDB_SID="$ORACLE_PDB"
