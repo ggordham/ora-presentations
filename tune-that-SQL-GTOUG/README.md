@@ -14,10 +14,15 @@ These are for training purposes and should not be run in a production or product
 
 The scripts have been modified for the purpose of the lab and to make them easy to step through for instructional purposes.
 
+# Table of Contents
+1. [Ways to run the lab] (#ways-to-run-the-lab)
+2. [Run the lab on Docker] (#run-the-lab-on-docker)
+3. [Run the lab on a Linux OS] (#run-the-lab-on-a-linux-os)
+
 ## Ways to run the lab
 The scripts can be run in multiple ways depending on your configuration and test system.  The scripts have been udpated to work with a docker container version of Oracle database as well as a regular Linux OS install.  Also the scripts should work if you are using a stand alone non-container database or if you are using a PDB in a multi-tenant database (container / CDB).  Be sure to look at the specific instructions.
 
-## To run the lab on Docker
+## Run the lab on Docker
 
 ### Prerquisets
 You need a working docker image with Oracle database pre installed.
@@ -73,7 +78,7 @@ Open a second window to your test system.  In one window you will generate a bun
 
 In a shell window run the following docker command
 ```bash
-
+docker exec -it DB213 sh -c "chmod +x shrun.sh; /home/oracle/shrun.sh tsqlg make-load.sh"
 ```
 
 In a second window where you have a SQL prompt run the following command after the load is running:
@@ -81,26 +86,121 @@ In a second window where you have a SQL prompt run the following command after t
 connect perflab/perf$lab&con_pdb
 @top_sql
 ```
-Here we can see a number of SQL statements in the cursor cache.  You can see a good deal of information about each statement.  Be sure to look at the top_sql script and understand what other data you might want to know about a SQL statement.
+Here we can see a number of SQL statements in the cursor cache.  You can see a good deal of information about each statement.  Be sure to look at the top_sql script and understand what other data you might want to know about a SQL statement.  Find the SQL_ID for a statement you want to see more details on:
+
+```
+INST_ID SQL                                        PARSING_SCHEMA_ SQL_ID        PLAN_HASH_VALUE OPTIMIZER_COST EXECS
+------- ------------------------------------------ --------------- ------------- --------------- -------------- --------
+     1   select count(*) from t2 w                 PERFLAB         19nmwtxrh5rf1 3321871023                 637       50
+     1   SELECT /*+ gather_plan_st                 PERFLAB         fua0hb5hfst77 3534348942                 560      119
+```
+
+Notice the SQL_ID column.
 
 ### Look at a plan for a SQL statement
 
 Copy the SQL_ID from one of the top statments, and look at the execution plan saved in the cursor cache. Note you may find a SQL statement with more than one plan has value.  You may want to look at the muliptle plans for that statement as well.
 
-Run the following commands from a SQL window:
+Run the following command in the same SQL window you used to get the TOP_SQL information:
+
+```sql
+  -- Be sure to put the SQL_ID as the first option for the script
+@plan_sql_id <SQL_ID>
+```
+
+You should then get a detailed explain plan for the SQL statement.
+
+### Current Baselines
+
+Drop current baselines and show that there are no current baselines loaded:
+
+```sql
+connect perflab/perf$lab&con_pdb
+@drop
+@list
+```
+
+This should show that there are no baselines currently loded.  You should see the final query state "no rows selected"
+
+### Capturing a SQL Baseline
+
+In this test we will auto capture a baseline from a session.  The session has to run the SQL twice before it will be captured.
+
+First we will enable baseline capture and run the SQL twice in order for a baseline to be captured.
+
+```sql
+connect perflab/perf$lab&con_pdb
+
+alter session set optimizer_capture_sql_plan_baselines = TRUE;
+@q1 1000
+@q1 1000
+alter session set optimizer_capture_sql_plan_baselines = FALSE;
+```
+
+Be sure you disable capturing baselines before continuing.
+
+Now lets verify that the baseline exists.
+
+```sql
+@plan
+@list
+```
+
+You should see one baseline has been created.
+
+### Real plan vs cached plan
+
+In this example we will look at the difference between a real plan and a cached plan.
+First we will need to purge the sql from the cursor cach.
+
+```sql
+@purge_cursor fua0hb5hfst77
+```
+
+If you see this error "shared pool object does not exist, cannot be pinned/purged" that is ok.  It just means the cursor has not been loaded into the cache yet.
+
+Now we will run the query with two different lookup values.  Note the difference actual vs estimated rows and byts vs buffers.
+
+```sql
+connect perflab/perf$lab&con_pdb
+
+@q1 1000
+@plan
+  -- Note the plan information, it should contain NESTED LOOPS and have a cost of about 560
+@q1 10
+@plan
+  -- Note the plan information, the cost should match
+```
+
+In the second plan, you should see a dramtic difference in estimated rows vs actual rows retrieved / scanned for the lookup value of 10.  This is due to the execution plan from the lookup value of 1000 is cached.
+E-Rows of 1 vs A-Rows of 250K.
+
+To get the real explain plan for the lookup value of ten we will purge the cursor again, and then run just that query and capture that plan first.
+
+```sql
+@purge_cursor fua0hb5hfst77
+connect perflab/perf$lab&con_pdb
+
+@q1 10
+@plan
+  -- Note the plan information
+```
+
+You should see a dramatic difference in the plan cost now that the real number of estimated rows is being used. E.G. a cost of vs 560.
+
+### Clean up
+To clean up the lab run if you want to re-run it.  Open a SQL window and run the following commands:
 
 ```sql
 connect / as sysdba
-  -- Once connected run:
-  -- Be sure to put the SQL_ID as the first option for the script
-@plan_sql_id <SQL_ID>
+@drop
+DROP USER PERFLAB CASCADE;
 ```
 
 
 
 
-
-## To run the lab on a traditional Linux OS
+## Run the lab on a Linux OS
 ### Download the Scripts
 You can run the following command from Linux or MAC OSX or Cygwin to download all the items in the repository.
 
@@ -114,19 +214,22 @@ This script creates a user called perflab that will be used throughout the demo.
 
 NOTE: if you are using a PDB edit the script "setpdb.sql" and update the PDB name in the form of a connect string.  Be sure to include the @ sign.  If you are not using a PDB, leave this blank with quotes intact.
 Before Edit:
-```DEFINE mypdb=""```
+```DEFINE con_pdb=""```
 After Edit:
-```DEFINE mypdb="@mypdb"```
+```DEFINE con_pdb="@mypdb"```
 
 
 ```bash
+# Set your Oracle Environment
+. oraenv
 cd tune-that-SQL-GTOUG
+# if you are using a PDB set the PDB name
+export ORACLE_PDB_SID=mypdb
 sqlplus /nolog
 ```
 ```sql
-SQL> connect / as sysdba
-SQL> alter session set container=mypdb;
-SQL> @lab-setup
+connect / as sysdba
+@lab-setup
 ```
 
 ### Setup the test tables used during the demo
