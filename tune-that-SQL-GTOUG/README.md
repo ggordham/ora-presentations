@@ -177,16 +177,38 @@ E-Rows of 1 vs A-Rows of 250K.
 
 To get the real explain plan for the lookup value of ten we will purge the cursor again, and then run just that query and capture that plan first.
 
-```sql
-@purge_cursor fua0hb5hfst77
-connect perflab/perf$lab&con_pdb
+First we need a baseline to fix the plan.  Make sure the baseline still exits from previous lab steps.  If not go back and create the baseline.
 
-@q1 10
-@plan
-  -- Note the plan information
+```sql
+connect perflab/perf$lab
+
+-- If you are using a PDB:
+connect perflab/perf$lab@mypdb
+
+@list
 ```
 
-You should see a dramatic difference in the plan cost now that the real number of estimated rows is being used. E.G. a cost of vs 560.
+Now we want to purge the cursor from cache to force new plans to be costed.
+
+```sql
+@purge_cursor fua0hb5hfst77
+```
+
+Finally we will generate huristics on the column used in the query to help Oracle understand the data better, then we will run the query again and get the real plan cost with the NESTED LOOPS execution plan.
+
+```sql
+connect perflab/perf$lab
+
+-- If you are using a PDB:
+connect perflab/perf$lab@mypdb
+
+@gatherh
+@q1 10
+@plan
+-- Note the plan information
+```
+
+You should see a dramatic difference in the plan cost now that the real number of estimated rows is being used, E.G. new cost of 741K vs 560 of the old plan.
 
 ### Clean up
 To clean up the lab run if you want to re-run it.  Open a SQL window and run the following commands:
@@ -197,8 +219,7 @@ connect / as sysdba
 DROP USER PERFLAB CASCADE;
 ```
 
-
-
+---
 
 ## Run the lab on a Linux OS
 ### Download the Scripts
@@ -346,10 +367,6 @@ Now lets verify that the baseline exists.
 In this example we will look at the difference between a real plan and a cached plan.
 First we will need to purge the sql from the cursor cach.
 
-```sql
-@purge_cursor fua0hb5hfst77
-```
-
 Now we will run the query with two different lookup values.  Note the difference actual vs estimated rows and byts vs buffers.
 
 ```sql
@@ -366,11 +383,12 @@ connect perflab/perf$lab@mypdb
  -- Note the plan information
 ```
 
-You should see a dramtic difference in estimated rows vs actual rows retrieved / scanned for the lookup value of 10.  This is due to the execution plan from the lookup value of 1000 is cached.
+In the second plan, you should see a dramtic difference in estimated rows vs actual rows retrieved / scanned for the lookup value of 10.  This is due to the execution plan from the lookup value of 1000 is cached.
+E-Rows of 1 vs A-Rows of 250K.
 
 To get the real explain plan for the lookup value of ten we will purge the cursor again, and then run just that query and capture that plan first.
 
-First we need a baseline to fix the plan:
+First we need a baseline to fix the plan.  Make sure the baseline still exits from previous lab steps.  If not go back and create the baseline.
 
 ```sql
 connect perflab/perf$lab
@@ -378,10 +396,6 @@ connect perflab/perf$lab
 -- If you are using a PDB:
 connect perflab/perf$lab@mypdb
 
-alter session set optimizer_capture_sql_plan_baselines = TRUE;
-@q1 1000
-@q1 1000
-alter session set optimizer_capture_sql_plan_baselines = FALSE;
 @list
 ```
 
@@ -405,7 +419,7 @@ connect perflab/perf$lab@mypdb
 -- Note the plan information
 ```
 
-You should see a dramatic difference in the plan cost now that the real number of estimated rows is being used.
+You should see a dramatic difference in the plan cost now that the real number of estimated rows is being used, E.G. new cost of 741K vs 560 of the old plan.
 
 ### Clean up
 To clean up the lab run the following two items as a DBA user:
