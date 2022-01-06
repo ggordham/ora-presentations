@@ -48,7 +48,8 @@ fi
 if [ "$MY_HOME" == "" ]; then
     if [ "$ORACLE_HOME" == "" ]; then
         export ORAENV_ASK=NO
-        . /usr/local/bin/oraenv
+       # shellcheck disable=1091
+        . /usr/local/bin/oraenv -s
     fi
 else
   export ORACLE_HOME="$MY_HOME"
@@ -105,6 +106,6 @@ else
   echo "define con_pdb ='@$ORACLE_PDB_SID'"  >> "$splus_profile"
 fi
 
-cd "$preso_dir" || exit 2
+cd "$working_dir/$preso_dir" || exit 2
 sqlplus /nolog
 
