@@ -250,10 +250,6 @@ In SQL*Plus run:
 ```sql
 connect / as sysdba
 @lab-setup
-```
-
-```bash
-sqlplus /nolog
 
 -- if you are NOT using a PDB
 DEFINE con_pdb=""
