@@ -34,5 +34,5 @@ fi
 
 cd "$working_dir/$preso_dir" || exit 2
 chmod +x "$script"
-$script
+./"$script"
 
