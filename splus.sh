@@ -22,6 +22,7 @@ if [ "$MY_SID" == "" ]; then
       #  if we can't match the process name force the SID to uppercase
       if [ $( pgrep -fc ora_pmon_${ORACLE_SID} ) -eq 0 ]; then
         ORACLE_SID=${ORACLE_SID^^}
+      fi
       export ORACLE_SID
       unset ORACLE_HOME
   fi
