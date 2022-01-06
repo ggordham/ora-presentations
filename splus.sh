@@ -45,6 +45,8 @@ fi
 # Check for static PDB, otherwise we try to discover the first PDB in the database
 if [ "$MY_PDB" == "" ]; then
   if [ "$ORACLE_PDB"  == "" ]; then
+    # we need to get rid of the login.sql or it will mess up this bit
+    rm "$working_dir"/login.sql
     set -o pipefail; ORACLE_PDB_SID=$("${ORACLE_HOME}/bin/sqlplus" -s /nolog  <<!EOF 
           WHENEVER sqlerror EXIT sql.sqlcode;
           CONNECT / AS SYSDBA
@@ -80,6 +82,8 @@ export LD_LIBRARY_PATH="$ORACLE_HOME"/lib:/usr/lib
 #  a PDB connect string for us to use in lab scripts
 echo "set pagesize 999" > "$working_dir"/login.sql
 echo "set linesize 200" > "$working_dir"/login.sql
+echo "ALTER SESSION SET nls_date_format = 'HH:MI:SS';" > "$working_dir"/login.sql
+echo 'SET SQLPROMPT "_USER'@'_CONNECT_IDENTIFIER _DATE> "' > "$working_dir"/login.sql
 if [ "$ORACLE_PDB_SID" == "" ]; then
   echo "define con_pdb =''"  > "$working_dir"/login.sql
 else
