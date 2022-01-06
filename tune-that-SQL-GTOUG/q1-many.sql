@@ -1,5 +1,4 @@
-@@setpdb.sql
-connect perflab/perf$lab
+connect perflab/perf$lab&con_pdb
 
 set timing on
 set echo off

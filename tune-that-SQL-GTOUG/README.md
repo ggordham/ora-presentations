@@ -1,4 +1,4 @@
-# tune-that-sql-NYOUG
+# tune-that-sql-GTOUG
 Scripts from the Gutemala Tune that SQL presentation presentation January 2022
 
 These scripts are mostly based on examples from the Oracle example github repository:
@@ -14,14 +14,101 @@ These are for training purposes and should not be run in a production or product
 
 The scripts have been modified for the purpose of the lab and to make them easy to step through for instructional purposes.
 
-## Download the Scripts
+## Ways to run the lab
+The scripts can be run in multiple ways depending on your configuration and test system.  The scripts have been udpated to work with a docker container version of Oracle database as well as a regular Linux OS install.  Also the scripts should work if you are using a stand alone non-container database or if you are using a PDB in a multi-tenant database (container / CDB).  Be sure to look at the specific instructions.
+
+## To run the lab on Docker
+
+### Prerquisets
+You need a working docker image with Oracle database pre installed.
+These scripts have been tested on Oracle 19c and 21c, but should also work on Oracle 12c.
+Your database / PDB should have a USERS tablespace.
+
+Once you have the container up and running with a working database you can install the lab scripts with the following command:
+
+```bash
+docker exec DB213 sh -c "curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1"
+```
+
+Throught the lab you will need a SQL*Plus prompt on the databases.  This is done by running the following docker command.  (Note this command will put you in the directory with the lab scripts and set your SQL Prompt)
+
+```bash
+docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh tsqlg"
+```
+
+You should get a prompt that looks something like this:
+```
+$ docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh tsqlg"
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Thu Jan 6 19:24:17 2022
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+SP2-0640: Not connected
+@ 06-JAN-22> define
+```
+
+You will need multiple windows with SQL*Plus prompts throughout the lab.
+
+### Setup test tables and user for lab
+Open a SQL*Plus prompt and run the following script
+
+```sql
+@lab-setup
+```
+
+This step will create a user called PERFLAB that will be used througout the lab.
+
+Now create the tables for the lab:
+
+```sql
+@ctables
+```
+
+If you see any errors do not proceed with the lab.
+
+### Generate some load find top SQL
+Open a second window to your test system.  In one window you will generate a bunch of SQL sessions.  In the second window you will look at top SQL statements for the PERFLAB user.
+
+In a shell window run the following docker command
+```bash
+
+```
+
+In a second window where you have a SQL prompt run the following command after the load is running:
+```sql
+connect perflab/perf$lab&con_pdb
+@top_sql
+```
+Here we can see a number of SQL statements in the cursor cache.  You can see a good deal of information about each statement.  Be sure to look at the top_sql script and understand what other data you might want to know about a SQL statement.
+
+### Look at a plan for a SQL statement
+
+Copy the SQL_ID from one of the top statments, and look at the execution plan saved in the cursor cache. Note you may find a SQL statement with more than one plan has value.  You may want to look at the muliptle plans for that statement as well.
+
+Run the following commands from a SQL window:
+
+```sql
+connect / as sysdba
+  -- Once connected run:
+  -- Be sure to put the SQL_ID as the first option for the script
+@plan_sql_id <SQL_ID>
+```
+
+
+
+
+
+## To run the lab on a traditional Linux OS
+### Download the Scripts
 You can run the following command from Linux or MAC OSX or Cygwin to download all the items in the repository.
 
 ```bash
 curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1
 ```
 
-## Basic Setup Steps
+### Basic Setup Steps
 Run script lab-setup.sql as a user in the database with DBA rights (E.G. SYS or SYSTEM).
 This script creates a user called perflab that will be used throughout the demo.
 
@@ -42,7 +129,7 @@ SQL> alter session set container=mypdb;
 SQL> @lab-setup
 ```
 
-## Setup the test tables used during the demo
+### Setup the test tables used during the demo
 
 ```bash
 sqlplus /nolog
@@ -52,18 +139,18 @@ SQL> @ctables
 This will create two tables, T1 and T2.  The tables have skewed data distribution in the column D.  24,999 rows are unique, and 25,001 rows contain the value 10.
 By default Oracle assumes a normal distribution, as we have run enhanced statistics, a histogram is created on this column.
 
-## Generate some load
+### Generate some load
 
 Open a second window to your test system.  In one window you will generate a bunch of SQL sessions.  In the second window you will look at top SQL statements for the PERFLAB user.
 
 ```bash
-cd tune-that-SQL-NYOUG
+cd tune-that-SQL-GTOUG
   # be sure to put your DB SID as the first paramter to the script
 ./make-load.sh <db_name>
 ```
 In a second window connect to SQL\*PLus and check the top SQL statements:
 ```bash
-cd tune-that-SQL-NYOUG
+cd tune-that-SQL-GTOUG
 sqlplus /nolog
 ```
 ```sql
@@ -79,7 +166,7 @@ SQL> @top_sql
 
 Here we can see a number of SQL statements in the cursor cache.  You can see a good deal of information about each statement.  Be sure to look at the top_sql script and understand what other data you might want to know about a SQL statement.
 
-## Look at a plan for a SQL statement
+### Look at a plan for a SQL statement
 
 Copy the SQL_ID from one of the top statments, and look at the execution plan saved in the cursor cache. Note you may find a SQL statement with more than one plan has value.  You may want to look at the muliptle plans for that statement as well.
 
@@ -94,7 +181,7 @@ SQL> alter session set container=mypdb;
 SQL> @plan_sql_id <SQL_ID>
 ```
 
-## Current Baselines
+### Current Baselines
 
 Drop current baselines and show that there are no current baselines loaded:
 
@@ -104,7 +191,7 @@ SQL> @drop
 SQL> @list
 ```
 
-## Capturing a SQL Baseline
+### Capturing a SQL Baseline
 
 In this test we will auto capture a baseline from a session.  The session has to run the SQL twice before it will be captured.
 
@@ -130,7 +217,7 @@ SQL> @plan
 SQL> @list
 ```
 
-## Real plan vs cached plan
+### Real plan vs cached plan
 
 In this example we will look at the difference between a real plan and a cached plan.
 First we will need to purge the sql from the cursor cach.
@@ -173,7 +260,7 @@ SQL> @plan
 
 You should see a dramatic difference in the plan cost now that the real number of estimated rows is being used.
 
-## Clean up
+### Clean up
 To clean up the lab run the following two items as a DBA user:
 
 ```sql
