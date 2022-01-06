@@ -15,9 +15,9 @@ These are for training purposes and should not be run in a production or product
 The scripts have been modified for the purpose of the lab and to make them easy to step through for instructional purposes.
 
 # Table of Contents
-1. [Ways to run the lab] (#ways-to-run-the-lab)
-2. [Run the lab on Docker] (#run-the-lab-on-docker)
-3. [Run the lab on a Linux OS] (#run-the-lab-on-a-linux-os)
+1. [Ways to run the lab](#ways-to-run-the-lab)
+2. [Run the lab on Docker](#run-the-lab-on-docker)
+3. [Run the lab on a Linux OS](#run-the-lab-on-a-linux-os)
 
 ## Ways to run the lab
 The scripts can be run in multiple ways depending on your configuration and test system.  The scripts have been udpated to work with a docker container version of Oracle database as well as a regular Linux OS install.  Also the scripts should work if you are using a stand alone non-container database or if you are using a PDB in a multi-tenant database (container / CDB).  Be sure to look at the specific instructions.
@@ -51,7 +51,7 @@ Version 21.3.0.0.0
 Copyright (c) 1982, 2021, Oracle.  All rights reserved.
 
 SP2-0640: Not connected
-@ 06-JAN-22> define
+@ 06-JAN-22>
 ```
 
 You will need multiple windows with SQL*Plus prompts throughout the lab.
@@ -212,12 +212,6 @@ curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --st
 Run script lab-setup.sql as a user in the database with DBA rights (E.G. SYS or SYSTEM).
 This script creates a user called perflab that will be used throughout the demo.
 
-NOTE: if you are using a PDB edit the script "setpdb.sql" and update the PDB name in the form of a connect string.  Be sure to include the @ sign.  If you are not using a PDB, leave this blank with quotes intact.
-Before Edit:
-```DEFINE con_pdb=""```
-After Edit:
-```DEFINE con_pdb="@mypdb"```
-
 
 ```bash
 # Set your Oracle Environment
@@ -227,16 +221,23 @@ cd tune-that-SQL-GTOUG
 export ORACLE_PDB_SID=mypdb
 sqlplus /nolog
 ```
+
+In SQL*Plus run:
 ```sql
 connect / as sysdba
 @lab-setup
 ```
 
-### Setup the test tables used during the demo
-
 ```bash
 sqlplus /nolog
-SQL> @ctables
+
+-- if you are NOT using a PDB
+DEFINE con_pdb=""
+@ctables
+
+-- if you are using a PDB define the PDB name be sure to include the @ sign
+DEFINE con_pdb="@mypdb"
+@ctables
 ```
 
 This will create two tables, T1 and T2.  The tables have skewed data distribution in the column D.  24,999 rows are unique, and 25,001 rows contain the value 10.
@@ -251,47 +252,67 @@ cd tune-that-SQL-GTOUG
   # be sure to put your DB SID as the first paramter to the script
 ./make-load.sh <db_name>
 ```
-In a second window connect to SQL\*PLus and check the top SQL statements:
+
+While the make load is running, in a second window connect to SQL\*PLus and check the top SQL statements:
 ```bash
 cd tune-that-SQL-GTOUG
 sqlplus /nolog
 ```
 ```sql
-SQL> connect perflab/perf$lab
+connect perflab/perf$lab
 
-  -- If you are using a PDB:
-SQL> connect perflab/perf$lab@mypdb
+-- If you are using a PDB:
+connect perflab/perf$lab@mypdb
 
-  -- Once connected run:
-SQL> @top_sql
-
+-- Once connected run:
+@top_sql
 ```
 
 Here we can see a number of SQL statements in the cursor cache.  You can see a good deal of information about each statement.  Be sure to look at the top_sql script and understand what other data you might want to know about a SQL statement.
 
+```
+INST_ID SQL                                        PARSING_SCHEMA_ SQL_ID        PLAN_HASH_VALUE OPTIMIZER_COST EXECS
+------- ------------------------------------------ --------------- ------------- --------------- -------------- --------
+     1   select count(*) from t2 w                 PERFLAB         19nmwtxrh5rf1 3321871023                 637       50
+     1   SELECT /*+ gather_plan_st                 PERFLAB         fua0hb5hfst77 3534348942                 560      119
+```
+
+Notice the SQL_ID column.
+
+NOTE: if you are having issues with the make-load.sh script not find your database, or PDB then you can manually set some variables.  These variables will be used to set the location of your database HOME, SID, and PDB.
+
+Edit the make-load.sh file and update the following lines based on your configuration (they will be blank by default).
+
+After Edit:
+```
+MY_SID=cdb1
+MY_PDB=pdb1
+MY_HOME=/u01/app/oracle/product/21c/dbhome_1
+MY_TNS=$ORACLE_HOME/network/admin
+```
 ### Look at a plan for a SQL statement
 
 Copy the SQL_ID from one of the top statments, and look at the execution plan saved in the cursor cache. Note you may find a SQL statement with more than one plan has value.  You may want to look at the muliptle plans for that statement as well.
 
+Run the following command in the same SQL window you used to get the TOP_SQL information:
 ```sql
-SQL> connect / as sysdba
-
-  -- If you are using a PDB:
-SQL> alter session set container=mypdb;
-
-  -- Once connected run:
-  -- Be sure to put the SQL_ID as the first option for the script
-SQL> @plan_sql_id <SQL_ID>
+@plan_sql_id <SQL_ID>
 ```
+
+You should then get a detailed explain plan for the SQL statement.
 
 ### Current Baselines
 
 Drop current baselines and show that there are no current baselines loaded:
 
 ```sql
-SQL> connect perflab/perf$lab
-SQL> @drop
-SQL> @list
+connect perflab/perf$lab
+
+-- If you are using a PDB:
+connect perflab/perf$lab@mypdb
+
+@drop
+@list
 ```
 
 ### Capturing a SQL Baseline
@@ -300,15 +321,15 @@ In this test we will auto capture a baseline from a session.  The session has to
 
 First we will enable baseline capture and run the SQL twice in order for a baseline to be captured.
 ```sql
-SQL> connect perflab/perf$lab
+connect perflab/perf$lab
 
-  -- If you are using a PDB:
-SQL> connect perflab/perf$lab@mypdb
+-- If you are using a PDB:
+connect perflab/perf$lab@mypdb
 
-SQL> alter session set optimizer_capture_sql_plan_baselines = TRUE;
-SQL> @q1 1000
-SQL> @q1 1000
-SQL> alter session set optimizer_capture_sql_plan_baselines = FALSE;
+alter session set optimizer_capture_sql_plan_baselines = TRUE;
+@q1 1000
+@q1 1000
+alter session set optimizer_capture_sql_plan_baselines = FALSE;
 ```
 
 Be sure you disable capturing baselines before continuing.
@@ -316,8 +337,8 @@ Be sure you disable capturing baselines before continuing.
 Now lets verify that the baseline exists.
 
 ```sql
-SQL> @plan
-SQL> @list
+@plan
+@list
 ```
 
 ### Real plan vs cached plan
@@ -326,39 +347,62 @@ In this example we will look at the difference between a real plan and a cached 
 First we will need to purge the sql from the cursor cach.
 
 ```sql
-SQL> @purge_cursor fua0hb5hfst77
+@purge_cursor fua0hb5hfst77
 ```
 
 Now we will run the query with two different lookup values.  Note the difference actual vs estimated rows and byts vs buffers.
 
 ```sql
-SQL> connect perflab/perf$lab
+connect perflab/perf$lab
 
-  -- If you are using a PDB:
-SQL> connect perflab/perf$lab@mypdb
+-- If you are using a PDB:
+connect perflab/perf$lab@mypdb
 
-SQL> @q1 1000
-SQL> @plan
-  -- Note the plan information
-SQL> @q1 10
-SQL> @plan
-  -- Note the plan information
+@q1 1000
+@plan
+ -- Note the plan information
+@q1 10
+@plan
+ -- Note the plan information
 ```
 
 You should see a dramtic difference in estimated rows vs actual rows retrieved / scanned for the lookup value of 10.  This is due to the execution plan from the lookup value of 1000 is cached.
 
 To get the real explain plan for the lookup value of ten we will purge the cursor again, and then run just that query and capture that plan first.
 
+First we need a baseline to fix the plan:
+
 ```sql
-SQL> @purge_cursor fua0hb5hfst77
-SQL> connect perflab/perf$lab
+connect perflab/perf$lab
 
-  -- If you are using a PDB:
-SQL> connect perflab/perf$lab@mypdb
+-- If you are using a PDB:
+connect perflab/perf$lab@mypdb
 
-SQL> @q1 10
-SQL> @plan
-  -- Note the plan information
+alter session set optimizer_capture_sql_plan_baselines = TRUE;
+@q1 1000
+@q1 1000
+alter session set optimizer_capture_sql_plan_baselines = FALSE;
+@list
+```
+
+Now we want to purge the cursor from cache to force new plans to be costed.
+
+```sql
+@purge_cursor fua0hb5hfst77
+```
+
+Finally we will generate huristics on the column used in the query to help Oracle understand the data better, then we will run the query again and get the real plan cost with the NESTED LOOPS execution plan.
+
+```sql
+connect perflab/perf$lab
+
+-- If you are using a PDB:
+connect perflab/perf$lab@mypdb
+
+@gatherh
+@q1 10
+@plan
+-- Note the plan information
 ```
 
 You should see a dramatic difference in the plan cost now that the real number of estimated rows is being used.
@@ -367,8 +411,8 @@ You should see a dramatic difference in the plan cost now that the real number o
 To clean up the lab run the following two items as a DBA user:
 
 ```sql
-SQL> @drop
-SQL> DROP USER PERFLAB CASCADE;
+@drop
+DROP USER PERFLAB CASCADE;
 ```
 
 ## The END
