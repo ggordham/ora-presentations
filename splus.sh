@@ -17,7 +17,7 @@ if [ "$preso" == "" ]; then
   echo "ERROR please provide a presentation id from the preso-list"
   exit 2
 else
-  preso_dir=$( grep "$preso" preso-list | cut -f 2 )
+  preso_dir=$( grep "$preso" preso-list | cut -d , -f 2 )
   if [ "$preso_dir" == "" ]; then
     echo "ERROR preso ID $preso is not in the preso-list"
     exit 2

@@ -1,11 +1,11 @@
-isqli indepth-sql-INSYNC 
-isqlm indepth-sql-MOUG
-isqlq indepth-sql-QUEST
-isqlr indepth-sql-RMOUG
-plabn nocoug-perflab
-spmi spm-INSYNC
-spmm spm-MOUG
-spmr spm-RMOUG
-spmu spm-UTOUG
-tsqlg tune-that-SQL-GTOUG
-tsqln tune-that-SQL-NYOUG
+isqli,indepth-sql-INSYNC 
+isqlm,indepth-sql-MOUG
+isqlq,indepth-sql-QUEST
+isqlr,indepth-sql-RMOUG
+plabn,nocoug-perflab
+spmi,spm-INSYNC
+spmm,spm-MOUG
+spmr,spm-RMOUG
+spmu,spm-UTOUG
+tsqlg,tune-that-SQL-GTOUG
+tsqln,tune-that-SQL-NYOUG
