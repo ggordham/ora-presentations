@@ -42,6 +42,8 @@ if [ "$MY_PDB" == "" ]; then
           exit
 !EOF
     export ORACLE_PDB_SID 
+  else
+    export ORACLE_PDB_SID="$ORACLE_PDB"
   fi
 else
   export ORACLE_PDB_SID="$MY_PDB"
