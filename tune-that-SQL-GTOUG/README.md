@@ -19,14 +19,16 @@ The scripts have been modified for the purpose of the lab and to make them easy 
 2. [Run the lab on Docker](#run-the-lab-on-docker)
 3. [Run the lab on a Linux OS](#run-the-lab-on-a-linux-os)
 
+---
+
 ## Ways to run the lab
 The scripts can be run in multiple ways depending on your configuration and test system.  The scripts have been udpated to work with a docker container version of Oracle database as well as a regular Linux OS install.  Also the scripts should work if you are using a stand alone non-container database or if you are using a PDB in a multi-tenant database (container / CDB).  Be sure to look at the specific instructions.
 
 ## Run the lab on Docker
 
-### Prerquisets
+### Prerequisets
 You need a working docker image with Oracle database pre installed.
-These scripts have been tested on Oracle 19c and 21c, but should also work on Oracle 12c.
+These scripts have been tested on Oracle 19c and 21c, but should also work on Oracle 12c and 18c.
 Your database / PDB should have a USERS tablespace.
 
 Once you have the container up and running with a working database you can install the lab scripts with the following command:
@@ -35,8 +37,9 @@ Once you have the container up and running with a working database you can insta
 docker exec DB213 sh -c "curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1"
 ```
 
-Throught the lab you will need a SQL*Plus prompt on the databases.  This is done by running the following docker command.  (Note this command will put you in the directory with the lab scripts and set your SQL Prompt)
+Through out the lab you will need a SQL*Plus prompt on the databases.  This is done by running the following docker command.  (Note this command will put you in the directory with the lab scripts and set your SQL Prompt)
 
+**SQL Prompt**
 ```bash
 docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh tsqlg"
 ```
@@ -300,7 +303,7 @@ INST_ID SQL                                        PARSING_SCHEMA_ SQL_ID       
 
 Notice the SQL_ID column.
 
-NOTE: if you are having issues with the make-load.sh script not find your database, or PDB then you can manually set some variables.  These variables will be used to set the location of your database HOME, SID, and PDB.
+*NOTE: if you are having issues with the make-load.sh script not find your database, or PDB then you can manually set some variables.  These variables will be used to set the location of your database HOME, SID, and PDB.*
 
 Edit the make-load.sh file and update the following lines based on your configuration (they will be blank by default).
 
