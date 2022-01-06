@@ -84,7 +84,7 @@ echo "" > "$working_dir"/login.sql
 echo "set pagesize 999" >> "$working_dir"/login.sql
 echo "set linesize 200" >> "$working_dir"/login.sql
 echo "ALTER SESSION SET nls_date_format = 'HH:MI:SS';" >> "$working_dir"/login.sql
-echo 'SET SQLPROMPT "_USER\\'@\\'_CONNECT_IDENTIFIER _DATE> "' >> "$working_dir"/login.sql
+echo 'SET SQLPROMPT "_USER\'@\'_CONNECT_IDENTIFIER _DATE> "' >> "$working_dir"/login.sql
 if [ "$ORACLE_PDB_SID" == "" ]; then
   echo "define con_pdb =''"  >> "$working_dir"/login.sql
 else
