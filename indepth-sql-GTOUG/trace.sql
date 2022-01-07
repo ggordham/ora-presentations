@@ -1,6 +1,6 @@
 -- used to generate a CBO trace
 
-connect perflab/perf$lab
+connect perflab/perf$lab&con_pdb
 
 ALTER SESSION SET tracefile_identifier = '&1';
 

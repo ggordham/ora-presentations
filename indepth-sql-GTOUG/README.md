@@ -158,11 +158,13 @@ curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --st
 ### Basic Setup Steps
 Run script lab-setup.sql as a user in the database with DBA rights (E.G. SYS or SYSTEM).
 This script creates a user called perflab that will be used throughout the demo.
+*Note replace mypdb with the name of the pdb you are using*
 
 ```bash
 # Set your Oracle Environment
 . oraenv
 cd indepth-sql-GTOUG
+# if you are using a PDB set the following variable to the name of your PDB
 export ORACLE_PDB_SID=mypdb
 sqlplus /nolog
 ```
@@ -171,12 +173,6 @@ In SQL*Plus run:
 ```sql
 connect / as sysdba
 @lab-setup
-```
-
-
-```bash
-sqlplus /nolog
-SQL> @ctables
 
 -- if you are NOT using a PDB
 DEFINE con_pdb=""
@@ -195,6 +191,12 @@ By default Oracle assumes a normal distribution, as we have run enhanced statist
 We will drop the stats from the tables, and run a query CBO trace.  You should open the test1.sql and look at what scripts it calls.  Each script can be inspected to review specific steps for running a trace, and clearing a cursor from the cursor cache.
 
 ```sql
+-- if you are NOT using a PDB
+DEFINE con_pdb=""
+
+-- if you are using a PDB define the PDB name be sure to include the @ sign
+DEFINE con_pdb="@mypdb"
+
 @test1
 ```
 
@@ -203,6 +205,12 @@ We will drop the stats from the tables, and run a query CBO trace.  You should o
 We gather basic object statistics, then run a the same query with CBO trace again.  Again you should review the scripts, here we include steps for gathering basic statistics.
 
 ```sql
+-- if you are NOT using a PDB
+DEFINE con_pdb=""
+
+-- if you are using a PDB define the PDB name be sure to include the @ sign
+DEFINE con_pdb="@mypdb"
+
 @test2
 ```
 
@@ -211,6 +219,12 @@ We gather basic object statistics, then run a the same query with CBO trace agai
 Now we will add histograms to the columns of the tables and then run the CBO trace for a final time.  This third test includes gathering histogram statistics so be sure to look at how that is done in the script.
 
 ```sql
+-- if you are NOT using a PDB
+DEFINE con_pdb=""
+
+-- if you are using a PDB define the PDB name be sure to include the @ sign
+DEFINE con_pdb="@mypdb"
+
 @test3
 ```
 
