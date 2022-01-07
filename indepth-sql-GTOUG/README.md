@@ -105,6 +105,16 @@ We will drop the stats from the tables, and run a query CBO trace.  You should o
 ```sql
 @test1
 ```
+View the trace file using the more command.
+
+Use /[text] to search for text
+Use the space bar to move foward a page, and "b" to move back a page
+Press "q" to exit the file
+
+In the trace file you will want to look at the "Table Stats", notice that it shows T1 has 164,259 rows, even though we know it has more.  Also notice that the AvgRowLen is 100.  This data is drived from the table size (number of blocks) and a default row length.
+
+Now look at the SCAN IO cost for "SINGLE TABLE ACCESS PATH", note how this cost is dervied form the above infomrmation on number of rows.
+Look at "Column (#4) has a NDV (Number of Distinct Values) and the estimated selectivity.
 
 ### Second test - trace again with basic object stats
 
@@ -113,6 +123,11 @@ We gather basic object statistics, then run a the same query with CBO trace agai
 ```sql
 @test2
 ```
+View the new trace file with the more command.
+Look for "Table Stats" again, this time notice that the correct number of rows, average row length, and blocks.
+
+Now look at the SCAN IO cost for "SINGLE TABLE ACCESS PATH", see how it has changed.
+Look at "Column (#4) has a NDV (Number of Distinct Values) and that the estimated selectivity has changed.
 
 ### Third test - trace again with histograms added
 
@@ -122,19 +137,19 @@ Now we will add histograms to the columns of the tables and then run the CBO tra
 @test3
 ```
 
+View the new trace file with the more command.
+Look for the "SINGLE TABLE ACCESS PATH", notice that this time "Column (#4) has a NDV (Number of Distinct Values) of 253,072 and the estimated selectivity has changed.
+
 ### Look at table information
 
 Shows that the histograms are in place
 
 ```sql
-CONNECT perflab/perf$lab
-
--- If you are using a PDB:
-CONNECT perflab/perf$lab@mypdb
-
--- Once connected run:
 @show-hist
 ```
+
+Note that for column "D" the buck for ENDPOINT_VALUE 10 has a repeat count of 2790 while the other buckets listed only have a count of one.  This lets Oracle know that the distribution of data in the table is not "normal".
+
 
 ### Clean up
 To clean up the lab run if you want to re-run it.  Open a SQL window and run the following commands:
@@ -200,6 +215,11 @@ DEFINE con_pdb="@mypdb"
 @test1
 ```
 
+In the trace file you will want to look at the "Table Stats", notice that it shows T1 has 164,259 rows, even though we know it has more.  Also notice that the AvgRowLen is 100.  This data is drived from the table size (number of blocks) and a default row length.
+
+Now look at the SCAN IO cost for "SINGLE TABLE ACCESS PATH", note how this cost is dervied form the above infomrmation on number of rows.
+Look at "Column (#4) has a NDV (Number of Distinct Values) and the estimated selectivity.
+
 ### Second test - trace again with basic object stats
 
 We gather basic object statistics, then run a the same query with CBO trace again.  Again you should review the scripts, here we include steps for gathering basic statistics.
@@ -213,6 +233,12 @@ DEFINE con_pdb="@mypdb"
 
 @test2
 ```
+
+View the new trace file with the more command.
+Look for "Table Stats" again, this time notice that the correct number of rows, average row length, and blocks.
+
+Now look at the SCAN IO cost for "SINGLE TABLE ACCESS PATH", see how it has changed.
+Look at "Column (#4) has a NDV (Number of Distinct Values) and that the estimated selectivity has changed.
 
 ### Third test - trace again with histograms added
 
@@ -228,6 +254,9 @@ DEFINE con_pdb="@mypdb"
 @test3
 ```
 
+View the new trace file with the more command.
+Look for the "SINGLE TABLE ACCESS PATH", notice that this time "Column (#4) has a NDV (Number of Distinct Values) of 253,072 and the estimated selectivity has changed.
+
 ### Look at table information
 
 Shows that the histograms are in place
@@ -241,6 +270,8 @@ CONNECT perflab/perf$lab@mypdb
 -- Once connected run:
 @show-hist
 ```
+
+Note that for column "D" the buck for ENDPOINT_VALUE 10 has a repeat count of 2790 while the other buckets listed only have a count of one.  This lets Oracle know that the distribution of data in the table is not "normal".
 
 ### Clean up
 To clean up the lab run the following two items as a DBA user:
