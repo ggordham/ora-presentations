@@ -24,4 +24,5 @@ prompt
 
 prompt
 prompt Look at the trace file listed above
+prompt run: "host more <filename>"
 prompt
