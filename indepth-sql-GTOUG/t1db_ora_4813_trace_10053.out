@@ -1,0 +1,217 @@
+
+TKPROF: Release 19.0.0.0.0 - Development on Sat Mar 27 12:32:13 2021
+
+Copyright (c) 1982, 2019, Oracle and/or its affiliates.  All rights reserved.
+
+Trace file: t1db_ora_4813_tdemo6.trc
+Sort options: default
+
+********************************************************************************
+count    = number of times OCI procedure was executed
+cpu      = cpu time in seconds executing 
+elapsed  = elapsed time in seconds executing
+disk     = number of physical reads of buffers from disk
+query    = number of buffers gotten for consistent read
+current  = number of buffers gotten in current mode (usually for update)
+rows     = number of rows processed by the fetch or execute call
+********************************************************************************
+
+SQL ID: d0vjfkmmnygmx Plan Hash: 0
+
+BEGIN :idnum := 10; END;
+
+
+call     count       cpu    elapsed       disk      query    current        rows
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+Parse        1      0.00       0.00          0          0          0           0
+Execute      1      0.00       0.00          0          0          0           1
+Fetch        0      0.00       0.00          0          0          0           0
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+total        2      0.00       0.00          0          0          0           1
+
+Misses in library cache during parse: 0
+Optimizer mode: ALL_ROWS
+Parsing user id: 138  (PERFLAB)
+
+Elapsed times include waiting on following events:
+  Event waited on                             Times   Max. Wait  Total Waited
+  ----------------------------------------   Waited  ----------  ------------
+  SQL*Net message to client                       1        0.00          0.00
+  SQL*Net message from client                     1        0.00          0.00
+********************************************************************************
+
+SQL ID: fua0hb5hfst77 Plan Hash: 906334482
+
+SELECT /*+ gather_plan_statistics NO_ADAPTIVE_PLAN */ sum(t1.c), sum(t2.c) 
+FROM
+ t1, t2 WHERE t1.a = t2.a AND t1.d = :idnum
+
+
+call     count       cpu    elapsed       disk      query    current        rows
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+Parse        1      0.00       0.00          0          0          0           0
+Execute      1      1.06       8.18          0          0          0           0
+Fetch        2      0.15       0.24          0       3953          0           1
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+total        4      1.21       8.42          0       3953          0           1
+
+Misses in library cache during parse: 1
+Misses in library cache during execute: 1
+Optimizer mode: ALL_ROWS
+Parsing user id: 138  (PERFLAB)
+Number of plan statistics captured: 1
+
+Rows (1st) Rows (avg) Rows (max)  Row Source Operation
+---------- ---------- ----------  ---------------------------------------------------
+         1          1          1  SORT AGGREGATE (cr=3954 pr=0 pw=0 time=256437 us starts=1)
+    250001     250001     250001   HASH JOIN  (cr=3954 pr=0 pw=0 time=240456 us starts=1 cost=1893 size=5432438 card=246929)
+    250001     250001     250001    TABLE ACCESS FULL T1 (cr=1977 pr=0 pw=0 time=22644 us starts=1 cost=550 size=3210077 card=246929)
+    500000     500000     500000    TABLE ACCESS FULL T2 (cr=1976 pr=0 pw=0 time=18290 us starts=1 cost=549 size=4500000 card=500000)
+
+
+Rows     Execution Plan
+-------  ---------------------------------------------------
+      0  SELECT STATEMENT   MODE: ALL_ROWS
+      1   SORT (AGGREGATE)
+ 250001    NESTED LOOPS
+ 250001     NESTED LOOPS
+ 500000      TABLE ACCESS   MODE: ANALYZED (FULL) OF 'T1' (TABLE)
+      0      INDEX   MODE: ANALYZED (RANGE SCAN) OF 'T2I' (INDEX)
+      0     TABLE ACCESS   MODE: ANALYZED (BY INDEX ROWID) OF 'T2' 
+                (TABLE)
+
+
+Elapsed times include waiting on following events:
+  Event waited on                             Times   Max. Wait  Total Waited
+  ----------------------------------------   Waited  ----------  ------------
+  PGA memory operation                           62        0.00          0.00
+  SQL*Net message to client                       2        0.00          0.00
+  SQL*Net message from client                     2        9.80          9.80
+********************************************************************************
+
+SQL ID: 0b639nx4zdzxr Plan Hash: 2321277860
+
+select domain# 
+from
+ sys.im_domain$ where objn = :1 and col# = :2
+
+
+call     count       cpu    elapsed       disk      query    current        rows
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+Parse        1      0.00       0.00          0          0          0           0
+Execute      1      0.00       0.01          0          0          0           0
+Fetch        1      0.00       0.00          0          1          0           0
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+total        3      0.00       0.01          0          1          0           0
+
+Misses in library cache during parse: 0
+Optimizer mode: CHOOSE
+Parsing user id: SYS   (recursive depth: 1)
+Number of plan statistics captured: 1
+
+Rows (1st) Rows (avg) Rows (max)  Row Source Operation
+---------- ---------- ----------  ---------------------------------------------------
+         0          0          0  TABLE ACCESS BY INDEX ROWID IM_DOMAIN$ (cr=1 pr=0 pw=0 time=90 us starts=1 cost=0 size=39 card=1)
+         0          0          0   INDEX UNIQUE SCAN IM_DOMAIN_UK (cr=1 pr=0 pw=0 time=79 us starts=1 cost=0 size=0 card=1)(object id 10549)
+
+********************************************************************************
+
+SQL ID: 07x9zn1dx277j Plan Hash: 0
+
+ALTER SESSION SET EVENTS '10053 trace name context off'
+
+
+call     count       cpu    elapsed       disk      query    current        rows
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+Parse        1      0.00       0.00          0          0          0           0
+Execute      1      0.00       0.00          0          0          0           0
+Fetch        0      0.00       0.00          0          0          0           0
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+total        2      0.00       0.00          0          0          0           0
+
+Misses in library cache during parse: 0
+Parsing user id: 138  (PERFLAB)
+
+Elapsed times include waiting on following events:
+  Event waited on                             Times   Max. Wait  Total Waited
+  ----------------------------------------   Waited  ----------  ------------
+  SQL*Net message to client                       1        0.00          0.00
+  SQL*Net message from client                     1        0.00          0.00
+********************************************************************************
+
+SQL ID: 0kjg1c2g4gdcr Plan Hash: 0
+
+ALTER SESSION SET EVENTS '10046 trace name context off'
+
+
+call     count       cpu    elapsed       disk      query    current        rows
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+Parse        1      0.00       0.00          0          0          0           0
+Execute      1      0.00       0.00          0          0          0           0
+Fetch        0      0.00       0.00          0          0          0           0
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+total        2      0.00       0.00          0          0          0           0
+
+Misses in library cache during parse: 0
+Parsing user id: 138  (PERFLAB)
+
+
+
+********************************************************************************
+
+OVERALL TOTALS FOR ALL NON-RECURSIVE STATEMENTS
+
+call     count       cpu    elapsed       disk      query    current        rows
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+Parse        4      0.00       0.00          0          0          0           0
+Execute      4      1.06       8.19          0          0          0           1
+Fetch        2      0.15       0.24          0       3953          0           1
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+total       10      1.21       8.43          0       3953          0           2
+
+Misses in library cache during parse: 1
+Misses in library cache during execute: 1
+
+Elapsed times include waiting on following events:
+  Event waited on                             Times   Max. Wait  Total Waited
+  ----------------------------------------   Waited  ----------  ------------
+  SQL*Net message to client                       5        0.00          0.00
+  SQL*Net message from client                     5       22.49         32.30
+  PGA memory operation                           62        0.00          0.00
+
+
+OVERALL TOTALS FOR ALL RECURSIVE STATEMENTS
+
+call     count       cpu    elapsed       disk      query    current        rows
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+Parse        1      0.00       0.00          0          0          0           0
+Execute      1      0.00       0.01          0          0          0           0
+Fetch        1      0.00       0.00          0          1          0           0
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+total        3      0.00       0.01          0          1          0           0
+
+Misses in library cache during parse: 0
+
+    4  user  SQL statements in session.
+    1  internal SQL statements in session.
+    5  SQL statements in session.
+    1  statement EXPLAINed in this session.
+********************************************************************************
+Trace file: t1db_ora_4813_tdemo6.trc
+Trace file compatibility: 12.2.0.0
+Sort options: default
+
+       1  session in tracefile.
+       4  user  SQL statements in trace file.
+       1  internal SQL statements in trace file.
+       5  SQL statements in trace file.
+       5  unique SQL statements in trace file.
+       1  SQL statements EXPLAINed using schema:
+           PERFLAB.prof$plan_table
+             Default table was used.
+             Table was created.
+             Table was dropped.
+    3694  lines in trace file.
+      18  elapsed seconds in trace file.
+
+
