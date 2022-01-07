@@ -78,7 +78,7 @@ Now create the tables for the lab:
 
 If you see any errors do not proceed with the lab.
 
-### Generate some load find top SQL
+### Generate some load to find top SQL
 Open a second window to your test system.  In one window you will generate a bunch of SQL sessions.  In the second window you will look at top SQL statements for the PERFLAB user.
 
 In a shell window run the following docker command
