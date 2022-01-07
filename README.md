@@ -32,7 +32,27 @@ NYOUG - Sep 14, 2021 - Tune that SQL
 MOUG - Oct 26, 2021 - Deep Dive into SQL Tuning
 ```/indepth-sql-MOUG```
 
-MOUG - Oct 27, 2021 - Oracle SQL Plan Management (SPM) your imperative performance tool *
+MOUG - Oct 27, 2021 - Oracle SQL Plan Management (SPM) your imperative performance tool <sup>*1</sup>
 ```/spm-MOUG```
 
-*Note: * these scripts have been updated to run all test steps as the perflab user by granting the needed privileges to use the DBMS_SPM package as well as ADDM.*
+GTOUG - Jan 25, 2022 - "Tune that SQL", Now what do I do? <sup>*2</sup>
+```/tune-that-SQL-GTOUG```
+
+GTOUG - Jan 26, 2022 - Deep Dive into SQL Tuning
+```/indepth-sql-GTOUG```
+
+RMOUG - Feb 8, 2022 - "Tune that SQL", Now what do I do?
+```/tune-that-SQL-RMOUG```
+
+RMOUG - Feb 9, 2022 - Deep Dive into SQL Tuning
+```/indepth-sql-RMOUG```
+
+ECOE - Feb 22, 2022 - Oracle 19c Hand-on Experience: Performance Tuning Workshop
+
+ECOE - Feb 23, 2022 - Oracle Database CMU: Bringing AD into the DBAs Life
+
+---
+
+*Notes:*
+1. Scripts have been updated to run all test steps as the perflab user by granting the needed privileges to use the DBMS_SPM package as well as ADDM.
+2. Scripts have been updated to work with a PDB as well as to run through docker with minimal setup.
