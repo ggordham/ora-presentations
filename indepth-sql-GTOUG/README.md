@@ -107,9 +107,13 @@ We will drop the stats from the tables, and run a query CBO trace.  You should o
 ```
 View the trace file using the more command.
 
-Use /[text] to search for text
-Use the space bar to move foward a page, and "b" to move back a page
-Press "q" to exit the file
+```/[text]``` to search for text
+
+```space bar``` to move foward a page,
+
+```b``` to move back a page
+
+```q``` to exit the file
 
 In the trace file you will want to look at the "Table Stats", notice that it shows T1 has 164,259 rows, even though we know it has more.  Also notice that the AvgRowLen is 100.  This data is drived from the table size (number of blocks) and a default row length.
 
