@@ -6,48 +6,64 @@ Everything here is intended for test or lab type use.
 
 
 NOCOUG - Nov 19, 2020 - Oracle 19c performance tuning
+
 ```/nocoug-perflab```
 
 RMOUG - Feb 10, 2021 - Oracle SQL Plan Management (SPM) Your imperative performance tool
+
 ```/spm-RMOUG```
 
 UTOUG - Mar 17, 2021 - Oracle SQL Plan Management (SPM) Your imperative performance tool *
+
 ```/spm-UTOUG```
 
 INSYNC - Apr 1, 2021 - Oracle SQL Plan Management (SPM) Your imperative performance tool *
+
 ```/spm-INSYNC```
 
 INSYNC - Mar 30, 2021 - Deep Dive into SQL Tuning
+
 ```/indepth-sql-INSYNC```
 
 RMOUG - May 19, 2021 - Deep Dive into SQL Tuning - expanded
+
 ```/indepth-sql-RMOUG```
 
 QUEST - Aug 23, 2021 - Deep Dive into SQL Tuning
+
 ```/indepth-sql-QUEST```
 
 NYOUG - Sep 14, 2021 - Tune that SQL
+
 ```/tune-that-SQL-NYOUG```
 
 MOUG - Oct 26, 2021 - Deep Dive into SQL Tuning
+
 ```/indepth-sql-MOUG```
 
 MOUG - Oct 27, 2021 - Oracle SQL Plan Management (SPM) your imperative performance tool <sup>*1</sup>
+
 ```/spm-MOUG```
 
 GTOUG - Jan 25, 2022 - "Tune that SQL", Now what do I do? <sup>*2</sup>
+
 ```/tune-that-SQL-GTOUG```
 
-GTOUG - Jan 26, 2022 - Deep Dive into SQL Tuning
+GTOUG - Jan 26, 2022 - Deep Dive into SQL Tuning <sup>*2</sup>
+
 ```/indepth-sql-GTOUG```
 
-RMOUG - Feb 8, 2022 - "Tune that SQL", Now what do I do?
+RMOUG - Feb 8, 2022 - "Tune that SQL", Now what do I do? <sup>*2</sup>
+
 ```/tune-that-SQL-RMOUG```
 
-RMOUG - Feb 9, 2022 - Deep Dive into SQL Tuning
+RMOUG - Feb 9, 2022 - Deep Dive into SQL Tuning <sup>*2</sup>
+
 ```/indepth-sql-RMOUG```
 
 ECOE - Feb 22, 2022 - Oracle 19c Hand-on Experience: Performance Tuning Workshop
+
+```/perflab-ECOE```
 
 ECOE - Feb 23, 2022 - Oracle Database CMU: Bringing AD into the DBAs Life
 
