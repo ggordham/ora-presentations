@@ -43,12 +43,12 @@ Through out the lab you will need a SQL*Plus prompt on the databases.  This is d
 
 **SQL Prompt**
 ```bash
-docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh tsqlg"
+docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh tsqlr"
 ```
 
 You should get a prompt that looks something like this:
 ```
-$ docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh tsqlg"
+$ docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh tsqlr"
 
 SQL*Plus: Release 21.0.0.0.0 - Production on Thu Jan 6 19:24:17 2022
 Version 21.3.0.0.0
@@ -83,7 +83,7 @@ Open a second window to your test system.  In one window you will generate a bun
 
 In a shell window run the following docker command
 ```bash
-docker exec -it DB213 sh -c "chmod +x shrun.sh; /home/oracle/shrun.sh tsqlg make-load.sh"
+docker exec -it DB213 sh -c "chmod +x shrun.sh; /home/oracle/shrun.sh tsqlr make-load.sh"
 ```
 
 In a second window where you have a SQL prompt run the following command after the load is running:
@@ -270,9 +270,11 @@ By default Oracle assumes a normal distribution, as we have run enhanced statist
 Open a second window to your test system.  In one window you will generate a bunch of SQL sessions.  In the second window you will look at top SQL statements for the PERFLAB user.
 
 ```bash
+# Set your Oracle Environment
+. oraenv
 cd tune-that-SQL-RMOUG
-  # be sure to put your DB SID as the first paramter to the script
-./make-load.sh <db_name>
+# be sure to put your DB SID as the first paramter to the script
+./make-load.sh
 ```
 
 While the make load is running, in a second window connect to SQL\*PLus and check the top SQL statements:

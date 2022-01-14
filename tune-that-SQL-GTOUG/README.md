@@ -270,8 +270,10 @@ By default Oracle assumes a normal distribution, as we have run enhanced statist
 Open a second window to your test system.  In one window you will generate a bunch of SQL sessions.  In the second window you will look at top SQL statements for the PERFLAB user.
 
 ```bash
+# Set your Oracle Environment
+. oraenv
 cd tune-that-SQL-GTOUG
-  # be sure to put your DB SID as the first paramter to the script
+# be sure to put your DB SID as the first paramter to the script
 ./make-load.sh <db_name>
 ```
 

@@ -48,7 +48,9 @@ if [ "$MY_PDB" == "" ]; then
     # we need to get rid of the login.sql or it will mess up this bit
     rm "$working_dir"/login.sql
     set -o pipefail; ORACLE_PDB_SID=$("${ORACLE_HOME}/bin/sqlplus" -s /nolog  <<!EOF 
-          WHENEVER sqlerror EXIT sql.sqlcode; CONNECT / AS SYSDBA
+          WHENEVER sqlerror EXIT sql.sqlcode; 
+          CONNECT / AS SYSDBA
+          set feedback off
           set pagesize 0
           select pdb_name from cdb_pdbs where con_id = 3;
           exit
