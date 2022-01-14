@@ -3,10 +3,13 @@ isqlm,indepth-sql-MOUG
 isqlq,indepth-sql-QUEST
 isqlr,indepth-sql-RMOUG
 isqlg,indepth-sql-GTOUG
+isqlr2,indepth-sql-RMOUG2
 plabn,nocoug-perflab
+plabe,perflab-ECOE
 spmi,spm-INSYNC
 spmm,spm-MOUG
 spmr,spm-RMOUG
 spmu,spm-UTOUG
 tsqlg,tune-that-SQL-GTOUG
 tsqln,tune-that-SQL-NYOUG
+tsqlr,tune-that-SQL-RMOUG
