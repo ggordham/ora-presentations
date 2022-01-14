@@ -113,7 +113,7 @@ Run the following command in the same SQL window you used to get the TOP_SQL inf
 @plan_sql_id <SQL_ID>
 ```
 
-You should then get a detailed explain plan for the SQL statement.
+You should then get a detailed explain plan for the SQL statement.  Note depending on the statement you may get more than one plan, as Oracle allows for multiple execution plans for the same statement.
 
 ### Current Baselines
 
@@ -185,10 +185,7 @@ To get the real explain plan for the lookup value of ten we will purge the curso
 First we need a baseline to fix the plan.  Make sure the baseline still exits from previous lab steps.  If not go back and create the baseline.
 
 ```sql
-connect perflab/perf$lab
-
--- If you are using a PDB:
-connect perflab/perf$lab@mypdb
+connect perflab/perf$lab&con_pdb
 
 @list
 ```
@@ -202,10 +199,7 @@ Now we want to purge the cursor from cache to force new plans to be costed.
 Finally we will generate huristics on the column used in the query to help Oracle understand the data better, then we will run the query again and get the real plan cost with the NESTED LOOPS execution plan.
 
 ```sql
-connect perflab/perf$lab
-
--- If you are using a PDB:
-connect perflab/perf$lab@mypdb
+connect perflab/perf$lab&con_pdb
 
 @gatherh
 @q1 10
@@ -273,15 +267,16 @@ Open a second window to your test system.  In one window you will generate a bun
 # Set your Oracle Environment
 . oraenv
 cd tune-that-SQL-RMOUG
-# be sure to put your DB SID as the first paramter to the script
 ./make-load.sh
 ```
 
 While the make load is running, in a second window connect to SQL\*PLus and check the top SQL statements:
+
 ```bash
 cd tune-that-SQL-RMOUG
 sqlplus /nolog
 ```
+
 ```sql
 connect perflab/perf$lab
 
@@ -308,22 +303,25 @@ Notice the SQL_ID column.
 Edit the make-load.sh file and update the following lines based on your configuration (they will be blank by default).
 
 After Edit:
+
 ```
 MY_SID=cdb1
 MY_PDB=pdb1
 MY_HOME=/u01/app/oracle/product/21c/dbhome_1
 MY_TNS=$ORACLE_HOME/network/admin
 ```
+
 ### Look at a plan for a SQL statement
 
 Copy the SQL_ID from one of the top statments, and look at the execution plan saved in the cursor cache. Note you may find a SQL statement with more than one plan has value.  You may want to look at the muliptle plans for that statement as well.
 
 Run the following command in the same SQL window you used to get the TOP_SQL information:
+
 ```sql
 @plan_sql_id <SQL_ID>
 ```
 
-You should then get a detailed explain plan for the SQL statement.
+You should then get a detailed explain plan for the SQL statement.  Note depending on the statement you may get more than one plan, as Oracle allows for multiple execution plans for the same statement.
 
 ### Current Baselines
 
