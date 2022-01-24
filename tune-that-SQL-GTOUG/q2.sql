@@ -1,9 +1,5 @@
 
 
-var idnum number
-
-exec :idnum := &1;
-
 set timing on
 set echo on
 
