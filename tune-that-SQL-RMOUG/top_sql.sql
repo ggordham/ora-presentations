@@ -15,6 +15,8 @@ column CPU format a8
 column ELAPSED format a8
 column EXECS format a8
 column PARSING_SCHEMA_NAME format a15
+column MODULE format a10
+column SQL format a25
 
 
 define n_sql = 100;
