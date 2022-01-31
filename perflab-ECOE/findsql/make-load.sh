@@ -1,9 +1,6 @@
 #!/bin/bash
 
-# Simple script to use for labs to get to a PDB when needed
-#  can be run inside a docker container
-preso=$1
-subdir=$2
+# make-load.sh
 
 # Set the following items to overide the discovered items
 # if you leave these blank, everything will be discovered
@@ -12,25 +9,6 @@ MY_PDB=
 MY_HOME=
 MY_TNS=
 
-#######################################################
-# figure out presentation specific settings
-if [ "$preso" == "" ]; then
-  echo "ERROR please provide a presentation id from the preso-list"
-  exit 2
-else
-  preso_dir=$( grep "$preso" preso-list | cut -d , -f 2 )
-  if [ "$preso_dir" == "" ]; then
-    echo "ERROR preso ID $preso is not in the preso-list"
-    exit 2
-  fi
-fi
-
-if [ "$subdir" == "" ]; then
-  run_dir="$working_dir/$preso_dir" 
-else
-  run_dir="$working_dir/$preso_dir/$subdir" 
-fi
-  
 #######################################################
 
 working_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -70,7 +48,9 @@ if [ "$MY_PDB" == "" ]; then
     # we need to get rid of the login.sql or it will mess up this bit
     rm "$working_dir"/login.sql
     set -o pipefail; ORACLE_PDB_SID=$("${ORACLE_HOME}/bin/sqlplus" -s /nolog  <<!EOF 
-          WHENEVER sqlerror EXIT sql.sqlcode; CONNECT / AS SYSDBA
+          WHENEVER sqlerror EXIT sql.sqlcode; 
+          CONNECT / AS SYSDBA
+          set feedback off
           set pagesize 0
           select pdb_name from cdb_pdbs where con_id = 3;
           exit
@@ -99,20 +79,27 @@ fi
 # Set Load Libraries
 export LD_LIBRARY_PATH="$ORACLE_HOME"/lib:/usr/lib
 
-# Create a SQL login profile, this will define 
-#  a PDB connect string for us to use in lab scripts
-splus_profile="$run_dir"/login.sql
-echo "" > "$splus_profile"
-echo "set pagesize 999" >> "$splus_profile"
-echo "set linesize 200" >> "$splus_profile"
-echo "ALTER SESSION SET nls_date_format = 'HH:MI:SS';" >> "$splus_profile"
-echo "SET SQLPROMPT \"_USER'@'_CONNECT_IDENTIFIER _DATE> \"" >> "$splus_profile"
-if [ "$ORACLE_PDB_SID" == "" ]; then
-  echo "define con_pdb =''"  >> "$splus_profile"
-else
-  echo "define con_pdb ='@$ORACLE_PDB_SID'"  >> "$splus_profile"
-fi
+# Setup Oracle variables and paths
+export ORAENV_ASK=NO
+# shellcheck disable=1091
+. /usr/local/bin/oraenv -s
 
-cd "$run_dir" || exit 2
-sqlplus /nolog
+./runquery.sh q1.sql 200 10 &
+./runquery.sh q1.sql 200 $((1 + RANDOM % 250000)) &
+./runquery.sh q2.sql 200 &
+./runquery.sh q3.sql 200 &
+./runquery.sh q4.sql 200 &
+./runquery.sh q5.sql 200 &
+./runquery.sh q6.sql 200 &
+./runquery.sh q7.sql 200 &
+./runquery.sh q8.sql 200 &
 
+tput clear
+jobs
+while sleep 1; do
+  tput clear
+  jobs
+  echo "When all jobs have completed press CTL+C to exit the script"
+done
+
+# or use tput rc to not clear the screen
