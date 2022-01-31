@@ -31,11 +31,17 @@ Run script lab-setup.sql as a user in the database with DBA rights (E.G. SYS or 
 
 ```bash
 cd perflab-ECOE
+
+# if you are using a PDB set the PDB name
+export ORACLE_PDB_SID=mypdb
+
 sqlplus /nolog
 ```
+
+Once in SQLPlus run:
 ```sql
-SQL> connect / as sysdba
-SQL> @lab-setup
+connect / as sysdba
+ @lab-setup
 ```
 
 Under each directory are examples for each topic area
@@ -47,27 +53,58 @@ Simple example of finding top SQL in the environment.
 
 ### Generate some load
 
-Open a second window to your test system.  In one window you will generate a bunch of SQL sessions.  In the second window you will look at top SQL statements for the PERFLAB user.
+For this lab we will need to command prompts on your test system.
+Open two windows, and set your environment in both windows.
+
 
 ```bash
 # Set your Oracle Environment
 . oraenv
+```
+
+
+In the first window we will setup the required tables, and generate a bunch of SQL sessions.
+```bash
 cd perflab-ECOE/findsql
+
+sqlplus /nolog
+```
+
+Run the script to setup required tables, run the correct commands based on if you are using a PDB or not:
+```sql
+-- if you are NOT using a PDB
+DEFINE con_pdb=""
+@ctables
+```
+```sql
+-- if you are using a PDB define the PDB name be sure to include the @ sign
+DEFINE con_pdb="@mypdb"
+@ctables
+```
+
+Now run the script to make some load
+```bash
 ./make-load.sh
 ```
 
-While the make load is running, in a second window connect to SQL\*PLus and check the top SQL statements:
+In the second window you will look at top SQL statements for the PERFLAB user.
+While the make load is running, connect to SQL\*PLus and check the top SQL statements:
 ```bash
 cd perflab-ECOE/findsql
 sqlplus /nolog
 ```
+
+Connect properly based on if you are using a PDB or not
 ```sql
+-- No PDB in use:
 connect perflab/perf$lab
-
--- If you are using a PDB:
+```
+```sql
+-- using a PDB:
 connect perflab/perf$lab@mypdb
-
--- Once connected run:
+```
+Once connected view the top SQL statements
+```sql
 @top_sql
 ```
 
@@ -95,58 +132,89 @@ MY_HOME=/u01/app/oracle/product/19c/dbhome_1
 MY_TNS=$ORACLE_HOME/network/admin
 ```
 
+When all background jobs have completed in the make load window you can press Ctl+C to return back to the shell prompt.  You can exit and close out the second window.
 
 ## Plans
 Walks through examples of generating explain plans.  Note the outline information and the different formatting options for example explain plans.
 Change into the plans directory.  Connect to the database using the perflab user.
 The example scripts will step through, Press ENTER when prompted at each step
 
-`cd plans`
-`sqlplus /nolog`
-`SQL> connect perflab/perf$lab`
-`SQL> @ctables.sql `
+```bash
+cd perflab-ECOE/plans
+sqlplus /nolog
+```
+
+Connect properly based on if you are using a PDB or not
+```sql
+-- No PDB in use:
+connect perflab/perf$lab
+```
+```sql
+-- using a PDB:
+connect perflab/perf$lab@mypdb
+```
+Once connected create the tables used in this example:
+```sql
+@ctables.sql
+```
 
 1. Explain with all sections:
 
-   `SQL> @eg1.sql`
+```sql
+@eg1.sql
+```
 
    Look at eg1.sql file to review SQL query
    Look at plan.sql file to review explain plan syntax
 
 2. Explain with detailed statistics:
 
-   `SQL> @eg2.sql`
+```sql
+@eg2.sql
+```
 
    Look at eg2.sql file to review SQL query with additional hint
    Look at stats.sql file to review explain plan syntax
 
 3. Monitor SQL:
 
-  `SQL> @eg3.sql`
-
+```sql
+@eg3.sql
+```
   Look at eg3.sql to review syntax for monitor SQL
 
 4. Tag / find SQL in v$sql table:
 
-   `SQL> @eg4.sql`
+```sql
+@eg4.sql
+```
 
   Look at eg4.sql to review hint for tagging, and syntax to find
 
 5. Combines examples 3 and 4
 
-  `SQL> @eg5.sql`
+```sql
+@eg5.sql
+```
 
    (mark SQL for easy identification in v$sql then run SQL monitor report on it)
 
 6. Look at the explain plan for a parallel query
 
-   `SQL> @eg6.sql`
+```sql
+@eg6.sql
+```
 
 7. Example of finding the SQL ID of the last statement from your session
 
-   `SQL> @last.sql`
+```sql
+ @last.sql
+```
 
 Exit SQLPlus
+```sql
+exit
+```
 
 ## Stats
 Example looking at object and system stats
