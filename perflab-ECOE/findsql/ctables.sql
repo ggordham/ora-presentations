@@ -36,3 +36,5 @@ create index t2i on t2 (a);
 -- Drop any SQL plan baselines
 -- @@drop-baselines
 spool off
+
+exit

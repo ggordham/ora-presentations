@@ -18,6 +18,8 @@ column PARSING_SCHEMA_NAME format a15
 column MODULE format a10
 column SQL format a25
 
+set pagesize 999
+set linesize 200
 
 define n_sql = 100;
 define schema_name = PERFLAB;
