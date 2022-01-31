@@ -22,15 +22,21 @@ The scripts have been modified for the purpose of the lab and to make them easy 
 ## Download the Scripts
 You can run the following command from Linux or MAC OSX or Cygwin to download all the items in the repository.
 
-`curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1`
+```bash
+curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1
+```
 
 ## Lab Setup
 Run script lab-setup.sql as a user in the database with DBA rights (E.G. SYS or SYSTEM)
 
-`cd perflab-ECOE`
-`sqlplus /nolog`
-`SQL> connect / as sysdba`
-`SQL> @lab-setup`
+```bash
+cd perflab-ECOE
+sqlplus /nolog
+```
+```sql
+SQL> connect / as sysdba
+SQL> @lab-setup
+```
 
 Under each directory are examples for each topic area
 
