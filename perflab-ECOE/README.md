@@ -23,7 +23,7 @@ The scripts have been modified for the purpose of the lab and to make them easy 
 You can run the following command from Linux or MAC OSX or Cygwin to download all the items in the repository.
 
 ```bash
-curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1
+curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1 "ggordham-ora-presentations-???????/perflab-ECOE"
 ```
 
 ## Lab Setup
