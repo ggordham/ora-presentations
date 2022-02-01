@@ -386,6 +386,28 @@ Exit SQLPlus
 exit
 ```
 
+## Full lab clean up
+
+Start a SQLPlus session from the main lab directory:
+```bash
+cd perflab-ECOE
+
+# if you are using a PDB set the PDB name
+export ORACLE_PDB_SID=mypdb
+
+sqlplus /nolog
+```
+
+Run the following commands in SQLPlus
+```sql
+CONNECT / AS SYSDBA
+
+@patch/drop.sql
+@spm/drop/sql
+
+DROP USER PERFLAB CASCADE;
+```
+
 # Further information
 Hopefully these scripts / labs will help increase the number of tools you can use for performance issues on Oracle database.
 
