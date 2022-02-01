@@ -78,7 +78,8 @@ DEFINE con_pdb=""
 @ctables
 ```
 ```sql
--- if you are using a PDB define the PDB name be sure to include the @ sign (replace mypdb with the name of your pdb)
+-- if you are using a PDB define the PDB name
+--   be sure to include the @ sign (replace mypdb with the name of your pdb)
 DEFINE con_pdb="@mypdb"
 @ctables
 ```
@@ -230,8 +231,14 @@ Change into the plans directory.  Connect to the database using a user with DBA 
 
 ```bash
 cd perflab-ECOE/stats
+
+# if you are using a PDB set the following variable to the name of your PDB
+export ORACLE_PDB_SID=mypdb
+
 sqlplus /nolog
 ```
+
+In SQLPlus connect as the system user:
 ```sql
 connect / as sysdba
 ```
@@ -259,15 +266,21 @@ connect / as sysdba
 @eg2.sql
 ```
 
+4. Display the automated statistics default settings.
+
+```sql
+@statset.sql
+```
+
 **This next example will play with system statistics.  Be sure to put things back the way you want when done.**
 
-4. This first script will load a example set of system stats that have been gathered.
+5. This first script will load a example set of system stats that have been gathered.
 
 ```sql
 @perf-lab-sys-stats-stg.sql
 ```
 
-5. Show current system statistics, load statistics from no-workload gathering, and load statistics from a workload gathering.
+6. Show current system statistics, load statistics from no-workload gathering, and load statistics from a workload gathering.
 
 ```sql
 @eg3.sql
@@ -325,12 +338,19 @@ Exit SQLPlus
 exit
 ```
 
+*To clean up after this example run the following script to drop the baselines*
+
+```sql
+@drop.sql
+```
+
+
 ## SQL patch
 Change into the patch directory.  Create the needed tables, and step through the examples.  Note user connections are hard coded into these scripts.
 The example scripts will step through, Press ENTER when prompted at each step
 
 ```bash
-cd patch
+cd perflab-ECOE/patch
 sqlplus /nolog
 ```
 ```sql
@@ -353,6 +373,12 @@ sqlplus /nolog
 
 ```sql
 @test3
+```
+
+*To clean up the patches run the following script*
+
+```sql
+@drop
 ```
 
 Exit SQLPlus

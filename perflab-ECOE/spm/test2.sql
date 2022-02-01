@@ -1,4 +1,6 @@
 
+SET ECHO OFF
+
 prompt We will run the same query many times to fill
 prompt   the SQL executions.  We will also take AWR
 prompt   snapshots before and after so that the SQL
@@ -27,6 +29,6 @@ prompt
 prompt Note: that the explain plan uses NESTED LOOPS
 prompt  the plan thinks it will only retrieve one row
 prompt  from each table even though we know it will need
-prompt  to retrive 25,000
+prompt  to retrive 250,000
 prompt
 

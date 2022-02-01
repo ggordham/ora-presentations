@@ -1,5 +1,7 @@
 -- Test 2
 -- ======
+SET ECHO OFF
+
 prompt Lets drop the patch and do another test
 prompt Press Enter to continue:
 accept next1
