@@ -28,6 +28,7 @@ curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --st
 
 ## Lab Setup
 Run script lab-setup.sql as a user in the database with DBA rights (E.G. SYS or SYSTEM)
+ (replace mypdb with the name of your pdb)
 
 ```bash
 cd perflab-ECOE
@@ -57,13 +58,13 @@ For this lab we will need to command prompts on your test system.
 Open two windows, and set your environment in both windows.
 
 
+Set your Oracle Environment
 ```bash
-# Set your Oracle Environment
 . oraenv
 ```
 
-
 In the first window we will setup the required tables, and generate a bunch of SQL sessions.
+Start SQL Plus from the findsql directory:
 ```bash
 cd perflab-ECOE/findsql
 
@@ -77,7 +78,7 @@ DEFINE con_pdb=""
 @ctables
 ```
 ```sql
--- if you are using a PDB define the PDB name be sure to include the @ sign
+-- if you are using a PDB define the PDB name be sure to include the @ sign (replace mypdb with the name of your pdb)
 DEFINE con_pdb="@mypdb"
 @ctables
 ```
@@ -88,13 +89,14 @@ Now run the script to make some load
 ```
 
 In the second window you will look at top SQL statements for the PERFLAB user.
-While the make load is running, connect to SQL\*PLus and check the top SQL statements:
+While the make load is running, connect to SQL\*PLus and check the top SQL statements.
+Start SQL Plus from the findsql directory:
 ```bash
 cd perflab-ECOE/findsql
 sqlplus /nolog
 ```
 
-Connect properly based on if you are using a PDB or not
+Connect properly based on if you are using a PDB or not (replace mypdb with the name of your pdb)
 ```sql
 -- No PDB in use:
 connect perflab/perf$lab
@@ -139,12 +141,18 @@ Walks through examples of generating explain plans.  Note the outline informatio
 Change into the plans directory.  Connect to the database using the perflab user.
 The example scripts will step through, Press ENTER when prompted at each step
 
+Set your Oracle Environment
+```bash
+. oraenv
+```
+
+Start SQL Plus from the plans directory
 ```bash
 cd perflab-ECOE/plans
 sqlplus /nolog
 ```
 
-Connect properly based on if you are using a PDB or not
+Connect properly based on if you are using a PDB or not (replace mypdb with the name of your pdb)
 ```sql
 -- No PDB in use:
 connect perflab/perf$lab
@@ -220,93 +228,137 @@ exit
 Example looking at object and system stats
 Change into the plans directory.  Connect to the database using a user with DBA privileges (E.G. SYS or SYSTEM)
 
-`cd stats`
-`sqlplus /nolog`
-`SQL> connect / as sysdba`
-`exit`
+```bash
+cd perflab-ECOE/stats
+sqlplus /nolog
+```
+```sql
+connect / as sysdba
+```
 
 1. Show table and column statistics for the objects used in the plans lab.
 
-   `SQL> @eg1.sql`
+```sql
+@eg1.sql
+```
 
    Also shows the status of automated statistics collection job
 
 2. Enable or Disable the automated statistics job based on current status
 
-   `SQL> @dis_auto_stats.sql`
-    `SQL> @en_auto_stats.sql`
+```sql
+@dis_auto_stats.sql
+@en_auto_stats.sql
+```
 
    Be sure you leave the job in the state you want (enabled or disabled)
 
 3. Change the automatic statistics job to run on Mondays, modify the percent stale rows used to decide when to run stats for the PERFLAB.EMPLOYEE table, and show the tables in the database with stale statistics.
 
-   `SQL> @eg2.sql`
+```sql
+@eg2.sql
+```
 
 **This next example will play with system statistics.  Be sure to put things back the way you want when done.**
 
 4. This first script will load a example set of system stats that have been gathered.
 
-  `SQL> @perf-lab-sys-stats-stg.sql`
+```sql
+@perf-lab-sys-stats-stg.sql
+```
 
 5. Show current system statistics, load statistics from no-workload gathering, and load statistics from a workload gathering.
 
-  `SQL> @eg3.sql`
+```sql
+@eg3.sql
+```
 
 **post this example you should set your system statistics back to the default**
 The first script will set your system back to no workload system stats based on your hardware.
 The second script will show the values of your system stats.
 
-`SQL> @sysstat_del.sql`
-`SQL> @sysstat_val.sql`
+```sql
+@sysstat_del.sql
+@sysstat_val.sql
+```
 
 Exit SQLPlus
+```sql
+exit
+```
 
 ## SQL Plan Management
 Examples using SQL Plan Management
 Change into the patch directory.  Create the needed tables, and step through the examples.  Note user connections are hard coded into these scripts.
 The example scripts will step through, Press ENTER when prompted at each step
 
-`cd spm`
-`sqlplus /nolog`
-`SQL> @ctables`
+```bash
+cd perflab-ECOE/spm
+sqlplus /nolog
+```
+```sql
+@ctables
+```
 
 1. testsRun through first test – two plans for the same SQL
 
-`SQL> @test1`
+```sql
+@test1
+```
 
 2.	Run through second test – remove the extended stats
 
-`SQL> @test2`
+```sql
+@test2
+```
 
 3.	Run through third test – create a baseline
 
-`SQL> @test3`
+```sql
+@test3
+```
 
 **Be sure to copy the plan hash value from the query to the SPM create baseline!**
 
 Exit SQLPlus
+```sql
+exit
+```
 
 ## SQL patch
 Change into the patch directory.  Create the needed tables, and step through the examples.  Note user connections are hard coded into these scripts.
 The example scripts will step through, Press ENTER when prompted at each step
 
-`cd patch`
-`sqlplus /nolog`
-`SQL> @ctables`
+```bash
+cd patch
+sqlplus /nolog
+```
+```sql
+@ctables
+```
 
 1. Run through first test – simple patch using outline hint
 
-`SQL> @test1`
+```sql
+@test1
+```
 
 2.	Run through second test – remove usage of hint embedded
 
-`SQL> @test2`
+```sql
+@test2
+```
 
 3.	Run through third test – copy plan from one SQL to another
 
-`SQL> @test3`
+```sql
+@test3
+```
 
 Exit SQLPlus
+```sql
+exit
+```
 
 # Further information
 Hopefully these scripts / labs will help increase the number of tools you can use for performance issues on Oracle database.
