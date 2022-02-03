@@ -61,11 +61,15 @@ RMOUG - Feb 9, 2022 - Deep Dive into SQL Tuning <sup>*2</sup>
 
 ```/indepth-sql-RMOUG```
 
-ECOE - Feb 22, 2022 - Oracle 19c Hand-on Experience: Performance Tuning Workshop
+ORAPUB - Feb 16, 2022 - Oracle Performance Tuning Workshop
 
-```/perflab-ECOE```
+```/perflab-ORAPUB```
 
-ECOE - Feb 23, 2022 - Oracle Database CMU: Bringing AD into the DBAs Life
+ECO - Feb 22, 2022 - Oracle Performance Tuning Workshop
+
+```/perflab-ECO```
+
+ECO - Feb 23, 2022 - Oracle Database CMU: Bringing AD into the DBAs Life
 
 ---
 
