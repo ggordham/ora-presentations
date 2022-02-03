@@ -1,5 +1,5 @@
-# perflab-ECOE
-Scripts from the ECOE performance tuning lab Feb 22, 2022
+# perflab-ECO
+Scripts from the ECO performance tuning lab Feb 22, 2022
 
 These scripts are mostly based on examples from the Oracle example github repository:
 https://github.com/oracle/oracle-db-examples
@@ -23,7 +23,7 @@ The scripts have been modified for the purpose of the lab and to make them easy 
 You can run the following command from Linux or MAC OSX or Cygwin to download all the items in the repository.
 
 ```bash
-curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1 "ggordham-ora-presentations-???????/perflab-ECOE"
+curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1 "ggordham-ora-presentations-???????/perflab-ECO"
 ```
 
 ## Lab Setup
@@ -31,7 +31,7 @@ Run script lab-setup.sql as a user in the database with DBA rights (E.G. SYS or 
  (replace mypdb with the name of your pdb)
 
 ```bash
-cd perflab-ECOE
+cd perflab-ECO
 
 # if you are using a PDB set the PDB name
 export ORACLE_PDB_SID=mypdb
@@ -66,7 +66,7 @@ Set your Oracle Environment
 In the first window we will setup the required tables, and generate a bunch of SQL sessions.
 Start SQL Plus from the findsql directory:
 ```bash
-cd perflab-ECOE/findsql
+cd perflab-ECO/findsql
 
 sqlplus /nolog
 ```
@@ -93,7 +93,7 @@ In the second window you will look at top SQL statements for the PERFLAB user.
 While the make load is running, connect to SQL\*PLus and check the top SQL statements.
 Start SQL Plus from the findsql directory:
 ```bash
-cd perflab-ECOE/findsql
+cd perflab-ECO/findsql
 sqlplus /nolog
 ```
 
@@ -149,7 +149,7 @@ Set your Oracle Environment
 
 Start SQL Plus from the plans directory
 ```bash
-cd perflab-ECOE/plans
+cd perflab-ECO/plans
 sqlplus /nolog
 ```
 
@@ -230,7 +230,7 @@ Example looking at object and system stats
 Change into the plans directory.  Connect to the database using a user with DBA privileges (E.G. SYS or SYSTEM)
 
 ```bash
-cd perflab-ECOE/stats
+cd perflab-ECO/stats
 
 # if you are using a PDB set the following variable to the name of your PDB
 export ORACLE_PDB_SID=mypdb
@@ -306,7 +306,7 @@ Change into the patch directory.  Create the needed tables, and step through the
 The example scripts will step through, Press ENTER when prompted at each step
 
 ```bash
-cd perflab-ECOE/spm
+cd perflab-ECO/spm
 sqlplus /nolog
 ```
 ```sql
@@ -350,7 +350,7 @@ Change into the patch directory.  Create the needed tables, and step through the
 The example scripts will step through, Press ENTER when prompted at each step
 
 ```bash
-cd perflab-ECOE/patch
+cd perflab-ECO/patch
 sqlplus /nolog
 ```
 ```sql
@@ -390,7 +390,7 @@ exit
 
 Start a SQLPlus session from the main lab directory:
 ```bash
-cd perflab-ECOE
+cd perflab-ECO
 
 # if you are using a PDB set the PDB name
 export ORACLE_PDB_SID=mypdb
