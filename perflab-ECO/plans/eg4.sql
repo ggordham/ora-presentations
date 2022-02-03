@@ -2,6 +2,7 @@ column ename format a20
 column rname format a20
 
 var sqlid varchar2(100)
+prompt ========================== eg4 ==========================================
 prompt Here we add a hint with a name we can search for
 prompt Press Enter to continue:
 accept next1

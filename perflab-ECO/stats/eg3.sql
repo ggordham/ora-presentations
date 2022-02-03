@@ -1,4 +1,5 @@
 set echo off
+prompt ========================== eg3 ==========================================
 prompt Show the current system statistics values
 prompt Press Enter to continue:
 accept next1

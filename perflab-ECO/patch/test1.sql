@@ -1,5 +1,6 @@
 -- Test 1
 -- ======
+prompt ========================== test1 ==========================================
 connect / as sysdba
 @drop
 connect perflab/perf$lab

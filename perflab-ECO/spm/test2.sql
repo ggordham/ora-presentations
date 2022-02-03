@@ -1,6 +1,7 @@
 
 SET ECHO OFF
 
+prompt ========================== test2 ==========================================
 prompt We will run the same query many times to fill
 prompt   the SQL executions.  We will also take AWR
 prompt   snapshots before and after so that the SQL

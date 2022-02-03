@@ -1,5 +1,7 @@
 
 set echo off
+prompt ========================== test1 ==========================================
+
 prompt We will run two queries that are the same, 
 prompt   the difference is the value we search for.
 prompt   as the data in the table is skewed the access 

@@ -7,6 +7,7 @@ column rname format a20
 var sqlid varchar2(100)
 
 --
+prompt ========================== eg3 ==========================================
 prompt -- Long running queries will be monitored automatically
 prompt -- so the hint won't always be required. In this case,
 prompt -- it's over very quickly so I've added the hint.

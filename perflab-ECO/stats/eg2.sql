@@ -1,4 +1,5 @@
 set echo off
+prompt ========================== eg2 ==========================================
 prompt Change scheduled window for auto stats job
 prompt  set for Monday at 5am
 prompt Press Enter to continue:

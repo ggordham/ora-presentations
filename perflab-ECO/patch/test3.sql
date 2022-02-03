@@ -1,5 +1,6 @@
 -- Test 3
 -- ======
+prompt ========================== test3 ==========================================
 prompt Test 3 we will no copy a patch from on SQL to another
 prompt Press Enter to continue:
 accept next1

@@ -1,4 +1,5 @@
 set echo off
+prompt ========================== eg1 ==========================================
 prompt Showing table and column stats for perflab objects
 prompt Press Enter to continue:
 accept next1

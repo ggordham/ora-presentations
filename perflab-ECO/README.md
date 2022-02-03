@@ -28,13 +28,13 @@ curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --st
 
 ## Lab Setup
 Run script lab-setup.sql as a user in the database with DBA rights (E.G. SYS or SYSTEM)
- (replace mypdb with the name of your pdb)
+ (replace PDBLAB1 with the name of your pdb)
 
 ```bash
 cd perflab-ECO
 
 # if you are using a PDB set the PDB name
-export ORACLE_PDB_SID=mypdb
+export ORACLE_PDB_SID=PDBLAB1
 
 sqlplus /nolog
 ```
@@ -54,7 +54,7 @@ Simple example of finding top SQL in the environment.
 
 ### Generate some load
 
-For this lab we will need to command prompts on your test system.
+For this lab we will need two command prompts on your test system.
 Open two windows, and set your environment in both windows.
 
 
@@ -63,6 +63,7 @@ Set your Oracle Environment
 . oraenv
 ```
 
+#### Window 1
 In the first window we will setup the required tables, and generate a bunch of SQL sessions.
 Start SQL Plus from the findsql directory:
 ```bash
@@ -79,8 +80,8 @@ DEFINE con_pdb=""
 ```
 ```sql
 -- if you are using a PDB define the PDB name
---   be sure to include the @ sign (replace mypdb with the name of your pdb)
-DEFINE con_pdb="@mypdb"
+--   be sure to include the @ sign (replace PDBLAB1 with the name of your pdb)
+DEFINE con_pdb="@PDBLAB1"
 @ctables
 ```
 
@@ -89,6 +90,7 @@ Now run the script to make some load
 ./make-load.sh
 ```
 
+#### Window 2
 In the second window you will look at top SQL statements for the PERFLAB user.
 While the make load is running, connect to SQL\*PLus and check the top SQL statements.
 Start SQL Plus from the findsql directory:
@@ -97,14 +99,14 @@ cd perflab-ECO/findsql
 sqlplus /nolog
 ```
 
-Connect properly based on if you are using a PDB or not (replace mypdb with the name of your pdb)
+Connect properly based on if you are using a PDB or not (replace PDBLAB1 with the name of your pdb)
 ```sql
 -- No PDB in use:
 connect perflab/perf$lab
 ```
 ```sql
 -- using a PDB:
-connect perflab/perf$lab@mypdb
+connect perflab/perf$lab@PDBLAB1
 ```
 Once connected view the top SQL statements
 ```sql
@@ -153,14 +155,14 @@ cd perflab-ECO/plans
 sqlplus /nolog
 ```
 
-Connect properly based on if you are using a PDB or not (replace mypdb with the name of your pdb)
+Connect properly based on if you are using a PDB or not (replace PDBLAB1 with the name of your pdb)
 ```sql
 -- No PDB in use:
 connect perflab/perf$lab
 ```
 ```sql
 -- using a PDB:
-connect perflab/perf$lab@mypdb
+connect perflab/perf$lab@PDBLAB1
 ```
 Once connected create the tables used in this example:
 ```sql
@@ -233,7 +235,7 @@ Change into the plans directory.  Connect to the database using a user with DBA 
 cd perflab-ECO/stats
 
 # if you are using a PDB set the following variable to the name of your PDB
-export ORACLE_PDB_SID=mypdb
+export ORACLE_PDB_SID=PDBLAB1
 
 sqlplus /nolog
 ```
@@ -393,7 +395,7 @@ Start a SQLPlus session from the main lab directory:
 cd perflab-ECO
 
 # if you are using a PDB set the PDB name
-export ORACLE_PDB_SID=mypdb
+export ORACLE_PDB_SID=PDBLAB1
 
 sqlplus /nolog
 ```

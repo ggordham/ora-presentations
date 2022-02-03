@@ -1,6 +1,7 @@
 column ename format a20
 column rname format a20
 
+prompt ========================== eg6 ==========================================
 prompt Running a SQL statement in parallel and showing the plan
 prompt Press Enter to continue:
 accept next1

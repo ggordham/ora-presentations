@@ -1,4 +1,5 @@
 
+prompt ========================== test3 ==========================================
 prompt We will now run the SQL Plan Management job
 prompt   and accept the suggested plan baseline.
 prompt Press Enter to continue:

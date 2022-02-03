@@ -3,6 +3,7 @@ column ename format a20
 column rname format a20
 
 var sqlid varchar2(100)
+prompt ========================== eg5 ==========================================
 prompt Combining monitor and searching for SQL text
 prompt Press Enter to continue:
 accept next1

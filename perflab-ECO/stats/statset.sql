@@ -1,4 +1,6 @@
 
+prompt ========================== stats settings ==========================================
+
 column cascade format a30
 column degree format a5
 column est_pct format a30

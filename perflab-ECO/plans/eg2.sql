@@ -1,6 +1,7 @@
 column ename format a20
 column rname format a20
 
+prompt ========================== eg2 ==========================================
 prompt Running a SQL statement with additional statistics, 
 prompt  and then showing the plan for that statement
 prompt  NOTE: hint added to gather the run time statistics
