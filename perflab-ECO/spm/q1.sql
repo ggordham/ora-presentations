@@ -1,5 +1,5 @@
 set timing on
-connect perflab/perf$lab
+connect perflab/perf$lab&con_pdb
 --
 -- The adaptive plan feature can potentially avoid performance regressions
 -- associate with the wrong join type being chosen, so we are going to disable it because

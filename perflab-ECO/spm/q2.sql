@@ -1,5 +1,5 @@
 set timing on
-connect perflab/perf$lab
+connect perflab/perf$lab&con_pdb
 
 prompt
 prompt This second query searches for value 1000

@@ -405,7 +405,7 @@ Run the following commands in SQLPlus
 CONNECT / AS SYSDBA
 
 @patch/drop.sql
-@spm/drop/sql
+@spm/drop.sql
 
 DROP USER PERFLAB CASCADE;
 ```

@@ -1,6 +1,6 @@
 @@snap
 
-connect perflab/perf$lab
+connect perflab/perf$lab&con_pdb
 
 declare 
   n1 number(10);
