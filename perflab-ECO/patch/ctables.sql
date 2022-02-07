@@ -1,4 +1,4 @@
-connect perflab/perf$lab
+connect perflab/perf$lab&con_pdb
 
 drop table tab1 purge;
 drop table tab2 purge;

@@ -37,12 +37,14 @@ cd perflab-ECO
 export ORACLE_PDB_SID=PDBLAB1
 
 sqlplus /nolog
+
 ```
 
 Once in SQLPlus run:
 ```sql
 connect / as sysdba
  @lab-setup
+
 ```
 
 Under each directory are examples for each topic area
@@ -61,6 +63,7 @@ Open two windows, and set your environment in both windows.
 Set your Oracle Environment
 ```bash
 . oraenv
+
 ```
 
 #### Window 1
@@ -70,6 +73,7 @@ Start SQL Plus from the findsql directory:
 cd perflab-ECO/findsql
 
 sqlplus /nolog
+
 ```
 
 Run the script to setup required tables, run the correct commands based on if you are using a PDB or not:
@@ -77,17 +81,20 @@ Run the script to setup required tables, run the correct commands based on if yo
 -- if you are NOT using a PDB
 DEFINE con_pdb=""
 @ctables
+
 ```
 ```sql
 -- if you are using a PDB define the PDB name
 --   be sure to include the @ sign (replace PDBLAB1 with the name of your pdb)
 DEFINE con_pdb="@PDBLAB1"
 @ctables
+
 ```
 
 Now run the script to make some load
 ```bash
 ./make-load.sh
+
 ```
 
 #### Window 2
@@ -97,20 +104,24 @@ Start SQL Plus from the findsql directory:
 ```bash
 cd perflab-ECO/findsql
 sqlplus /nolog
+
 ```
 
 Connect properly based on if you are using a PDB or not (replace PDBLAB1 with the name of your pdb)
 ```sql
 -- No PDB in use:
 connect perflab/perf$lab
+
 ```
 ```sql
 -- using a PDB:
 connect perflab/perf$lab@PDBLAB1
+
 ```
 Once connected view the top SQL statements
 ```sql
 @top_sql
+
 ```
 
 Here we can see a number of SQL statements in the cursor cache.  You can see a good deal of information about each statement.  Be sure to look at the top_sql script and understand what other data you might want to know about a SQL statement.
@@ -147,32 +158,38 @@ The example scripts will step through, Press ENTER when prompted at each step
 Set your Oracle Environment
 ```bash
 . oraenv
+
 ```
 
 Start SQL Plus from the plans directory
 ```bash
 cd perflab-ECO/plans
 sqlplus /nolog
+
 ```
 
 Connect properly based on if you are using a PDB or not (replace PDBLAB1 with the name of your pdb)
 ```sql
 -- No PDB in use:
 connect perflab/perf$lab
+
 ```
 ```sql
 -- using a PDB:
 connect perflab/perf$lab@PDBLAB1
+
 ```
 Once connected create the tables used in this example:
 ```sql
 @ctables.sql
+
 ```
 
 1. Explain with all sections:
 
 ```sql
 @eg1.sql
+
 ```
 
    Look at eg1.sql file to review SQL query
@@ -182,6 +199,7 @@ Once connected create the tables used in this example:
 
 ```sql
 @eg2.sql
+
 ```
 
    Look at eg2.sql file to review SQL query with additional hint
@@ -191,6 +209,7 @@ Once connected create the tables used in this example:
 
 ```sql
 @eg3.sql
+
 ```
   Look at eg3.sql to review syntax for monitor SQL
 
@@ -198,6 +217,7 @@ Once connected create the tables used in this example:
 
 ```sql
 @eg4.sql
+
 ```
 
   Look at eg4.sql to review hint for tagging, and syntax to find
@@ -206,6 +226,7 @@ Once connected create the tables used in this example:
 
 ```sql
 @eg5.sql
+
 ```
 
    (mark SQL for easy identification in v$sql then run SQL monitor report on it)
@@ -214,17 +235,20 @@ Once connected create the tables used in this example:
 
 ```sql
 @eg6.sql
+
 ```
 
 7. Example of finding the SQL ID of the last statement from your session
 
 ```sql
  @last.sql
+
 ```
 
 Exit SQLPlus
 ```sql
 exit
+
 ```
 
 ## Stats
@@ -238,17 +262,20 @@ cd perflab-ECO/stats
 export ORACLE_PDB_SID=PDBLAB1
 
 sqlplus /nolog
+
 ```
 
 In SQLPlus connect as the system user:
 ```sql
 connect / as sysdba
+
 ```
 
 1. Show table and column statistics for the objects used in the plans lab.
 
 ```sql
 @eg1.sql
+
 ```
 
    Also shows the status of automated statistics collection job
@@ -258,6 +285,7 @@ connect / as sysdba
 ```sql
 @dis_auto_stats.sql
 @en_auto_stats.sql
+
 ```
 
    Be sure you leave the job in the state you want (enabled or disabled)
@@ -266,12 +294,14 @@ connect / as sysdba
 
 ```sql
 @eg2.sql
+
 ```
 
 4. Display the automated statistics default settings.
 
 ```sql
 @statset.sql
+
 ```
 
 **This next example will play with system statistics.  Be sure to put things back the way you want when done.**
@@ -280,12 +310,14 @@ connect / as sysdba
 
 ```sql
 @perf-lab-sys-stats-stg.sql
+
 ```
 
 6. Show current system statistics, load statistics from no-workload gathering, and load statistics from a workload gathering.
 
 ```sql
 @eg3.sql
+
 ```
 
 **post this example you should set your system statistics back to the default**
@@ -295,11 +327,13 @@ The second script will show the values of your system stats.
 ```sql
 @sysstat_del.sql
 @sysstat_val.sql
+
 ```
 
 Exit SQLPlus
 ```sql
 exit
+
 ```
 
 ## SQL Plan Management
@@ -310,42 +344,49 @@ The example scripts will step through, Press ENTER when prompted at each step
 ```bash
 cd perflab-ECO/spm
 sqlplus /nolog
+
 ```
 ```sql
 @ctables
+
 ```
 
 1. testsRun through first test – two plans for the same SQL
 
 ```sql
 @test1
+
 ```
 
 2.	Run through second test – remove the extended stats
 
 ```sql
 @test2
+
 ```
 
 3.	Run through third test – create a baseline
 
 ```sql
 @test3
+
 ```
 
 **Be sure to copy the plan hash value from the query to the SPM create baseline!**
 
-Exit SQLPlus
-```sql
-exit
-```
 
 *To clean up after this example run the following script to drop the baselines*
 
 ```sql
 @drop.sql
+
 ```
 
+Exit SQLPlus
+```sql
+exit
+
+```
 
 ## SQL patch
 Change into the patch directory.  Create the needed tables, and step through the examples.  Note user connections are hard coded into these scripts.
@@ -354,38 +395,47 @@ The example scripts will step through, Press ENTER when prompted at each step
 ```bash
 cd perflab-ECO/patch
 sqlplus /nolog
+
+
 ```
 ```sql
 @ctables
+
+
 ```
 
 1. Run through first test – simple patch using outline hint
 
 ```sql
 @test1
+
 ```
 
 2.	Run through second test – remove usage of hint embedded
 
 ```sql
 @test2
+
 ```
 
 3.	Run through third test – copy plan from one SQL to another
 
 ```sql
 @test3
+
 ```
 
 *To clean up the patches run the following script*
 
 ```sql
 @drop
+
 ```
 
 Exit SQLPlus
 ```sql
 exit
+
 ```
 
 ## Full lab clean up
@@ -398,6 +448,7 @@ cd perflab-ECO
 export ORACLE_PDB_SID=PDBLAB1
 
 sqlplus /nolog
+
 ```
 
 Run the following commands in SQLPlus
@@ -408,6 +459,7 @@ CONNECT / AS SYSDBA
 @spm/drop.sql
 
 DROP USER PERFLAB CASCADE;
+
 ```
 
 # Further information

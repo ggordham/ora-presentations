@@ -3,7 +3,7 @@
 prompt ========================== test1 ==========================================
 connect / as sysdba
 @drop
-connect perflab/perf$lab
+connect perflab/perf$lab&con_pdb
 --
 -- Execute our test query
 -- It uses an index
