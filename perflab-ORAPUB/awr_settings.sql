@@ -8,6 +8,8 @@
 
 set echo off
 
+column src_dbname format a12
+
 PROMPT
 PROMPT Each PDB will have unique settings
 PROMPT Intervals are in minutes, 11,520 = 8 days
