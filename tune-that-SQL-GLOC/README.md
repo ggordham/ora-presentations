@@ -1,5 +1,5 @@
 # tune-that-sql-GLOC
-Scripts from the Gutemala Tune that SQL presentation presentation January 2022
+Scripts from the Great Lakes Oracle Conference Tune that SQL presentation presentation May 2022
 
 These scripts are mostly based on examples from the Oracle example github repository:
 https://github.com/oracle/oracle-db-examples
