@@ -9,8 +9,10 @@ plabo,perflab-ORAPUB
 plabe,perflab-ECO
 spmi,spm-INSYNC
 spmm,spm-MOUG
+spmn,spm-NYOUG
 spmr,spm-RMOUG
 spmu,spm-UTOUG
+tsqll,tune-that-SQL-GLOC
 tsqlg,tune-that-SQL-GTOUG
 tsqln,tune-that-SQL-NYOUG
 tsqlr,tune-that-SQL-RMOUG
