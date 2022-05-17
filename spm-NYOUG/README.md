@@ -93,10 +93,13 @@ SQL> @show_baseline.sql
 ```
 
 ## Clean up
-To clean up the lab run the following two items as a DBA user:
+To clean up the lab run the following two items:
 
 ```sql
 SQL> @drop
+
+SQL> -- CONNECT as DBA user
+
 SQL> DROP USER PERFLAB CASCADE;
 ```
 
