@@ -1,0 +1,7651 @@
+<html>
+<!-- $Header: 1366133.1 sqlhc.sql 12.1.07 2019/04/21 carlos.sierra $ -->
+<!-- Copyright (c) 2000-2012, Oracle Corporation. All rights reserved. -->
+<!-- Author: carlos.sierra@oracle.com -->
+
+<head>
+<title>sqlhc_20210304_1556_fua0hb5hfst77_2_diagnostics.html</title>
+
+<style type="text/css">
+body {font:10pt Arial,Helvetica,Verdana,Geneva,sans-serif; color:black; background:white;}
+a {font-weight:bold; color:#663300;}
+pre {font:8pt Monaco,"Courier New",Courier,monospace;} /* for code */
+h1 {font-size:16pt; font-weight:bold; color:#336699;}
+h2 {font-size:14pt; font-weight:bold; color:#336699;}
+h3 {font-size:12pt; font-weight:bold; color:#336699;}
+li {font-size:10pt; font-weight:bold; color:#336699; padding:0.1em 0 0 0;}
+table {font-size:8pt; color:black; background:white;}
+th {font-weight:bold; background:#cccc99; color:#336699; vertical-align:bottom; padding-left:3pt; padding-right:3pt; padding-top:1pt; padding-bottom:1pt;}
+td {text-align:left; background:#fcfcf0; vertical-align:top; padding-left:3pt; padding-right:3pt; padding-top:1pt; padding-bottom:1pt;}
+td.c {text-align:center;} /* center */
+td.l {text-align:left;} /* left (default) */
+td.r {text-align:right;} /* right */
+font.n {font-size:8pt; font-style:italic; color:#336699;} /* table footnote in blue */
+font.f {font-size:8pt; color:#999999;} /* footnote in gray */
+</style>
+
+</head>
+<body>
+<h1><a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=NOT&id=1366133.1">1366133.1</a> SQLHC
+12.1.07 Report: sqlhc_20210304_1556_fua0hb5hfst77_2_diagnostics.html</h1>
+
+<pre>
+License    : T
+Input      : fua0hb5hfst77
+SIGNATURE  : 4022507629801686773
+SIGNATUREF : 4022507629801686773
+RDBMS      : 19.0.0.0.0
+Platform   :
+Database   : t1db
+DBID       :  447509184
+Host       : srvr03
+Instance   : 1
+CPU_Count  : 4
+Num CPUs   : 4
+Num Cores  : 4
+Num Sockets: 1
+Block Size : 8192
+OFE        : 19.1.0
+DYN_SAMP   : 2
+EBS        : ""
+SIEBEL     : ""
+PSFT       : ""
+Date       : 2021-03-04/15:56:46
+User       : PERFLAB
+</pre>
+<ul>
+<li><a href="#text">SQL Text</a></li>
+<li><a href="#spm">SQL Plan Baselines (DBA_SQL_PLAN_BASELINES)</a></li>
+<li><a href="#prof">SQL Profiles (DBA_SQL_PROFILES)</a></li>
+<li><a href="#patch">SQL Patches (DBA_SQL_PATCHES)</a></li>
+<li><a href="#share_r">Cursor Sharing and Reason</a></li>
+<li><a href="#share_l">Cursor Sharing List</a></li>
+<li><a href="#mem_plans_sum">Current Plans Summary (GV$SQL)</a></li>
+<li><a href="#mem_stats">Current SQL Statistics (GV$SQL)</a></li>
+<li><a href="#awr_plans_sum">Historical Plans Summary (DBA_HIST_SQLSTAT)</a></li>
+<li><a href="#awr_stats_d">Historical SQL Statistics - Delta (DBA_HIST_SQLSTAT)</a></li>
+<li><a href="#awr_stats_t">Historical SQL Statistics - Total (DBA_HIST_SQLSTAT)</a></li>
+<li><a href="#ash_plan">Active Session History by Plan (GV$ACTIVE_SESSION_HISTORY)</a></li>
+<li><a href="#ash_line">Active Session History by Plan Line (GV$ACTIVE_SESSION_HISTORY)</a></li>
+<li><a href="#awr_plan">AWR Active Session History by Plan (DBA_HIST_ACTIVE_SESS_HISTORY)</a></li>
+<li><a href="#awr_line">AWR Active Session History by Plan Line (DBA_HIST_ACTIVE_SESS_HISTORY)</a></li>
+<li><a href="#dbms_stats_sys_prefs">DBMS_STATS System Preferences</a></li>
+<li><a href="#tables">Tables</a></li>
+<li><a href="#dbms_stats_tab_prefs">DBMS_STATS Table Preferences</a></li>
+<li><a href="#tbl_cols">Table Columns</a></li>
+<li><a href="#tbl_parts">Table Partitions</a></li>
+<li><a href="#tbl_constr">Table Constraints</a></li>
+<li><a href="#tbl_stat_ver">Tables Statistics Versions</a></li>
+<li><a href="#indexes">Indexes</a></li>
+<li><a href="#idx_cols">Index Columns</a></li>
+<li><a href="#ind_parts">Index Partitions</a></li>
+<li><a href="#idx_stat_ver">Indexes Statistics Versions</a></li>
+<li><a href="#sys_params">System Parameters with Non-Default or Modified Values</a></li>
+<li><a href="#inst_params">Instance Parameters</a></li>
+<li><a href="#metadata">Metadata</a></li>
+</ul>
+<a name="text"></a><h2>SQL Text</h2>
+
+<pre>
+SELECT /*+ gather_plan_statistics NO_ADAPTIVE_PLAN */ sum(t1.c), sum(t2.c) FROM t1, t2 WHERE t1.a = t2.a AND t1.d = :idnum
+</pre>
+<a name="spm"></a><h2>SQL Plan Baselines (DBA_SQL_PLAN_BASELINES)</h2>
+
+Available on 11g or higher. If this section is empty that means there are no plans in plan history for this SQL.
+
+<!-- 2021-03-04/15:57:33 -->
+<!-- Please Wait -->
+<p>
+<table>
+<tr>
+<th scope="col">
+#
+</th>
+<th scope="col">
+SIGNATURE
+</th>
+<th scope="col">
+SQL_HANDLE
+</th>
+<th scope="col">
+SQL_TEXT
+</th>
+<th scope="col">
+PLAN_NAME
+</th>
+<th scope="col">
+CREATOR
+</th>
+<th scope="col">
+ORIGIN
+</th>
+<th scope="col">
+PARSING_SCHEMA_NAME
+</th>
+<th scope="col">
+DESCRIPTION
+</th>
+<th scope="col">
+VERSION
+</th>
+<th scope="col">
+CREATED
+</th>
+<th scope="col">
+LAST_MODIFIED
+</th>
+<th scope="col">
+LAST_EXECUTED
+</th>
+<th scope="col">
+LAST_VERIFIED
+</th>
+<th scope="col">
+ENA
+</th>
+<th scope="col">
+ACC
+</th>
+<th scope="col">
+FIX
+</th>
+<th scope="col">
+REP
+</th>
+<th scope="col">
+AUT
+</th>
+<th scope="col">
+ADA
+</th>
+<th scope="col">
+OPTIMIZER_COST
+</th>
+<th scope="col">
+MODULE
+</th>
+<th scope="col">
+ACTION
+</th>
+<th scope="col">
+EXECUTIONS
+</th>
+<th scope="col">
+ELAPSED_TIME
+</th>
+<th scope="col">
+CPU_TIME
+</th>
+<th scope="col">
+BUFFER_GETS
+</th>
+<th scope="col">
+DISK_READS
+</th>
+<th scope="col">
+DIRECT_WRITES
+</th>
+<th scope="col">
+ROWS_PROCESSED
+</th>
+<th scope="col">
+FETCHES
+</th>
+<th scope="col">
+END_OF_FETCH_COUNT
+</th>
+</tr>
+<tr>
+<td align="right">
+         1
+</td>
+<td align="right">
+  4022507629801686773
+</td>
+<td>
+SQL_37d2d1608ca0c6f5
+</td>
+<td>
+SELECT /*+ gather_plan_statistics NO_ADAPTIVE_PLAN */ sum(t1.c),
+sum(t2.c) FROM t1, t2 WHERE t1.a = t2.a AND t1.d = :idnum
+</td>
+<td>
+SQL_PLAN_3gnqjc26a1jrpceb2ac1e
+</td>
+<td>
+PERFLAB
+</td>
+<td>
+AUTO-CAPTURE
+</td>
+<td>
+PERFLAB
+</td>
+<td>
+&nbsp;
+</td>
+<td>
+19.0.0.0.0
+</td>
+<td>
+24-FEB-21 03.19.42.570517 PM
+</td>
+<td>
+03-MAR-21 10.46.32.000000 AM
+</td>
+<td>
+03-MAR-21 10.46.32.000000 AM
+</td>
+<td>
+&nbsp;
+</td>
+<td>
+YES
+</td>
+<td>
+YES
+</td>
+<td>
+NO
+</td>
+<td>
+YES
+</td>
+<td>
+YES
+</td>
+<td>
+NO
+</td>
+<td align="right">
+       553
+</td>
+<td>
+SQL*Plus
+</td>
+<td>
+&nbsp;
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+<tr>
+<td align="right">
+         2
+</td>
+<td align="right">
+  4022507629801686773
+</td>
+<td>
+SQL_37d2d1608ca0c6f5
+</td>
+<td>
+SELECT /*+ gather_plan_statistics NO_ADAPTIVE_PLAN */ sum(t1.c),
+sum(t2.c) FROM t1, t2 WHERE t1.a = t2.a AND t1.d = :idnum
+</td>
+<td>
+SQL_PLAN_3gnqjc26a1jrpc6a45b88
+</td>
+<td>
+PERFLAB
+</td>
+<td>
+AUTO-CAPTURE
+</td>
+<td>
+PERFLAB
+</td>
+<td>
+&nbsp;
+</td>
+<td>
+19.0.0.0.0
+</td>
+<td>
+24-FEB-21 03.19.52.618542 PM
+</td>
+<td>
+24-FEB-21 03.22.34.000000 PM
+</td>
+<td>
+24-FEB-21 03.22.34.000000 PM
+</td>
+<td>
+24-FEB-21 03.20.24.000000 PM
+</td>
+<td>
+YES
+</td>
+<td>
+YES
+</td>
+<td>
+NO
+</td>
+<td>
+YES
+</td>
+<td>
+YES
+</td>
+<td>
+NO
+</td>
+<td align="right">
+      1893
+</td>
+<td>
+SQL*Plus
+</td>
+<td>
+&nbsp;
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+&nbsp;
+</td>
+</tr>
+</table>
+<p>
+<a name="prof"></a><h2>SQL Profiles (DBA_SQL_PROFILES)</h2>
+
+Available on 10g or higher. If this section is empty that means there are no profiles for this SQL.
+
+<!-- 2021-03-04/15:57:33 -->
+<!-- Please Wait -->
+<a name="patch"></a><h2>SQL Patches (DBA_SQL_PATCHES)</h2>
+
+Available on 11g or higher. If this section is empty that means there are no patches for this SQL.
+
+<!-- 2021-03-04/15:57:33 -->
+<!-- Please Wait -->
+<a name="share_r"></a><h2>Cursor Sharing and Reason</h2>
+
+Collected from GV$SQL_SHARED_CURSOR.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Reason</th>
+<th>Inst</th>
+<th>Cursors</th>
+</tr>
+
+<!-- 2021-03-04/15:57:33 -->
+<!-- Please Wait -->
+
+<tr>
+<th>#</th>
+<th>Reason</th>
+<th>Inst</th>
+<th>Cursors</th>
+</tr>
+
+</table>
+
+<a name="share_l"></a><h2>Cursor Sharing List</h2>
+
+Collected from GV$SQL_SHARED_CURSOR.
+
+<!-- 2021-03-04/15:57:33 -->
+<!-- Please Wait -->
+<a name="mem_plans_sum"></a><h2>Current Plans Summary (GV$SQL)</h2>
+
+Execution Plans performance metrics for fua0hb5hfst77 while still in memory. Plans ordered by average elapsed time.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Plan HV</th>
+<th>Avg<br>Elapsed<br>Time<br>(secs)</th>
+<th>Avg<br>CPU<br>Time<br>(secs)</th>
+<th>Avg<br>IO<br>Time<br>(secs)</th>
+<th>Avg<br>Conc<br>Time<br>(secs)</th>
+<th>Avg<br>Appl<br>Time<br>(secs)</th>
+<th>Avg<br>Clus<br>Time<br>(secs)</th>
+<th>Avg<br>PLSQL<br>Time<br>(secs)</th>
+<th>Avg<br>Java<br>Time<br>(secs)</th>
+<th>Avg<br>Buffer<br>Gets</th>
+<th>Avg<br>Disk<br>Reads</th>
+<th>Avg<br>Direct<br>Writes</th>
+<th>Avg<br>Rows<br>Proc</th>
+<th>Total<br>Execs</th>
+<th>Total<br>Fetch</th>
+<th>Total<br>Loads</th>
+<th>Total<br>Inval</th>
+<th>Total<br>Parse<br>Calls</th>
+<th>Total<br>Child<br>Cursors</th>
+<th>Min<br>Cost</th>
+<th>Max<br>Cost</th>
+<th>Min<br>Opt Env HV</th>
+<th>Max<br>Opt Env HV</th>
+<th>First Load</th>
+<th>Last Load</th>
+<th>Last Active</th>
+</tr>
+
+<!-- 2021-03-04/15:57:33 -->
+<!-- Please Wait -->
+
+<tr>
+<td class="r">1</td>
+<td class="r">3534348942</td>
+<td class="r">              0.438</td>
+<td class="r">              0.047</td>
+<td class="r">              0.391</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">2122</td>
+<td class="r">1980</td>
+<td class="r">0</td>
+<td class="r">1</td>
+<td class="r">2</td>
+<td class="r">2</td>
+<td class="r">1</td>
+<td class="r">0</td>
+<td class="r">2</td>
+<td class="r">1</td>
+<td class="r">553</td>
+<td class="r"></td>
+<td class="r">2827686776</td>
+<td class="r"></td>
+<td nowrap>2021-03-04/15:56:07</td>
+<td nowrap>2021-03-04/15:56:07</td>
+<td nowrap>2021-03-04/15:56:08</td>
+</tr>
+
+<tr>
+<th>#</th>
+<th>Plan HV</th>
+<th>Avg<br>Elapsed<br>Time<br>(secs)</th>
+<th>Avg<br>CPU<br>Time<br>(secs)</th>
+<th>Avg<br>IO<br>Time<br>(secs)</th>
+<th>Avg<br>Conc<br>Time<br>(secs)</th>
+<th>Avg<br>Appl<br>Time<br>(secs)</th>
+<th>Avg<br>Clus<br>Time<br>(secs)</th>
+<th>Avg<br>PLSQL<br>Time<br>(secs)</th>
+<th>Avg<br>Java<br>Time<br>(secs)</th>
+<th>Avg<br>Buffer<br>Gets</th>
+<th>Avg<br>Disk<br>Reads</th>
+<th>Avg<br>Direct<br>Writes</th>
+<th>Avg<br>Rows<br>Proc</th>
+<th>Total<br>Execs</th>
+<th>Total<br>Fetch</th>
+<th>Total<br>Loads</th>
+<th>Total<br>Inval</th>
+<th>Total<br>Parse<br>Calls</th>
+<th>Total<br>Child<br>Cursors</th>
+<th>Min<br>Cost</th>
+<th>Max<br>Cost</th>
+<th>Min<br>Opt Env HV</th>
+<th>Max<br>Opt Env HV</th>
+<th>First Load</th>
+<th>Last Load</th>
+<th>Last Active</th>
+</tr>
+
+</table>
+
+<a name="mem_stats"></a><h2>Current SQL Statistics (GV$SQL)</h2>
+
+Performance metrics of child cursors of fua0hb5hfst77 while still in memory.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Inst<br>ID</th>
+<th>Child<br>Num</th>
+<th>Plan HV</th>
+<th>Execs</th>
+<th>Fetch</th>
+<th>Loads</th>
+<th>Inval</th>
+<th>Parse<br>Calls</th>
+<th>Buffer<br>Gets</th>
+<th>Disk<br>Reads</th>
+<th>Direct<br>Writes</th>
+<th>Rows<br>Proc</th>
+<th>Elapsed<br>Time<br>(secs)</th>
+<th>CPU<br>Time<br>(secs)</th>
+<th>IO<br>Time<br>(secs)</th>
+<th>Conc<br>Time<br>(secs)</th>
+<th>Appl<br>Time<br>(secs)</th>
+<th>Clus<br>Time<br>(secs)</th>
+<th>PLSQL<br>Time<br>(secs)</th>
+<th>Java<br>Time<br>(secs)</th>
+<th>Optimizer<br>Mode</th>
+<th>Cost</th>
+<th>Opt Env HV</th>
+<th>Parsing<br>Schema<br>Name</th>
+<th>Module</th>
+<th>Action</th>
+<th>Outline</th>
+<th>Profile</th>
+<th>First Load</th>
+<th>Last Load</th>
+<th>Last Active</th>
+</tr>
+
+<!-- 2021-03-04/15:57:33 -->
+<!-- Please Wait -->
+
+<tr>
+<td class="r">1</td>
+<td class="r">1</td>
+<td class="r">0</td>
+<td class="r">3534348942</td>
+<td class="r">2</td>
+<td class="r">2</td>
+<td class="r">1</td>
+<td class="r">0</td>
+<td class="r">2</td>
+<td class="r">4243</td>
+<td class="r">3960</td>
+<td class="r">0</td>
+<td class="r">2</td>
+<td class="r">              0.876</td>
+<td class="r">              0.094</td>
+<td class="r">              0.783</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td>ALL_ROWS</td>
+<td class="r">553</td>
+<td class="r">2827686776</td>
+<td>PERFLAB</td>
+<td>SQL*Plus</td>
+<td></td>
+<td></td>
+<td></td>
+<td nowrap>2021-03-04/15:56:07</td>
+<td nowrap>2021-03-04/15:56:07</td>
+<td nowrap>2021-03-04/15:56:08</td>
+</tr>
+
+<tr>
+<th>#</th>
+<th>Inst<br>ID</th>
+<th>Child<br>Num</th>
+<th>Plan HV</th>
+<th>Execs</th>
+<th>Fetch</th>
+<th>Loads</th>
+<th>Inval</th>
+<th>Parse<br>Calls</th>
+<th>Buffer<br>Gets</th>
+<th>Disk<br>Reads</th>
+<th>Direct<br>Writes</th>
+<th>Rows<br>Proc</th>
+<th>Elapsed<br>Time<br>(secs)</th>
+<th>CPU<br>Time<br>(secs)</th>
+<th>IO<br>Time<br>(secs)</th>
+<th>Conc<br>Time<br>(secs)</th>
+<th>Appl<br>Time<br>(secs)</th>
+<th>Clus<br>Time<br>(secs)</th>
+<th>PLSQL<br>Time<br>(secs)</th>
+<th>Java<br>Time<br>(secs)</th>
+<th>Optimizer<br>Mode</th>
+<th>Cost</th>
+<th>Opt Env HV</th>
+<th>Parsing<br>Schema<br>Name</th>
+<th>Module</th>
+<th>Action</th>
+<th>Outline</th>
+<th>Profile</th>
+<th>First Load</th>
+<th>Last Load</th>
+<th>Last Active</th>
+</tr>
+
+</table>
+
+<a name="awr_plans_sum"></a><h2>Historical Plans Summary (DBA_HIST_SQLSTAT)</h2>
+
+Performance metrics of Execution Plans of fua0hb5hfst77. Plans ordered by average elapsed time.<br>
+This section includes data captured by AWR. If this is a stand-by read-only database then the AWR information below is from the Primary database.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Plan HV</th>
+<th>Avg<br>Elapsed<br>Time<br>(secs)</th>
+<th>Avg<br>CPU<br>Time<br>(secs)</th>
+<th>Avg<br>IO<br>Time<br>(secs)</th>
+<th>Avg<br>Conc<br>Time<br>(secs)</th>
+<th>Avg<br>Appl<br>Time<br>(secs)</th>
+<th>Avg<br>Clus<br>Time<br>(secs)</th>
+<th>Avg<br>PLSQL<br>Time<br>(secs)</th>
+<th>Avg<br>Java<br>Time<br>(secs)</th>
+<th>Avg<br>Buffer<br>Gets</th>
+<th>Avg<br>Disk<br>Reads</th>
+<th>Avg<br>Direct<br>Writes</th>
+<th>Avg<br>Rows<br>Proc</th>
+<th>Total<br>Execs</th>
+<th>Min<br>Cost</th>
+<th>Max<br>Cost</th>
+<th>Min<br>Opt Env HV</th>
+<th>Max<br>Opt Env HV</th>
+<th>First Snapshot</th>
+<th>Last Snapshot</th>
+</tr>
+
+<!-- 2021-03-04/15:57:33 -->
+<!-- Please Wait -->
+
+<tr>
+<td class="r">1</td>
+<td class="r">906334482</td>
+<td class="r">              0.141</td>
+<td class="r">              0.137</td>
+<td class="r">              0.005</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">3995</td>
+<td class="r">1</td>
+<td class="r">0</td>
+<td class="r">1</td>
+<td class="r">2</td>
+<td class="r">1893</td>
+<td class="r"></td>
+<td class="r">935941585</td>
+<td class="r"></td>
+<td nowrap>2021-02-24/16:00:18</td>
+<td nowrap>2021-02-24/16:00:18</td>
+</tr>
+
+<tr>
+<td class="r">2</td>
+<td class="r">3534348942</td>
+<td class="r">              0.305</td>
+<td class="r">              0.128</td>
+<td class="r">              0.168</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">3897</td>
+<td class="r">793</td>
+<td class="r">0</td>
+<td class="r">1</td>
+<td class="r">5</td>
+<td class="r">553</td>
+<td class="r"></td>
+<td class="r">935941585</td>
+<td class="r">2152652551</td>
+<td nowrap>2021-02-24/16:00:18</td>
+<td nowrap>2021-03-03/11:00:09</td>
+</tr>
+
+<tr>
+<th>#</th>
+<th>Plan HV</th>
+<th>Avg<br>Elapsed<br>Time<br>(secs)</th>
+<th>Avg<br>CPU<br>Time<br>(secs)</th>
+<th>Avg<br>IO<br>Time<br>(secs)</th>
+<th>Avg<br>Conc<br>Time<br>(secs)</th>
+<th>Avg<br>Appl<br>Time<br>(secs)</th>
+<th>Avg<br>Clus<br>Time<br>(secs)</th>
+<th>Avg<br>PLSQL<br>Time<br>(secs)</th>
+<th>Avg<br>Java<br>Time<br>(secs)</th>
+<th>Avg<br>Buffer<br>Gets</th>
+<th>Avg<br>Disk<br>Reads</th>
+<th>Avg<br>Direct<br>Writes</th>
+<th>Avg<br>Rows<br>Proc</th>
+<th>Total<br>Execs</th>
+<th>Min<br>Cost</th>
+<th>Max<br>Cost</th>
+<th>Min<br>Opt Env HV</th>
+<th>Max<br>Opt Env HV</th>
+<th>First Snapshot</th>
+<th>Last Snapshot</th>
+</tr>
+
+</table>
+
+<a name="awr_stats_d"></a><h2>Historical SQL Statistics - Delta (DBA_HIST_SQLSTAT)</h2>
+
+Performance metrics of Execution Plans of fua0hb5hfst77.<br>
+This section includes data captured by AWR. If this is a stand-by read-only database then the AWR information below is from the Primary database.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Snap<br>ID</th>
+<th>Snaphot</th>
+<th>Inst<br>ID</th>
+<th>Plan HV</th>
+<th>Vers<br>Cnt</th>
+<th>Execs</th>
+<th>Fetch</th>
+<th>Loads</th>
+<th>Inval</th>
+<th>Parse<br>Calls</th>
+<th>Buffer<br>Gets</th>
+<th>Disk<br>Reads</th>
+<th>Direct<br>Writes</th>
+<th>Rows<br>Proc</th>
+<th>Elapsed<br>Time<br>(secs)</th>
+<th>CPU<br>Time<br>(secs)</th>
+<th>IO<br>Time<br>(secs)</th>
+<th>Conc<br>Time<br>(secs)</th>
+<th>Appl<br>Time<br>(secs)</th>
+<th>Clus<br>Time<br>(secs)</th>
+<th>PLSQL<br>Time<br>(secs)</th>
+<th>Java<br>Time<br>(secs)</th>
+<th>Optimizer<br>Mode</th>
+<th>Cost</th>
+<th>Opt Env HV</th>
+<th>Parsing<br>Schema<br>Name</th>
+<th>Module</th>
+<th>Action</th>
+<th>Profile</th>
+</tr>
+
+<!-- 2021-03-04/15:57:33 -->
+<!-- Please Wait -->
+
+<tr>
+<td class="r">1</td>
+<td class="r">6919</td>
+<td nowrap>2021-02-24/16:00:18</td>
+<td class="r">1</td>
+<td class="r">906334482</td>
+<td class="r">1</td>
+<td class="r">2</td>
+<td class="r">2</td>
+<td class="r">1</td>
+<td class="r">0</td>
+<td class="r">1</td>
+<td class="r">7989</td>
+<td class="r">1</td>
+<td class="r">0</td>
+<td class="r">2</td>
+<td class="r">              0.281</td>
+<td class="r">              0.274</td>
+<td class="r">              0.009</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td>ALL_ROWS</td>
+<td class="r">1893</td>
+<td class="r">935941585</td>
+<td>PERFLAB</td>
+<td>SQL*Plus</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td class="r">2</td>
+<td class="r">6919</td>
+<td nowrap>2021-02-24/16:00:18</td>
+<td class="r">1</td>
+<td class="r">3534348942</td>
+<td class="r">2</td>
+<td class="r">3</td>
+<td class="r">3</td>
+<td class="r">0</td>
+<td class="r">1</td>
+<td class="r">4</td>
+<td class="r">15050</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">3</td>
+<td class="r">              0.559</td>
+<td class="r">              0.551</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td>ALL_ROWS</td>
+<td class="r">553</td>
+<td class="r">935941585</td>
+<td>PERFLAB</td>
+<td>SQL*Plus</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td class="r">3</td>
+<td class="r">7080</td>
+<td nowrap>2021-03-03/11:00:09</td>
+<td class="r">1</td>
+<td class="r">3534348942</td>
+<td class="r">1</td>
+<td class="r">2</td>
+<td class="r">2</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">2</td>
+<td class="r">4435</td>
+<td class="r">3967</td>
+<td class="r">0</td>
+<td class="r">2</td>
+<td class="r">              0.967</td>
+<td class="r">              0.088</td>
+<td class="r">              0.841</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td>ALL_ROWS</td>
+<td class="r">553</td>
+<td class="r">2152652551</td>
+<td>PERFLAB</td>
+<td>SQL*Plus</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>#</th>
+<th>Snap<br>ID</th>
+<th>Snaphot</th>
+<th>Inst<br>ID</th>
+<th>Plan HV</th>
+<th>Vers<br>Cnt</th>
+<th>Execs</th>
+<th>Fetch</th>
+<th>Loads</th>
+<th>Inval</th>
+<th>Parse<br>Calls</th>
+<th>Buffer<br>Gets</th>
+<th>Disk<br>Reads</th>
+<th>Direct<br>Writes</th>
+<th>Rows<br>Proc</th>
+<th>Elapsed<br>Time<br>(secs)</th>
+<th>CPU<br>Time<br>(secs)</th>
+<th>IO<br>Time<br>(secs)</th>
+<th>Conc<br>Time<br>(secs)</th>
+<th>Appl<br>Time<br>(secs)</th>
+<th>Clus<br>Time<br>(secs)</th>
+<th>PLSQL<br>Time<br>(secs)</th>
+<th>Java<br>Time<br>(secs)</th>
+<th>Optimizer<br>Mode</th>
+<th>Cost</th>
+<th>Opt Env HV</th>
+<th>Parsing<br>Schema<br>Name</th>
+<th>Module</th>
+<th>Action</th>
+<th>Profile</th>
+</tr>
+
+</table>
+
+<a name="awr_stats_t"></a><h2>Historical SQL Statistics - Total (DBA_HIST_SQLSTAT)</h2>
+
+Performance metrics of Execution Plans of fua0hb5hfst77.<br>
+This section includes data captured by AWR. If this is a stand-by read-only database then the AWR information below is from the Primary database.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Snap<br>ID</th>
+<th>Snaphot</th>
+<th>Inst<br>ID</th>
+<th>Plan HV</th>
+<th>Vers<br>Cnt</th>
+<th>Execs</th>
+<th>Fetch</th>
+<th>Loads</th>
+<th>Inval</th>
+<th>Parse<br>Calls</th>
+<th>Buffer<br>Gets</th>
+<th>Disk<br>Reads</th>
+<th>Direct<br>Writes</th>
+<th>Rows<br>Proc</th>
+<th>Elapsed<br>Time<br>(secs)</th>
+<th>CPU<br>Time<br>(secs)</th>
+<th>IO<br>Time<br>(secs)</th>
+<th>Conc<br>Time<br>(secs)</th>
+<th>Appl<br>Time<br>(secs)</th>
+<th>Clus<br>Time<br>(secs)</th>
+<th>PLSQL<br>Time<br>(secs)</th>
+<th>Java<br>Time<br>(secs)</th>
+<th>Optimizer<br>Mode</th>
+<th>Cost</th>
+<th>Opt Env HV</th>
+<th>Parsing<br>Schema<br>Name</th>
+<th>Module</th>
+<th>Action</th>
+<th>Profile</th>
+</tr>
+
+<!-- 2021-03-04/15:57:33 -->
+<!-- Please Wait -->
+
+<tr>
+<td class="r">1</td>
+<td class="r">6919</td>
+<td nowrap>2021-02-24/16:00:18</td>
+<td class="r">1</td>
+<td class="r">906334482</td>
+<td class="r">1</td>
+<td class="r">2</td>
+<td class="r">2</td>
+<td class="r">1</td>
+<td class="r">0</td>
+<td class="r">1</td>
+<td class="r">7989</td>
+<td class="r">1</td>
+<td class="r">0</td>
+<td class="r">2</td>
+<td class="r">              0.281</td>
+<td class="r">              0.274</td>
+<td class="r">              0.009</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td>ALL_ROWS</td>
+<td class="r">1893</td>
+<td class="r">935941585</td>
+<td>PERFLAB</td>
+<td>SQL*Plus</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td class="r">2</td>
+<td class="r">6919</td>
+<td nowrap>2021-02-24/16:00:18</td>
+<td class="r">1</td>
+<td class="r">3534348942</td>
+<td class="r">2</td>
+<td class="r">3</td>
+<td class="r">3</td>
+<td class="r">9</td>
+<td class="r">8</td>
+<td class="r">4</td>
+<td class="r">15050</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">3</td>
+<td class="r">              0.559</td>
+<td class="r">              0.551</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td>ALL_ROWS</td>
+<td class="r">553</td>
+<td class="r">935941585</td>
+<td>PERFLAB</td>
+<td>SQL*Plus</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td class="r">3</td>
+<td class="r">7080</td>
+<td nowrap>2021-03-03/11:00:09</td>
+<td class="r">1</td>
+<td class="r">3534348942</td>
+<td class="r">1</td>
+<td class="r">2</td>
+<td class="r">2</td>
+<td class="r">1</td>
+<td class="r">0</td>
+<td class="r">2</td>
+<td class="r">4435</td>
+<td class="r">3967</td>
+<td class="r">0</td>
+<td class="r">2</td>
+<td class="r">              0.967</td>
+<td class="r">              0.088</td>
+<td class="r">              0.841</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td class="r">              0.000</td>
+<td>ALL_ROWS</td>
+<td class="r">553</td>
+<td class="r">2152652551</td>
+<td>PERFLAB</td>
+<td>SQL*Plus</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>#</th>
+<th>Snap<br>ID</th>
+<th>Snaphot</th>
+<th>Inst<br>ID</th>
+<th>Plan HV</th>
+<th>Vers<br>Cnt</th>
+<th>Execs</th>
+<th>Fetch</th>
+<th>Loads</th>
+<th>Inval</th>
+<th>Parse<br>Calls</th>
+<th>Buffer<br>Gets</th>
+<th>Disk<br>Reads</th>
+<th>Direct<br>Writes</th>
+<th>Rows<br>Proc</th>
+<th>Elapsed<br>Time<br>(secs)</th>
+<th>CPU<br>Time<br>(secs)</th>
+<th>IO<br>Time<br>(secs)</th>
+<th>Conc<br>Time<br>(secs)</th>
+<th>Appl<br>Time<br>(secs)</th>
+<th>Clus<br>Time<br>(secs)</th>
+<th>PLSQL<br>Time<br>(secs)</th>
+<th>Java<br>Time<br>(secs)</th>
+<th>Optimizer<br>Mode</th>
+<th>Cost</th>
+<th>Opt Env HV</th>
+<th>Parsing<br>Schema<br>Name</th>
+<th>Module</th>
+<th>Action</th>
+<th>Profile</th>
+</tr>
+
+</table>
+
+<a name="ash_plan"></a><h2>Active Session History by Plan (GV$ACTIVE_SESSION_HISTORY)</h2>
+
+Snapshots counts per Plan and Wait Event for fua0hb5hfst77.<br>
+This section includes data captured by AWR.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Plan<br>Hash<br>Value</th>
+<th>Session<br>State</th>
+<th>Wait<br>Class</th>
+<th>Event</th>
+<th>Snaps<br>Count</th>
+</tr>
+
+<!-- 2021-03-04/15:57:34 -->
+<!-- Please Wait -->
+
+<tr>
+<td class="r">1</td>
+<td class="r">3534348942</td>
+<td>WAITING</td>
+<td>User I/O</td>
+<td>direct path read</td>
+<td class="r">1</td>
+</tr>
+
+<tr>
+<th>#</th>
+<th>Plan<br>Hash<br>Value</th>
+<th>Session<br>State</th>
+<th>Wait<br>Class</th>
+<th>Event</th>
+<th>Snaps<br>Count</th>
+</tr>
+
+</table>
+
+<a name="ash_line"></a><h2>Active Session History by Plan Line (GV$ACTIVE_SESSION_HISTORY)</h2>
+
+Snapshots counts per Plan Line and Wait Event for fua0hb5hfst77.<br>
+This section includes data captured by AWR.<br>
+Available on 11g or higher..
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Plan<br>Hash<br>Value</th>
+<th>Plan<br>Line<br>ID</th>
+<th>Plan<br>Operation</th>
+<th>Plan<br>Options</th>
+<th>Plan<br>Object<br>Owner</th>
+<th>Plan<br>Object<br>Name</th>
+<th>Session<br>State</th>
+<th>Wait<br>Class</th>
+<th>Event</th>
+<th>Curr<br>Obj<br>ID</th>
+<th>Curr<br>Object<br>Name</th>
+<th>Snaps<br>Count</th>
+</tr>
+
+<!-- 2021-03-04/15:57:34 -->
+<!-- Please Wait -->
+
+<tr>
+<td class="r">1</td>
+<td class="r">3534348942</td>
+<td class="r">4</td>
+<td>TABLE ACCESS</td>
+<td>FULL</td>
+<td>PERFLAB</td>
+<td>T1</td>
+<td>WAITING</td>
+<td>User I/O</td>
+<td>direct path read</td>
+<td class="r">134196</td>
+<td>PERFLAB.T1</td>
+<td class="r">1</td>
+</tr>
+
+<tr>
+<th>#</th>
+<th>Plan<br>Hash<br>Value</th>
+<th>Plan<br>Line<br>ID</th>
+<th>Plan<br>Operation</th>
+<th>Plan<br>Options</th>
+<th>Plan<br>Object<br>Owner</th>
+<th>Plan<br>Object<br>Name</th>
+<th>Session<br>State</th>
+<th>Wait<br>Class</th>
+<th>Event</th>
+<th>Curr<br>Obj<br>ID</th>
+<th>Curr<br>Object<br>Name</th>
+<th>Snaps<br>Count</th>
+</tr>
+
+</table>
+
+<a name="awr_plan"></a><h2>AWR Active Session History by Plan (DBA_HIST_ACTIVE_SESS_HISTORY)</h2>
+
+Snapshots counts per Plan and Wait Event for fua0hb5hfst77.<br>
+This section includes data captured by AWR. If this is a stand-by read-only database then the AWR information below is from the Primary database.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Plan<br>Hash<br>Value</th>
+<th>Session<br>State</th>
+<th>Wait<br>Class</th>
+<th>Event</th>
+<th>Snaps<br>Count</th>
+</tr>
+
+<!-- 2021-03-04/15:57:34 -->
+<!-- Please Wait -->
+
+<tr>
+<td class="r">1</td>
+<td class="r">3534348942</td>
+<td>ON CPU</td>
+<td></td>
+<td></td>
+<td class="r">1</td>
+</tr>
+
+<tr>
+<th>#</th>
+<th>Plan<br>Hash<br>Value</th>
+<th>Session<br>State</th>
+<th>Wait<br>Class</th>
+<th>Event</th>
+<th>Snaps<br>Count</th>
+</tr>
+
+</table>
+
+<a name="awr_line"></a><h2>AWR Active Session History by Plan Line (DBA_HIST_ACTIVE_SESS_HISTORY)</h2>
+
+Snapshots counts per Plan Line and Wait Event for fua0hb5hfst77.<br>
+This section includes data captured by AWR. If this is a stand-by read-only database then the AWR information below is from the Primary database.<br>
+Available on 11g or higher..
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Plan<br>Hash<br>Value</th>
+<th>Plan<br>Line<br>ID</th>
+<th>Plan<br>Operation</th>
+<th>Plan<br>Options</th>
+<th>Plan<br>Object<br>Owner</th>
+<th>Plan<br>Object<br>Name</th>
+<th>Session<br>State</th>
+<th>Wait<br>Class</th>
+<th>Event</th>
+<th>Curr<br>Obj<br>ID</th>
+<th>Curr<br>Object<br>Name</th>
+<th>Snaps<br>Count</th>
+</tr>
+
+<!-- 2021-03-04/15:57:36 -->
+<!-- Please Wait -->
+
+<tr>
+<td class="r">1</td>
+<td class="r">3534348942</td>
+<td class="r">5</td>
+<td>INDEX</td>
+<td>RANGE SCAN</td>
+<td>PERFLAB</td>
+<td>T2I</td>
+<td>ON CPU</td>
+<td></td>
+<td></td>
+<td class="r"></td>
+<td></td>
+<td class="r">1</td>
+</tr>
+
+<tr>
+<th>#</th>
+<th>Plan<br>Hash<br>Value</th>
+<th>Plan<br>Line<br>ID</th>
+<th>Plan<br>Operation</th>
+<th>Plan<br>Options</th>
+<th>Plan<br>Object<br>Owner</th>
+<th>Plan<br>Object<br>Name</th>
+<th>Session<br>State</th>
+<th>Wait<br>Class</th>
+<th>Event</th>
+<th>Curr<br>Obj<br>ID</th>
+<th>Curr<br>Object<br>Name</th>
+<th>Snaps<br>Count</th>
+</tr>
+
+</table>
+
+<a name="dbms_stats_sys_prefs"></a><h2>DBMS_STATS System Preferences</h2>
+
+DBMS_STATS System Preferences.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Parameter Name</th>
+<th>Parameter Value</th>
+</tr>
+
+<!-- 2021-03-04/15:57:36 -->
+<!-- Please Wait -->
+  FROM sys.optstat_hist_control$ v
+           *
+ERROR at line 7:
+ORA-00942: table or view does not exist
+
+
+
+<tr>
+<th>#</th>
+<th>Preference Name</th>
+<th>Preference Value</th>
+</tr>
+
+<table>
+<a name="tables"></a><h2>Tables</h2>
+
+CBO Statistics and relevant attributes.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Table Name</th>
+<th>Owner</th>
+<th>Part</th>
+<th>DoP</th>
+<th>Temp</th>
+<th>Num Rows</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Last Analyzed</th>
+<th>Blocks</th>
+<th>Avg<br>Row<br>Len</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+<th>Stat<br>Type<br>Locked</th>
+<th>Stale<br>Stats</th>
+<th>Perc</th>
+<th>Table<br>Cols</th>
+<th>Indexes</th>
+<th>Index<br>Cols</th>
+<th>Stat<br>Versions</th>
+</tr>
+
+<!-- 2021-03-04/15:57:36 -->
+<!-- Please Wait -->
+
+<tr>
+<td class="r">1</td>
+<td>T1</td>
+<td>PERFLAB</td>
+<td class="c">NO</td>
+<td class="c">         1</td>
+<td class="c">N</td>
+<td class="r">500000</td>
+<td class="r">500000</td>
+<td class="r">      100.0</td>
+<td nowrap>2021-02-24/15:18:47</td>
+<td class="r">2011</td>
+<td class="r">23</td>
+<td class="c">YES</td>
+<td class="c">NO</td>
+<td class="c"></td>
+<td class="c">NO</td>
+<td class="r"></td>
+<td class="c"><a href="#c_t1_perflab">4</a></td>
+<td class="c"><a href="#i_t1_perflab">1</a></td>
+<td class="c"><a href="#ic_t1_perflab">1</a></td>
+<td class="c"><a href="#tbl_stat_ver">Versions</a></td>
+</tr>
+
+<tr>
+<td class="r">2</td>
+<td>T2</td>
+<td>PERFLAB</td>
+<td class="c">NO</td>
+<td class="c">         1</td>
+<td class="c">N</td>
+<td class="r">500000</td>
+<td class="r">500000</td>
+<td class="r">      100.0</td>
+<td nowrap>2021-02-24/15:18:48</td>
+<td class="r">2011</td>
+<td class="r">23</td>
+<td class="c">YES</td>
+<td class="c">NO</td>
+<td class="c"></td>
+<td class="c">NO</td>
+<td class="r"></td>
+<td class="c"><a href="#c_t2_perflab">4</a></td>
+<td class="c"><a href="#i_t2_perflab">1</a></td>
+<td class="c"><a href="#ic_t2_perflab">1</a></td>
+<td class="c"><a href="#tbl_stat_ver">Versions</a></td>
+</tr>
+
+<tr>
+<th>#</th>
+<th>Table Name</th>
+<th>Owner</th>
+<th>Part</th>
+<th>DoP</th>
+<th>Temp</th>
+<th>Num Rows</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Last Analyzed</th>
+<th>Blocks</th>
+<th>Avg<br>Row<br>Len</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+<th>Stat<br>Type<br>Locked</th>
+<th>Stale<br>Stats</th>
+<th>Perc</th>
+<th>Table<br>Cols</th>
+<th>Indexes</th>
+<th>Index<br>Cols</th>
+<th>Stat<br>Versions</th>
+</tr>
+
+</table>
+
+<a name="dbms_stats_tab_prefs"></a><h2>DBMS_STATS Table Preferences</h2>
+
+DBMS_STATS Table Preferences.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Owner</th>
+<th>Table Name</th>
+<th>Obj#</th>
+<th>Parameter Name</th>
+<th>Parameter Value</th>
+<th>Change Time</th>
+</tr>
+
+<!-- 2021-03-04/15:57:40 -->
+<!-- Please Wait -->
+  FROM sys.optstat_user_prefs$ v,
+           *
+ERROR at line 11:
+ORA-00942: table or view does not exist
+
+
+
+<tr>
+<th>#</th>
+<th>Owner</th>
+<th>Table Name</th>
+<th>Obj#</th>
+<th>Parameter Name</th>
+<th>Parameter Value</th>
+<th>Change Time</th>
+</tr>
+
+<table>
+<a name="tbl_cols"></a><h2>Table Columns</h2>
+
+<!-- 2021-03-04/15:57:40 -->
+<!-- Please Wait -->
+<a name="c_t1_perflab"></a><h3>Table Columns: T1 (PERFLAB)</h3>
+
+CBO Statistics and relevant attributes.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Indexes</th>
+<th>Col<br>ID</th>
+<th>Column Name</th>
+<th>Data<br>Type</th>
+<th>Num<br>Rows</th>
+<th>Num<br>Nulls</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Num<br>Distinct</th>
+<th>Low Value</th>
+<th>High Value</th>
+<th>Last Analyzed</th>
+<th>Avg<br>Col<br>Len</th>
+<th>Density</th>
+<th>Num<br>Buckets</th>
+<th>Histogram</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+</tr>
+
+<tr>
+<td class="r">1</td>
+<td class="c">1</td>
+<td class="c">1</td>
+<td>A</td>
+<td>NUMBER</td>
+<td class="r">500000</td>
+<td class="r">0</td>
+<td class="r">5459</td>
+<td class="r">        1.1</td>
+<td class="r">500000</td>
+<td nowrap>C102</td>
+<td nowrap>C4021A</td>
+<td nowrap>2021-02-24/15:18:47</td>
+<td class="r">6</td>
+<td class="r">  2.000000e-06</td>
+<td class="r">254</td>
+<td>HYBRID</td>
+<td class="c">YES</td>
+<td class="c">NO</td>
+</tr>
+
+<tr>
+<td class="r">2</td>
+<td class="c">0</td>
+<td class="c">2</td>
+<td>B</td>
+<td>VARCHAR2</td>
+<td class="r">500000</td>
+<td class="r">0</td>
+<td class="r">5457</td>
+<td class="r">        1.1</td>
+<td class="r">1</td>
+<td nowrap>46534E5048594D4F574F</td>
+<td nowrap>46534E5048594D4F574F</td>
+<td nowrap>2021-02-24/15:18:47</td>
+<td class="r">11</td>
+<td class="r">  1.007880e-06</td>
+<td class="r">1</td>
+<td>FREQUENCY</td>
+<td class="c">YES</td>
+<td class="c">NO</td>
+</tr>
+
+<tr>
+<td class="r">3</td>
+<td class="c">0</td>
+<td class="c">3</td>
+<td>C</td>
+<td>NUMBER</td>
+<td class="r">500000</td>
+<td class="r">0</td>
+<td class="r">5457</td>
+<td class="r">        1.1</td>
+<td class="r">1</td>
+<td nowrap>C102</td>
+<td nowrap>C102</td>
+<td nowrap>2021-02-24/15:18:47</td>
+<td class="r">3</td>
+<td class="r">  1.007880e-06</td>
+<td class="r">1</td>
+<td>FREQUENCY</td>
+<td class="c">YES</td>
+<td class="c">NO</td>
+</tr>
+
+<tr>
+<td class="r">4</td>
+<td class="c">0</td>
+<td class="c">4</td>
+<td>D</td>
+<td>NUMBER</td>
+<td class="r">500000</td>
+<td class="r">0</td>
+<td class="r">5459</td>
+<td class="r">        1.1</td>
+<td class="r">253072</td>
+<td nowrap>C102</td>
+<td nowrap>C31A</td>
+<td nowrap>2021-02-24/15:18:47</td>
+<td class="r">4</td>
+<td class="r">  3.000000e-06</td>
+<td class="r">254</td>
+<td>HYBRID</td>
+<td class="c">YES</td>
+<td class="c">NO</td>
+</tr>
+<tr>
+<th>#</th>
+<th>Indexes</th>
+<th>Col<br>ID</th>
+<th>Column Name</th>
+<th>Data<br>Type</th>
+<th>Num<br>Rows</th>
+<th>Num<br>Nulls</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Num<br>Distinct</th>
+<th>Low Value</th>
+<th>High Value</th>
+<th>Last Analyzed</th>
+<th>Avg<br>Col<br>Len</th>
+<th>Density</th>
+<th>Num<br>Buckets</th>
+<th>Histogram</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+</tr>
+
+</table>
+
+<a name="c_t2_perflab"></a><h3>Table Columns: T2 (PERFLAB)</h3>
+
+CBO Statistics and relevant attributes.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Indexes</th>
+<th>Col<br>ID</th>
+<th>Column Name</th>
+<th>Data<br>Type</th>
+<th>Num<br>Rows</th>
+<th>Num<br>Nulls</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Num<br>Distinct</th>
+<th>Low Value</th>
+<th>High Value</th>
+<th>Last Analyzed</th>
+<th>Avg<br>Col<br>Len</th>
+<th>Density</th>
+<th>Num<br>Buckets</th>
+<th>Histogram</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+</tr>
+
+<tr>
+<td class="r">5</td>
+<td class="c">1</td>
+<td class="c">1</td>
+<td>A</td>
+<td>NUMBER</td>
+<td class="r">500000</td>
+<td class="r">0</td>
+<td class="r">5317</td>
+<td class="r">        1.1</td>
+<td class="r">500000</td>
+<td nowrap>C102</td>
+<td nowrap>C4021A</td>
+<td nowrap>2021-02-24/15:18:48</td>
+<td class="r">6</td>
+<td class="r">  2.000000e-06</td>
+<td class="r">254</td>
+<td>HYBRID</td>
+<td class="c">YES</td>
+<td class="c">NO</td>
+</tr>
+
+<tr>
+<td class="r">6</td>
+<td class="c">0</td>
+<td class="c">2</td>
+<td>B</td>
+<td>VARCHAR2</td>
+<td class="r">500000</td>
+<td class="r">0</td>
+<td class="r">5315</td>
+<td class="r">        1.1</td>
+<td class="r">1</td>
+<td nowrap>46534E5048594D4F574F</td>
+<td nowrap>46534E5048594D4F574F</td>
+<td nowrap>2021-02-24/15:18:48</td>
+<td class="r">11</td>
+<td class="r">  1.034807e-06</td>
+<td class="r">1</td>
+<td>FREQUENCY</td>
+<td class="c">YES</td>
+<td class="c">NO</td>
+</tr>
+
+<tr>
+<td class="r">7</td>
+<td class="c">0</td>
+<td class="c">3</td>
+<td>C</td>
+<td>NUMBER</td>
+<td class="r">500000</td>
+<td class="r">0</td>
+<td class="r">5315</td>
+<td class="r">        1.1</td>
+<td class="r">1</td>
+<td nowrap>C102</td>
+<td nowrap>C102</td>
+<td nowrap>2021-02-24/15:18:48</td>
+<td class="r">3</td>
+<td class="r">  1.034807e-06</td>
+<td class="r">1</td>
+<td>FREQUENCY</td>
+<td class="c">YES</td>
+<td class="c">NO</td>
+</tr>
+
+<tr>
+<td class="r">8</td>
+<td class="c">0</td>
+<td class="c">4</td>
+<td>D</td>
+<td>NUMBER</td>
+<td class="r">500000</td>
+<td class="r">0</td>
+<td class="r">5317</td>
+<td class="r">        1.1</td>
+<td class="r">253072</td>
+<td nowrap>C102</td>
+<td nowrap>C31A</td>
+<td nowrap>2021-02-24/15:18:48</td>
+<td class="r">4</td>
+<td class="r">  3.000000e-06</td>
+<td class="r">254</td>
+<td>HYBRID</td>
+<td class="c">YES</td>
+<td class="c">NO</td>
+</tr>
+<tr>
+<th>#</th>
+<th>Indexes</th>
+<th>Col<br>ID</th>
+<th>Column Name</th>
+<th>Data<br>Type</th>
+<th>Num<br>Rows</th>
+<th>Num<br>Nulls</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Num<br>Distinct</th>
+<th>Low Value</th>
+<th>High Value</th>
+<th>Last Analyzed</th>
+<th>Avg<br>Col<br>Len</th>
+<th>Density</th>
+<th>Num<br>Buckets</th>
+<th>Histogram</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+</tr>
+
+</table>
+
+<a name="tbl_parts"></a><h2>Table Partitions</h2>
+
+<!-- 2021-03-04/15:57:44 -->
+<!-- Please Wait -->
+<a name="tp_t2_perflab"></a><h3>Table Partitions: T2 (PERFLAB)</h3>
+
+Table partitions and relevant attributes (only the first and last 100).
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Partition<br>Position</th>
+<th>Partition<br>Name</th>
+<th>Composite</th>
+<th>Subpartition<br>Count</th>
+<th>Num<br>Rows</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Last Analyzed</th>
+<th>Blocks</th>
+<th>Avg<br>Row<br>Len</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+<th>Staleness<br>Perc</th>
+</tr>
+<tr>
+<th>#</th>
+<th>Partition<br>Position</th>
+<th>Partition<br>Name</th>
+<th>Composite</th>
+<th>Subpartition<br>Count</th>
+<th>Num<br>Rows</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Last Analyzed</th>
+<th>Blocks</th>
+<th>Avg<br>Row<br>Len</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+<th>Staleness<br>Perc</th>
+</tr>
+
+</table>
+
+<a name="tbl_constr"></a><h2>Table Constraints</h2>
+
+<!-- 2021-03-04/15:57:46 -->
+<!-- Please Wait -->
+<a name="tc_t1_perflab"></a><h3>Table Constraints: T1 (PERFLAB)</h3>
+
+Table constraints and relevant attributes.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Constraint<br>Name</th>
+<th>Constraint<br>Type</th>
+<th>R Owner</th>
+<th>R Constraint<br>Name</th>
+<th>Delete<br>Rule</th>
+<th>Status</th>
+<th>Defferable</th>
+<th>Deferred</th>
+<th>Validated</th>
+<th>Generated</th>
+<th>Rely</th>
+<th>Last<br>Change</th>
+<th>Index<br>Owner</th>
+<th>Index<br>Name</th>
+<th>Invalid</th>
+<th>View<br>Related</th>
+</tr>
+<tr>
+<th>#</th>
+<th>Constraint<br>Name</th>
+<th>Constraint<br>Type</th>
+<th>R Owner</th>
+<th>R Constraint<br>Name</th>
+<th>Delete<br>Rule</th>
+<th>Status</th>
+<th>Defferable</th>
+<th>Deferred</th>
+<th>Validated</th>
+<th>Generated</th>
+<th>Rely</th>
+<th>Last<br>Change</th>
+<th>Index<br>Owner</th>
+<th>Index<br>Name</th>
+<th>Invalid</th>
+<th>View<br>Related</th>
+</tr>
+
+</table>
+
+<a name="tc_t2_perflab"></a><h3>Table Constraints: T2 (PERFLAB)</h3>
+
+Table constraints and relevant attributes.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Constraint<br>Name</th>
+<th>Constraint<br>Type</th>
+<th>R Owner</th>
+<th>R Constraint<br>Name</th>
+<th>Delete<br>Rule</th>
+<th>Status</th>
+<th>Defferable</th>
+<th>Deferred</th>
+<th>Validated</th>
+<th>Generated</th>
+<th>Rely</th>
+<th>Last<br>Change</th>
+<th>Index<br>Owner</th>
+<th>Index<br>Name</th>
+<th>Invalid</th>
+<th>View<br>Related</th>
+</tr>
+<tr>
+<th>#</th>
+<th>Constraint<br>Name</th>
+<th>Constraint<br>Type</th>
+<th>R Owner</th>
+<th>R Constraint<br>Name</th>
+<th>Delete<br>Rule</th>
+<th>Status</th>
+<th>Defferable</th>
+<th>Deferred</th>
+<th>Validated</th>
+<th>Generated</th>
+<th>Rely</th>
+<th>Last<br>Change</th>
+<th>Index<br>Owner</th>
+<th>Index<br>Name</th>
+<th>Invalid</th>
+<th>View<br>Related</th>
+</tr>
+
+</table>
+
+<a name="tbl_stat_ver"></a><h2>Tables Statistics Versions</h2>
+
+CBO Statistics and relevant attributes.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Table Name</th>
+<th>Owner</th>
+<th>Version Type</th>
+<th>Save Time</th>
+<th>Last Analyzed</th>
+<th>Num Rows</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Blocks</th>
+<th>Avg<br>Row<br>Len</th>
+</tr>
+
+<!-- 2021-03-04/15:57:47 -->
+<!-- Please Wait -->
+	   sys.WRI$_OPTSTAT_TAB_HISTORY h
+	       *
+ERROR at line 78:
+ORA-00942: table or view does not exist
+
+
+
+<tr>
+<th>#</th>
+<th>Table Name</th>
+<th>Owner</th>
+<th>Version Type</th>
+<th>Save Time</th>
+<th>Last Analyzed</th>
+<th>Num Rows</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Blocks</th>
+<th>Avg<br>Row<br>Len</th>
+</tr>
+
+</table>
+
+<a name="indexes"></a><h2>Indexes</h2>
+
+<!-- 2021-03-04/15:57:47 -->
+<!-- Please Wait -->
+<a name="i_t1_perflab"></a><h3>Indexes: T1 (PERFLAB)</h3>
+
+CBO Statistics and relevant attributes.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Index Name</th>
+<th>Owner</th>
+<th>Index Type</th>
+<th>Part</th>
+<th>DoP</th>
+<th>Temp</th>
+<th>Uniqueness</th>
+<th>Cols</th>
+<th>Num<br>Rows</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Last Analyzed</th>
+<th>Distinct<br>Keys</th>
+<th>Blevel</th>
+<th>Leaf<br>Blocks</th>
+<th>Avg<br>Leaf<br>Blocks<br>per Key</th>
+<th>Avg<br>Data<br>Blocks<br>per Key</th>
+<th>Clustering<br>Factor</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+<th>Stat<br>Type<br>Locked</th>
+<th>Stale<br>Stats</th>
+<th>Stats<br>Versions</th>
+</tr>
+
+<tr>
+<td class="r">1</td>
+<td>T1I</td>
+<td>PERFLAB</td>
+<td>NORMAL</td>
+<td class="c">NO</td>
+<td class="c">1</td>
+<td class="c">N</td>
+<td>NONUNIQUE</td>
+<td class="c"><a href="#ic_t1i_perflab">1</a></td>
+<td class="r">500000</td>
+<td class="r">500000</td>
+<td class="r">      100.0</td>
+<td nowrap>2021-02-24/15:18:48</td>
+<td class="r">500000</td>
+<td class="r">2</td>
+<td class="r">1148</td>
+<td class="r">1</td>
+<td class="r">1</td>
+<td class="r">3942</td>
+<td class="c">YES</td>
+<td class="c">NO</td>
+<td class="c"></td>
+<td class="c">NO</td>
+<td class="c"><a href="#i_stat_ver_t1_perflab">Versions</a></td>
+</tr>
+<tr>
+<th>#</th>
+<th>Index Name</th>
+<th>Owner</th>
+<th>Index Type</th>
+<th>Part</th>
+<th>DoP</th>
+<th>Temp</th>
+<th>Uniqueness</th>
+<th>Cols</th>
+<th>Num<br>Rows</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Last Analyzed</th>
+<th>Distinct<br>Keys</th>
+<th>Blevel</th>
+<th>Leaf<br>Blocks</th>
+<th>Avg<br>Leaf<br>Blocks<br>per Key</th>
+<th>Avg<br>Data<br>Blocks<br>per Key</th>
+<th>Clustering<br>Factor</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+<th>Stat<br>Type<br>Locked</th>
+<th>Stale<br>Stats</th>
+<th>Stats<br>Versions</th>
+</tr>
+
+</table>
+
+<a name="i_t2_perflab"></a><h3>Indexes: T2 (PERFLAB)</h3>
+
+CBO Statistics and relevant attributes.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Index Name</th>
+<th>Owner</th>
+<th>Index Type</th>
+<th>Part</th>
+<th>DoP</th>
+<th>Temp</th>
+<th>Uniqueness</th>
+<th>Cols</th>
+<th>Num<br>Rows</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Last Analyzed</th>
+<th>Distinct<br>Keys</th>
+<th>Blevel</th>
+<th>Leaf<br>Blocks</th>
+<th>Avg<br>Leaf<br>Blocks<br>per Key</th>
+<th>Avg<br>Data<br>Blocks<br>per Key</th>
+<th>Clustering<br>Factor</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+<th>Stat<br>Type<br>Locked</th>
+<th>Stale<br>Stats</th>
+<th>Stats<br>Versions</th>
+</tr>
+
+<tr>
+<td class="r">2</td>
+<td>T2I</td>
+<td>PERFLAB</td>
+<td>NORMAL</td>
+<td class="c">NO</td>
+<td class="c">1</td>
+<td class="c">N</td>
+<td>NONUNIQUE</td>
+<td class="c"><a href="#ic_t2i_perflab">1</a></td>
+<td class="r">500000</td>
+<td class="r">500000</td>
+<td class="r">      100.0</td>
+<td nowrap>2021-02-24/15:18:49</td>
+<td class="r">500000</td>
+<td class="r">2</td>
+<td class="r">1148</td>
+<td class="r">1</td>
+<td class="r">1</td>
+<td class="r">3942</td>
+<td class="c">YES</td>
+<td class="c">NO</td>
+<td class="c"></td>
+<td class="c">NO</td>
+<td class="c"><a href="#i_stat_ver_t2_perflab">Versions</a></td>
+</tr>
+<tr>
+<th>#</th>
+<th>Index Name</th>
+<th>Owner</th>
+<th>Index Type</th>
+<th>Part</th>
+<th>DoP</th>
+<th>Temp</th>
+<th>Uniqueness</th>
+<th>Cols</th>
+<th>Num<br>Rows</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Last Analyzed</th>
+<th>Distinct<br>Keys</th>
+<th>Blevel</th>
+<th>Leaf<br>Blocks</th>
+<th>Avg<br>Leaf<br>Blocks<br>per Key</th>
+<th>Avg<br>Data<br>Blocks<br>per Key</th>
+<th>Clustering<br>Factor</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+<th>Stat<br>Type<br>Locked</th>
+<th>Stale<br>Stats</th>
+<th>Stats<br>Versions</th>
+</tr>
+
+</table>
+
+<a name="idx_cols"></a><h2>Index Columns</h2>
+
+<!-- 2021-03-04/15:57:51 -->
+<!-- Please Wait -->
+<a name="ic_t1_perflab"></a><h3>Index Columns: T1 (PERFLAB)</h3>
+
+CBO Statistics and relevant attributes.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Index Name</th>
+<th>Col<br>Pos</th>
+<th>Col<br>ID</th>
+<th>Column Name</th>
+<th>Descend</th>
+<th>Num<br>Rows</th>
+<th>Num<br>Nulls</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Num<br>Distinct</th>
+<th>Low Value</th>
+<th>High Value</th>
+<th>Last Analyzed</th>
+<th>Avg<br>Col<br>Len</th>
+<th>Density</th>
+<th>Num<br>Buckets</th>
+<th>Histogram</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+</tr>
+
+<tr>
+<td class="r">1</td>
+<td><a name="ic_t1i_perflab"></a>T1I</td>
+<td class="r">1</td>
+<td class="c">1</td>
+<td>A</td>
+<td>ASC</td>
+<td class="r">500000</td>
+<td class="r">0</td>
+<td class="r">5459</td>
+<td class="r">        1.1</td>
+<td class="r">500000</td>
+<td nowrap>C102</td>
+<td nowrap>C4021A</td>
+<td nowrap>2021-02-24/15:18:47</td>
+<td class="r">6</td>
+<td class="r">  2.000000e-06</td>
+<td class="r">254</td>
+<td>HYBRID</td>
+<td class="c">YES</td>
+<td class="c">NO</td>
+</tr>
+<tr>
+<th>#</th>
+<th>Index Name</th>
+<th>Col<br>Pos</th>
+<th>Col<br>ID</th>
+<th>Column Name</th>
+<th>Descend</th>
+<th>Num<br>Rows</th>
+<th>Num<br>Nulls</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Num<br>Distinct</th>
+<th>Low Value</th>
+<th>High Value</th>
+<th>Last Analyzed</th>
+<th>Avg<br>Col<br>Len</th>
+<th>Density</th>
+<th>Num<br>Buckets</th>
+<th>Histogram</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+</tr>
+
+</table>
+
+<a name="ic_t2_perflab"></a><h3>Index Columns: T2 (PERFLAB)</h3>
+
+CBO Statistics and relevant attributes.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Index Name</th>
+<th>Col<br>Pos</th>
+<th>Col<br>ID</th>
+<th>Column Name</th>
+<th>Descend</th>
+<th>Num<br>Rows</th>
+<th>Num<br>Nulls</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Num<br>Distinct</th>
+<th>Low Value</th>
+<th>High Value</th>
+<th>Last Analyzed</th>
+<th>Avg<br>Col<br>Len</th>
+<th>Density</th>
+<th>Num<br>Buckets</th>
+<th>Histogram</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+</tr>
+
+<tr>
+<td class="r">2</td>
+<td><a name="ic_t2i_perflab"></a>T2I</td>
+<td class="r">1</td>
+<td class="c">1</td>
+<td>A</td>
+<td>ASC</td>
+<td class="r">500000</td>
+<td class="r">0</td>
+<td class="r">5317</td>
+<td class="r">        1.1</td>
+<td class="r">500000</td>
+<td nowrap>C102</td>
+<td nowrap>C4021A</td>
+<td nowrap>2021-02-24/15:18:48</td>
+<td class="r">6</td>
+<td class="r">  2.000000e-06</td>
+<td class="r">254</td>
+<td>HYBRID</td>
+<td class="c">YES</td>
+<td class="c">NO</td>
+</tr>
+<tr>
+<th>#</th>
+<th>Index Name</th>
+<th>Col<br>Pos</th>
+<th>Col<br>ID</th>
+<th>Column Name</th>
+<th>Descend</th>
+<th>Num<br>Rows</th>
+<th>Num<br>Nulls</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Num<br>Distinct</th>
+<th>Low Value</th>
+<th>High Value</th>
+<th>Last Analyzed</th>
+<th>Avg<br>Col<br>Len</th>
+<th>Density</th>
+<th>Num<br>Buckets</th>
+<th>Histogram</th>
+<th>Global<br>Stats</th>
+<th>User<br>Stats</th>
+</tr>
+
+</table>
+
+<a name="ind_parts"></a><h2>Index Partitions</h2>
+
+<!-- 2021-03-04/15:57:54 -->
+<!-- Please Wait -->
+<a name="ip_t2_perflab"></a><h3>Index Partitions: T2 (PERFLAB)</h3>
+
+CBO Statistics and relevant attributes.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Index Name</th>
+<th>Owner</th>
+<th>Partition<br>Position</th>
+<th>Partition<br>Name</th>
+<th>Subpartition<br>Count</th>
+<th>Num<br>Rows</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Last Analyzed</th>
+<th>Distinct<br>Keys</th>
+<th>Blevel</th>
+<th>Leaf<br>Blocks</th>
+<th>Avg<br>Leaf<br>Blocks<br>per Key</th>
+<th>Avg<br>Data<br>Blocks<br>per Key</th>
+<th>Clustering<br>Factor</th>
+</tr>
+<tr>
+<th>#</th>
+<th>Index Name</th>
+<th>Owner</th>
+<th>Partition<br>Position</th>
+<th>Partition<br>Name</th>
+<th>Subpartition<br>Count</th>
+<th>Num<br>Rows</th>
+<th>Sample<br>Size</th>
+<th>Perc</th>
+<th>Last Analyzed</th>
+<th>Distinct<br>Keys</th>
+<th>Blevel</th>
+<th>Leaf<br>Blocks</th>
+<th>Avg<br>Leaf<br>Blocks<br>per Key</th>
+<th>Avg<br>Data<br>Blocks<br>per Key</th>
+<th>Clustering<br>Factor</th>
+</tr>
+
+</table>
+
+<a name="idx_stat_ver"></a><h2>Indexes Statistics Versions</h2>
+
+<!-- 2021-03-04/15:57:58 -->
+<!-- Please Wait -->
+       sys.wri$_optstat_ind_history s,
+           *
+ERROR at line 103:
+ORA-00942: table or view does not exist
+
+
+<a name="sys_params"></a><h2>System Parameters with Non-Default or Modified Values</h2>
+
+Collected from GV$SYSTEM_PARAMETER2 where isdefault = 'FALSE' OR ismodified != 'FALSE'.
+"Is Default" = FALSE means the parameter was set in the spfile.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Inst</th>
+<th>Ord</th>
+<th>Is<br>Default</th>
+<th>Is<br>Modified</th>
+<th>Value</th>
+<th>Display<br>Value</th>
+<th>Description</th>
+</tr>
+
+<!-- 2021-03-04/15:57:58 -->
+<!-- Please Wait -->
+
+<tr>
+<td class="r">1</td>
+<td>audit_file_dest</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>/u01/app/oracle/admin/t1db/adump</td>
+<td></td>
+<td>Directory in which auditing files are to reside</td>
+</tr>
+
+<tr>
+<td class="r">2</td>
+<td>audit_trail</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>DB</td>
+<td></td>
+<td>enable system auditing</td>
+</tr>
+
+<tr>
+<td class="r">3</td>
+<td>compatible</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>19.0.0</td>
+<td></td>
+<td>Database will be completely compatible with this software version</td>
+</tr>
+
+<tr>
+<td class="r">4</td>
+<td>control_files</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>/u02/oradata/T1DB/controlfile/o1_mf_h7qk4jp1_.ctl</td>
+<td></td>
+<td>control file names list</td>
+</tr>
+
+<tr>
+<td class="r">5</td>
+<td>db_block_size</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>8192</td>
+<td></td>
+<td>Size of database block in bytes</td>
+</tr>
+
+<tr>
+<td class="r">6</td>
+<td>db_create_file_dest</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>/u02/oradata</td>
+<td></td>
+<td>default database location</td>
+</tr>
+
+<tr>
+<td class="r">7</td>
+<td>db_name</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>t1db</td>
+<td></td>
+<td>database name specified in CREATE DATABASE</td>
+</tr>
+
+<tr>
+<td class="r">8</td>
+<td>diagnostic_dest</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>/u01/app/oracle</td>
+<td></td>
+<td>diagnostic base directory</td>
+</tr>
+
+<tr>
+<td class="r">9</td>
+<td>dispatchers</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>(PROTOCOL=TCP) (SERVICE=t1dbXDB)</td>
+<td></td>
+<td>specifications of dispatchers</td>
+</tr>
+
+<tr>
+<td class="r">10</td>
+<td>local_listener</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>LISTENER_T1DB</td>
+<td></td>
+<td>local listener</td>
+</tr>
+
+<tr>
+<td class="r">11</td>
+<td>nls_language</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>AMERICAN</td>
+<td></td>
+<td>NLS language name</td>
+</tr>
+
+<tr>
+<td class="r">12</td>
+<td>nls_territory</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>AMERICA</td>
+<td></td>
+<td>NLS territory name</td>
+</tr>
+
+<tr>
+<td class="r">13</td>
+<td>open_cursors</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>300</td>
+<td></td>
+<td>max # cursors per session</td>
+</tr>
+
+<tr>
+<td class="r">14</td>
+<td>pga_aggregate_target</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>385875968</td>
+<td>368M</td>
+<td>Target size for the aggregate PGA memory consumed by the instance</td>
+</tr>
+
+<tr>
+<td class="r">15</td>
+<td>processes</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>320</td>
+<td></td>
+<td>user processes</td>
+</tr>
+
+<tr>
+<td class="r">16</td>
+<td>remote_login_passwordfile</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>EXCLUSIVE</td>
+<td></td>
+<td>password file usage parameter</td>
+</tr>
+
+<tr>
+<td class="r">17</td>
+<td>sga_target</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>805306368</td>
+<td>768M</td>
+<td>Target size of SGA</td>
+</tr>
+
+<tr>
+<td class="r">18</td>
+<td>undo_tablespace</td>
+<td class="c">1</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>UNDOTBS1</td>
+<td></td>
+<td>use/switch undo tablespace</td>
+</tr>
+
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Inst</th>
+<th>Ord</th>
+<th>Is<br>Default</th>
+<th>Is<br>Modified</th>
+<th>Value</th>
+<th>Display<br>Value</th>
+<th>Description</th>
+</tr>
+
+</table>
+
+<a name="inst_params"></a><h2>Instance Parameters</h2>
+
+System Parameters collected from V$SYSTEM_PARAMETER2 for Instance number 1.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Ord</th>
+<th>Is<br>Default</th>
+<th>Is<br>Modified</th>
+<th>Value</th>
+<th>Display<br>Value</th>
+<th>Description</th>
+</tr>
+
+<!-- 2021-03-04/15:57:58 -->
+<!-- Please Wait -->
+
+<tr>
+<td class="r">1</td>
+<td>DBFIPS_140</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Enable use of crypographic libraries in FIPS mode, public</td>
+</tr>
+
+<tr>
+<td class="r">2</td>
+<td>active_instance_count</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>number of active instances in the cluster database</td>
+</tr>
+
+<tr>
+<td class="r">3</td>
+<td>adg_account_info_tracking</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>LOCAL</td>
+<td></td>
+<td>ADG user account info tracked in standby(LOCAL) or in Primary(GLOBAL)</td>
+</tr>
+
+<tr>
+<td class="r">4</td>
+<td>adg_redirect_dml</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Enable DML Redirection from ADG</td>
+</tr>
+
+<tr>
+<td class="r">5</td>
+<td>allow_global_dblinks</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>LDAP lookup for DBLINKS</td>
+</tr>
+
+<tr>
+<td class="r">6</td>
+<td>allow_group_access_to_sga</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Allow read access for SGA to users of Oracle owner group</td>
+</tr>
+
+<tr>
+<td class="r">7</td>
+<td>allow_rowid_column_type</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Allow creation of rowid column</td>
+</tr>
+
+<tr>
+<td class="r">8</td>
+<td>approx_for_aggregation</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Replace exact aggregation with approximate aggregation</td>
+</tr>
+
+<tr>
+<td class="r">9</td>
+<td>approx_for_count_distinct</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Replace count distinct with approx_count_distinct</td>
+</tr>
+
+<tr>
+<td class="r">10</td>
+<td>approx_for_percentile</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>none</td>
+<td></td>
+<td>Replace percentile_* with approx_percentile</td>
+</tr>
+
+<tr>
+<td class="r">11</td>
+<td>aq_tm_processes</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>1</td>
+<td></td>
+<td>number of AQ Time Managers to start</td>
+</tr>
+
+<tr>
+<td class="r">12</td>
+<td>archive_lag_target</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Maximum number of seconds of redos the standby could lose</td>
+</tr>
+
+<tr>
+<td class="r">13</td>
+<td>asm_diskgroups</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>disk groups to mount automatically</td>
+</tr>
+
+<tr>
+<td class="r">14</td>
+<td>asm_diskstring</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>disk set locations for discovery</td>
+</tr>
+
+<tr>
+<td class="r">15</td>
+<td>asm_io_processes</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>20</td>
+<td></td>
+<td>number of I/O processes per domain in the ASM IOSERVER instance</td>
+</tr>
+
+<tr>
+<td class="r">16</td>
+<td>asm_power_limit</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>1</td>
+<td></td>
+<td>number of parallel relocations for disk rebalancing</td>
+</tr>
+
+<tr>
+<td class="r">17</td>
+<td>asm_preferred_read_failure_groups</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>preferred read failure groups</td>
+</tr>
+
+<tr>
+<td class="r">18</td>
+<td>audit_file_dest</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>/u01/app/oracle/admin/t1db/adump</td>
+<td></td>
+<td>Directory in which auditing files are to reside</td>
+</tr>
+
+<tr>
+<td class="r">19</td>
+<td>audit_sys_operations</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>enable sys auditing</td>
+</tr>
+
+<tr>
+<td class="r">20</td>
+<td>audit_syslog_level</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Syslog facility and level</td>
+</tr>
+
+<tr>
+<td class="r">21</td>
+<td>audit_trail</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>DB</td>
+<td></td>
+<td>enable system auditing</td>
+</tr>
+
+<tr>
+<td class="r">22</td>
+<td>autotask_max_active_pdbs</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>2</td>
+<td></td>
+<td>Setting for Autotask Maximum Maintenance PDBs</td>
+</tr>
+
+<tr>
+<td class="r">23</td>
+<td>awr_pdb_autoflush_enabled</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Enable/Disable AWR automatic PDB flushing</td>
+</tr>
+
+<tr>
+<td class="r">24</td>
+<td>awr_pdb_max_parallel_slaves</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>10</td>
+<td></td>
+<td>maximum concurrent AWR PDB MMON slaves per instance</td>
+</tr>
+
+<tr>
+<td class="r">25</td>
+<td>awr_snapshot_time_offset</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Setting for AWR Snapshot Time Offset</td>
+</tr>
+
+<tr>
+<td class="r">26</td>
+<td>background_core_dump</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>partial</td>
+<td></td>
+<td>Core Size for Background Processes</td>
+</tr>
+
+<tr>
+<td class="r">27</td>
+<td>background_dump_dest</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>/u01/app/oracle/product/19.6.0/dbhome_1/rdbms/log</td>
+<td></td>
+<td>Detached process dump directory</td>
+</tr>
+
+<tr>
+<td class="r">28</td>
+<td>backup_tape_io_slaves</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>BACKUP Tape I/O slaves</td>
+</tr>
+
+<tr>
+<td class="r">29</td>
+<td>bitmap_merge_area_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>1048576</td>
+<td></td>
+<td>maximum memory allow for BITMAP MERGE</td>
+</tr>
+
+<tr>
+<td class="r">30</td>
+<td>blank_trimming</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>blank trimming semantics parameter</td>
+</tr>
+
+<tr>
+<td class="r">31</td>
+<td>buffer_pool_keep</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Number of database blocks/latches in keep buffer pool</td>
+</tr>
+
+<tr>
+<td class="r">32</td>
+<td>buffer_pool_recycle</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Number of database blocks/latches in recycle buffer pool</td>
+</tr>
+
+<tr>
+<td class="r">33</td>
+<td>cdb_cluster</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>if TRUE startup in CDB Cluster mode</td>
+</tr>
+
+<tr>
+<td class="r">34</td>
+<td>cdb_cluster_name</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>CDB Cluster name</td>
+</tr>
+
+<tr>
+<td class="r">35</td>
+<td>cell_offload_compaction</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>ADAPTIVE</td>
+<td></td>
+<td>Cell packet compaction strategy</td>
+</tr>
+
+<tr>
+<td class="r">36</td>
+<td>cell_offload_decryption</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>enable SQL processing offload of encrypted data to cells</td>
+</tr>
+
+<tr>
+<td class="r">37</td>
+<td>cell_offload_parameters</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Additional cell offload parameters</td>
+</tr>
+
+<tr>
+<td class="r">38</td>
+<td>cell_offload_plan_display</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>AUTO</td>
+<td></td>
+<td>Cell offload explain plan display</td>
+</tr>
+
+<tr>
+<td class="r">39</td>
+<td>cell_offload_processing</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>enable SQL processing offload to cells</td>
+</tr>
+
+<tr>
+<td class="r">40</td>
+<td>cell_offloadgroup_name</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Set the offload group name</td>
+</tr>
+
+<tr>
+<td class="r">41</td>
+<td>circuits</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>max number of circuits</td>
+</tr>
+
+<tr>
+<td class="r">42</td>
+<td>client_result_cache_lag</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>3000</td>
+<td></td>
+<td>client result cache maximum lag in milliseconds</td>
+</tr>
+
+<tr>
+<td class="r">43</td>
+<td>client_result_cache_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>client result cache max size in bytes</td>
+</tr>
+
+<tr>
+<td class="r">44</td>
+<td>client_statistics_level</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TYPICAL</td>
+<td></td>
+<td>Client Statistics Level</td>
+</tr>
+
+<tr>
+<td class="r">45</td>
+<td>clonedb</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>clone database</td>
+</tr>
+
+<tr>
+<td class="r">46</td>
+<td>clonedb_dir</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>CloneDB Directory</td>
+</tr>
+
+<tr>
+<td class="r">47</td>
+<td>cluster_database</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>if TRUE startup in cluster database mode</td>
+</tr>
+
+<tr>
+<td class="r">48</td>
+<td>cluster_database_instances</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>1</td>
+<td></td>
+<td>number of instances to use for sizing cluster db SGA structures</td>
+</tr>
+
+<tr>
+<td class="r">49</td>
+<td>cluster_interconnects</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>interconnects for RAC use</td>
+</tr>
+
+<tr>
+<td class="r">50</td>
+<td>commit_logging</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>transaction commit log write behaviour</td>
+</tr>
+
+<tr>
+<td class="r">51</td>
+<td>commit_point_strength</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>1</td>
+<td></td>
+<td>Bias this node has toward not preparing in a two-phase commit</td>
+</tr>
+
+<tr>
+<td class="r">52</td>
+<td>commit_wait</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>transaction commit log wait behaviour</td>
+</tr>
+
+<tr>
+<td class="r">53</td>
+<td>commit_write</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>transaction commit log write behaviour</td>
+</tr>
+
+<tr>
+<td class="r">54</td>
+<td>common_user_prefix</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>C##</td>
+<td></td>
+<td>Enforce restriction on a prefix of a Common User/Role/Profile name</td>
+</tr>
+
+<tr>
+<td class="r">55</td>
+<td>compatible</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>19.0.0</td>
+<td></td>
+<td>Database will be completely compatible with this software version</td>
+</tr>
+
+<tr>
+<td class="r">56</td>
+<td>connection_brokers</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>((TYPE=DEDICATED)(BROKERS=1))</td>
+<td></td>
+<td>connection brokers specification</td>
+</tr>
+
+<tr>
+<td class="r">57</td>
+<td>connection_brokers</td>
+<td class="r">2</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>((TYPE=EMON)(BROKERS=1))</td>
+<td></td>
+<td>connection brokers specification</td>
+</tr>
+
+<tr>
+<td class="r">58</td>
+<td>containers_parallel_degree</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>65535</td>
+<td></td>
+<td>Parallel degree for a CONTAINERS() query</td>
+</tr>
+
+<tr>
+<td class="r">59</td>
+<td>control_file_record_keep_time</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>7</td>
+<td></td>
+<td>control file record keep time in days</td>
+</tr>
+
+<tr>
+<td class="r">60</td>
+<td>control_files</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>/u02/oradata/T1DB/controlfile/o1_mf_h7qk4jp1_.ctl</td>
+<td></td>
+<td>control file names list</td>
+</tr>
+
+<tr>
+<td class="r">61</td>
+<td>control_management_pack_access</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>DIAGNOSTIC+TUNING</td>
+<td></td>
+<td>declares which manageability packs are enabled</td>
+</tr>
+
+<tr>
+<td class="r">62</td>
+<td>core_dump_dest</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>/u01/app/oracle/diag/rdbms/t1db/t1db/cdump</td>
+<td></td>
+<td>Core dump directory</td>
+</tr>
+
+<tr>
+<td class="r">63</td>
+<td>cpu_count</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>4</td>
+<td></td>
+<td>maximum number of CPUs</td>
+</tr>
+
+<tr>
+<td class="r">64</td>
+<td>cpu_min_count</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>4</td>
+<td></td>
+<td>minimum number of CPUs required</td>
+</tr>
+
+<tr>
+<td class="r">65</td>
+<td>create_bitmap_area_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>8388608</td>
+<td></td>
+<td>size of create bitmap buffer for bitmap index</td>
+</tr>
+
+<tr>
+<td class="r">66</td>
+<td>create_stored_outlines</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>create stored outlines for DML statements</td>
+</tr>
+
+<tr>
+<td class="r">67</td>
+<td>cursor_bind_capture_destination</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>memory+disk</td>
+<td></td>
+<td>Allowed destination for captured bind variables</td>
+</tr>
+
+<tr>
+<td class="r">68</td>
+<td>cursor_invalidation</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>IMMEDIATE</td>
+<td></td>
+<td>default for DDL cursor invalidation semantics</td>
+</tr>
+
+<tr>
+<td class="r">69</td>
+<td>cursor_sharing</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>EXACT</td>
+<td></td>
+<td>cursor sharing mode</td>
+</tr>
+
+<tr>
+<td class="r">70</td>
+<td>cursor_space_for_time</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>use more memory in order to get faster execution</td>
+</tr>
+
+<tr>
+<td class="r">71</td>
+<td>data_guard_max_io_time</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>240</td>
+<td></td>
+<td>maximum I/O time before process considered hung</td>
+</tr>
+
+<tr>
+<td class="r">72</td>
+<td>data_guard_max_longio_time</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>240</td>
+<td></td>
+<td>maximum long I/O time before process considered hung</td>
+</tr>
+
+<tr>
+<td class="r">73</td>
+<td>data_guard_sync_latency</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Data Guard SYNC latency</td>
+</tr>
+
+<tr>
+<td class="r">74</td>
+<td>data_transfer_cache_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Size of data transfer cache</td>
+</tr>
+
+<tr>
+<td class="r">75</td>
+<td>db_16k_cache_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Size of cache for 16K buffers</td>
+</tr>
+
+<tr>
+<td class="r">76</td>
+<td>db_2k_cache_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Size of cache for 2K buffers</td>
+</tr>
+
+<tr>
+<td class="r">77</td>
+<td>db_32k_cache_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Size of cache for 32K buffers</td>
+</tr>
+
+<tr>
+<td class="r">78</td>
+<td>db_4k_cache_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Size of cache for 4K buffers</td>
+</tr>
+
+<tr>
+<td class="r">79</td>
+<td>db_8k_cache_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Size of cache for 8K buffers</td>
+</tr>
+
+<tr>
+<td class="r">80</td>
+<td>db_big_table_cache_percent_target</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Big table cache target size in percentage</td>
+</tr>
+
+<tr>
+<td class="r">81</td>
+<td>db_block_buffers</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Number of database blocks cached in memory</td>
+</tr>
+
+<tr>
+<td class="r">82</td>
+<td>db_block_checking</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>header checking and data and index block checking</td>
+</tr>
+
+<tr>
+<td class="r">83</td>
+<td>db_block_checksum</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TYPICAL</td>
+<td></td>
+<td>store checksum in db blocks and check during reads</td>
+</tr>
+
+<tr>
+<td class="r">84</td>
+<td>db_block_size</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>8192</td>
+<td></td>
+<td>Size of database block in bytes</td>
+</tr>
+
+<tr>
+<td class="r">85</td>
+<td>db_cache_advice</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>ON</td>
+<td></td>
+<td>Buffer cache sizing advisory</td>
+</tr>
+
+<tr>
+<td class="r">86</td>
+<td>db_cache_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Size of DEFAULT buffer pool for standard block size buffers</td>
+</tr>
+
+<tr>
+<td class="r">87</td>
+<td>db_create_file_dest</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>/u02/oradata</td>
+<td></td>
+<td>default database location</td>
+</tr>
+
+<tr>
+<td class="r">88</td>
+<td>db_create_online_log_dest_1</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>online log/controlfile destination #1</td>
+</tr>
+
+<tr>
+<td class="r">89</td>
+<td>db_create_online_log_dest_2</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>online log/controlfile destination #2</td>
+</tr>
+
+<tr>
+<td class="r">90</td>
+<td>db_create_online_log_dest_3</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>online log/controlfile destination #3</td>
+</tr>
+
+<tr>
+<td class="r">91</td>
+<td>db_create_online_log_dest_4</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>online log/controlfile destination #4</td>
+</tr>
+
+<tr>
+<td class="r">92</td>
+<td>db_create_online_log_dest_5</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>online log/controlfile  destination #5</td>
+</tr>
+
+<tr>
+<td class="r">93</td>
+<td>db_domain</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>directory part of global database name stored with CREATE DATABASE</td>
+</tr>
+
+<tr>
+<td class="r">94</td>
+<td>db_file_multiblock_read_count</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>61</td>
+<td></td>
+<td>db block to be read each IO</td>
+</tr>
+
+<tr>
+<td class="r">95</td>
+<td>db_file_name_convert</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>datafile name convert patterns and strings for standby/clone db</td>
+</tr>
+
+<tr>
+<td class="r">96</td>
+<td>db_files</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>200</td>
+<td></td>
+<td>max allowable # db files</td>
+</tr>
+
+<tr>
+<td class="r">97</td>
+<td>db_flash_cache_file</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>flash cache file for default block size</td>
+</tr>
+
+<tr>
+<td class="r">98</td>
+<td>db_flash_cache_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>flash cache size for db_flash_cache_file</td>
+</tr>
+
+<tr>
+<td class="r">99</td>
+<td>db_flashback_retention_target</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>1440</td>
+<td></td>
+<td>Maximum Flashback Database log retention time in minutes.</td>
+</tr>
+
+<tr>
+<td class="r">100</td>
+<td>db_index_compression_inheritance</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>NONE</td>
+<td></td>
+<td>options for table or tablespace level compression inheritance</td>
+</tr>
+
+<tr>
+<td class="r">101</td>
+<td>db_keep_cache_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Size of KEEP buffer pool for standard block size buffers</td>
+</tr>
+
+<tr>
+<td class="r">102</td>
+<td>db_lost_write_protect</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>NONE</td>
+<td></td>
+<td>enable lost write detection</td>
+</tr>
+
+<tr>
+<td class="r">103</td>
+<td>db_name</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>t1db</td>
+<td></td>
+<td>database name specified in CREATE DATABASE</td>
+</tr>
+
+<tr>
+<td class="r">104</td>
+<td>db_performance_profile</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Database performance category</td>
+</tr>
+
+<tr>
+<td class="r">105</td>
+<td>db_recovery_file_dest</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>default database recovery file location</td>
+</tr>
+
+<tr>
+<td class="r">106</td>
+<td>db_recovery_file_dest_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>database recovery files size limit</td>
+</tr>
+
+<tr>
+<td class="r">107</td>
+<td>db_recycle_cache_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Size of RECYCLE buffer pool for standard block size buffers</td>
+</tr>
+
+<tr>
+<td class="r">108</td>
+<td>db_securefile</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>PREFERRED</td>
+<td></td>
+<td>permit securefile storage during lob creation</td>
+</tr>
+
+<tr>
+<td class="r">109</td>
+<td>db_ultra_safe</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>OFF</td>
+<td></td>
+<td>Sets defaults for other parameters that control protection levels</td>
+</tr>
+
+<tr>
+<td class="r">110</td>
+<td>db_unique_name</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>t1db</td>
+<td></td>
+<td>Database Unique Name</td>
+</tr>
+
+<tr>
+<td class="r">111</td>
+<td>db_unrecoverable_scn_tracking</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>Track nologging SCN in controlfile</td>
+</tr>
+
+<tr>
+<td class="r">112</td>
+<td>db_writer_processes</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>1</td>
+<td></td>
+<td>number of background database writer  processes to start</td>
+</tr>
+
+<tr>
+<td class="r">113</td>
+<td>dbwr_io_slaves</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>DBWR I/O slaves</td>
+</tr>
+
+<tr>
+<td class="r">114</td>
+<td>ddl_lock_timeout</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>timeout to restrict the time that ddls wait for dml lock</td>
+</tr>
+
+<tr>
+<td class="r">115</td>
+<td>default_sharing</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>metadata</td>
+<td></td>
+<td>Default sharing clause</td>
+</tr>
+
+<tr>
+<td class="r">116</td>
+<td>deferred_segment_creation</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>defer segment creation to first insert</td>
+</tr>
+
+<tr>
+<td class="r">117</td>
+<td>dg_broker_config_file1</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>/u01/app/oracle/product/19.6.0/dbhome_1/dbs/dr1t1db.dat</td>
+<td></td>
+<td>data guard broker configuration file #1</td>
+</tr>
+
+<tr>
+<td class="r">118</td>
+<td>dg_broker_config_file2</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>/u01/app/oracle/product/19.6.0/dbhome_1/dbs/dr2t1db.dat</td>
+<td></td>
+<td>data guard broker configuration file #2</td>
+</tr>
+
+<tr>
+<td class="r">119</td>
+<td>dg_broker_start</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>start Data Guard broker (DMON process)</td>
+</tr>
+
+<tr>
+<td class="r">120</td>
+<td>diagnostic_dest</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>/u01/app/oracle</td>
+<td></td>
+<td>diagnostic base directory</td>
+</tr>
+
+<tr>
+<td class="r">121</td>
+<td>disable_pdb_feature</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Disable features</td>
+</tr>
+
+<tr>
+<td class="r">122</td>
+<td>disk_asynch_io</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>Use asynch I/O for random access devices</td>
+</tr>
+
+<tr>
+<td class="r">123</td>
+<td>dispatchers</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>(PROTOCOL=TCP) (SERVICE=t1dbXDB)</td>
+<td></td>
+<td>specifications of dispatchers</td>
+</tr>
+
+<tr>
+<td class="r">124</td>
+<td>distributed_lock_timeout</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>60</td>
+<td></td>
+<td>number of seconds a distributed transaction waits for a lock</td>
+</tr>
+
+<tr>
+<td class="r">125</td>
+<td>dml_locks</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>2216</td>
+<td></td>
+<td>dml locks - one for each table modified in a transaction</td>
+</tr>
+
+<tr>
+<td class="r">126</td>
+<td>dnfs_batch_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>4096</td>
+<td></td>
+<td>Max number of dNFS asynch I/O requests queued per session</td>
+</tr>
+
+<tr>
+<td class="r">127</td>
+<td>dst_upgrade_insert_conv</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>Enables/Disables internal conversions during DST upgrade</td>
+</tr>
+
+<tr>
+<td class="r">128</td>
+<td>enable_automatic_maintenance_pdb</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>Enable/Disable Automated Maintenance for Non-Root PDB</td>
+</tr>
+
+<tr>
+<td class="r">129</td>
+<td>enable_ddl_logging</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>enable ddl logging</td>
+</tr>
+
+<tr>
+<td class="r">130</td>
+<td>enable_dnfs_dispatcher</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Enable DNFS Dispatcher</td>
+</tr>
+
+<tr>
+<td class="r">131</td>
+<td>enable_goldengate_replication</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>goldengate replication enabled</td>
+</tr>
+
+<tr>
+<td class="r">132</td>
+<td>enable_imc_with_mira</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>enable IMC with  multi instance redo apply</td>
+</tr>
+
+<tr>
+<td class="r">133</td>
+<td>enable_pluggable_database</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Enable Pluggable Database</td>
+</tr>
+
+<tr>
+<td class="r">134</td>
+<td>enabled_PDBs_on_standby</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>*</td>
+<td></td>
+<td>List of Enabled PDB patterns</td>
+</tr>
+
+<tr>
+<td class="r">135</td>
+<td>encrypt_new_tablespaces</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>CLOUD_ONLY</td>
+<td></td>
+<td>whether to encrypt newly created tablespaces</td>
+</tr>
+
+<tr>
+<td class="r">136</td>
+<td>event</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>debug event control - default null string</td>
+</tr>
+
+<tr>
+<td class="r">137</td>
+<td>external_keystore_credential_location</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>external keystore credential location</td>
+</tr>
+
+<tr>
+<td class="r">138</td>
+<td>fal_client</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>FAL client</td>
+</tr>
+
+<tr>
+<td class="r">139</td>
+<td>fal_server</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>FAL server list</td>
+</tr>
+
+<tr>
+<td class="r">140</td>
+<td>fast_start_io_target</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Upper bound on recovery reads</td>
+</tr>
+
+<tr>
+<td class="r">141</td>
+<td>fast_start_mttr_target</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>MTTR target in seconds</td>
+</tr>
+
+<tr>
+<td class="r">142</td>
+<td>fast_start_parallel_rollback</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>LOW</td>
+<td></td>
+<td>max number of parallel recovery slaves that may be used</td>
+</tr>
+
+<tr>
+<td class="r">143</td>
+<td>file_mapping</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>enable file mapping</td>
+</tr>
+
+<tr>
+<td class="r">144</td>
+<td>fileio_network_adapters</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Network Adapters for File I/O</td>
+</tr>
+
+<tr>
+<td class="r">145</td>
+<td>filesystemio_options</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>none</td>
+<td></td>
+<td>IO operations on filesystem files</td>
+</tr>
+
+<tr>
+<td class="r">146</td>
+<td>fixed_date</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>fixed SYSDATE value</td>
+</tr>
+
+<tr>
+<td class="r">147</td>
+<td>forward_listener</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>forward listener</td>
+</tr>
+
+<tr>
+<td class="r">148</td>
+<td>gcs_server_processes</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>number of background gcs server processes to start</td>
+</tr>
+
+<tr>
+<td class="r">149</td>
+<td>global_names</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>enforce that database links have same name as remote database</td>
+</tr>
+
+<tr>
+<td class="r">150</td>
+<td>global_txn_processes</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>1</td>
+<td></td>
+<td>number of background global transaction processes to start</td>
+</tr>
+
+<tr>
+<td class="r">151</td>
+<td>hash_area_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>131072</td>
+<td></td>
+<td>size of in-memory hash work area</td>
+</tr>
+
+<tr>
+<td class="r">152</td>
+<td>heat_map</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>OFF</td>
+<td></td>
+<td>ILM Heatmap Tracking</td>
+</tr>
+
+<tr>
+<td class="r">153</td>
+<td>hi_shared_memory_address</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>SGA starting address (high order 32-bits on 64-bit platforms)</td>
+</tr>
+
+<tr>
+<td class="r">154</td>
+<td>hs_autoregister</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>enable automatic server DD updates in HS agent self-registration</td>
+</tr>
+
+<tr>
+<td class="r">155</td>
+<td>http_proxy</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>http_proxy</td>
+</tr>
+
+<tr>
+<td class="r">156</td>
+<td>ifile</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>include file in init.ora</td>
+</tr>
+
+<tr>
+<td class="r">157</td>
+<td>ignore_session_set_param_errors</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Ignore errors during alter session param set</td>
+</tr>
+
+<tr>
+<td class="r">158</td>
+<td>inmemory_adg_enabled</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>Enable IMC support on ADG</td>
+</tr>
+
+<tr>
+<td class="r">159</td>
+<td>inmemory_automatic_level</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>OFF</td>
+<td></td>
+<td>Enable Automatic In-Memory management</td>
+</tr>
+
+<tr>
+<td class="r">160</td>
+<td>inmemory_clause_default</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Default in-memory clause for new tables</td>
+</tr>
+
+<tr>
+<td class="r">161</td>
+<td>inmemory_expressions_usage</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>ENABLE</td>
+<td></td>
+<td>Controls which In-Memory Expressions are populated in-memory</td>
+</tr>
+
+<tr>
+<td class="r">162</td>
+<td>inmemory_force</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>DEFAULT</td>
+<td></td>
+<td>Force tables to be in-memory or not</td>
+</tr>
+
+<tr>
+<td class="r">163</td>
+<td>inmemory_max_populate_servers</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>maximum inmemory populate servers</td>
+</tr>
+
+<tr>
+<td class="r">164</td>
+<td>inmemory_optimized_arithmetic</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>DISABLE</td>
+<td></td>
+<td>Controls whether or not DSBs are stored in-memory</td>
+</tr>
+
+<tr>
+<td class="r">165</td>
+<td>inmemory_prefer_xmem_memcompress</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Prefer to store tables with given memcompress levels in xmem</td>
+</tr>
+
+<tr>
+<td class="r">166</td>
+<td>inmemory_prefer_xmem_priority</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Prefer to store tables with given priority levels in xmem</td>
+</tr>
+
+<tr>
+<td class="r">167</td>
+<td>inmemory_query</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>ENABLE</td>
+<td></td>
+<td>Specifies whether in-memory queries are allowed</td>
+</tr>
+
+<tr>
+<td class="r">168</td>
+<td>inmemory_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>size in bytes of in-memory area</td>
+</tr>
+
+<tr>
+<td class="r">169</td>
+<td>inmemory_trickle_repopulate_servers_percent</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>1</td>
+<td></td>
+<td>inmemory trickle repopulate servers percent</td>
+</tr>
+
+<tr>
+<td class="r">170</td>
+<td>inmemory_virtual_columns</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>MANUAL</td>
+<td></td>
+<td>Controls which user-defined virtual columns are stored in-memory</td>
+</tr>
+
+<tr>
+<td class="r">171</td>
+<td>inmemory_xmem_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>size in bytes of in-memory xmem area</td>
+</tr>
+
+<tr>
+<td class="r">172</td>
+<td>instance_abort_delay_time</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>time to delay an internal initiated abort (in seconds)</td>
+</tr>
+
+<tr>
+<td class="r">173</td>
+<td>instance_groups</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>list of instance group names</td>
+</tr>
+
+<tr>
+<td class="r">174</td>
+<td>instance_mode</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>READ-WRITE</td>
+<td></td>
+<td>indicates whether the instance read-only or read-write or read-mostly</td>
+</tr>
+
+<tr>
+<td class="r">175</td>
+<td>instance_name</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>t1db</td>
+<td></td>
+<td>instance name supported by the instance</td>
+</tr>
+
+<tr>
+<td class="r">176</td>
+<td>instance_number</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>instance number</td>
+</tr>
+
+<tr>
+<td class="r">177</td>
+<td>instance_type</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>RDBMS</td>
+<td></td>
+<td>type of instance to be executed</td>
+</tr>
+
+<tr>
+<td class="r">178</td>
+<td>instant_restore</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>instant repopulation of datafiles</td>
+</tr>
+
+<tr>
+<td class="r">179</td>
+<td>java_jit_enabled</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>Java VM JIT enabled</td>
+</tr>
+
+<tr>
+<td class="r">180</td>
+<td>java_max_sessionspace_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>max allowed size in bytes of a Java sessionspace</td>
+</tr>
+
+<tr>
+<td class="r">181</td>
+<td>java_pool_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>size in bytes of java pool</td>
+</tr>
+
+<tr>
+<td class="r">182</td>
+<td>java_restrict</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>none</td>
+<td></td>
+<td>Restrict Java VM Access</td>
+</tr>
+
+<tr>
+<td class="r">183</td>
+<td>java_soft_sessionspace_limit</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>warning limit on size in bytes of a Java sessionspace</td>
+</tr>
+
+<tr>
+<td class="r">184</td>
+<td>job_queue_processes</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>80</td>
+<td></td>
+<td>maximum number of job queue slave processes</td>
+</tr>
+
+<tr>
+<td class="r">185</td>
+<td>large_pool_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>size in bytes of large pool</td>
+</tr>
+
+<tr>
+<td class="r">186</td>
+<td>ldap_directory_access</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>NONE</td>
+<td></td>
+<td>RDBMS's LDAP access option</td>
+</tr>
+
+<tr>
+<td class="r">187</td>
+<td>ldap_directory_sysauth</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>no</td>
+<td></td>
+<td>OID usage parameter</td>
+</tr>
+
+<tr>
+<td class="r">188</td>
+<td>license_max_sessions</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>maximum number of non-system user sessions allowed</td>
+</tr>
+
+<tr>
+<td class="r">189</td>
+<td>license_max_users</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>maximum number of named users that can be created in the database</td>
+</tr>
+
+<tr>
+<td class="r">190</td>
+<td>license_sessions_warning</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>warning level for number of non-system user sessions</td>
+</tr>
+
+<tr>
+<td class="r">191</td>
+<td>listener_networks</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>listener registration networks</td>
+</tr>
+
+<tr>
+<td class="r">192</td>
+<td>lob_signature_enable</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>enable lob signature</td>
+</tr>
+
+<tr>
+<td class="r">193</td>
+<td>local_listener</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>LISTENER_T1DB</td>
+<td></td>
+<td>local listener</td>
+</tr>
+
+<tr>
+<td class="r">194</td>
+<td>lock_name_space</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>lock name space used for generating lock names for standby/clone database</td>
+</tr>
+
+<tr>
+<td class="r">195</td>
+<td>lock_sga</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Lock entire SGA in physical memory</td>
+</tr>
+
+<tr>
+<td class="r">196</td>
+<td>log_archive_config</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>log archive config</td>
+</tr>
+
+<tr>
+<td class="r">197</td>
+<td>log_archive_dest</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination text string</td>
+</tr>
+
+<tr>
+<td class="r">198</td>
+<td>log_archive_dest_1</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #1 text string</td>
+</tr>
+
+<tr>
+<td class="r">199</td>
+<td>log_archive_dest_10</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #10 text string</td>
+</tr>
+
+<tr>
+<td class="r">200</td>
+<td>log_archive_dest_11</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #11 text string</td>
+</tr>
+
+<tr>
+<td class="r">201</td>
+<td>log_archive_dest_12</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #12 text string</td>
+</tr>
+
+<tr>
+<td class="r">202</td>
+<td>log_archive_dest_13</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #13 text string</td>
+</tr>
+
+<tr>
+<td class="r">203</td>
+<td>log_archive_dest_14</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #14 text string</td>
+</tr>
+
+<tr>
+<td class="r">204</td>
+<td>log_archive_dest_15</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #15 text string</td>
+</tr>
+
+<tr>
+<td class="r">205</td>
+<td>log_archive_dest_16</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #16 text string</td>
+</tr>
+
+<tr>
+<td class="r">206</td>
+<td>log_archive_dest_17</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #17 text string</td>
+</tr>
+
+<tr>
+<td class="r">207</td>
+<td>log_archive_dest_18</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #18 text string</td>
+</tr>
+
+<tr>
+<td class="r">208</td>
+<td>log_archive_dest_19</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #19 text string</td>
+</tr>
+
+<tr>
+<td class="r">209</td>
+<td>log_archive_dest_2</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #2 text string</td>
+</tr>
+
+<tr>
+<td class="r">210</td>
+<td>log_archive_dest_20</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #20 text string</td>
+</tr>
+
+<tr>
+<td class="r">211</td>
+<td>log_archive_dest_21</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #21 text string</td>
+</tr>
+
+<tr>
+<td class="r">212</td>
+<td>log_archive_dest_22</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #22 text string</td>
+</tr>
+
+<tr>
+<td class="r">213</td>
+<td>log_archive_dest_23</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #23 text string</td>
+</tr>
+
+<tr>
+<td class="r">214</td>
+<td>log_archive_dest_24</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #24 text string</td>
+</tr>
+
+<tr>
+<td class="r">215</td>
+<td>log_archive_dest_25</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #25 text string</td>
+</tr>
+
+<tr>
+<td class="r">216</td>
+<td>log_archive_dest_26</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #26 text string</td>
+</tr>
+
+<tr>
+<td class="r">217</td>
+<td>log_archive_dest_27</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #27 text string</td>
+</tr>
+
+<tr>
+<td class="r">218</td>
+<td>log_archive_dest_28</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #28 text string</td>
+</tr>
+
+<tr>
+<td class="r">219</td>
+<td>log_archive_dest_29</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #29 text string</td>
+</tr>
+
+<tr>
+<td class="r">220</td>
+<td>log_archive_dest_3</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #3 text string</td>
+</tr>
+
+<tr>
+<td class="r">221</td>
+<td>log_archive_dest_30</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #30 text string</td>
+</tr>
+
+<tr>
+<td class="r">222</td>
+<td>log_archive_dest_31</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #31 text string</td>
+</tr>
+
+<tr>
+<td class="r">223</td>
+<td>log_archive_dest_4</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #4 text string</td>
+</tr>
+
+<tr>
+<td class="r">224</td>
+<td>log_archive_dest_5</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #5 text string</td>
+</tr>
+
+<tr>
+<td class="r">225</td>
+<td>log_archive_dest_6</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #6 text string</td>
+</tr>
+
+<tr>
+<td class="r">226</td>
+<td>log_archive_dest_7</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #7 text string</td>
+</tr>
+
+<tr>
+<td class="r">227</td>
+<td>log_archive_dest_8</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #8 text string</td>
+</tr>
+
+<tr>
+<td class="r">228</td>
+<td>log_archive_dest_9</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>archival destination #9 text string</td>
+</tr>
+
+<tr>
+<td class="r">229</td>
+<td>log_archive_dest_state_1</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #1 state text string</td>
+</tr>
+
+<tr>
+<td class="r">230</td>
+<td>log_archive_dest_state_10</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #10 state text string</td>
+</tr>
+
+<tr>
+<td class="r">231</td>
+<td>log_archive_dest_state_11</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #11 state text string</td>
+</tr>
+
+<tr>
+<td class="r">232</td>
+<td>log_archive_dest_state_12</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #12 state text string</td>
+</tr>
+
+<tr>
+<td class="r">233</td>
+<td>log_archive_dest_state_13</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #13 state text string</td>
+</tr>
+
+<tr>
+<td class="r">234</td>
+<td>log_archive_dest_state_14</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #14 state text string</td>
+</tr>
+
+<tr>
+<td class="r">235</td>
+<td>log_archive_dest_state_15</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #15 state text string</td>
+</tr>
+
+<tr>
+<td class="r">236</td>
+<td>log_archive_dest_state_16</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #16 state text string</td>
+</tr>
+
+<tr>
+<td class="r">237</td>
+<td>log_archive_dest_state_17</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #17 state text string</td>
+</tr>
+
+<tr>
+<td class="r">238</td>
+<td>log_archive_dest_state_18</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #18 state text string</td>
+</tr>
+
+<tr>
+<td class="r">239</td>
+<td>log_archive_dest_state_19</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #19 state text string</td>
+</tr>
+
+<tr>
+<td class="r">240</td>
+<td>log_archive_dest_state_2</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #2 state text string</td>
+</tr>
+
+<tr>
+<td class="r">241</td>
+<td>log_archive_dest_state_20</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #20 state text string</td>
+</tr>
+
+<tr>
+<td class="r">242</td>
+<td>log_archive_dest_state_21</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #21 state text string</td>
+</tr>
+
+<tr>
+<td class="r">243</td>
+<td>log_archive_dest_state_22</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #22 state text string</td>
+</tr>
+
+<tr>
+<td class="r">244</td>
+<td>log_archive_dest_state_23</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #23 state text string</td>
+</tr>
+
+<tr>
+<td class="r">245</td>
+<td>log_archive_dest_state_24</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #24 state text string</td>
+</tr>
+
+<tr>
+<td class="r">246</td>
+<td>log_archive_dest_state_25</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #25 state text string</td>
+</tr>
+
+<tr>
+<td class="r">247</td>
+<td>log_archive_dest_state_26</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #26 state text string</td>
+</tr>
+
+<tr>
+<td class="r">248</td>
+<td>log_archive_dest_state_27</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #27 state text string</td>
+</tr>
+
+<tr>
+<td class="r">249</td>
+<td>log_archive_dest_state_28</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #28 state text string</td>
+</tr>
+
+<tr>
+<td class="r">250</td>
+<td>log_archive_dest_state_29</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #29 state text string</td>
+</tr>
+
+<tr>
+<td class="r">251</td>
+<td>log_archive_dest_state_3</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #3 state text string</td>
+</tr>
+
+<tr>
+<td class="r">252</td>
+<td>log_archive_dest_state_30</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #30 state text string</td>
+</tr>
+
+<tr>
+<td class="r">253</td>
+<td>log_archive_dest_state_31</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #31 state text string</td>
+</tr>
+
+<tr>
+<td class="r">254</td>
+<td>log_archive_dest_state_4</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #4 state text string</td>
+</tr>
+
+<tr>
+<td class="r">255</td>
+<td>log_archive_dest_state_5</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #5 state text string</td>
+</tr>
+
+<tr>
+<td class="r">256</td>
+<td>log_archive_dest_state_6</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #6 state text string</td>
+</tr>
+
+<tr>
+<td class="r">257</td>
+<td>log_archive_dest_state_7</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #7 state text string</td>
+</tr>
+
+<tr>
+<td class="r">258</td>
+<td>log_archive_dest_state_8</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #8 state text string</td>
+</tr>
+
+<tr>
+<td class="r">259</td>
+<td>log_archive_dest_state_9</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>archival destination #9 state text string</td>
+</tr>
+
+<tr>
+<td class="r">260</td>
+<td>log_archive_duplex_dest</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>duplex archival destination text string</td>
+</tr>
+
+<tr>
+<td class="r">261</td>
+<td>log_archive_format</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>%t_%s_%r.dbf</td>
+<td></td>
+<td>archival destination format</td>
+</tr>
+
+<tr>
+<td class="r">262</td>
+<td>log_archive_max_processes</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>4</td>
+<td></td>
+<td>maximum number of active ARCH processes</td>
+</tr>
+
+<tr>
+<td class="r">263</td>
+<td>log_archive_min_succeed_dest</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>1</td>
+<td></td>
+<td>minimum number of archive destinations that must succeed</td>
+</tr>
+
+<tr>
+<td class="r">264</td>
+<td>log_archive_start</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>start archival process on SGA initialization</td>
+</tr>
+
+<tr>
+<td class="r">265</td>
+<td>log_archive_trace</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Establish archive operation tracing level</td>
+</tr>
+
+<tr>
+<td class="r">266</td>
+<td>log_buffer</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>7528448</td>
+<td>7352K</td>
+<td>redo circular buffer size</td>
+</tr>
+
+<tr>
+<td class="r">267</td>
+<td>log_checkpoint_interval</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td># redo blocks checkpoint threshold</td>
+</tr>
+
+<tr>
+<td class="r">268</td>
+<td>log_checkpoint_timeout</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>1800</td>
+<td></td>
+<td>Maximum time interval between checkpoints in seconds</td>
+</tr>
+
+<tr>
+<td class="r">269</td>
+<td>log_checkpoints_to_alert</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>log checkpoint begin/end to alert file</td>
+</tr>
+
+<tr>
+<td class="r">270</td>
+<td>log_file_name_convert</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>logfile name convert patterns and strings for standby/clone db</td>
+</tr>
+
+<tr>
+<td class="r">271</td>
+<td>long_module_action</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>Use longer module and action</td>
+</tr>
+
+<tr>
+<td class="r">272</td>
+<td>max_datapump_jobs_per_pdb</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>100</td>
+<td></td>
+<td>maximum number of concurrent Data Pump Jobs per PDB</td>
+</tr>
+
+<tr>
+<td class="r">273</td>
+<td>max_datapump_parallel_per_job</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>50</td>
+<td></td>
+<td>maximum number of parallel processes per Data Pump Job</td>
+</tr>
+
+<tr>
+<td class="r">274</td>
+<td>max_dispatchers</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>max number of dispatchers</td>
+</tr>
+
+<tr>
+<td class="r">275</td>
+<td>max_dump_file_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>unlimited</td>
+<td></td>
+<td>Maximum size (in bytes) of dump file</td>
+</tr>
+
+<tr>
+<td class="r">276</td>
+<td>max_idle_blocker_time</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>maximum idle time for a blocking session in minutes</td>
+</tr>
+
+<tr>
+<td class="r">277</td>
+<td>max_idle_time</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>maximum session idle time in minutes</td>
+</tr>
+
+<tr>
+<td class="r">278</td>
+<td>max_iops</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>MAX IO per second</td>
+</tr>
+
+<tr>
+<td class="r">279</td>
+<td>max_mbps</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>MAX MB per second</td>
+</tr>
+
+<tr>
+<td class="r">280</td>
+<td>max_pdbs</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>254</td>
+<td></td>
+<td>max number of pdbs allowed in CDB or Application ROOT</td>
+</tr>
+
+<tr>
+<td class="r">281</td>
+<td>max_shared_servers</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>max number of shared servers</td>
+</tr>
+
+<tr>
+<td class="r">282</td>
+<td>max_string_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>STANDARD</td>
+<td></td>
+<td>controls maximum size of VARCHAR2, NVARCHAR2, and RAW types in SQL</td>
+</tr>
+
+<tr>
+<td class="r">283</td>
+<td>memoptimize_pool_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Size of cache for imoltp buffers</td>
+</tr>
+
+<tr>
+<td class="r">284</td>
+<td>memory_max_target</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Max size for Memory Target</td>
+</tr>
+
+<tr>
+<td class="r">285</td>
+<td>memory_target</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Target size of Oracle SGA and PGA memory</td>
+</tr>
+
+<tr>
+<td class="r">286</td>
+<td>multishard_query_data_consistency</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>strong</td>
+<td></td>
+<td>consistency setting for multishard queries</td>
+</tr>
+
+<tr>
+<td class="r">287</td>
+<td>multishard_query_partial_results</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>not allowed</td>
+<td></td>
+<td>enable partial results for multishard queries</td>
+</tr>
+
+<tr>
+<td class="r">288</td>
+<td>nls_calendar</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>NLS calendar system name</td>
+</tr>
+
+<tr>
+<td class="r">289</td>
+<td>nls_comp</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>BINARY</td>
+<td></td>
+<td>NLS comparison</td>
+</tr>
+
+<tr>
+<td class="r">290</td>
+<td>nls_currency</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>NLS local currency symbol</td>
+</tr>
+
+<tr>
+<td class="r">291</td>
+<td>nls_date_format</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>NLS Oracle date format</td>
+</tr>
+
+<tr>
+<td class="r">292</td>
+<td>nls_date_language</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>NLS date language name</td>
+</tr>
+
+<tr>
+<td class="r">293</td>
+<td>nls_dual_currency</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Dual currency symbol</td>
+</tr>
+
+<tr>
+<td class="r">294</td>
+<td>nls_iso_currency</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>NLS ISO currency territory name</td>
+</tr>
+
+<tr>
+<td class="r">295</td>
+<td>nls_language</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>AMERICAN</td>
+<td></td>
+<td>NLS language name</td>
+</tr>
+
+<tr>
+<td class="r">296</td>
+<td>nls_length_semantics</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>BYTE</td>
+<td></td>
+<td>create columns using byte or char semantics by default</td>
+</tr>
+
+<tr>
+<td class="r">297</td>
+<td>nls_nchar_conv_excp</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>NLS raise an exception instead of allowing implicit conversion</td>
+</tr>
+
+<tr>
+<td class="r">298</td>
+<td>nls_numeric_characters</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>NLS numeric characters</td>
+</tr>
+
+<tr>
+<td class="r">299</td>
+<td>nls_sort</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>NLS linguistic definition name</td>
+</tr>
+
+<tr>
+<td class="r">300</td>
+<td>nls_territory</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>AMERICA</td>
+<td></td>
+<td>NLS territory name</td>
+</tr>
+
+<tr>
+<td class="r">301</td>
+<td>nls_time_format</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>time format</td>
+</tr>
+
+<tr>
+<td class="r">302</td>
+<td>nls_time_tz_format</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>time with timezone format</td>
+</tr>
+
+<tr>
+<td class="r">303</td>
+<td>nls_timestamp_format</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>time stamp format</td>
+</tr>
+
+<tr>
+<td class="r">304</td>
+<td>nls_timestamp_tz_format</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>timestamp with timezone format</td>
+</tr>
+
+<tr>
+<td class="r">305</td>
+<td>noncdb_compatible</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Non-CDB Compatible</td>
+</tr>
+
+<tr>
+<td class="r">306</td>
+<td>object_cache_max_size_percent</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>10</td>
+<td></td>
+<td>percentage of maximum size over optimal of the user session's object cache</td>
+</tr>
+
+<tr>
+<td class="r">307</td>
+<td>object_cache_optimal_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>10240000</td>
+<td></td>
+<td>optimal size of the user session's object cache in bytes</td>
+</tr>
+
+<tr>
+<td class="r">308</td>
+<td>ofs_threads</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>4</td>
+<td></td>
+<td>Number of OFS threads</td>
+</tr>
+
+<tr>
+<td class="r">309</td>
+<td>olap_page_pool_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>size of the olap page pool in bytes</td>
+</tr>
+
+<tr>
+<td class="r">310</td>
+<td>one_step_plugin_for_pdb_with_tde</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Facilitate one-step plugin for PDB with TDE encrypted data</td>
+</tr>
+
+<tr>
+<td class="r">311</td>
+<td>open_cursors</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>300</td>
+<td></td>
+<td>max # cursors per session</td>
+</tr>
+
+<tr>
+<td class="r">312</td>
+<td>open_links</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>4</td>
+<td></td>
+<td>max # open links per session</td>
+</tr>
+
+<tr>
+<td class="r">313</td>
+<td>open_links_per_instance</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>4</td>
+<td></td>
+<td>max # open links per instance</td>
+</tr>
+
+<tr>
+<td class="r">314</td>
+<td>optimizer_adaptive_plans</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>controls all types of adaptive plans</td>
+</tr>
+
+<tr>
+<td class="r">315</td>
+<td>optimizer_adaptive_reporting_only</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>use reporting-only mode for adaptive optimizations</td>
+</tr>
+
+<tr>
+<td class="r">316</td>
+<td>optimizer_adaptive_statistics</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>controls all types of adaptive statistics</td>
+</tr>
+
+<tr>
+<td class="r">317</td>
+<td>optimizer_capture_sql_plan_baselines</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>automatic capture of SQL plan baselines for repeatable statements</td>
+</tr>
+
+<tr>
+<td class="r">318</td>
+<td>optimizer_dynamic_sampling</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>2</td>
+<td></td>
+<td>optimizer dynamic sampling</td>
+</tr>
+
+<tr>
+<td class="r">319</td>
+<td>optimizer_features_enable</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>19.1.0</td>
+<td></td>
+<td>optimizer plan compatibility parameter</td>
+</tr>
+
+<tr>
+<td class="r">320</td>
+<td>optimizer_ignore_hints</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>enables the embedded hints to be ignored</td>
+</tr>
+
+<tr>
+<td class="r">321</td>
+<td>optimizer_ignore_parallel_hints</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>enables embedded parallel hints to be ignored</td>
+</tr>
+
+<tr>
+<td class="r">322</td>
+<td>optimizer_index_caching</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>optimizer percent index caching</td>
+</tr>
+
+<tr>
+<td class="r">323</td>
+<td>optimizer_index_cost_adj</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>100</td>
+<td></td>
+<td>optimizer index cost adjustment</td>
+</tr>
+
+<tr>
+<td class="r">324</td>
+<td>optimizer_inmemory_aware</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>optimizer in-memory columnar awareness</td>
+</tr>
+
+<tr>
+<td class="r">325</td>
+<td>optimizer_mode</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>ALL_ROWS</td>
+<td></td>
+<td>optimizer mode</td>
+</tr>
+
+<tr>
+<td class="r">326</td>
+<td>optimizer_secure_view_merging</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>optimizer secure view merging and predicate pushdown/movearound</td>
+</tr>
+
+<tr>
+<td class="r">327</td>
+<td>optimizer_session_type</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>NORMAL</td>
+<td></td>
+<td>Controls Auto Index</td>
+</tr>
+
+<tr>
+<td class="r">328</td>
+<td>optimizer_use_invisible_indexes</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Usage of invisible indexes (TRUE/FALSE)</td>
+</tr>
+
+<tr>
+<td class="r">329</td>
+<td>optimizer_use_pending_statistics</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Control whether to use optimizer pending statistics</td>
+</tr>
+
+<tr>
+<td class="r">330</td>
+<td>optimizer_use_sql_plan_baselines</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>use of SQL plan baselines for captured sql statements</td>
+</tr>
+
+<tr>
+<td class="r">331</td>
+<td>os_authent_prefix</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>ops$</td>
+<td></td>
+<td>prefix for auto-logon accounts</td>
+</tr>
+
+<tr>
+<td class="r">332</td>
+<td>os_roles</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>retrieve roles from the operating system</td>
+</tr>
+
+<tr>
+<td class="r">333</td>
+<td>outbound_dblink_protocols</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>ALL</td>
+<td></td>
+<td>Outbound DBLINK Protocols allowed</td>
+</tr>
+
+<tr>
+<td class="r">334</td>
+<td>parallel_adaptive_multi_user</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>enable adaptive setting of degree for multiple user streams</td>
+</tr>
+
+<tr>
+<td class="r">335</td>
+<td>parallel_degree_limit</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>CPU</td>
+<td></td>
+<td>limit placed on degree of parallelism</td>
+</tr>
+
+<tr>
+<td class="r">336</td>
+<td>parallel_degree_policy</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>MANUAL</td>
+<td></td>
+<td>policy used to compute the degree of parallelism (MANUAL/LIMITED/AUTO/ADAPTIVE)</td>
+</tr>
+
+<tr>
+<td class="r">337</td>
+<td>parallel_execution_message_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>16384</td>
+<td></td>
+<td>message buffer size for parallel execution</td>
+</tr>
+
+<tr>
+<td class="r">338</td>
+<td>parallel_force_local</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>force single instance execution</td>
+</tr>
+
+<tr>
+<td class="r">339</td>
+<td>parallel_instance_group</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>instance group to use for all parallel operations</td>
+</tr>
+
+<tr>
+<td class="r">340</td>
+<td>parallel_max_servers</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>80</td>
+<td></td>
+<td>maximum parallel query servers per instance</td>
+</tr>
+
+<tr>
+<td class="r">341</td>
+<td>parallel_min_degree</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>1</td>
+<td></td>
+<td>controls the minimum DOP computed by Auto DOP</td>
+</tr>
+
+<tr>
+<td class="r">342</td>
+<td>parallel_min_percent</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>minimum percent of threads required for parallel query</td>
+</tr>
+
+<tr>
+<td class="r">343</td>
+<td>parallel_min_servers</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>8</td>
+<td></td>
+<td>minimum parallel query servers per instance</td>
+</tr>
+
+<tr>
+<td class="r">344</td>
+<td>parallel_min_time_threshold</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>AUTO</td>
+<td></td>
+<td>threshold above which a plan is a candidate for parallelization (in seconds)</td>
+</tr>
+
+<tr>
+<td class="r">345</td>
+<td>parallel_servers_target</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>32</td>
+<td></td>
+<td>instance target in terms of number of parallel servers</td>
+</tr>
+
+<tr>
+<td class="r">346</td>
+<td>parallel_threads_per_cpu</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>1</td>
+<td></td>
+<td>number of parallel execution threads per CPU</td>
+</tr>
+
+<tr>
+<td class="r">347</td>
+<td>pdb_file_name_convert</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>PDB file name convert patterns and strings for create cdb/pdb</td>
+</tr>
+
+<tr>
+<td class="r">348</td>
+<td>pdb_lockdown</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>pluggable database lockdown profile</td>
+</tr>
+
+<tr>
+<td class="r">349</td>
+<td>pdb_os_credential</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>pluggable database OS credential to bind</td>
+</tr>
+
+<tr>
+<td class="r">350</td>
+<td>pdb_template</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>PDB template</td>
+</tr>
+
+<tr>
+<td class="r">351</td>
+<td>permit_92_wrap_format</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>allow 9.2 or older wrap format in PL/SQL</td>
+</tr>
+
+<tr>
+<td class="r">352</td>
+<td>pga_aggregate_limit</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>2147483648</td>
+<td>2G</td>
+<td>limit of aggregate PGA memory for the instance or PDB</td>
+</tr>
+
+<tr>
+<td class="r">353</td>
+<td>pga_aggregate_target</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>385875968</td>
+<td>368M</td>
+<td>Target size for the aggregate PGA memory consumed by the instance</td>
+</tr>
+
+<tr>
+<td class="r">354</td>
+<td>plscope_settings</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>IDENTIFIERS:NONE</td>
+<td></td>
+<td>plscope_settings controls the compile time collection, cross reference, and storage of PL/SQL source code identifier and SQL statement data</td>
+</tr>
+
+<tr>
+<td class="r">355</td>
+<td>plsql_ccflags</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>PL/SQL ccflags</td>
+</tr>
+
+<tr>
+<td class="r">356</td>
+<td>plsql_code_type</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>INTERPRETED</td>
+<td></td>
+<td>PL/SQL code-type</td>
+</tr>
+
+<tr>
+<td class="r">357</td>
+<td>plsql_debug</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>PL/SQL debug</td>
+</tr>
+
+<tr>
+<td class="r">358</td>
+<td>plsql_optimize_level</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>2</td>
+<td></td>
+<td>PL/SQL optimize level</td>
+</tr>
+
+<tr>
+<td class="r">359</td>
+<td>plsql_v2_compatibility</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>PL/SQL version 2.x compatibility flag</td>
+</tr>
+
+<tr>
+<td class="r">360</td>
+<td>plsql_warnings</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>DISABLE:ALL</td>
+<td></td>
+<td>PL/SQL compiler warnings settings</td>
+</tr>
+
+<tr>
+<td class="r">361</td>
+<td>pre_page_sga</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>pre-page sga for process</td>
+</tr>
+
+<tr>
+<td class="r">362</td>
+<td>private_temp_table_prefix</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>ORA$PTT_</td>
+<td></td>
+<td>Private temporary table prefix</td>
+</tr>
+
+<tr>
+<td class="r">363</td>
+<td>processes</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>320</td>
+<td></td>
+<td>user processes</td>
+</tr>
+
+<tr>
+<td class="r">364</td>
+<td>processor_group_name</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Name of the processor group that this instance should run in.</td>
+</tr>
+
+<tr>
+<td class="r">365</td>
+<td>query_rewrite_enabled</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>allow rewrite of queries using materialized views if enabled</td>
+</tr>
+
+<tr>
+<td class="r">366</td>
+<td>query_rewrite_integrity</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enforced</td>
+<td></td>
+<td>perform rewrite using materialized views with desired integrity</td>
+</tr>
+
+<tr>
+<td class="r">367</td>
+<td>rdbms_server_dn</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>RDBMS's Distinguished Name</td>
+</tr>
+
+<tr>
+<td class="r">368</td>
+<td>read_only_open_delayed</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>if TRUE delay opening of read only files until first access</td>
+</tr>
+
+<tr>
+<td class="r">369</td>
+<td>recovery_parallelism</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>number of server processes to use for parallel recovery</td>
+</tr>
+
+<tr>
+<td class="r">370</td>
+<td>recyclebin</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>on</td>
+<td></td>
+<td>recyclebin processing</td>
+</tr>
+
+<tr>
+<td class="r">371</td>
+<td>redo_transport_user</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Data Guard transport user when using password file</td>
+</tr>
+
+<tr>
+<td class="r">372</td>
+<td>remote_dependencies_mode</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TIMESTAMP</td>
+<td></td>
+<td>remote-procedure-call dependencies mode parameter</td>
+</tr>
+
+<tr>
+<td class="r">373</td>
+<td>remote_listener</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>remote listener</td>
+</tr>
+
+<tr>
+<td class="r">374</td>
+<td>remote_login_passwordfile</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>EXCLUSIVE</td>
+<td></td>
+<td>password file usage parameter</td>
+</tr>
+
+<tr>
+<td class="r">375</td>
+<td>remote_os_authent</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>allow non-secure remote clients to use auto-logon accounts</td>
+</tr>
+
+<tr>
+<td class="r">376</td>
+<td>remote_os_roles</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>allow non-secure remote clients to use os roles</td>
+</tr>
+
+<tr>
+<td class="r">377</td>
+<td>remote_recovery_file_dest</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>default remote database recovery file location for refresh/relocate</td>
+</tr>
+
+<tr>
+<td class="r">378</td>
+<td>replication_dependency_tracking</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>tracking dependency for Replication parallel propagation</td>
+</tr>
+
+<tr>
+<td class="r">379</td>
+<td>resource_limit</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>master switch for resource limit</td>
+</tr>
+
+<tr>
+<td class="r">380</td>
+<td>resource_manage_goldengate</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>goldengate resource manager enabled</td>
+</tr>
+
+<tr>
+<td class="r">381</td>
+<td>resource_manager_cpu_allocation</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>4</td>
+<td></td>
+<td>Resource Manager CPU allocation</td>
+</tr>
+
+<tr>
+<td class="r">382</td>
+<td>resource_manager_plan</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>resource mgr top plan</td>
+</tr>
+
+<tr>
+<td class="r">383</td>
+<td>result_cache_max_result</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>5</td>
+<td></td>
+<td>maximum result size as percent of cache size</td>
+</tr>
+
+<tr>
+<td class="r">384</td>
+<td>result_cache_max_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>4030464</td>
+<td>3936K</td>
+<td>maximum amount of memory to be used by the cache</td>
+</tr>
+
+<tr>
+<td class="r">385</td>
+<td>result_cache_mode</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>MANUAL</td>
+<td></td>
+<td>result cache operator usage mode</td>
+</tr>
+
+<tr>
+<td class="r">386</td>
+<td>result_cache_remote_expiration</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>maximum life time (min) for any result using a remote object</td>
+</tr>
+
+<tr>
+<td class="r">387</td>
+<td>resumable_timeout</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>set resumable_timeout</td>
+</tr>
+
+<tr>
+<td class="r">388</td>
+<td>rollback_segments</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>undo segment list</td>
+</tr>
+
+<tr>
+<td class="r">389</td>
+<td>scheduler_follow_pdbtz</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Make scheduler objects follow PDB TZ</td>
+</tr>
+
+<tr>
+<td class="r">390</td>
+<td>sec_case_sensitive_logon</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>case sensitive password enabled for logon</td>
+</tr>
+
+<tr>
+<td class="r">391</td>
+<td>sec_max_failed_login_attempts</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>3</td>
+<td></td>
+<td>maximum number of failed login attempts on a connection</td>
+</tr>
+
+<tr>
+<td class="r">392</td>
+<td>sec_protocol_error_further_action</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>(DROP,3)</td>
+<td></td>
+<td>TTC protocol error continue action</td>
+</tr>
+
+<tr>
+<td class="r">393</td>
+<td>sec_protocol_error_trace_action</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRACE</td>
+<td></td>
+<td>TTC protocol error action</td>
+</tr>
+
+<tr>
+<td class="r">394</td>
+<td>sec_return_server_release_banner</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>whether the server retruns the complete version information</td>
+</tr>
+
+<tr>
+<td class="r">395</td>
+<td>serial_reuse</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>disable</td>
+<td></td>
+<td>reuse the frame segments</td>
+</tr>
+
+<tr>
+<td class="r">396</td>
+<td>service_names</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>t1db</td>
+<td></td>
+<td>service names supported by the instance</td>
+</tr>
+
+<tr>
+<td class="r">397</td>
+<td>session_cached_cursors</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>50</td>
+<td></td>
+<td>Number of cursors to cache in a session.</td>
+</tr>
+
+<tr>
+<td class="r">398</td>
+<td>session_max_open_files</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>10</td>
+<td></td>
+<td>maximum number of open files allowed per session</td>
+</tr>
+
+<tr>
+<td class="r">399</td>
+<td>sessions</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>504</td>
+<td></td>
+<td>user and system sessions</td>
+</tr>
+
+<tr>
+<td class="r">400</td>
+<td>sga_max_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>805306368</td>
+<td>768M</td>
+<td>max total SGA size</td>
+</tr>
+
+<tr>
+<td class="r">401</td>
+<td>sga_min_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Minimum, guaranteed size of PDB's SGA</td>
+</tr>
+
+<tr>
+<td class="r">402</td>
+<td>sga_target</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>805306368</td>
+<td>768M</td>
+<td>Target size of SGA</td>
+</tr>
+
+<tr>
+<td class="r">403</td>
+<td>shadow_core_dump</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>partial</td>
+<td></td>
+<td>Core Size for Shadow Processes</td>
+</tr>
+
+<tr>
+<td class="r">404</td>
+<td>shared_memory_address</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>SGA starting address (low order 32-bits on 64-bit platforms)</td>
+</tr>
+
+<tr>
+<td class="r">405</td>
+<td>shared_pool_reserved_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>23488102</td>
+<td></td>
+<td>size in bytes of reserved area of shared pool</td>
+</tr>
+
+<tr>
+<td class="r">406</td>
+<td>shared_pool_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>size in bytes of shared pool</td>
+</tr>
+
+<tr>
+<td class="r">407</td>
+<td>shared_server_sessions</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>max number of shared server sessions</td>
+</tr>
+
+<tr>
+<td class="r">408</td>
+<td>shared_servers</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>1</td>
+<td></td>
+<td>number of shared servers to start up</td>
+</tr>
+
+<tr>
+<td class="r">409</td>
+<td>shrd_dupl_table_refresh_rate</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>60</td>
+<td></td>
+<td>duplicated table refresh rate (in seconds)</td>
+</tr>
+
+<tr>
+<td class="r">410</td>
+<td>skip_unusable_indexes</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>skip unusable indexes if set to TRUE</td>
+</tr>
+
+<tr>
+<td class="r">411</td>
+<td>smtp_out_server</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>utl_smtp server and port configuration parameter</td>
+</tr>
+
+<tr>
+<td class="r">412</td>
+<td>sort_area_retained_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>size of in-memory sort work area retained between fetch calls</td>
+</tr>
+
+<tr>
+<td class="r">413</td>
+<td>sort_area_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>65536</td>
+<td></td>
+<td>size of in-memory sort work area</td>
+</tr>
+
+<tr>
+<td class="r">414</td>
+<td>spatial_vector_acceleration</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>enable spatial vector acceleration</td>
+</tr>
+
+<tr>
+<td class="r">415</td>
+<td>spfile</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>/u01/app/oracle/product/19.6.0/dbhome_1/dbs/spfilet1db.ora</td>
+<td></td>
+<td>server parameter file</td>
+</tr>
+
+<tr>
+<td class="r">416</td>
+<td>sql92_security</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>require select privilege for searched update/delete</td>
+</tr>
+
+<tr>
+<td class="r">417</td>
+<td>sql_trace</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>enable SQL trace</td>
+</tr>
+
+<tr>
+<td class="r">418</td>
+<td>sqltune_category</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>DEFAULT</td>
+<td></td>
+<td>Category qualifier for applying hintsets</td>
+</tr>
+
+<tr>
+<td class="r">419</td>
+<td>ssl_wallet</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>ssl_wallet</td>
+</tr>
+
+<tr>
+<td class="r">420</td>
+<td>standby_db_preserve_states</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>NONE</td>
+<td></td>
+<td>Preserve state cross standby role transition</td>
+</tr>
+
+<tr>
+<td class="r">421</td>
+<td>standby_file_management</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>MANUAL</td>
+<td></td>
+<td>if auto then files are created/dropped automatically on standby</td>
+</tr>
+
+<tr>
+<td class="r">422</td>
+<td>standby_pdb_source_file_dblink</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>database link to standby source files</td>
+</tr>
+
+<tr>
+<td class="r">423</td>
+<td>standby_pdb_source_file_directory</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>standby source file directory location</td>
+</tr>
+
+<tr>
+<td class="r">424</td>
+<td>star_transformation_enabled</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>enable the use of star transformation</td>
+</tr>
+
+<tr>
+<td class="r">425</td>
+<td>statistics_level</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TYPICAL</td>
+<td></td>
+<td>statistics level</td>
+</tr>
+
+<tr>
+<td class="r">426</td>
+<td>streams_pool_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>size in bytes of the streams pool</td>
+</tr>
+
+<tr>
+<td class="r">427</td>
+<td>tape_asynch_io</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>Use asynch I/O requests for tape devices</td>
+</tr>
+
+<tr>
+<td class="r">428</td>
+<td>target_pdbs</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Parameter is a hint to adjust certain attributes of the CDB</td>
+</tr>
+
+<tr>
+<td class="r">429</td>
+<td>tde_configuration</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Per-PDB configuration for Transparent Data Encryption</td>
+</tr>
+
+<tr>
+<td class="r">430</td>
+<td>temp_undo_enabled</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>is temporary undo enabled</td>
+</tr>
+
+<tr>
+<td class="r">431</td>
+<td>thread</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>Redo thread to mount</td>
+</tr>
+
+<tr>
+<td class="r">432</td>
+<td>threaded_execution</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Threaded Execution Mode</td>
+</tr>
+
+<tr>
+<td class="r">433</td>
+<td>timed_os_statistics</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>0</td>
+<td></td>
+<td>internal os statistic gathering interval in seconds</td>
+</tr>
+
+<tr>
+<td class="r">434</td>
+<td>timed_statistics</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>maintain internal timing statistics</td>
+</tr>
+
+<tr>
+<td class="r">435</td>
+<td>trace_enabled</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>enable in memory tracing</td>
+</tr>
+
+<tr>
+<td class="r">436</td>
+<td>tracefile_identifier</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>trace file custom identifier</td>
+</tr>
+
+<tr>
+<td class="r">437</td>
+<td>transactions</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>554</td>
+<td></td>
+<td>max. number of concurrent active transactions</td>
+</tr>
+
+<tr>
+<td class="r">438</td>
+<td>transactions_per_rollback_segment</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>5</td>
+<td></td>
+<td>number of active transactions per rollback segment</td>
+</tr>
+
+<tr>
+<td class="r">439</td>
+<td>undo_management</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>AUTO</td>
+<td></td>
+<td>instance runs in SMU mode if TRUE, else in RBU mode</td>
+</tr>
+
+<tr>
+<td class="r">440</td>
+<td>undo_retention</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>900</td>
+<td></td>
+<td>undo retention in seconds</td>
+</tr>
+
+<tr>
+<td class="r">441</td>
+<td>undo_tablespace</td>
+<td class="r">1</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>UNDOTBS1</td>
+<td></td>
+<td>use/switch undo tablespace</td>
+</tr>
+
+<tr>
+<td class="r">442</td>
+<td>unified_audit_common_systemlog</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Syslog facility and level for only common unified audit records</td>
+</tr>
+
+<tr>
+<td class="r">443</td>
+<td>unified_audit_sga_queue_size</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>1048576</td>
+<td></td>
+<td>Size of Unified audit SGA Queue</td>
+</tr>
+
+<tr>
+<td class="r">444</td>
+<td>unified_audit_systemlog</td>
+<td class="r">0</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>Syslog facility and level for Unified Audit</td>
+</tr>
+
+<tr>
+<td class="r">445</td>
+<td>uniform_log_timestamp_format</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>use uniform timestamp formats vs pre-12.2 formats</td>
+</tr>
+
+<tr>
+<td class="r">446</td>
+<td>use_dedicated_broker</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td></td>
+<td>Use dedicated connection broker</td>
+</tr>
+
+<tr>
+<td class="r">447</td>
+<td>use_large_pages</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td></td>
+<td>Use large pages if available (TRUE/FALSE/ONLY)</td>
+</tr>
+
+<tr>
+<td class="r">448</td>
+<td>user_dump_dest</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>/u01/app/oracle/product/19.6.0/dbhome_1/rdbms/log</td>
+<td></td>
+<td>User process dump directory</td>
+</tr>
+
+<tr>
+<td class="r">449</td>
+<td>wallet_root</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td></td>
+<td></td>
+<td>wallet root instance initialization parameter</td>
+</tr>
+
+<tr>
+<td class="r">450</td>
+<td>workarea_size_policy</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>AUTO</td>
+<td></td>
+<td>policy used to size SQL working areas (MANUAL/AUTO)</td>
+</tr>
+
+<tr>
+<td class="r">451</td>
+<td>xml_db_events</td>
+<td class="r">1</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>enable</td>
+<td></td>
+<td>are XML DB events enabled</td>
+</tr>
+
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Ord</th>
+<th>Is<br>Default</th>
+<th>Is<br>Modified</th>
+<th>Value</th>
+<th>Display<br>Value</th>
+<th>Description</th>
+</tr>
+
+</table>
+
+<a name="metadata"></a><h2>Metadata</h2>
+
+Table and Index Metadata of the objects involved in the plan and their dependent objects
+
+<h3>Table: PERFLAB.T1</h3><br>
+  CREATE TABLE &quot;PERFLAB&quot;.&quot;T1&quot; <br>
+   (	&quot;A&quot; NUMBER(10,0), <br>
+	&quot;B&quot; VARCHAR2(1000), <br>
+	&quot;C&quot; NUMBER(10,0), <br>
+	&quot;D&quot; NUMBER(10,0)<br>
+   ) SEGMENT CREATION IMMEDIATE <br>
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 <br>
+ NOCOMPRESS LOGGING<br>
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645<br>
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1<br>
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)<br>
+  TABLESPACE &quot;USERS&quot;
+<h3>Table: PERFLAB.T2</h3><br>
+  CREATE TABLE &quot;PERFLAB&quot;.&quot;T2&quot; <br>
+   (	&quot;A&quot; NUMBER(10,0), <br>
+	&quot;B&quot; VARCHAR2(1000), <br>
+	&quot;C&quot; NUMBER(10,0), <br>
+	&quot;D&quot; NUMBER(10,0)<br>
+   ) SEGMENT CREATION IMMEDIATE <br>
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 <br>
+ NOCOMPRESS LOGGING<br>
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645<br>
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1<br>
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)<br>
+  TABLESPACE &quot;USERS&quot;
+<h3>Index: PERFLAB.T1I</h3><br>
+  CREATE INDEX &quot;PERFLAB&quot;.&quot;T1I&quot; ON &quot;PERFLAB&quot;.&quot;T1&quot; (&quot;A&quot;) <br>
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS <br>
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645<br>
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1<br>
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)<br>
+  TABLESPACE &quot;USERS&quot;
+<h3>Index: PERFLAB.T2I</h3><br>
+  CREATE INDEX &quot;PERFLAB&quot;.&quot;T2I&quot; ON &quot;PERFLAB&quot;.&quot;T2&quot; (&quot;A&quot;) <br>
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS <br>
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645<br>
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1<br>
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)<br>
+  TABLESPACE &quot;USERS&quot;
+
+<!-- 2021-03-04/15:58:04 -->
+<hr size="3">
+<font class="f">1366133.1 SQLHC 12.1.07 2021-03-04/15:56:46</font>
+</body>
+</html>

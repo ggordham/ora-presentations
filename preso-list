@@ -4,6 +4,7 @@ isqlq,indepth-sql-QUEST
 isqlr,indepth-sql-RMOUG
 isqlg,indepth-sql-GTOUG
 isqlr2,indepth-sql-RMOUG2
+isqlu,indepth-sql-UTOUG
 plabn,nocoug-perflab
 plabo,perflab-ORAPUB
 plabe,perflab-ECO
@@ -16,3 +17,4 @@ tsqll,tune-that-SQL-GLOC
 tsqlg,tune-that-SQL-GTOUG
 tsqln,tune-that-SQL-NYOUG
 tsqlr,tune-that-SQL-RMOUG
+tsqlu,tune-that-SQL-UTOUG

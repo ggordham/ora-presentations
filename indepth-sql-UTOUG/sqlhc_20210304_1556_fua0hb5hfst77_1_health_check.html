@@ -1,0 +1,327 @@
+<html>
+<!-- $Header: 1366133.1 sqlhc.sql 12.1.07 2019/04/21 carlos.sierra $ -->
+<!-- Copyright (c) 2000-2012, Oracle Corporation. All rights reserved. -->
+<!-- Author: carlos.sierra@oracle.com -->
+
+<head>
+<title>sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html</title>
+
+<style type="text/css">
+body {font:10pt Arial,Helvetica,Verdana,Geneva,sans-serif; color:black; background:white;}
+a {font-weight:bold; color:#663300;}
+pre {font:8pt Monaco,"Courier New",Courier,monospace;} /* for code */
+h1 {font-size:16pt; font-weight:bold; color:#336699;}
+h2 {font-size:14pt; font-weight:bold; color:#336699;}
+h3 {font-size:12pt; font-weight:bold; color:#336699;}
+li {font-size:10pt; font-weight:bold; color:#336699; padding:0.1em 0 0 0;}
+table {font-size:8pt; color:black; background:white;}
+th {font-weight:bold; background:#cccc99; color:#336699; vertical-align:bottom; padding-left:3pt; padding-right:3pt; padding-top:1pt; padding-bottom:1pt;}
+td {text-align:left; background:#fcfcf0; vertical-align:top; padding-left:3pt; padding-right:3pt; padding-top:1pt; padding-bottom:1pt;}
+td.c {text-align:center;} /* center */
+td.l {text-align:left;} /* left (default) */
+td.r {text-align:right;} /* right */
+font.n {font-size:8pt; font-style:italic; color:#336699;} /* table footnote in blue */
+font.f {font-size:8pt; color:#999999;} /* footnote in gray */
+</style>
+
+</head>
+<body>
+<h1><a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=NOT&id=1366133.1">1366133.1</a> SQLHC
+12.1.07 Report: sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html</h1>
+
+<pre>
+License    : T
+Input      : fua0hb5hfst77
+SIGNATURE  : 4022507629801686773
+SIGNATUREF : 4022507629801686773
+RDBMS      : 19.0.0.0.0
+Platform   :
+Database   : t1db
+DBID       :  447509184
+Host       : srvr03
+Instance   : 1
+CPU_Count  : 4
+Num CPUs   : 4
+Num Cores  : 4
+Num Sockets: 1
+Block Size : 8192
+OFE        : 19.1.0
+DYN_SAMP   : 2
+EBS        : ""
+SIEBEL     : ""
+PSFT       : ""
+Date       : 2021-03-04/15:56:46
+User       : PERFLAB
+</pre>
+<ul>
+<li><a href="#obs">Observations</a></li>
+<li><a href="#text">SQL Text</a></li>
+<li><a href="#tbl_sum">Tables Summary</a></li>
+<li><a href="#idx_sum">Indexes Summary</a></li>
+</ul>
+<a name="obs"></a><h2>Observations</h2>
+
+Observations below are the outcome of several heath-checks on the schema objects accessed by your SQL and its environment.
+Review them carefully and take action when appropriate. Then re-execute your SQL and generate this report again.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Type</th>
+<th>Priority</th>
+<th>Name</th>
+<th>Observation</th>
+<th>Details</th>
+</tr>
+
+<!-- 2021-03-04/15:57:27 -->
+<!-- Please Wait -->
+
+<tr>
+<td class="r">1</td>
+<td>CBO PARAMETER</td>
+<td>35</td>
+<td>OPTIMIZER_CAPTURE_SQL_PLAN_BASELINES</td>
+<td>Review the non-default CBO initialization parameter "optimizer_capture_sql_plan_baselines" with a value of "true" for correctness.</td>
+<td>Review the correctness of this non-default value "true" for SQL_ID fua0hb5hfst77.</td>
+</tr>
+
+<tr>
+<td class="r">2</td>
+<td>CBO PARAMETER</td>
+<td>45</td>
+<td>OPTIMIZER_FEATURES_ENABLE</td>
+<td>Ensure that the OPTIMIZER_FEATURES_ENABLE parameter (19.1.0) is set correctly as it does not match 19.0.0.0.0</td>
+<td>Be aware that you are using a prior version of the optimizer. New CBO features in your DB version may not be used.</td>
+</tr>
+
+<tr>
+<td class="r">3</td>
+<td>CBO PARAMETER</td>
+<td>45</td>
+<td>OPTIMIZER_FEATURES_ENABLE</td>
+<td>Ensure that the OPTIMIZER_FEATURES_ENABLE 19.1.0 parameter and the DB version 19.0.0.0.0 match for SQL_ID fua0hb5hfst77.</td>
+<td>Be aware that you are using a prior version of the optimizer. New CBO features in your DB version may not be used.</td>
+</tr>
+
+<tr>
+<td class="r">4</td>
+<td>DBMS_STATS</td>
+<td>66</td>
+<td>DBA_AUTOTASK_CLIENT</td>
+<td>Disable this job immediately and gather statistics using the appropriate method.</td>
+<td>Be aware that small sample sizes could produce poor quality histograms,<br>
+which combined with bind sensitive predicates could render suboptimal plans.<br>
+See <a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=NOT&id=465787.1">465787.1</a>.</td>
+</tr>
+
+<tr>
+<td class="r">5</td>
+<td>MAT_VIEW</td>
+<td>9</td>
+<td>REWRITE_ENABLED</td>
+<td>Check that all Materialized Views are applicable. There is/are 2 materialized view(s) with rewrite enabled. See MOS Note Master Note for Materialized View (MVIEW) (Doc ID 1353040.1).</td>
+<td>A large number of materialized views could affect parsing time since CBO would have to evaluate each during a hard-parse.</td>
+</tr>
+
+<tr>
+<td class="r">6</td>
+<td>PLAN</td>
+<td>72</td>
+<td>OPTIMIZER_ENV</td>
+<td>Check the applicability of having multiple CBO environments set up for one SQL. (Currently references 2 distinct CBO Enviornments for this one SQL.) See https://docs.oracle.com/database/121/REFRN/GUID-2B9340D7-4AA8-4894-94C0-D5990F67BE75.htm#REFRN30246</td>
+<td>Distinct CBO Environments may produce different Plans.</td>
+</tr>
+
+<tr>
+<td class="r">7</td>
+<td>TABLE</td>
+<td>20</td>
+<td>PERFLAB.T1</td>
+<td>Check the applicability of bugs 1386119, 4406309, 4495422, 4567767, 5483301 or 6082745. Table contains 2 column(s) referenced in predicates where the number of buckets is 1 for a "FREQUENCY" histogram.</td>
+<td>Review column statistics for this table and look for "Num Buckets" and "Histogram". Possible Bugs <a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=BUG&id=1386119">1386119</a>, <a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=BUG&id=4406309">4406309</a>, <a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=BUG&id=4495422">4495422</a>, <a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=BUG&id=4567767">4567767</a>, <a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=BUG&id=5483301">5483301</a> or <a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=BUG&id=6082745">6082745</a>.<br>
+If you are referencing in your predicates one of the missing values the CBO can over estimate table cardinality, and this may produce a sub-optimal plan.<br>
+You can either gather statistics with 100% or as a workaround: ALTER system/session "_fix_control"='5483301:OFF';</td>
+</tr>
+
+<tr>
+<td class="r">8</td>
+<td>TABLE</td>
+<td>20</td>
+<td>PERFLAB.T2</td>
+<td>Check the applicability of bugs 1386119, 4406309, 4495422, 4567767, 5483301 or 6082745. Table contains 2 column(s) referenced in predicates where the number of buckets is 1 for a "FREQUENCY" histogram.</td>
+<td>Review column statistics for this table and look for "Num Buckets" and "Histogram". Possible Bugs <a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=BUG&id=1386119">1386119</a>, <a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=BUG&id=4406309">4406309</a>, <a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=BUG&id=4495422">4495422</a>, <a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=BUG&id=4567767">4567767</a>, <a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=BUG&id=5483301">5483301</a> or <a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=BUG&id=6082745">6082745</a>.<br>
+If you are referencing in your predicates one of the missing values the CBO can over estimate table cardinality, and this may produce a sub-optimal plan.<br>
+You can either gather statistics with 100% or as a workaround: ALTER system/session "_fix_control"='5483301:OFF';</td>
+</tr>
+
+<tr>
+<th>#</th>
+<th>Type</th>
+<th>Priority</th>
+<th>Name</th>
+<th>Observation</th>
+<th>Details</th>
+</tr>
+
+</table>
+
+<a name="text"></a><h2>SQL Text</h2>
+
+<pre>
+SELECT /*+ gather_plan_statistics NO_ADAPTIVE_PLAN */ sum(t1.c), sum(t2.c) FROM t1, t2 WHERE t1.a = t2.a AND t1.d = :idnum
+</pre>
+<a name="tbl_sum"></a><h2>Tables Summary</h2>
+
+Values below have two purposes:<br>
+1. Provide a quick view of the state of Table level CBO statistics, as well as their indexes and columns.<br>
+2. More easily allow the comparison of two systems that are believed to be similar.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Table Name</th>
+<th>Owner</th>
+<th>Num Rows</th>
+<th>Table<br>Sample Size</th>
+<th>Last Analyzed</th>
+<th>Indexes</th>
+<th>Avg Index<br>Sample Size</th>
+<th>Table<br>Columns</th>
+<th>Columns with<br>Histogram</th>
+<th>Avg Column<br>Sample Size</th>
+</tr>
+
+<!-- 2021-03-04/15:57:27 -->
+<!-- Please Wait -->
+
+<tr>
+<td class="r">1</td>
+<td>T1</td>
+<td>PERFLAB</td>
+<td class="r">500000</td>
+<td class="r">500000</td>
+<td nowrap>24-FEB-21 15:18:47</td>
+<td class="r">1</td>
+<td class="r">500000</td>
+<td class="r">4</td>
+<td class="r">4</td>
+<td class="r">5458</td>
+</tr>
+
+<tr>
+<td class="r">2</td>
+<td>T2</td>
+<td>PERFLAB</td>
+<td class="r">500000</td>
+<td class="r">500000</td>
+<td nowrap>24-FEB-21 15:18:48</td>
+<td class="r">1</td>
+<td class="r">500000</td>
+<td class="r">4</td>
+<td class="r">4</td>
+<td class="r">5316</td>
+</tr>
+
+<tr>
+<th>#</th>
+<th>Table Name</th>
+<th>Owner</th>
+<th>Num Rows</th>
+<th>Table<br>Sample Size</th>
+<th>Last Analyzed</th>
+<th>Indexes</th>
+<th>Avg Index<br>Sample Size</th>
+<th>Table<br>Columns</th>
+<th>Columns with<br>Histogram</th>
+<th>Avg Column<br>Sample Size</th>
+</tr>
+
+</table>
+
+<a name="idx_sum"></a><h2>Indexes Summary</h2>
+
+Values below have two purposes:<br>
+1. Provide a quick view of the state of Index level CBO statistics, as well as their columns.<br>
+2. More easily allow the comparison of two systems that are believed to be similar.<br>
+This section includes data captured by AWR. If this is a stand-by read-only database then the AWR information below is from the Primary database.
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Table Name</th>
+<th>Table<br>Owner</th>
+<th>Index Name</th>
+<th>Index<br>Owner</th>
+<th>In MEM<br>Plan</th>
+<th>In AWR<br>Plan</th>
+<th>Num Rows</th>
+<th>Index<br>Sample Size</th>
+<th>Last Analyzed</th>
+<th>Index<br>Columns</th>
+<th>Columns with<br>Histogram</th>
+<th>Avg Column<br>Sample Size</th>
+</tr>
+
+<!-- 2021-03-04/15:57:30 -->
+<!-- Please Wait -->
+
+<tr>
+<td class="r">1</td>
+<td>T1</td>
+<td>PERFLAB</td>
+<td>T1I</td>
+<td>PERFLAB</td>
+<td class="c"></td>
+<td class="c"></td>
+<td class="r">500000</td>
+<td class="r">500000</td>
+<td nowrap>24-FEB-21 15:18:48</td>
+<td class="r">1</td>
+<td class="r">1</td>
+<td class="r">5459</td>
+</tr>
+
+<tr>
+<td class="r">2</td>
+<td>T2</td>
+<td>PERFLAB</td>
+<td>T2I</td>
+<td>PERFLAB</td>
+<td class="c">YES</td>
+<td class="c">YES</td>
+<td class="r">500000</td>
+<td class="r">500000</td>
+<td nowrap>24-FEB-21 15:18:49</td>
+<td class="r">1</td>
+<td class="r">1</td>
+<td class="r">5317</td>
+</tr>
+
+<tr>
+<th>#</th>
+<th>Table Name</th>
+<th>Table<br>Owner</th>
+<th>Index Name</th>
+<th>Index<br>Owner</th>
+<th>In MEM<br>Plan</th>
+<th>In AWR<br>Plan</th>
+<th>Num Rows</th>
+<th>Index<br>Sample Size</th>
+<th>Last Analyzed</th>
+<th>Index<br>Columns</th>
+<th>Columns with<br>Histogram</th>
+<th>Avg Column<br>Sample Size</th>
+</tr>
+
+</table>
+
+
+<!-- 2021-03-04/15:57:33 -->
+<hr size="3">
+<font class="f">1366133.1 SQLHC 12.1.07 2021-03-04/15:56:46 tool_date: 2019/04/21 executed by: PERFLAB </font>
+</body>
+</html>

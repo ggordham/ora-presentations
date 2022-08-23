@@ -4,6 +4,14 @@ Scripts from Oracle Presentations that I have given
 All scripts or code in this repository is use at your own risk.
 Everything here is intended for test or lab type use.
 
+UTOUG Training Days - Sept 13, 2022 - Deep Dive into SQL Tuning
+
+```/indepth-SQL-UTOUG```
+
+UTOUG Training Days - Sept 12, 2022 - "Tune that SQL", Now what do I do?
+
+```/tune-that-SQL-UTOUG```
+
 NYOUG - May 19, 2022 - Oracle SQL Plan Management (SPM) Your imperative performance tool
 
 ```/spm-NYOUG```
