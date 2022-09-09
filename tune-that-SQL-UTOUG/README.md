@@ -43,12 +43,12 @@ Through out the lab you will need a SQL*Plus prompt on the databases.  This is d
 
 **SQL Prompt**
 ```bash
-docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh tsqlg"
+docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh tsqlu"
 ```
 
 You should get a prompt that looks something like this:
 ```
-$ docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh tsqlg"
+$ docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh tsqlu"
 
 SQL*Plus: Release 21.0.0.0.0 - Production on Thu Jan 6 19:24:17 2022
 Version 21.3.0.0.0
@@ -83,7 +83,7 @@ Open a second window to your test system.  In one window you will generate a bun
 
 In a shell window run the following docker command
 ```bash
-docker exec -it DB213 sh -c "chmod +x shrun.sh; /home/oracle/shrun.sh tsqlg make-load.sh"
+docker exec -it DB213 sh -c "chmod +x shrun.sh; /home/oracle/shrun.sh tsqlu make-load.sh"
 ```
 
 In a second window where you have a SQL prompt run the following command after the load is running:

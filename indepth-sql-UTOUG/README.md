@@ -14,6 +14,16 @@ You can read the trace files directly in your browser through GIT links below.  
 
 ---
 
+ora-presentations/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
+                  indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
+
+https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
+https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
+https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html
+sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
+sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
+
+
 ## File list and descriptions
 | link | File Name | Description |
 | ---- |  -------- | ----------- |
@@ -22,8 +32,8 @@ You can read the trace files directly in your browser through GIT links below.  
 | [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html) | `sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html` | SQL Health Check main report |
 | [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_2_diagnostics.html) | `sqlhc_20210304_1556_fua0hb5hfst77_2_diagnostics.html` | SQL Health Check diagnostics details |
 | [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_3_execution_plans.html) | `sqlhc_20210304_1556_fua0hb5hfst77_3_execution_plans.html` | SQL Health Check execution plans |
-| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html ) | `sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html` | SQL Health Check diagnostic and DB info |
-| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlt_s39943_main.html ) | `sqlt_s39943_main.html` | SQLTXPlain main file |
+| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html) | `sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html` | SQL Health Check diagnostic and DB info |
+| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlt_s39943_main.html) | `sqlt_s39943_main.html` | SQLTXPlain main file |
 | | `sqlt_s39943_tc_script.sql` | SQLTXPlain script to re-run same SQL |
 | | `t1db_ora_32527_s39943_10053.trc` | SQLTXPlain CBO trace |
 | | `t1db_ora_32309_trace.out` | Simple SQL Trace run through TKPROF |
@@ -63,12 +73,12 @@ Through out the lab you will need a SQL*Plus prompt on the databases.  This is d
 
 **SQL Prompt**
 ```bash
-docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh isqlr2"
+docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh isqlu"
 ```
 
 You should get a prompt that looks something like this:
 ```
-$ docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh isqlr2"
+$ docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh isqlu"
 
 SQL*Plus: Release 21.0.0.0.0 - Production on Thu Jan 6 19:24:17 2022
 Version 21.3.0.0.0
