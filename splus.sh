@@ -12,6 +12,8 @@ MY_PDB=
 MY_HOME=
 MY_TNS=
 
+working_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 #######################################################
 # figure out presentation specific settings
 if [ "$preso" == "" ]; then
@@ -32,8 +34,6 @@ else
 fi
   
 #######################################################
-
-working_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Check for static SID set, otherwise we try to discover SID
 if [ "$MY_SID" == "" ]; then
