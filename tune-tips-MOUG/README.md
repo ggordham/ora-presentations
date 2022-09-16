@@ -214,7 +214,8 @@ To clean up the lab run if you want to re-run it.  Open a SQL window and run the
 
 ```sql
 connect / as sysdba
-@drop
+@drop_baseline
+@drop_profile
 DROP USER PERFLAB CASCADE;
 ```
 
@@ -414,7 +415,8 @@ connect perflab/perf$lab&con_pdb
 To clean up the lab run the following two items as a DBA user:
 
 ```sql
-@drop
+@drop_baseline
+@drop_profile
 DROP USER PERFLAB CASCADE;
 ```
 
