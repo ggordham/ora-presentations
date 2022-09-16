@@ -1,4 +1,6 @@
 
+connect / as sysdba
+
 BEGIN
   FOR REC IN (SELECT name FROM DBA_SQL_PROFILES WHERE sql_text like '%PROFTEST%')
   LOOP
@@ -6,4 +8,6 @@ BEGIN
   END LOOP;
 END;
 /
+
+COMMIT;
 
