@@ -192,6 +192,8 @@ CREATE INDEX "CUST_UPPER_NAME_IX" ON "CUSTOMERS" (UPPER("CUST_LAST_NAME"), UPPER
 
 @customer-data.sql
 
+exec dbms_stats.gather_table_stats(user,'CUSTOMERS');
+
 -- Drop any SQL plan baselines
 @@drop-baselines
 spool off

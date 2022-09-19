@@ -1,5 +1,4 @@
 
-connect perflab/perf$lab&con_pdb
 set echo on
 
 -- select /* PATCHTEST*/ num

@@ -10,3 +10,6 @@ ORDER BY cust_last_name;
 
 CREATE INDEX CUSTOMERS3_LAST_NAME_IDX ON customers3(cust_last_name);
 
+exec dbms_stats.gather_table_stats(user,'CUSTOMERS3');
+
+

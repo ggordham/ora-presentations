@@ -1,5 +1,6 @@
 
-SELECT index_name, blevel, leaf_blocks, clustering_factor FROM user_indexes
-  WHERE table_name='CUSTOMERS'
-  AND index_name= 'CUSTOMERS_LAST_NAME_IDX';
+SELECT cust_first_name, cust_last_name
+  FROM customers
+  WHERE cust_last_name BETWEEN 'Puleo' AND 'Quinn';
+
 
