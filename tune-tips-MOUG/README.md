@@ -366,8 +366,8 @@ connect perflab/perf$lab&con_pdb
 Now lets create a baseline using the sql id and plan hash value of the above.
 
 ```sql
-@cr_baseline.sql x x
-@list-baseline.sql
+@cr_baseline fua0hb5hfst77 906334482
+@lsbaseline.sql
 ```
 
 ### Creating a SQL Patch
@@ -384,10 +384,20 @@ connect perflab/perf$lab&con_pdb
 @q3.sql
 ```
 
-Note that the query does not use a full table scan.  Now lets create a patch with some code from the outline to force the statement to do a full table scan.  We will then re-run the same query.
+Note that the query does not use a full table scan.  Now lets create a patch with some code from the outline to force the statement to do a full table scan.
 
 ```sql
 @patchq3.sql
+```
+
+Now we will re-run the same query and look at the explain plan and see that the patch is forcing a full table scan and that the patch is used.
+
+
+```sql
+connect perflab/perf$lab
+
+-- If you are using a PDB:
+connect perflab/perf$lab&con_pdb
 
 @q3.sql
 ```
@@ -408,8 +418,29 @@ connect perflab/perf$lab
 -- If you are using a PDB:
 connect perflab/perf$lab&con_pdb
 
+@q4.sql
+@plan.sql
+@show-idx-clus.sql CUSTOMERS CUSTOMERS_LAST_NAME_IDX
 ```
 
+Note that the query does not use an index when looking up the last name.
+Note the clustering factor in relation to the number of blocks and rows in the table.
+
+Lets create a new table that is organized by cuswtomer last name, and then a new index.
+
+```sql
+@crcustomer3.sql
+```
+
+Now lets query the new table and see if the index gets used.
+
+```sql
+@q5.sql
+@plan.sql
+@show-idx-clus.sql CUSTOMERS3 CUSTOMERS3_LAST_NAME_IDX
+```
+
+Note the clustering factor in relation to the number of blocks and rows in the table.
 
 ### Clean up
 To clean up the lab run the following two items as a DBA user:
