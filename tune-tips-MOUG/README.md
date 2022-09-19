@@ -79,6 +79,7 @@ Now create the tables for the lab:
 
 If you see any errors do not proceed with the lab.
 
+
 ### See explain plans, with statistics
 
 Lets look at some explain plans and also see a query run and the explain plan with statistics.
@@ -170,8 +171,15 @@ connect perflab/perf$lab&con_pdb
 Now lets create a baseline using the sql id and plan hash value of the above.
 
 ```sql
-@cr_baseline.sql x x
-@list-baseline.sql
+@cr_baseline fua0hb5hfst77 906334482
+@lsbaseline.sql
+```
+
+We can now also prove that the baseline is being used.  Lets run query 1 with a value of 1 and see that the baseline forces a hash join plan when it prevously used a nested loop join.
+
+```sql
+@q1.sql 1
+@plan_stats.sql
 ```
 
 ### Creating a SQL Patch
@@ -183,14 +191,23 @@ Here we will create a simple patch that will force the query to use a full table
 connect perflab/perf$lab&con_pdb
 
 @q3.sql
+@plan.sql
 ```
 
-Note that the query does not use a full table scan.  Now lets create a patch with some code from the outline to force the statement to do a full table scan.  We will then re-run the same query.
+Note that the query does not use a full table scan.  Now lets create a patch with some code from the outline to force the statement to do a full table scan.
 
 ```sql
 @patchq3.sql
+```
+
+Now we will re-run the same query and look at the explain plan and see that the patch is forcing a full table scan and that the patch is used.
+
+
+```sql
+connect perflab/perf$lab&con_pdb
 
 @q3.sql
+@plan.sql
 ```
 
 Note a full table scan is now used.  Lets view the patch information.
@@ -206,7 +223,29 @@ In this example we will look at index clustiner and how that impacts the optimzi
 ```sql
 connect perflab/perf$lab&con_pdb
 
+@q4.sql
+@plan.sql
+@show-idx-clus.sql CUSTOMERS CUST_LNAME_IX
 ```
+
+Note that the query does not use an index when looking up the last name.
+Note the clustering factor in relation to the number of blocks and rows in the table.
+
+Lets create a new table that is organized by cuswtomer last name, and then a new index.
+
+```sql
+@crcustomer3.sql
+```
+
+Now lets query the new table and see if the index gets used.
+
+```sql
+@q5.sql
+@plan.sql
+@show-idx-clus.sql CUSTOMERS3 CUST3_LNAME_IX
+```
+
+Note the clustering factor in relation to the number of blocks and rows in the table.
 
 
 ### Clean up
@@ -370,6 +409,13 @@ Now lets create a baseline using the sql id and plan hash value of the above.
 @lsbaseline.sql
 ```
 
+We can now also prove that the baseline is being used.  Lets run query 1 with a value of 1 and see that the baseline forces a hash join plan when it prevously used a nested loop join.
+
+```sql
+@q1.sql 1
+@plan_stats.sql
+```
+
 ### Creating a SQL Patch
 
 Here we will create a simple patch that will force the query to use a full table scan.
@@ -382,6 +428,7 @@ connect perflab/perf$lab
 connect perflab/perf$lab&con_pdb
 
 @q3.sql
+@plan.sql
 ```
 
 Note that the query does not use a full table scan.  Now lets create a patch with some code from the outline to force the statement to do a full table scan.
@@ -400,6 +447,7 @@ connect perflab/perf$lab
 connect perflab/perf$lab&con_pdb
 
 @q3.sql
+@plan.sql
 ```
 
 Note a full table scan is now used.  Lets view the patch information.
@@ -420,7 +468,7 @@ connect perflab/perf$lab&con_pdb
 
 @q4.sql
 @plan.sql
-@show-idx-clus.sql CUSTOMERS CUSTOMERS_LAST_NAME_IDX
+@show-idx-clus.sql CUSTOMERS CUST_LNAME_IX
 ```
 
 Note that the query does not use an index when looking up the last name.
@@ -437,7 +485,7 @@ Now lets query the new table and see if the index gets used.
 ```sql
 @q5.sql
 @plan.sql
-@show-idx-clus.sql CUSTOMERS3 CUSTOMERS3_LAST_NAME_IDX
+@show-idx-clus.sql CUSTOMERS3 CUST3_LNAME_IX
 ```
 
 Note the clustering factor in relation to the number of blocks and rows in the table.
@@ -448,6 +496,7 @@ To clean up the lab run the following two items as a DBA user:
 ```sql
 @drop_baseline
 @drop_profile
+@drop_patch
 DROP USER PERFLAB CASCADE;
 ```
 

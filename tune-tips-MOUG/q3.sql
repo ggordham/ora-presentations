@@ -8,4 +8,3 @@ where  id = 10;
 
 set echo off
 
-@plan
