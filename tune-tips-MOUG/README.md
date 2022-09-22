@@ -255,6 +255,7 @@ To clean up the lab run if you want to re-run it.  Open a SQL window and run the
 connect / as sysdba
 @drop_baseline
 @drop_profile
+@drop_patch
 DROP USER PERFLAB CASCADE;
 ```
 
