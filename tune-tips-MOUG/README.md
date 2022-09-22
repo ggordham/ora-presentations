@@ -146,7 +146,7 @@ You should see that a SQL profile is recomended.  So lets go ahead and accept th
 ```sql
 @accept.sql
 @q2.sql
-@Plan.sql
+@plan.sql
 ```
 
 Finally lets view the information about the SQL profile.
