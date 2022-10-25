@@ -4,6 +4,10 @@ Scripts from Oracle Presentations that I have given
 All scripts or code in this repository is use at your own risk.
 Everything here is intended for test or lab type use.
 
+OATUG Michigan Michigan Oracle Users Summit (MOUS) - Oct 26, 2022 - "Tune That SQL", Now what do I do?
+
+```/tune-that-SQL-MOUS```
+
 UTOUG Training Days - Sept 13, 2022 - Deep Dive into SQL Tuning
 
 ```/indepth-SQL-UTOUG```

@@ -1,0 +1,33 @@
+Tune that SQL, now what do I do?
+NYOUG
+Sept 14 2021
+
+Finding SQL statement
+- Top SQL by?
+    elapsed time, disk reads, CPU time, buffer gets, executions
+- what information about a SQL to collect
+    sql_id, exact_matching_signature, force_matching_signature
+    execution plan
+
+The Oracle Optimizer
+ - steps
+ - explain plan - execution plan
+ - bind peaking
+ - soft parse vs hard parse
+
+Details in explain plan
+ - basic plan
+ - collected statistics
+ - estimate vs actual
+
+What to tune?
+ - change the code
+ - change the statistics
+ - change the way Oracle works
+
+Tools to help
+ - SPM
+ - Profiles
+ - Patches
+F - SQL Tuning Advisor
+
