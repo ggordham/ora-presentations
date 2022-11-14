@@ -1,7 +1,8 @@
 
-VARIABLE sqlid := &1;
-VARIABLE phv := &2;
+-- VARIABLE sqlid := &1;
+-- VARIABLE phv := &2;
 
+set echo on
 
 VARIABLE v_plan_cnt NUMBER
 
@@ -14,3 +15,4 @@ END;
 
 SELECT :v_plan_cnt || ' Plans loaded' from dual;
 
+set echo off
