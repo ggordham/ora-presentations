@@ -266,7 +266,7 @@ DROP USER PERFLAB CASCADE;
 You can run the following command from Linux or MAC OSX or Cygwin to download all the items in the repository.
 
 ```bash
-curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1
+curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1 "ggordham-ora-presentations-???????/tune-tips-DBT"
 ```
 
 ### Basic Setup Steps
