@@ -1,5 +1,5 @@
 # tune-tips-MOUG
-Scripts from the Midwest Oracle User Group (MOUG) metting August 2022
+Scripts from the Midwest Oracle User Group (MOUG) metting September 23, 2022
 
 These scripts are mostly based on examples from the Oracle example github repository:
 https://github.com/oracle/oracle-db-examples

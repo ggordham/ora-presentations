@@ -4,9 +4,21 @@ Scripts from Oracle Presentations that I have given
 All scripts or code in this repository is use at your own risk.
 Everything here is intended for test or lab type use.
 
-OATUG Michigan Michigan Oracle Users Summit (MOUS) - Oct 26, 2022 - "Tune That SQL", Now what do I do?
+Viscosity North America Webinar - Nov 15, 2022 - Oracle SQL Plan Management (SPM) Your imperative performance tool
+
+```/spm-VNA```
+
+Quest Database & Technology week - Nov 14, 2022 - Oracle Tuning Tips, My best developer tuning tips.
+
+```/tune-tips-DBT```
+
+OATUG Michigan Oracle Users Summit (MOUS) - Oct 26, 2022 - "Tune That SQL", Now what do I do?
 
 ```/tune-that-SQL-MOUS```
+
+Midwest Oracle User Group (MOUG) - Sept 23, 2022 - Oracle Tuning Tips, My best developer tuning tips.
+
+```/tune-tips-MOUG```
 
 UTOUG Training Days - Sept 13, 2022 - Deep Dive into SQL Tuning
 
