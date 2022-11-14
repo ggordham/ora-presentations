@@ -1,0 +1,62 @@
+
+select owner, index_name, leaf_blocks, distinct_keys, clustering_factor, num_rows
+  from dba_indexes
+  where table_owner = 'OE' and table_name = 'CUSTOMERS'
+
+
+
+OWNER
+------------------------------------------------------------------------------------------------------------------------
+INDEX_NAME
+------------------------------------------------------------------------------------------------------------------------
+LEAF_BLOCKS DISTINCT_KEYS CLUSTERING_FACTOR   NUM_ROWS
+----------- ------------- ----------------- ----------
+OE
+CUST_ACCOUNT_MANAGER_IX
+	  1		4		 16	   319
+
+OE
+CUST_LNAME_IX
+	  1	      176		278	   319
+
+OE
+CUST_EMAIL_IX
+	  2	      319		139	   319
+
+OE
+CUST_UPPER_NAME_IX
+	  2	      319		271	   319
+
+OE
+SYS_IL0000110569C00022$$
+
+
+OE
+SYS_IL0000110569C00023$$
+
+
+OE
+CUSTOMERS_PK
+	  1	      319		  8	   319
+
+
+7 rows selected.
+
+
+SQL> select owner, table_name, num_rows, blocks, avg_row_len
+  2    from dba_tables
+  3    where owner = 'OE' and table_name = 'CUSTOMERS';
+
+OWNER
+------------------------------------------------------------------------------------------------------------------------
+TABLE_NAME
+------------------------------------------------------------------------------------------------------------------------
+  NUM_ROWS     BLOCKS AVG_ROW_LEN
+---------- ---------- -----------
+OE
+CUSTOMERS
+       319	   13	      177
+
+
+SQL>
+
