@@ -27,16 +27,16 @@ This script creates a user called perflab that will be used throughout the demo.
 cd spm-VNA
 sqlplus /nolog
 ```
+
 ```sql
-SQL> connect / as sysdba
-SQL> @lab-setup
+connect / as sysdba
+@lab-setup
 ```
 
 ## Setup the test tables used during the demo
 
 ```bash
-sqlplus /nolog
-SQL> @ctables
+sqlplus /nolog @ctables
 ```
 
 This will create two tables, T1 and T2.  The tables have skewed data distribution in the column D.  24,999 rows are unique, and 25,001 rows contain the value 10.
@@ -45,8 +45,8 @@ By default Oracle assumes a normal distribution, as we have run enhanced statist
 ## Look at table information
 
 ```sql
-SQL> CONNECT perflab/perf$lab
-SQL> @show-hist
+CONNECT perflab/perf$lab
+@show-hist
 ```
 
 In the first query results we can see that the two tables (T1, T2) have 500,000 rows each.  In the second set of results, we see that for column D the 2nd bucket (ENDPOINT_VALUE = 10) has more than one row, while the other four values have only one row.
@@ -56,8 +56,8 @@ In the first query results we can see that the two tables (T1, T2) have 500,000 
 Drop current baselines and show that there are no current baselines loaded:
 
 ```sql
-SQL> @drop
-SQL> @list
+@drop
+@list
 ```
 
 ## First test - Auto capture a baseline
@@ -65,7 +65,7 @@ SQL> @list
 In this test we will auto capture a baseline from a session.  The session has to run the SQL twice before it will be captured.
 
 ```sql
-SQL> @test1
+@test1
 ```
 
 ## Second test - auto capture another baseline plan
@@ -73,7 +73,7 @@ SQL> @test1
 Now we will capture another baseline plan for the same SQL, even though auto capture baselines is now set to false.
 
 ```sql
-SQL> @test2
+@test2
 ```
 
 ## Third test - evolve the baseline
@@ -81,7 +81,7 @@ SQL> @test2
 Now we will evolve the baseline, basically test the new captured plan and let Oracle decide if it is worth accepting.  Then we will show our SQL statement as it uses the new baseline plans.
 
 ```sql
-SQL> @test3
+@test3
 ```
 
 ## Look at the Baselines
@@ -89,18 +89,19 @@ SQL> @test3
 You can view more information about baselines and how they are used by joining the DBA_SQL_PLAN_BASELINES and GV$SQL views.  Note the example script to see how to properly join the two views.
 
 ```sql
-SQL> @show_baseline.sql
+@show_baseline.sql
 ```
 
 ## Clean up
 To clean up the lab run the following two items:
 
 ```sql
-SQL> @drop
+@drop
 
-SQL> -- CONNECT as DBA user
+-- CONNECT as DBA user
+connect / as sysdba
 
-SQL> DROP USER PERFLAB CASCADE;
+DROP USER PERFLAB CASCADE;
 ```
 
 ## The END
