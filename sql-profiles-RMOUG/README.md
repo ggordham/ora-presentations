@@ -1,4 +1,4 @@
-# Example of how to create a SQL profile
+# Oracle SQL Profiles - in Depth
 Scripts from the Midwest Rocky Mountain Oracle User Group (RMOUG) metting February 17, 2023
 
 ### DISCLAIMER
@@ -86,6 +86,7 @@ sqlplus /nolog
 ```
 
 In SQL*Plus run:
+
 ```sql
 connect / as sysdba
 @lab-setup
@@ -106,40 +107,148 @@ If you see any errors do not proceed with the lab.
 
 Run the query and View the execution plan
 
-```
+```sql
 @q1
 @plan
 ```
 
-### Sample query with execution plan
+### Peform a CBO trace of the query
 
 Trace the query
 
-```
-@purge gtrznmtvm13vu
+```sql
+@purge_cursor 9bpjmtthj7f41
 @trace no_profile
 ```
 
-Run the SQL tuning advisor
-@tune gtrznmtvm13vu
+Note in the trace file that the SQL is unchanged from what was submited (search for "QUERY BLOCK TEXT").
+Also note that the selectivity for the query is 0.66 (or 66% of the table), find this by searching for "SINGLE TABLE ACCESS PATH" and look at the "Estimated selectivity:".
+
+
+### Run the SQL tuning advisor and accept the profile
+
+Run the SQL tuning advisor and accept the profile suggestion
+
+```sql
+@tune 9bpjmtthj7f41
 @report
 @accept
+```
+
+Note in the tuning advisor report that the profile will increase performance by 99%.
+
+### Show the profile is used
 
 Show that we have a profile now
-@lsprofile gtrznmtvm13vu
+
+```sql
+-- if you are NOT using a PDB
+DEFINE con_pdb=""
+
+-- if you are using a PDB define the PDB name be sure to include the @ sign
+DEFINE con_pdb="@mypdb"
+
+@connect
+@lsprofile 9bpjmtthj7f41
+```
 
 Re-run the query to show the profile is in use
+
+```sql
 @q1
 @plan
+```
 
 Show that the profile usage is in cursor cache
-@lsprofile gtrznmtvm13vu
+
+```sql
+@lsprofile 9bpjmtthj7f41
+```
+
+### View the hints in the profile
 
 See the hints in the profile
+
+```sql
 @viewhint
+```
+
+### Trace the SQL with profile
 
 Trace the profile
-@purge 70nv63r37j039
-@trace profile
 
+```sql
+@purge_cursor 9bpjmtthj7f41
+@trace profile
+```
+
+Note in the trace file that the hints from the profile have been added to the query (search for "UNPARSED QUERY IS").
+Also verify that the selectivity for single table access has changed by searching for "SINGLE TABLE ACCESS PATH", see the new line "CARD: Originial: ... >> Single Tab Card adjusted from ... to ... due to opt_estimate hint".
+
+
+### COE Transfer profile
+
+Lets look at the same profile but this time it has been created / transfered using the coe_xfr_sql_profile.sql script.
+
+First we will drop the existing profile, and load the profile from the coe script:
+
+```sql
+@drop.sql
+@coe_xfr_sql_profile_9bpjmtthj7f41_3993230814.sql
+```
+
+Now lets look at the hints that will be added to the SQL:
+
+```sql
+@viewhint
+```
+
+Note that the hint is an outline (a saved execution plan) and not a set of additional statistical information (OPT_ESTIMATE).
+
+We can also trace the SQL to see the hints in the optimizer process:
+
+```sql
+@purge_cursor 9bpjmtthj7f41
+@trace coe_profile
+```
+
+### SQL Profile Pack / Unpack
+
+Lets drop the tuning task provided profile, and load one that was packaged from another database.
+Note: the profile staging was done in the crtables.sql script.
+
+```sql
+@drop
+@ldprofile.sql
+```
+
+Now lets view the profile hint and verify that is matches what the tuning advisor would make.
+
+```sql
+@viewhint.sql
+```
+
+### COE XFER SQL Profile
+
+Now lets drop the profiles again, and this time load the same profile that has been captures using the COE XFER script from SQLT utilities in MOS note 1614107.1
+
+```sql
+@drop
+@coe_xfr_sql_profile_9bpjmtthj7f41_3993230814.sql
+```
+Now view the hint and notice that it does not uses OPT_EST information but instead is a stored outline for the SQL (a stored execution plan)
+
+```sql
+@viewhint.sql
+```
+
+### Clean up
+To clean up the lab run the following two items as a DBA user:
+
+```sql
+@drop
+DROP USER PERFLAB CASCADE;
+```
+
+## The END
 
