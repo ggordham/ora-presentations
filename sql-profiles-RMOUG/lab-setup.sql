@@ -13,4 +13,3 @@ GRANT alter session TO perflab;
 
 ALTER USER perflab QUOTA UNLIMITED ON users;
 
-EXIT

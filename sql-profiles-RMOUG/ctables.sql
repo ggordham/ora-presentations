@@ -1,3 +1,6 @@
+connect perflab/perf$lab&con_pdb
+set echo on
+
 drop table sales purge;
 
 create table sales (
