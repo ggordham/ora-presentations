@@ -1,9 +1,11 @@
 
 column name format a30
+column signature format 99999999999999999999
 column exact_matching_signature format 99999999999999999999
 column force_matching_signature format 99999999999999999999
 column sql_id format a13
 column sql_text format a30
+column sql_profile format a30
 
 PROMPT Showing profiles in the system
 PROMPT
@@ -19,8 +21,8 @@ SELECT p.name, p.signature,
 PROMPT Showing the SQL ID from cursor cache and if the profile was used
 PROMPT
 
-SELECT sql_id, hash_value, exact_matching_signature, force_matching_signature,
-       sql_profile, executions, buffer_gets, rows_processed 
+SELECT sql_id, hash_value, plan_hash_value, exact_matching_signature, force_matching_signature,
+       sql_profile, executions, buffer_gets, rows_processed, sql_text 
        -- sql_patch, sql_plan_baseline
   FROM v$sql
  WHERE sql_id = '&1';
