@@ -3,6 +3,8 @@ set echo on
 
 drop table sales purge;
 
+alter session set NLS_DATE_FORMAT='DD-Mon-YY';
+
 create table sales (
   id number(10)
 , sale_date date);
