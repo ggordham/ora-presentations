@@ -101,7 +101,7 @@ fi
 export LD_LIBRARY_PATH="$ORACLE_HOME"/lib:/usr/lib
 
 # export ORACLE_PATH to include current directory to fix login.sql problem
-export ORACLE_PATH=$ORACLE_PATH:$run_dir:.
+export ORACLE_PATH=$run_dir:.:$ORACLE_PATH
 
 # Create a SQL login profile, this will define 
 #  a PDB connect string for us to use in lab scripts
