@@ -38,7 +38,7 @@ fi
 # Check for static SID set, otherwise we try to discover SID
 if [ "$MY_SID" == "" ]; then
   if [ "$ORACLE_SID" == "" ]; then
-      ORACLE_SID=$( pgrep -fl ora_pmon |grep -v ASM | cut -d _ -f 3 )
+      ORACLE_SID=$( pgrep -fa ora_pmon |grep -v ASM | cut -d _ -f 3 )
       # issue with pgrep changing sid name to lower case
       #  if we can't match the process name force the SID to uppercase
       if [ $( pgrep -fc ora_pmon_${ORACLE_SID} ) -eq 0 ]; then
