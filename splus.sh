@@ -111,6 +111,7 @@ echo "set pagesize 999" >> "$splus_profile"
 echo "set linesize 200" >> "$splus_profile"
 echo "ALTER SESSION SET nls_date_format = 'HH:MI:SS';" >> "$splus_profile"
 echo "SET SQLPROMPT \"_USER'@'_CONNECT_IDENTIFIER _DATE> \"" >> "$splus_profile"
+echo "ALTER SESSION SET nls_date_format = 'YYYY-MM-DD HH24:MI:SS';" >> "$splus_profile"
 if [ "$ORACLE_PDB_SID" == "" ]; then
   echo "define con_pdb =''"  >> "$splus_profile"
 else

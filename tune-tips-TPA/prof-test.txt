@@ -1,0 +1,318 @@
+SQL> connect perflab/perf$lab&con_pdb
+
+@q2.sql
+@plan.sqlConnected.
+SQL> SQL> SQL>
+SQL> select /* PROFTEST */ COUNT(*) from sales WHERE sale_date >= trunc(sysdate);
+
+  COUNT(*)
+----------
+       840
+
+SQL>
+SQL> --
+SQL> -- An example of retrieving a useful SQL Execution Plan
+SQL> --
+SQL> set linesize 220 tab off pagesize 1000 trims on
+SQL> column plan_table_output format a120
+SQL> set echo on
+SQL> SELECT *
+  2    FROM table(DBMS_XPLAN.DISPLAY_CURSOR(FORMAT=>'ALL +OUTLINE'));
+
+PLAN_TABLE_OUTPUT
+------------------------------------------------------------------------------------------------------------------------
+SQL_ID  gtrznmtvm13vu, child number 0
+-------------------------------------
+select /* PROFTEST */ COUNT(*) from sales WHERE sale_date >=
+trunc(sysdate)
+
+Plan hash value: 1047182207
+
+----------------------------------------------------------------------------
+| Id  | Operation          | Name  | Rows  | Bytes | Cost (%CPU)| Time     |
+----------------------------------------------------------------------------
+|   0 | SELECT STATEMENT   |       |       |       |   348 (100)|          |
+|   1 |  SORT AGGREGATE    |       |     1 |     8 |            |          |
+|*  2 |   TABLE ACCESS FULL| SALES |   333K|  2605K|   348   (3)| 00:00:01 |
+----------------------------------------------------------------------------
+
+Query Block Name / Object Alias (identified by operation id):
+-------------------------------------------------------------
+
+   1 - SEL$1
+   2 - SEL$1 / SALES@SEL$1
+
+Outline Data
+-------------
+
+  /*+
+      BEGIN_OUTLINE_DATA
+      IGNORE_OPTIM_EMBEDDED_HINTS
+      OPTIMIZER_FEATURES_ENABLE('19.1.0')
+      DB_VERSION('19.1.0')
+      ALL_ROWS
+      OUTLINE_LEAF(@"SEL$1")
+      FULL(@"SEL$1" "SALES"@"SEL$1")
+      END_OUTLINE_DATA
+  */
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   2 - filter("SALE_DATE">=TRUNC(SYSDATE@!))
+
+Column Projection Information (identified by operation id):
+-----------------------------------------------------------
+
+   1 - (#keys=0) COUNT(*)[22]
+   2 - (rowset=1019)
+
+
+46 rows selected.
+
+SQL> set echo off
+SQL> @tune.sql
+@report.sql
+PL/SQL procedure successfully completed.
+
+SQL> EXEC dbms_sqltune.execute_tuning_task(:task_name);
+
+
+PL/SQL procedure successfully completed.
+
+SQL>
+SQL> select :task_name from dual;
+
+:TASK_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+TASK_9527
+
+SQL> SQL> SET linesize 180
+SQL> SET longchunksize 180
+SQL> SET pagesize 900
+SQL> SET long 1000000
+SQL> SELECT dbms_sqltune.report_tuning_task(:task_name) FROM dual;
+
+DBMS_SQLTUNE.REPORT_TUNING_TASK(:TASK_NAME)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GENERAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+Tuning Task Name   : TASK_9527
+Tuning Task Owner  : PERFLAB
+Workload Type      : Single SQL Statement
+Scope              : COMPREHENSIVE
+Time Limit(seconds): 1800
+Completion Status  : COMPLETED
+Started at         : 09/22/2022 20:34:55
+Completed at       : 09/22/2022 20:34:56
+
+-------------------------------------------------------------------------------
+Schema Name: PERFLAB
+SQL ID     : gtrznmtvm13vu
+SQL Text   : select /* PROFTEST */ COUNT(*) from sales WHERE sale_date >=
+             trunc(sysdate)
+
+-------------------------------------------------------------------------------
+FINDINGS SECTION (1 finding)
+-------------------------------------------------------------------------------
+
+1- SQL Profile Finding (see explain plans section below)
+--------------------------------------------------------
+  A potentially better execution plan was found for this statement.
+
+  Recommendation (estimated benefit: 99.6%)
+  -----------------------------------------
+  - Consider accepting the recommended SQL profile.
+    execute dbms_sqltune.accept_sql_profile(task_name => 'TASK_9527',
+            task_owner => 'PERFLAB', replace => TRUE);
+
+  Validation results
+  ------------------
+  The SQL profile was tested by executing both its plan and the original plan
+  and measuring their respective execution statistics. A plan may have been
+  only partially executed if the other could be run to completion in less time.
+
+                           Original Plan  With SQL Profile  % Improved
+                           -------------  ----------------  ----------
+  Completion Status:            COMPLETE          COMPLETE
+  Elapsed Time (s):             .008657           .000032      99.63 %
+  CPU Time (s):                 .008576           .000032      99.62 %
+  User I/O Time (s):                  0                 0
+  Buffer Gets:                     1256                 5       99.6 %
+  Physical Read Requests:             0                 0
+  Physical Write Requests:            0                 0
+  Physical Read Bytes:                0                 0
+  Physical Write Bytes:               0                 0
+  Rows Processed:                     1                 1
+  Fetches:                            1                 1
+  Executions:                         1                 1
+
+  Notes
+  -----
+  1. Statistics for the original plan were averaged over 10 executions.
+  2. Statistics for the SQL profile plan were averaged over 10 executions.
+
+-------------------------------------------------------------------------------
+EXPLAIN PLANS SECTION
+-------------------------------------------------------------------------------
+
+1- Original With Adjusted Cost
+------------------------------
+Plan hash value: 1047182207
+
+----------------------------------------------------------------------------
+| Id  | Operation          | Name  | Rows  | Bytes | Cost (%CPU)| Time     |
+----------------------------------------------------------------------------
+|   0 | SELECT STATEMENT   |       |     1 |     8 |   348   (3)| 00:00:01 |
+|   1 |  SORT AGGREGATE    |       |     1 |     8 |            |          |
+|*  2 |   TABLE ACCESS FULL| SALES |  1277 | 10216 |   348   (3)| 00:00:01 |
+----------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   2 - filter("SALE_DATE">=TRUNC(SYSDATE@!))
+
+Hint Report (identified by operation id / Query Block Name / Object Alias):
+Total hints for statement: 1 (U - Unused (1))
+---------------------------------------------------------------------------
+
+   0 -  STATEMENT
+         U -  OPTIMIZER_FEATURES_ENABLE(default) / hint overridden by another in parent query block
+
+2- Using SQL Profile
+--------------------
+Plan hash value: 3993230814
+
+----------------------------------------------------------------------------
+| Id  | Operation         | Name   | Rows  | Bytes | Cost (%CPU)| Time     |
+----------------------------------------------------------------------------
+|   0 | SELECT STATEMENT  |        |     1 |     8 |     5   (0)| 00:00:01 |
+|   1 |  SORT AGGREGATE   |        |     1 |     8 |            |          |
+|*  2 |   INDEX RANGE SCAN| SALESI |  1277 | 10216 |     5   (0)| 00:00:01 |
+----------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   2 - access("SALE_DATE">=TRUNC(SYSDATE@!))
+
+-------------------------------------------------------------------------------
+
+
+SQL>
+SQL> @accept.sql
+@q2.sql
+@Plan.sqlSQL> execute dbms_sqltune.accept_sql_profile(task_name => :task_name, task_owner => user, replace => TRUE);
+
+PL/SQL procedure successfully completed.
+
+SQL>
+SQL> SQL> SET ECHO ON
+SQL>
+SQL> select /* PROFTEST */ COUNT(*) from sales WHERE sale_date >= trunc(sysdate);
+
+  COUNT(*)
+----------
+       840
+
+SQL>
+SP2-0310: unable to open file "Plan.sql"
+SQL> @plan.sql
+SQL> --
+SQL> -- An example of retrieving a useful SQL Execution Plan
+SQL> --
+SQL> set linesize 220 tab off pagesize 1000 trims on
+SQL> column plan_table_output format a120
+SQL> set echo on
+SQL> SELECT *
+  2    FROM table(DBMS_XPLAN.DISPLAY_CURSOR(FORMAT=>'ALL +OUTLINE'));
+
+PLAN_TABLE_OUTPUT
+------------------------------------------------------------------------------------------------------------------------
+SQL_ID  gtrznmtvm13vu, child number 0
+-------------------------------------
+select /* PROFTEST */ COUNT(*) from sales WHERE sale_date >=
+trunc(sysdate)
+
+Plan hash value: 3993230814
+
+----------------------------------------------------------------------------
+| Id  | Operation         | Name   | Rows  | Bytes | Cost (%CPU)| Time     |
+----------------------------------------------------------------------------
+|   0 | SELECT STATEMENT  |        |       |       |     5 (100)|          |
+|   1 |  SORT AGGREGATE   |        |     1 |     8 |            |          |
+|*  2 |   INDEX RANGE SCAN| SALESI |  1277 | 10216 |     5   (0)| 00:00:01 |
+----------------------------------------------------------------------------
+
+Query Block Name / Object Alias (identified by operation id):
+-------------------------------------------------------------
+
+   1 - SEL$1
+   2 - SEL$1 / SALES@SEL$1
+
+Outline Data
+-------------
+
+  /*+
+      BEGIN_OUTLINE_DATA
+      IGNORE_OPTIM_EMBEDDED_HINTS
+      OPTIMIZER_FEATURES_ENABLE('19.1.0')
+      DB_VERSION('19.1.0')
+      ALL_ROWS
+      OUTLINE_LEAF(@"SEL$1")
+      INDEX(@"SEL$1" "SALES"@"SEL$1" ("SALES"."SALE_DATE"))
+      END_OUTLINE_DATA
+  */
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   2 - access("SALE_DATE">=TRUNC(SYSDATE@!))
+
+Column Projection Information (identified by operation id):
+-----------------------------------------------------------
+
+   1 - (#keys=0) COUNT(*)[22]
+
+Hint Report (identified by operation id / Query Block Name / Object Alias):
+Total hints for statement: 1
+---------------------------------------------------------------------------
+
+   0 -  STATEMENT
+           -  OPTIMIZER_FEATURES_ENABLE(default)
+
+Note
+-----
+   - SQL profile SYS_SQLPROF_018366e94aac0007 used for this statement
+
+
+56 rows selected.
+
+SQL> set echo off
+SQL> @lsprofile.sql
+@viewhint.sqlShowing profiles in the system
+
+
+NAME                                       SIGNATURE SQL_ID          SQL_HASH TYPE    STATUS   FOR SQL_TEXT
+------------------------------ --------------------- ------------- ---------- ------- -------- --- ------------------------------------------------------------------------------------------
+SYS_SQLPROF_018366e94aac0007    17523641855749125419 gtrznmtvm13vu 1999671162 MANUAL  ENABLED  NO  select /* PROFTEST */ COUNT(*) from sales WHERE sale_date >= trunc(sysdate)
+
+Showing the SQL ID from cursor cache and if the profile was used
+
+
+SQL_ID        HASH_VALUE EXACT_MATCHING_SIGNATURE FORCE_MATCHING_SIGNATURE SQL_PROFILE                    EXECUTIONS BUFFER_GETS ROWS_PROCESSED
+------------- ---------- ------------------------ ------------------------ ------------------------------ ---------- ----------- --------------
+gtrznmtvm13vu 1999671162     17523641855749125419     17523641855749125419 SYS_SQLPROF_018366e94aac0007            1          14              1
+
+SQL>
+
+PROFILE_NAME                   HINT
+------------------------------ ----------------------------------------------------------------------------------------------------
+SYS_SQLPROF_018366e94aac0007   OPT_ESTIMATE(@"SEL$1", TABLE, "SALES"@"SEL$1", SCALE_ROWS=0.003829076579)
+                               OPT_ESTIMATE(@"SEL$1", INDEX_SCAN, "SALES"@"SEL$1", "SALESI", SCALE_ROWS=0.002518576756)
+                               OPTIMIZER_FEATURES_ENABLE(default)
+
+SQL>
+SQL>
+
