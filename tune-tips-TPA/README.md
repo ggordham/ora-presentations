@@ -210,11 +210,7 @@ connect perflab/perf$lab&con_pdb
 @plan.sql
 ```
 
-Note a full table scan is now used.  Lets view the patch information.
-
-```sql
-@show-patch.sql
-```
+Note a full table scan is now used.  
 
 ### Index clustering
 
