@@ -4,6 +4,14 @@ Scripts from Oracle Presentations that I have given
 All scripts or code in this repository is use at your own risk.
 Everything here is intended for test or lab type use.
 
+RMOUG Training Days 2023 - Feb 17, 2023 - Oracle SQL Profiles – In Depth
+
+```/sql-profiles-RMOUG```
+
+Tampa Performanc Technology Day - Jan 18, 2023 - Oracle Tuning Tips, My best developer tuning tips.
+
+```/tune-tips-TPA```
+
 Viscosity North America Webinar - Nov 15, 2022 - Oracle SQL Plan Management (SPM) Your imperative performance tool
 
 ```/spm-VNA```

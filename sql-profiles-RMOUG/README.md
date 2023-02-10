@@ -32,14 +32,16 @@ The scripts can be run in multiple ways depending on your configuration and test
 ## Run the lab on Docker
 
 ### Prerequisets
-You need a working docker image with Oracle database pre installed.
+You need a working docker or podman image with Oracle database pre installed.
 These scripts have been tested on Oracle 19c and 21c, but should also work on Oracle 12c and 18c.
 Your database / PDB should have a USERS tablespace.
 
 Once you have the container up and running with a working database you can install the lab scripts with the following command:
 
+*Note: The commands are using podman, you can replace podman with docker if you are using docker.*
+
 ```bash
-docker exec DB213 sh -c "curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1"
+podman exec DB213 sh -c "curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1"
 ```
 
 *Note DB213 in the command is the container name, use your container name.  You can find your container name with the ```docker ps``` command.*
@@ -49,7 +51,7 @@ Through out the lab you will need a SQL*Plus prompt on the databases.  This is d
 **SQL Prompt**
 
 ```bash
-docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh profr"
+podman exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh profr"
 ```
 
 You should get a prompt that looks something like this:
