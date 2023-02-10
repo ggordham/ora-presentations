@@ -41,23 +41,23 @@ Once you have the container up and running with a working database you can insta
 *Note: The commands are using podman, you can replace podman with docker if you are using docker.*
 
 ```bash
-podman exec DB213 sh -c "curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1"
+podman exec DB193 sh -c "curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1"
 ```
 
-*Note DB213 in the command is the container name, use your container name.  You can find your container name with the ```docker ps``` command.*
+*Note DB193 in the command is the container name, use your container name.  You can find your container name with the ```docker ps``` command.*
 
 Through out the lab you will need a SQL*Plus prompt on the databases.  This is done by running the following docker command.  (Note this command will put you in the directory with the lab scripts and set your SQL Prompt)
 
 **SQL Prompt**
 
 ```bash
-podman exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh profr"
+podman exec -it DB193 sh -c "chmod +x splus.sh; /home/oracle/splus.sh profr"
 ```
 
 You should get a prompt that looks something like this:
 
 ```bash
-$ docker exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh profr"
+$ docker exec -it DB193 sh -c "chmod +x splus.sh; /home/oracle/splus.sh profr"
 
 SQL*Plus: Release 21.0.0.0.0 - Production on Thu Jan 6 19:24:17 2022
 Version 21.3.0.0.0
