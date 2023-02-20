@@ -9,6 +9,7 @@ plabn,nocoug-perflab
 plabo,perflab-ORAPUB
 plabe,perflab-ECO
 profr,sql-profiles-RMOUG
+profs,sql-profiles-SLC
 spmi,spm-INSYNC
 spmm,spm-MOUG
 spmn,spm-NYOUG
@@ -24,3 +25,4 @@ tsqlm,tune-that-SQL-MOUS
 ttipm,tune-tips-MOUG
 ttipd,tune-tips-DBT
 ttipt,tune-tips-TPA
+ttipu,tune-tips-UTOUG

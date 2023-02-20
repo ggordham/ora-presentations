@@ -1,7 +1,7 @@
 
 CONNECT / as sysdba
 
-CREATE USER perflab IDENTIFIED BY perf$lab
+CREATE USER perflab IDENTIFIED BY perf$lab 
   DEFAULT TABLESPACE users TEMPORARY TABLESPACE temp;
 
 GRANT resource TO perflab;
@@ -13,4 +13,4 @@ GRANT alter session TO perflab;
 
 ALTER USER perflab QUOTA UNLIMITED ON users;
 
-EXIT
+-- EXIT

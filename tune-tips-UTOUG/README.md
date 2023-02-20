@@ -1,5 +1,5 @@
-# tune-tips-TPA
-Scripts from the Tampa Performance Technology Day with 23c - Jan 18, 2023 Tampa FL
+# tune-tips-UTOUG
+Scripts from the Utah Oracle User Group (UTOUG) Training Days 2023, 3/7/2023 at 10:30 AM - 11:30 AM MST
 
 These scripts are mostly based on examples from the Oracle example github repository:
 https://github.com/oracle/oracle-db-examples
@@ -43,12 +43,12 @@ Through out the lab you will need a SQL*Plus prompt on the databases.  This is d
 
 **SQL Prompt**
 ```bash
-podman exec -it DB193 sh -c "chmod +x splus.sh; /home/oracle/splus.sh ttipt"
+podman exec -it DB193 sh -c "chmod +x splus.sh; /home/oracle/splus.sh ttipu"
 ```
 
 You should get a prompt that looks something like this:
 ```
-$ podman exec -it DB193 sh -c "chmod +x splus.sh; /home/oracle/splus.sh ttipt"
+$ podman exec -it DB193 sh -c "chmod +x splus.sh; /home/oracle/splus.sh ttipu"
 
 SQL*Plus: Release 21.0.0.0.0 - Production on Thu Jan 6 19:24:17 2022
 Version 21.3.0.0.0
@@ -262,7 +262,7 @@ DROP USER PERFLAB CASCADE;
 You can run the following command from Linux or MAC OSX or Cygwin to download all the items in the repository.
 
 ```bash
-curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1 "ggordham-ora-presentations-???????/tune-tips-TPA"
+curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1 "ggordham-ora-presentations-???????/tune-tips-UTOUG"
 ```
 
 ### Basic Setup Steps
@@ -273,7 +273,7 @@ This script creates a user called perflab that will be used throughout the demo.
 ```bash
 # Set your Oracle Environment
 . oraenv
-cd tune-tips-TPA
+cd tune-tips-UTOUG
 # if you are using a PDB set the PDB name
 export ORACLE_PDB_SID=mypdb
 sqlplus /nolog

@@ -19,17 +19,17 @@ accept next1
 
 PROMPT
 PROMPT There is a better plan for this execution, but it
-PROMPT  is not used as the profile is picked up.  The
-PROMPT  explain plan shows that the profile is being
+PROMPT  is not used as the baseline is picked up.  The
+PROMPT  explain plan shows that the baseline is being
 PROMPT  used in the Note section.
 prompt Press ENTER to continue
 
 accept next1
 
 PROMPT See that we have another baseline plan captured,
-PROMPT  but it is not accepted and will not be used.
+PROMPT  but it is not accepted (ACC) and will not be used.
 PROMPT  NOTE: this was captured even though auto capture
-PROMPT  is now disabled.  Since a basline exists and is fixed,
+PROMPT  is now disabled.  Since a basline exists and is not fixed,
 PROMPT  new baseline plans will be captured.
 PROMPT
 @list
