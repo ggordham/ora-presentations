@@ -9,6 +9,7 @@ SELECT ses.prev_sql_id, exact_matching_signature, force_matching_signature,
    WHERE ses.sid = USERENV('sid') 
      AND ses.username IS NOT NULL 
      AND ses.prev_hash_value <> 0
-     AND ses.prev_sql_id = sql.sql_id;
+     AND ses.prev_sql_id = sql.sql_id
+     AND rownum < 2;
 
 -- END

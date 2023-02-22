@@ -159,7 +159,15 @@ Trace the profile
 *Note in the trace file that the hints from the profile have been added to the query (search for "UNPARSED QUERY IS").*
 Also verify that the selectivity for single table access has changed by searching for "SINGLE TABLE ACCESS PATH", see the new line "CARD: Originial: ... >> Single Tab Card adjusted from ... to ... due to opt_estimate hint".
 
+### Force Matching
 
+Lets look at three quries and the related signatures
+
+```sql
+@query-signature
+```
+
+*Note: we have four queries.  Two differ by a literal string difference, and the other two have function calls, one with a function and one with a literal.  Note how all four queries have different exact matching signature, but only two of them have exact matching signature.  This is due to matching only looking at literals, and not functions.*
 
 
 ### SQL Profile Pack / Unpack
@@ -333,6 +341,17 @@ Trace the profile
 
 *Note in the trace file that the hints from the profile have been added to the query (search for "UNPARSED QUERY IS").*
 Also verify that the selectivity for single table access has changed by searching for "SINGLE TABLE ACCESS PATH", see the new line "CARD: Originial: ... >> Single Tab Card adjusted from ... to ... due to opt_estimate hint".
+
+
+### Force Matching
+
+Lets look at three quries and the related signatures
+
+```sql
+@query-signature
+```
+
+*Note: we have four queries.  Two differ by a literal string difference, and the other two have function calls, one with a function and one with a literal.  Note how all four queries have different exact matching signature, but only two of them have exact matching signature.  This is due to matching only looking at literals, and not functions.*
 
 ### SQL Profile Pack / Unpack
 

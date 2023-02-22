@@ -12,7 +12,7 @@ UTOUG Training Days 2023 - Mar 8, 2023 - Oracle SQL Plan Management (SPM) your i
 
 ```/spm-UTOUG```
 
-UTOUG Performance Technology Day - Mar 7, 2023 - Oracle SQL Profiles – In Depth
+UTOUG Performance Technology Day - Mar 6, 2023 - Oracle SQL Profiles – In Depth
 
 ```/sql-profiles-SLC```
 
