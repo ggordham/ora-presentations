@@ -97,7 +97,7 @@ Run the query and View the execution plan
 Trace the query
 
 ```sql
-@purge_cursor 9bpjmtthj7f41
+@purge_cursor 5dckfn5u98zkg
 @trace no_profile
 ```
 
@@ -110,7 +110,7 @@ Also note that the selectivity for the query is 0.66 (or 66% of the table), find
 Run the SQL tuning advisor and accept the profile suggestion
 
 ```sql
-@tune 9bpjmtthj7f41
+@tune 5dckfn5u98zkg
 @report
 @accept
 ```
@@ -123,7 +123,7 @@ Show that we have a profile now
 
 ```sql
 @connect
-@lsprofile 9bpjmtthj7f41
+@lsprofile 5dckfn5u98zkg
 ```
 
 Re-run the query to show the profile is in use
@@ -136,7 +136,7 @@ Re-run the query to show the profile is in use
 Show that the profile usage is in cursor cache
 
 ```sql
-@lsprofile 9bpjmtthj7f41
+@lsprofile 5dckfn5u98zkg
 ```
 
 ### View the hints in the profile
@@ -152,7 +152,7 @@ See the hints in the profile
 Trace the profile
 
 ```sql
-@purge_cursor 9bpjmtthj7f41
+@purge_cursor 5dckfn5u98zkg
 @trace profile
 ```
 
@@ -184,7 +184,7 @@ Lets look at the same profile but this time it has been created / transfered usi
 
 ```sql
 @drop
-@coe_xfr_sql_profile_9bpjmtthj7f41_3993230814.sql
+@coe_xfr_sql_profile_5dckfn5u98zkg_3993230814.sql
 ```
 
 Now view the hint and notice that it does not uses OPT_EST information but instead is a stored outline (execution plan) for the hint.
@@ -197,7 +197,7 @@ Now view the hint and notice that it does not uses OPT_EST information but inste
 We can also trace the SQL to see the hints in the optimizer process:
 
 ```sql
-@purge_cursor 9bpjmtthj7f41
+@purge_cursor 5dckfn5u98zkg
 @trace coe_profile
 ```
 
@@ -266,7 +266,7 @@ Run the query and View the execution plan
 Trace the query
 
 ```sql
-@purge_cursor 9bpjmtthj7f41
+@purge_cursor 5dckfn5u98zkg
 @trace no_profile
 ```
 
@@ -279,7 +279,7 @@ Also note that the selectivity for the query is 0.66 (or 66% of the table), find
 Run the SQL tuning advisor and accept the profile suggestion
 
 ```sql
-@tune 9bpjmtthj7f41
+@tune 5dckfn5u98zkg
 @report
 @accept
 ```
@@ -298,7 +298,7 @@ DEFINE con_pdb=""
 DEFINE con_pdb="@mypdb"
 
 @connect
-@lsprofile 9bpjmtthj7f41
+@lsprofile 5dckfn5u98zkg
 ```
 
 Re-run the query to show the profile is in use
@@ -311,7 +311,7 @@ Re-run the query to show the profile is in use
 Show that the profile usage is in cursor cache
 
 ```sql
-@lsprofile 9bpjmtthj7f41
+@lsprofile 5dckfn5u98zkg
 ```
 
 ### View the hints in the profile
@@ -327,7 +327,7 @@ See the hints in the profile
 Trace the profile
 
 ```sql
-@purge_cursor 9bpjmtthj7f41
+@purge_cursor 5dckfn5u98zkg
 @trace profile
 ```
 
@@ -356,7 +356,7 @@ Lets look at the same profile but this time it has been created / transfered usi
 
 ```sql
 @drop
-@coe_xfr_sql_profile_9bpjmtthj7f41_3993230814.sql
+@coe_xfr_sql_profile_5dckfn5u98zkg_3993230814.sql
 ```
 
 Now view the hint and notice that it does not uses OPT_EST information but instead is a stored outline (execution plan) for the hint.
@@ -369,7 +369,7 @@ Now view the hint and notice that it does not uses OPT_EST information but inste
 We can also trace the SQL to see the hints in the optimizer process:
 
 ```sql
-@purge_cursor 9bpjmtthj7f41
+@purge_cursor 5dckfn5u98zkg
 @trace coe_profile
 ```
 

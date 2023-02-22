@@ -28,6 +28,6 @@ exec dbms_stats.gather_table_stats(user, 'sales', method_opt=>'for all columns s
 
 -- load the staged profile
 EXEC DBMS_SQLTUNE.CREATE_STGTAB_SQLPROF ( table_name  => 'sql_prof_stage', schema_name => 'perflab' );
-@@stg_SYS_SQLPROF_0184f234f41e0002.sql
+@@stg_SYS_SQLPROF_01867ae8cc250007.sql
 COMMIT;
 
