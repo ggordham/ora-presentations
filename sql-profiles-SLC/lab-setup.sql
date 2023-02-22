@@ -17,3 +17,8 @@ ALTER USER perflab QUOTA UNLIMITED ON users;
 EXEC DBMS_SQLTUNE.DELETE_SQLSET(sqlset_name => 'SYS_AUTO_STS', basic_filter => 'sql_id = ''9bpjmtthj7f41''');
 COMMIT;
 
+-- setup our test queries that contain dates
+host /usr/bin/chmod +x ./set-qx.sh
+host ./set-qx.sh
+
+-- END
