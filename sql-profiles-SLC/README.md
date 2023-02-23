@@ -19,17 +19,17 @@ The scripts have been modified for the purpose of the lab and to make them easy 
 
 # Table of Contents
 1. [Ways to run the lab](#ways-to-run-the-lab)
-2. [Run the lab on Docker](#run-the-lab-on-docker)
+2. [Run the lab on Container](#run-the-lab-on-container)
 3. [Run the lab on a Linux OS](#run-the-lab-on-a-linux-os)
 
 ---
 
 ## Ways to run the lab
-The scripts can be run in multiple ways depending on your configuration and test system.  The scripts have been udpated to work with a docker container version of Oracle database as well as a regular Linux OS install.  Also the scripts should work if you are using a stand alone non-container database or if you are using a PDB in a multi-tenant database (container / CDB).  Be sure to look at the specific instructions.
+The scripts can be run in multiple ways depending on your configuration and test system.  The scripts have been udpated to work with a container version of Oracle database as well as a regular Linux OS install.  Also the scripts should work if you are using a stand alone non-container database or if you are using a PDB in a multi-tenant database (container / CDB).  Be sure to look at the specific instructions.
 
 ---
 
-## Run the lab on Docker
+## Run the lab on Container
 
 ### Prerequisets
 You need a working docker or podman image with Oracle database pre installed.
