@@ -1,8 +1,6 @@
 
 
 
--- connect perflab/perf$lab
-
 prompt
 prompt This second query looks for the value 10.
 prompt  1/2 the rows rows in the table have value = 10.

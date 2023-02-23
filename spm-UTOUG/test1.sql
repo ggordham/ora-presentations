@@ -1,7 +1,7 @@
 
 
-connect perflab/perf$lab
-
+connect perflab/perf$lab&con_pdb
+ 
 PROMPT
 PROMPT Enable the capture of baselines at the session level
 set echo on

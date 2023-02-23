@@ -1,5 +1,5 @@
 
-connect perflab/perf$lab
+connect perflab/perf$lab&con_pdb
 DECLARE
   l_plans_dropped  PLS_INTEGER;
 BEGIN
