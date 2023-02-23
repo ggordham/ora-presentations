@@ -1,7 +1,6 @@
 connect perflab/perf$lab&con_pdb
 
 set echo on
-spool tab
 --
 -- Create two tables with a skewed dataset
 --
