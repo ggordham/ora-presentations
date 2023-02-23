@@ -82,6 +82,7 @@ connect / as sysdba
 @lab-setup.sql
 
 @ctables.sql
+
 ```
 
 ### Look at table information
@@ -89,6 +90,7 @@ connect / as sysdba
 ```sql
 @connect.sql
 @show-hist.sql
+
 ```
 
 In the first query results we can see that the two tables (T1, T2) have 500,000 rows each.  In the second set of results, we see that for column D the 2nd bucket (ENDPOINT_VALUE = 10) has more than one row, while the other four values have only one row.
@@ -100,6 +102,7 @@ Drop current baselines and show that there are no current baselines loaded:
 ```sql
 @drop.sql
 @list.sql
+
 ```
 
 ### First test - Auto capture a baseline
@@ -108,6 +111,7 @@ In this test we will auto capture a baseline from a session.  The session has to
 
 ```sql
 @test1.sql
+
 ```
 
 ### Second test - auto capture another baseline plan
@@ -116,6 +120,7 @@ Now we will capture another baseline plan for the same SQL, even though auto cap
 
 ```sql
 @test2.sql
+
 ```
 
 ### Third test - evolve the baseline
@@ -124,6 +129,7 @@ Now we will evolve the baseline, basically test the new captured plan and let Or
 
 ```sql
 @test3.sql
+
 ```
 
 ### Look at the Baselines
@@ -132,6 +138,7 @@ You can view more information about baselines and how they are used by joining t
 
 ```sql
 @show_baseline.sql
+
 ```
 
 ### Clean up
@@ -144,6 +151,7 @@ To clean up the lab run the following two items:
 connect / as sysdba
 
 DROP USER PERFLAB CASCADE;
+
 ```
 
 ---
@@ -169,6 +177,7 @@ cd spm-UTOUG
 # if you are using a PDB set the PDB name
 export ORACLE_PDB_SID=mypdb
 sqlplus /nolog
+
 ```
 
 ```sql
@@ -182,6 +191,7 @@ DEFINE con_pdb=""
 DEFINE con_pdb="@mypdb"
 
 @ctables.sql
+
 ```
 
 This will create two tables, T1 and T2.  The tables have skewed data distribution in the column D.  24,999 rows are unique, and 25,001 rows contain the value 10.
@@ -198,6 +208,7 @@ DEFINE con_pdb="@mypdb"
 
 @connect.sql
 @show-hist.sql
+
 ```
 
 In the first query results we can see that the two tables (T1, T2) have 500,000 rows each.  In the second set of results, we see that for column D the 2nd bucket (ENDPOINT_VALUE = 10) has more than one row, while the other four values have only one row.
@@ -209,6 +220,7 @@ Drop current baselines and show that there are no current baselines loaded:
 ```sql
 @drop.sql
 @list.sql
+
 ```
 
 ### First test - Auto capture a baseline
@@ -217,6 +229,7 @@ In this test we will auto capture a baseline from a session.  The session has to
 
 ```sql
 @test1.sql
+
 ```
 
 ### Second test - auto capture another baseline plan
@@ -225,6 +238,7 @@ Now we will capture another baseline plan for the same SQL, even though auto cap
 
 ```sql
 @test2.sql
+
 ```
 
 ### Third test - evolve the baseline
@@ -233,6 +247,7 @@ Now we will evolve the baseline, basically test the new captured plan and let Or
 
 ```sql
 @test3.sql
+
 ```
 
 ### Look at the Baselines
@@ -241,6 +256,7 @@ You can view more information about baselines and how they are used by joining t
 
 ```sql
 @show_baseline.sql
+
 ```
 
 ### Clean up
@@ -259,6 +275,7 @@ DEFINE con_pdb="@mypdb"
 connect / as sysdba
 
 DROP USER PERFLAB CASCADE;
+
 ```
 
 ## The END
