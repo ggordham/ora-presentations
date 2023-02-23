@@ -1,5 +1,5 @@
 
-connect perflab/perf$lab
+connect perflab/perf$lab&con_pdb
 
 VARIABLE v_rep CLOB
 
