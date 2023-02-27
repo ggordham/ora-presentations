@@ -26,6 +26,11 @@ This script creates a user called perflab that will be used throughout the demo.
 
 ```bash
 cd spm-VNA
+
+
+# if you are using a PDB define the PDB name
+export ORACLE_PDB_SID=mypdb
+
 sqlplus /nolog
 
 ```
