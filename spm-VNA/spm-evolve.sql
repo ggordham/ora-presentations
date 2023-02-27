@@ -1,5 +1,5 @@
 
-connect perflab/perf$lab
+@@connect.sql
 
 VARIABLE v_rep CLOB
 

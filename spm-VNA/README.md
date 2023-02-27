@@ -17,6 +17,7 @@ You can run the following command from Linux or MAC OSX or Cygwin to download al
 
 ```bash
 curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1 "ggordham-ora-presentations-???????/spm-VNA"
+
 ```
 
 ## Basic Setup Steps
@@ -26,17 +27,21 @@ This script creates a user called perflab that will be used throughout the demo.
 ```bash
 cd spm-VNA
 sqlplus /nolog
+
 ```
 
 ```sql
 connect / as sysdba
 @lab-setup
-```
 
-## Setup the test tables used during the demo
+-- if you are NOT using a PDB
+DEFINE con_pdb=""
+@ctables
 
-```bash
-sqlplus /nolog @ctables
+-- if you are using a PDB define the PDB name be sure to include the @ sign
+DEFINE con_pdb="@mypdb"
+@ctables
+
 ```
 
 This will create two tables, T1 and T2.  The tables have skewed data distribution in the column D.  24,999 rows are unique, and 25,001 rows contain the value 10.
@@ -45,8 +50,8 @@ By default Oracle assumes a normal distribution, as we have run enhanced statist
 ## Look at table information
 
 ```sql
-CONNECT perflab/perf$lab
 @show-hist
+
 ```
 
 In the first query results we can see that the two tables (T1, T2) have 500,000 rows each.  In the second set of results, we see that for column D the 2nd bucket (ENDPOINT_VALUE = 10) has more than one row, while the other four values have only one row.
@@ -58,6 +63,7 @@ Drop current baselines and show that there are no current baselines loaded:
 ```sql
 @drop
 @list
+
 ```
 
 ## First test - Auto capture a baseline
@@ -66,6 +72,7 @@ In this test we will auto capture a baseline from a session.  The session has to
 
 ```sql
 @test1
+
 ```
 
 ## Second test - auto capture another baseline plan
@@ -74,6 +81,7 @@ Now we will capture another baseline plan for the same SQL, even though auto cap
 
 ```sql
 @test2
+
 ```
 
 ## Third test - evolve the baseline
@@ -82,6 +90,7 @@ Now we will evolve the baseline, basically test the new captured plan and let Or
 
 ```sql
 @test3
+
 ```
 
 ## Look at the Baselines
@@ -90,6 +99,7 @@ You can view more information about baselines and how they are used by joining t
 
 ```sql
 @show_baseline.sql
+
 ```
 
 ## Clean up
@@ -102,6 +112,7 @@ To clean up the lab run the following two items:
 connect / as sysdba
 
 DROP USER PERFLAB CASCADE;
+
 ```
 
 ## The END

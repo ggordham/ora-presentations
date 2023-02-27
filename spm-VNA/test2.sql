@@ -1,7 +1,6 @@
 
 
 
--- connect perflab/perf$lab
 
 prompt
 prompt This second query looks for the value 10.

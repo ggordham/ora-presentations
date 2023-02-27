@@ -1,7 +1,6 @@
-connect perflab/perf$lab
+@@connect.sql
 
 set echo on
-spool tab
 --
 -- Create two tables with a skewed dataset
 --
@@ -35,4 +34,4 @@ create index t2i on t2 (a);
 
 -- Drop any SQL plan baselines
 @@drop-baselines
-spool off
+

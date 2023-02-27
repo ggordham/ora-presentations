@@ -1,4 +1,4 @@
-connect perflab/perf$lab
+@@connect.sql
 
 set timing on
 set echo off

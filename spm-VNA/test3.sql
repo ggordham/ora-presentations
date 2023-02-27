@@ -23,7 +23,7 @@ prompt Lets connect back as the perflab user and re-test our
 prompt  Queries, first the value of 1,000 which should return 1 row
 PROMPT  and use the NESTED LOOPS plan which is fastests for this case.
 accept next1
-connect perflab/perf$lab
+@@connect.sql
 @q1 1000
 @plan
 

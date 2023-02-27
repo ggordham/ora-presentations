@@ -1,6 +1,6 @@
 
 
-connect perflab/perf$lab
+@@connect.sql
 
 PROMPT
 PROMPT Enable the capture of baselines at the session level
