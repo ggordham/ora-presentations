@@ -37,15 +37,15 @@ sqlplus /nolog
 
 ```sql
 connect / as sysdba
-@lab-setup
+@lab-setup.sql
 
 -- if you are NOT using a PDB
 DEFINE con_pdb=""
-@ctables
 
 -- if you are using a PDB define the PDB name be sure to include the @ sign
 DEFINE con_pdb="@mypdb"
-@ctables
+
+@ctables.sql
 
 ```
 
@@ -55,7 +55,8 @@ By default Oracle assumes a normal distribution, as we have run enhanced statist
 ## Look at table information
 
 ```sql
-@show-hist
+@connect.sql
+@show-hist.sql
 
 ```
 
@@ -66,8 +67,8 @@ In the first query results we can see that the two tables (T1, T2) have 500,000 
 Drop current baselines and show that there are no current baselines loaded:
 
 ```sql
-@drop
-@list
+@drop.sql
+@list.sql
 
 ```
 
@@ -76,7 +77,7 @@ Drop current baselines and show that there are no current baselines loaded:
 In this test we will auto capture a baseline from a session.  The session has to run the SQL twice before it will be captured.
 
 ```sql
-@test1
+@test1.sql
 
 ```
 
@@ -85,7 +86,7 @@ In this test we will auto capture a baseline from a session.  The session has to
 Now we will capture another baseline plan for the same SQL, even though auto capture baselines is now set to false.
 
 ```sql
-@test2
+@test2.sql
 
 ```
 
@@ -94,7 +95,7 @@ Now we will capture another baseline plan for the same SQL, even though auto cap
 Now we will evolve the baseline, basically test the new captured plan and let Oracle decide if it is worth accepting.  Then we will show our SQL statement as it uses the new baseline plans.
 
 ```sql
-@test3
+@test3.sql
 
 ```
 
@@ -111,7 +112,7 @@ You can view more information about baselines and how they are used by joining t
 To clean up the lab run the following two items:
 
 ```sql
-@drop
+@drop.sql
 
 -- CONNECT as DBA user
 connect / as sysdba
