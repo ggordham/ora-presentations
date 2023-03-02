@@ -35,7 +35,7 @@ BEGIN
                                 -- sql_id => '37090abayamah',
                                 sql_id => 'adps0u414xj2s',
                                 hint_text => 'FULL(@"SEL$1" "TAB1"@"SEL$1")',
-                                name      =>'q0_patch');
+                                name      =>'q3_patch');
 END;
 /
 
