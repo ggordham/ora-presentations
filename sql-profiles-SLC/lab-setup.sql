@@ -1,4 +1,6 @@
 
+SET DEFINE ON
+
 CONNECT / as sysdba
 
 CREATE USER perflab IDENTIFIED BY perf$lab

@@ -1,5 +1,5 @@
 -- Purge Cursor
-
+SET DEFINE ON
 connect / as sysdba
 
 COLUMN cur_address NEW_VALUE cur_address

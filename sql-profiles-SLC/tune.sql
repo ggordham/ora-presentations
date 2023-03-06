@@ -1,5 +1,6 @@
 set echo on
 set serveroutput on
+set DEFINE ON
 
 var task_name varchar2(30)
 

@@ -1,4 +1,4 @@
-connect perflab/perf$lab&con_pdb
+@@connect.sql
 set echo on
 
 drop table sales purge;
