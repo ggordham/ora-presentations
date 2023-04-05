@@ -15,7 +15,7 @@ PROMPT ===================== tracecbo-nostat.sql ===============================
 @@drop-t1-stat.sql
 
 -- Purge the cursor 
-@@purge_cursor.sql c2acf73tqcbuz
+@@purge-cursor.sql c2acf73tqcbuz
 
 -- Trace with no statistics
 @@tracecbo-q1.sql nostats

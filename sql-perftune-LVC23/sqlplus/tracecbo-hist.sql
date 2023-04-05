@@ -13,7 +13,7 @@ PROMPT ===================== tracecbo-hist.sql =================================
 @@gatherh-t1.sql
 
 -- Purge the cursor 
-@@purge_cursor.sql c2acf73tqcbuz
+@@purge-cursor.sql c2acf73tqcbuz
 
 -- Trace with no statistics
 @@tracecbo-q1.sql histogram

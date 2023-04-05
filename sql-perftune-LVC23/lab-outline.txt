@@ -1,0 +1,115 @@
+
+SQL Tuning LVC - Lab Outline
+
+
+https://sqltune.visctech.com/shell/
+https://sqltune.visctech.com/ords/sql-developer
+https://sqltune.visctech.com/static/
+
+lvcgg01.internal.viscositytechnology.com
+10.32.0.51
+
+Lab setup
+- create student user for each student
+  - make sure SQLT is copied to each student
+- clone PDB for each student
+- make sure DB is running and each pdb is open
+- make sure ORDS is up and running
+- make sure shellinabox is running
+
+perlab/perf$lab
+webdba/web$dba
+student1/stud$ent1
+SQLTXPLAIN/Cim0BlawfyodUtoc
+
+-- turn off auto SQL tuning sets
+
+-- run workload
+/opt/ora-lab/scripts/oraRWLRun.sh --dbsid lvcdb1 --pdb pdb0 --proj pdb1 --sec 195 --proc 1 --outdir /u01/app/oracle/admin/rwlout --test
+
+/opt/ora-lab/oraRWLRun.sh --dbsid t1db --pdb pdb1 --proj pdb1 --sec 195 --proc 1 --outdir /u01/app/oracle/admin/rwlout --test
+
+
+Open items
+* - lets tune workload
+- does ORDS have enough memory
+- static web page for trace files and HTML output files
+- run through lab end to end
+- write up lab instructions
+- run through slides end to end (few open items on slides)
+- info on pulling bind variables / sql text
+
+Day 1
+SQL basics
+- Cursor Cache basic - day1/day1-cursor-cache.sql
+- Top SQL - day1/day1-top-sql.sql
+- SQL signitures - sqlplus/sql-signiture.sql
+
+need sql text
+need sql bind variables
+  v$sql_bind_capture
+  v$sql_plan.other_xml
+  v$sql_bind_data
+  v$sql_bind_metadata
+  v$sql_monitor.bind_xml
+
+SQL Explain Plan
+- basic plan - sqlplus/plan-basic.sql
+- Gather plan stats  - sqlplus/plan-stats.sql
+- monitor SQL - sqlplus/sql-monitor.sql
+
+Hints
+ - day1/day1-hint.sql
+
+Tracing SQL statements
+Basic trace - sqlplus/tracebase-stat.sql
+CBO trace
+ - nostats - sqlplus/tracecbo-nostat.sql
+ - statistics - sqlplus/tracecbo-stat.sql
+ - histograms - sqlplus/tracecbo-hist.sql
+SQLT
+ - run sqlt - sqlplus/sqlt/sqltxtrxec.sql <sql_id> <password>
+
+Statistics
+ - table stats - day2/day2-stats-table.sql
+ - stale stats - day2/day2-stats-stale.sql
+ - stats auto job - day2/day2-stats-auto-job.sql
+ - histograms - day2/day2-stats-histogram.sql
+ - index stats - day2/day2-stats-index.sql
+ - sysem stats - day2/day2-stats-system.sql
+
+SPM
+- auto capture - sqlplus/spm-auto-capture.sql
+- capture compare - sqlplus/spm-capture-compare.sql
+- compare HTML - sqlplus/spm-compare-html.sql
+- evolve baseline - sqlplus/spm-evolve-steps.sql
+- load cursor cache - sqlplus/spm-load-cursor.sql
+- drop all baselines - sqlplus/spm-drop.sql
+
+Profiles
+- trace no profile - sqlplus/profile-trace-no-profile.sql
+- Advisor create profile - sqlplus/profile-create-advisor.sql
+- profile show usage - sqlplus/profile-show-usage.sql
+- trace profile - sqlplus/profile-trace-profile.sql
+
+- coe_xfr_profile.sql
+
+- drop profiles - sqlplus/profile-drop.sql
+
+SQL Patch
+ - create a FTS patch - sqlplus/patch-q0-full.sql
+ - ignore hint patch - sqlplus/patch-q1-nohint.sql
+ - copy plan patch - sqlplus/patch-q2-plan.sql
+ - drop patches - sqlplus/patch-drop.sql
+
+Lets Tune
+
+
+insert into rwl.orders future orders
+
+write query to serarch for future orders and products
+
+Update some orders to be shipped
+
+add index on orders table based on order_date
+

@@ -24,6 +24,6 @@ PROMPT -> Press return to continue
 ACCEPT next1
 
 @@profile-get-sql-id.sql
-@@purge_cursor &prev_sql_id
+@@purge-cursor &prev_sql_id
 @@tracecbo-profile.sql no_profile
 
