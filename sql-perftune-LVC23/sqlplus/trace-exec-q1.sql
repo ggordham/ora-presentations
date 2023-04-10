@@ -31,8 +31,8 @@ SELECT value AS trace_file
       FROM v$diag_info
       WHERE name = 'Default Trace File';
 
-HOST $ORACLE_HOME/bin/tkprof &trace_file $USER_t1_trace.out
-HOST echo "$USER_t1_trace.out"
+HOST ${ORACLE_HOME}/bin/tkprof &trace_file ${USER}_t1_trace.out
+HOST echo "${USER}_t1_trace.out"
 PROMPT Look at the trace file listed above
 PROMPT run: "host more <filename>"
 PROMPT

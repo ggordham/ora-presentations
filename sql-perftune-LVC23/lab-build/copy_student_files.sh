@@ -36,7 +36,9 @@ mk_html(){
         echo "<H1>Files for $my_dir_title </H1><br><br>"
         echo "<TABLE>"
         for my_file in *; do
-            echo "<TD><TR><a href=\"$my_file\">$my_file</a></TR></TD>"
+            if [ "$my_file" != "index.html" ]; then
+                echo "<TR><TD><a href=\"$my_file\">$my_file</a></TD></TR>"
+            fi
         done
 
         echo "<br><br> page generated at: $( date +%Y%m%d.%H%M%S ) <br><br>"

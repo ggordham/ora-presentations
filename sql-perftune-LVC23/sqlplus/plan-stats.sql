@@ -1,6 +1,7 @@
 /* plan-stats.sql */
 
 -- NOTE this script will not work in SQL Developer WEB!
+SET ECHO OFF
 
 column ename format a20
 column rname format a20
