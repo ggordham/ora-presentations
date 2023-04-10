@@ -23,7 +23,7 @@ for i in $( seq ${FIRST_STUDENT} 1 ${NUM_STUDENTS} ); do
   cp -r "$LAB_SRC"/sqlt/run/* "/home/${user_name}/${LAB_NAME}/sqlplus/sqlt"
   chown -R "$user_name" "/home/${user_name}/${LAB_NAME}/sqlplus/sqlt"
   chgrp -R "$user_name" "/home/${user_name}/${LAB_NAME}/sqlplus/sqlt"
-  cp "$LAB_SRC/sqlt/util/coe_xfr_profile.sql" "/home/${user_name}/${LAB_NAME}/sqlplus"
+  cp "$LAB_SRC/sqlt/utl/coe_xfr_profile.sql" "/home/${user_name}/${LAB_NAME}/sqlplus"
   chown "$user_name" "/home/${user_name}/${LAB_NAME}/sqlplus/coe_xfr_profile.sql"
   chgrp "$user_name" "/home/${user_name}/${LAB_NAME}/sqlplus/coe_xfr_profile.sql"
 

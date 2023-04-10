@@ -15,7 +15,7 @@ TRACE_LIST="histogram nostats stats profile no_profile basic student"
 
 DIAG_DIR=/u01/app/oracle/diag
 DB_NAME=lvcdb1
-WEB_DIR=/u01/app/oracle/ords/static
+WEB_DIR=/u01/app/oracle/admin/ords/config/global/doc_root/static
 
 TRACE_DIR="${DIAG_DIR}/rdbms/${DB_NAME}/${DB_NAME}/trace"
 trace_web_dir="${WEB_DIR}/traces"
@@ -25,7 +25,7 @@ if [ ! -d "${trace_web_dir}" ]; then mkdir -p "${trace_web_dir}" ; fi
 mk_html(){
     my_target_dir=$1
     my_html_file=$2
-    chdir "${my_target_dir}" || return 1
+    cd "${my_target_dir}" || return 1
 
     my_dir_title="$( basename "${my_target_dir}" )"
     my_tgt_file="${my_target_dir}/${my_html_file}"
@@ -59,6 +59,7 @@ while true; do
         if [ !  -d "${target_dir}" ]; then mkdir -p "${target_dir}"; fi
 
         # Copy over any HTML files generated in the student directory
+        shopt -s nullglob
         for html_file in "${user_dir}/${LAB_NAME}"/sqlplus/*.html; do
             file_name="$( basename "${html_file}" )"
             if  [ "${html_file}" -nt "${target_dir}/${file_name}" ] || [ ! -f "${target_dir}/${file_name}" ]; then
@@ -69,6 +70,7 @@ while true; do
         done
 
         # Copy over any zip files generated in the student directory
+        shopt -s nullglob
         for zip_file in "${user_dir}/${LAB_NAME}"/sqlplus/*.zip; do
             file_name="$( basename "${zip_file}" )"
             if  [ "${zip_file}" -nt "${target_dir}/${file_name}" ] || [ ! -f "${target_dir}/${file_name}" ]; then
@@ -86,7 +88,8 @@ while true; do
     gen_html=N
     # look for trace files
     for trace_pattern in $TRACE_LIST; do
-        for trace_file in "${TRACE_DIR}/*${$trace_pattern}.trc"; do
+        shopt -s nullglob
+        for trace_file in "${TRACE_DIR}/"*"${trace_pattern}".trc; do
            file_name="$( basename "${trace_file}" )"
            if [ "${trace_file}" -nt "${trace_web_dir}/${file_name}" ] || [ ! -f "${trace_web_dir}/${file_name}" ]; then
                cp "${trace_file}" "${trace_web_dir}/"

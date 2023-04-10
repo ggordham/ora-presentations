@@ -189,7 +189,8 @@ FROM
             ) D
     ) D
 WHERE ROW# >= 1
-AND   ROW# <= 100;
+AND   ROW# <= 100
+AND PARSING_SCHEMA_NAME = 'PERFLAB';
 
 /*
 -- Note this section commented out for SQL Developer WEB
