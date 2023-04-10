@@ -11,7 +11,7 @@ lvcgg01.internal.viscositytechnology.com
 
 Lab setup
 - create student user for each student
-  - make sure SQLT is copied to each student
+- make sure SQLT is copied to each student
 - clone PDB for each student
 - make sure DB is running and each pdb is open
 - make sure ORDS is up and running
@@ -33,14 +33,20 @@ SQLTXPLAIN/Cim0BlawfyodUtoc
 Open items
 * - lets tune workload
 - does ORDS have enough memory
-- static web page for trace files and HTML output files
+*- static web page for trace files and HTML output files
 - run through lab end to end
-- write up lab instructions
+* - write up lab instructions
 - run through slides end to end (few open items on slides)
 - info on pulling bind variables / sql text
+*- lab COE_XFR_PROFILE steps
+*- lab sqlt steps
+- STATS lab - index clustering example?
+- add some slides on hints examples
+- slides on login / tools
 
 Day 1
 SQL basics
+- put sql in cache - sqlplus/sql-dummy.sql
 - Cursor Cache basic - day1/day1-cursor-cache.sql
 - Top SQL - day1/day1-top-sql.sql
 - SQL signitures - sqlplus/sql-signiture.sql

@@ -1,33 +1,36 @@
+#!/bin/bash
+# user-setup.sh
 
-
-useradd -u 60001 -G oinstall,dba student1
-cp -r /home/oracle/sqlt/run/* /home/student1/sqlplus/sqlt/
-chown student1 /home/student1/sqlplus/sqlt/*
-chgrp student1 /home/student1/sqlplus/sqlt/*
-
-
+NUM_STUDENTS=9
+FIRST_STUDENT=2
+GROUP_LIST="oinstall,dba"
 LAB_NAME=sql-perftune-LVC23
 
-ORACLE_SID=$( pgrep -fa ora_pmon |grep -v ASM | cut -d _ -f 3 )
-if [ ! -z "$ORACLE_SID" ]; then
-  export ORACLE_SID
+LAB_SRC=/opt/labsrc
 
-  export ORAENV_ASK=NO
-  source /usr/local/bin/oraenv -s
 
-  pdb=pdb${USER:0-1}
-  echo "connect perflab/perf\$lab@${pdb}" > ~/sqltune/connect.sql
-  echo "" >> ~/"${LAB_NAME}"/sqlplus/connect.sql
+for i in $( seq ${FIRST_STUDENT} 1 ${NUM_STUDENTS} ); do
+  user_num=$((60000 + i))
+  if (( i > 9 )); then
+      user_name=student${i}
+  else
+      user_name=student0${i}
+  fi
 
-  export ORACLE_PDB_SID=${pdb}
 
-  curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1 "ggordham-ora-presentations-???????/${LAB_NAME}"
+  useradd -u "$user_num" -G "$GROUP_LIST" "$user_name"
+  mkdir -p "/home/${user_name}/${LAB_NAME}/sqlplus/sqlt"
+  cp -r "$LAB_SRC"/sqlt/run/* "/home/${user_name}/${LAB_NAME}/sqlplus/sqlt"
+  chown -R "$user_name" "/home/${user_name}/${LAB_NAME}/sqlplus/sqlt"
+  chgrp -R "$user_name" "/home/${user_name}/${LAB_NAME}/sqlplus/sqlt"
+  cp "$LAB_SRC/sqlt/util/coe_xfr_profile.sql" "/home/${user_name}/${LAB_NAME}/sqlplus"
+  chown "$user_name" "/home/${user_name}/${LAB_NAME}/sqlplus/coe_xfr_profile.sql"
+  chgrp "$user_name" "/home/${user_name}/${LAB_NAME}/sqlplus/coe_xfr_profile.sql"
 
-  cd ~/"${LAB_NAME}"/sqlplus/
-  "$ORACLE_HOME"/bin/sqlplus /nolog
+  cp "${LAB_SRC}"/labstart.sh "/home/${user_name}"
+  chown "$user_name" "/home/${user_name}"/labstart.sh 
+  chmod u+x u+r "/home/${user_name}"/labstart.sh 
 
-else
-  echo "ERROR database not running for lab, please check with instructor."
-fi
+  echo "/home/$user_name/labstart.sh" >> /home/"$user_name"/.bashrc
+done;
 
-exit
