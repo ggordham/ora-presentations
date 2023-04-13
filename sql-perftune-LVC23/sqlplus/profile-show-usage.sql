@@ -28,7 +28,7 @@ PROMPT
 PROMPT Lets look at the profile definition again 
 PROMPT   in SQL cache which should show usage of the profile.
 PROMPT
-@@lsprofile.sal &prev_sql_id
+@@list-profile.sql &prev_sql_id
 
 PROMPT
 PROMPT This query will show the embeded hints in the profile.
