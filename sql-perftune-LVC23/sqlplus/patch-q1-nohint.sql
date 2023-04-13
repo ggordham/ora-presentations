@@ -22,7 +22,7 @@ PROMPT Lets create a patch that ignores the embeded hint
 PROMPT Press Enter to continue:
 ACCEPT next1
 @@patch-get-sql-id.sql patch-q1.sql
-@@patch-create-q0.sql &prev_sql_id
+@@patch-create-q1.sql &prev_sql_id
 
 
 PROMPT
