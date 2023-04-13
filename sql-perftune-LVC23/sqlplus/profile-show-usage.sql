@@ -9,12 +9,14 @@ set echo off
 PROMPT ===================== profile-Show-usage.sql ===============================
 @@connect.sql
 
+@@profile-get-sql-id.sql
+
 PROMPT
 PROMPT Lets look at the profile definition and see if any statements
 PROMPT   in SQL cache are showing usage (they should not).
 PROMPT
 
-@@lsprofile.sal &prev_sql_id
+@@list-profile.sal &prev_sql_id
 
 PROMPT
 PROMPT Now lets re-run the query and show that the profile is being used 
