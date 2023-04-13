@@ -16,7 +16,7 @@ PROMPT Lets look at the profile definition and see if any statements
 PROMPT   in SQL cache are showing usage (they should not).
 PROMPT
 
-@@list-profile.sal &prev_sql_id
+@@list-profile.sql &prev_sql_id
 
 PROMPT
 PROMPT Now lets re-run the query and show that the profile is being used 
