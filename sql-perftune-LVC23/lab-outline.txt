@@ -10,12 +10,14 @@ lvcgg01.internal.viscositytechnology.com
 10.32.0.51
 
 Lab setup
-- create student user for each student
-- make sure SQLT is copied to each student
-- clone PDB for each student
-- make sure DB is running and each pdb is open
-- make sure ORDS is up and running
-- make sure shellinabox is running
+x- create student user for each student
+x- make sure SQLT is copied to each student
+x- clone PDB for each student
+x- make sure DB is running and each pdb is open
+x- make sure ORDS is up and running
+x- make sure shellinabox is running
+x- make sure user file copy script is running
+
 
 perlab/perf$lab
 webdba/web$dba
@@ -25,9 +27,12 @@ SQLTXPLAIN/Cim0BlawfyodUtoc
 -- turn off auto SQL tuning sets
 
 -- run workload
-/opt/ora-lab/scripts/oraRWLRun.sh --dbsid lvcdb1 --pdb pdb0 --proj pdb1 --sec 195 --proc 1 --outdir /u01/app/oracle/admin/rwlout --test
+/opt/ora-lab/scripts/oraRWLRun.sh --dbsid lvcdb1 --pdb pdb01 --proj pdb1 --sec 195 --proc 1 --outdir /u01/app/oracle/admin/rwlout --test
 
 /opt/ora-lab/oraRWLRun.sh --dbsid t1db --pdb pdb1 --proj pdb1 --sec 195 --proc 1 --outdir /u01/app/oracle/admin/rwlout --test
+
+
+/opt/ora-lab/scripts/oraRWLRun.sh --dbsid lvcdb1 --pdb pdb01 --proj pdb1 --sec 900 --proc 4 --outdir /u01/app/oracle/admin/rwlout
 
 
 Open items
@@ -37,10 +42,10 @@ Open items
 - run through lab end to end
 * - write up lab instructions
 - run through slides end to end (few open items on slides)
-- info on pulling bind variables / sql text
+*- info on pulling bind variables / sql text
 *- lab COE_XFR_PROFILE steps
 *- lab sqlt steps
-- STATS lab - index clustering example?
+*- STATS lab - index clustering example?
 - add some slides on hints examples
 - slides on login / tools
 

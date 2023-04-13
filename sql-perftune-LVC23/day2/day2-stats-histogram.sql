@@ -20,9 +20,9 @@ exec dbms_stats.unlock_table_stats(user, 't3');
 exec dbms_stats.gather_table_stats(user,'t3',method_opt=>'for all columns size 254',no_invalidate=>false)
 
 -- Lets look at the histogram buckets
-SELECT column_name, endpoint_number, endpoint_value, endpoint_repeat_count
+SELECT table_name, column_name, endpoint_number, endpoint_value, endpoint_repeat_count
   FROM user_tab_histograms
-  WHERE table_name IN ('T1','T3') AND column_name = 'D' AND rownum < 6
-  ORDER BY endpoint_number ASC;
+  WHERE table_name IN ('T1','T3') AND column_name = 'D' AND endpoint_value < 5000
+  ORDER BY table_name, endpoint_number ASC;
 
 
