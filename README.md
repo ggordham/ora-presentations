@@ -4,6 +4,14 @@ Scripts from Oracle Presentations that I have given
 All scripts or code in this repository is use at your own risk.
 Everything here is intended for test or lab type use.
 
+BLUEPRINT4D 2023 - May 9,2023 - Oracle SQL Plan Management (SPM) your imperative performance tool
+
+```/spm-BP4D```
+
+BLUEPRINT4D 2023 - May 10, 2023 - Oracle Tuning Tips, My best developer tuning tips
+
+```/tune-tips-BP4D```
+
 UTOUG Training Days 2023 - Mar 7, 2023 - Oracle Tuning Tips, My best developer tuning tips
 
 ```/tune-tips-UTOUG```
