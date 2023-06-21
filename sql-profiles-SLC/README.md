@@ -193,7 +193,7 @@ Lets look at the same profile but this time it has been created / transfered usi
 
 ```sql
 @drop
-coe_xfr_sql_profile_337xya0uaj7bs_3993230814.sql
+@coe_xfr_sql_profile_337xya0uaj7bs_3993230814.sql
 ```
 
 Now view the hint and notice that it does not uses OPT_EST information but instead is a stored outline (execution plan) for the hint.
