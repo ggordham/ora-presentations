@@ -48,3 +48,8 @@ PROMPT Lets look at what patches exist
 PROMPT
 @@list-patch.sql
 
+PROMPT
+PROMPT Lets see the patch embeded hint
+PROMPT
+@@patch-see-hint.sql &prev_sql_id
+
