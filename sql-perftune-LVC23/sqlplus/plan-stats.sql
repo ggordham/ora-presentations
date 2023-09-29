@@ -14,13 +14,12 @@ prompt Press Enter to continue:
 accept next1
 
 set echo on
-select /*+ gather_plan_statistics */
-       e.ename,r.rname
-from   employees  e
-join   roles       r on (r.id = e.role_id)
-join   departments d on (d.id = e.dept_id)
-where  e.staffno <= 10
-and    d.dname in ('Department Name 1','Department Name 2');
+
+select /*+ gather_plan_statistics */ e.first_name, e.last_name, j.job_title
+  from hr.employees  e
+    join hr.jobs j on (j.job_id = e.job_id)
+    join hr.departments d on (d.department_id = e.department_id)
+  where  d.department_name in ('Finance','Administration');
 
 set echo off
 prompt Showing explain plan with additional statistics

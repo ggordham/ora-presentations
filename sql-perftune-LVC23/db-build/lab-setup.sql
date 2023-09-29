@@ -11,6 +11,7 @@ GRANT select_catalog_role TO perflab;
 GRANT administer sql management object TO perflab;
 GRANT advisor TO perflab;
 GRANT alter session TO perflab;
+GRANT sqlt_user_role TO peflab;
 
 GRANT SELECT ON co.products TO perflab;
 GRANT SELECT ON co.orders TO perflab;
@@ -22,6 +23,7 @@ ALTER USER perflab QUOTA UNLIMITED ON users;
 
 GRANT READ ON hr.departments TO perflab;
 GRANT READ ON hr.employees TO perflab;
+GRANT READ ON hr.roles TO perflab;
 GRANT READ ON hr.jobs TO perflab;
 GRANT READ ON hr.locations TO perflab;
 GRANT READ ON hr.regions TO perflab;

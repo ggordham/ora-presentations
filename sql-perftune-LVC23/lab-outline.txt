@@ -2,6 +2,35 @@
 SQL Tuning LVC - Lab Outline
 
 
+
+curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1
+curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1 "ggordham-ora-presentations-???????/sql-perftune-LVC23"
+
+Had to uninstall ORDS from DB and Re-install
+ORDS db install part is still not working in script.
+
+Create the lab users
+edit file to add con_pdb
+define con_pdb=@pdb3
+db-build/lab-setup.sql
+
+Stage sys stats
+db-build/sys-stats-stg.sql
+
+Install SQLT
+copy sqlt_10g_11g_12c_18c_19c_13th_August_2023.zip to server
+cd ~/sqlt/install
+sqlplus / as sysdba
+SQL> START sqcsilent2.sql '@pdb3' Oracle_4U USERS TEMP '' T
+
+cp -r ~/sqlt/run ../sql-perftune-LVC23/sqlplus/sqlt
+
+Run sample load test to get some data in RWL
+oraRWLRun.sh
+
+connect to pdb as sys user, load extra rwl data
+db-build/rwl_extra_data.sql
+
 https://sqltune.visctech.com/shell/
 https://sqltune.visctech.com/ords/sql-developer
 https://sqltune.visctech.com/static/
@@ -17,8 +46,6 @@ x- make sure DB is running and each pdb is open
 x- make sure ORDS is up and running
 x- make sure shellinabox is running
 x- make sure user file copy script is running
-
-
 perlab/perf$lab
 webdba/web$dba
 student1/stud$ent1

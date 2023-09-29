@@ -25,6 +25,10 @@ SELECT client_name, status, window_group,
   FROM dba_autotask_client
   WHERE client_name = 'auto optimizer stats collection';
 
+-- to check the status of specifc days that the job occurs
+SELECT window_name, window_next_time, optimizer_stats 
+  FROM dba_autotask_window_clients;
+
 -- Show the scheduled windows for the auto job
 SELECT c.window_name, c.autotask_status, c.optimizer_stats,
        w.enabled,

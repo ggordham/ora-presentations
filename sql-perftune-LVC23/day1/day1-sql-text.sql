@@ -4,9 +4,9 @@
 
 SELECT sql_id, sql_text, sql_fulltext
   FROM v$sql
-  WHERE sql_id = '0rx6u73rct24q';
+  WHERE sql_id = 'bydvrdc2hrp1x';
 
 SELECT sql_id, position, name, datatype_string, last_captured, value_string
   FROM v$sql_bind_capture
-  WHERE sql_id = '0rx6u73rct24q';
+  WHERE sql_id = 'bydvrdc2hrp1x';
 
