@@ -42,9 +42,9 @@ PROMPT  figure things out normally.
 prompt Press ENTER to continue
 accept next1
 
-@@q1.sql 10
-@@q1.sql 10
-@@q1.sql 10
+@@spm-q1.sql 10
+@@spm-q1.sql 10
+@@spm-q1.sql 10
 @@plans.sql
 
 PROMPT Note the different plan and the baseline used.

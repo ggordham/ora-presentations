@@ -1,5 +1,7 @@
 /* spm-drop.sql */
 
+SET ECHO ON
+
 -- Note this drops all baselines
 connect / as sysdba
 

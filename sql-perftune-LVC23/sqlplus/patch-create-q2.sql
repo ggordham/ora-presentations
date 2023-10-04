@@ -33,7 +33,7 @@ declare
   l_patch_name := sys.dbms_sqldiag.create_sql_patch(
                                 sql_id    => '&1',    /* Apply to this SQL */
                                 hint_text => hints,
-                                name      =>'sql_&1_patch');
+                                name      =>'sql_&1._patch');
 
 END;
 /

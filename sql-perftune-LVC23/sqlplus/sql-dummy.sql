@@ -1,5 +1,9 @@
 /* sql-dummy.sql */
 
+PROMPT "Running some queries to populate cursor cache."
+
+@@connect.sql
+
 var dummyid number
 
 exec :dummyid := 100

@@ -1,6 +1,16 @@
 
 SQL Tuning LVC - Lab Outline
 
+Build VM
+- Storage - 5 disks
+ - 50GB /u01
+ - 20GB /mnt/software
+ - 3x 100GB /u02, /u03, /u04
+ - 80GB /
+
+ 64GB memory
+ 16 CPU
+
 
 
 curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1

@@ -16,14 +16,14 @@ PROMPT First we will run the test query and show that index lookup is used
 PROMPT  for the tab2
 PROMPT
 @@patch-q2.sql
-@@plan.sql
+@@plan-basic.sql
 
 PROMPT
 PROMPT Now we will run the same query with a hint added to force a full table
 PROMPT  scan for tab2
 PROMPT
 @@patch-q3.sql
-@@plan.sql
+@@plan-basic.sql
 
 
 PROMPT
@@ -45,7 +45,7 @@ PROMPT Press Enter to continue:
 ACCEPT next1
 @@connect.sql
 @@patch-q2.sql
-@@plan.sql
+@@plan-basic.sql
 
 PROMPT
 PROMPT Lets look at what patches exist

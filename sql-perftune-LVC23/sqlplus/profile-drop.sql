@@ -1,5 +1,7 @@
 /* profile-drop.sql */
 
+SET ECHO ON
+
 BEGIN
   FOR REC IN (SELECT name FROM DBA_SQL_PROFILES WHERE sql_text like '%PROFTEST%')
   LOOP

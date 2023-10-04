@@ -1,5 +1,6 @@
 /* spm-load-cursor.sql */
 
+SET ECHO ON
 
 -- Note this needs to be run by a user that has access to cursor cache
 connect / as sysdba

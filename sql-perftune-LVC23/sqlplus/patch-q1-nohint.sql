@@ -15,7 +15,7 @@ PROMPT
 PROMPT First we will run the test query and show the hash join is in use
 PROMPT
 @@patch-q1.sql
-@@plan.sql
+@@plan-basic.sql
 
 PROMPT
 PROMPT Lets create a patch that ignores the embeded hint
@@ -31,7 +31,7 @@ PROMPT Press Enter to continue:
 ACCEPT next1
 @@connect.sql
 @@patch-q1.sql
-@@plan.sql
+@@plan-basic.sql
 
 PROMPT
 PROMPT Lets look at what patches exist

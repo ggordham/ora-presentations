@@ -7,7 +7,8 @@ column sql_id format a13
 column sql_text format a30
 column sql_profile format a30
 
-PROMPT Showing profiles in the system
+PROMPT Showing profiles in the system 
+PROMPT  - if there are not profiles, it will show "no rows selected"
 PROMPT
 
 SELECT p.name, p.signature,
@@ -19,6 +20,8 @@ SELECT p.name, p.signature,
 
 
 PROMPT Showing the SQL ID from cursor cache and if the profile was used
+PROMPT  - if a profile was used for an execution in memory the name will still show
+PROMPT    even if the profile has been removed.
 PROMPT
 
 SELECT sql_id, hash_value, plan_hash_value, exact_matching_signature, force_matching_signature,

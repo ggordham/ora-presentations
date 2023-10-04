@@ -24,7 +24,7 @@ PROMPT  this gives us the information needed to create the patch
 PROMPT Press Enter to continue:
 ACCEPT next1
 @@patch-q0full.sql
-@@plan.sql
+@@plan-basic.sql
 
 PROMPT
 PROMPT Lets create a patch that forces full table scan
@@ -41,7 +41,7 @@ PROMPT Press Enter to continue:
 ACCEPT next1
 @@connect.sql
 @@patch-q0.sql
-@@plan.sql
+@@plan-basic.sql
 
 PROMPT
 PROMPT Lets look at what patches exist

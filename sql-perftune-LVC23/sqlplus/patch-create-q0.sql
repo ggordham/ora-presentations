@@ -15,7 +15,7 @@ BEGIN
   l_patch_name := sys.dbms_sqldiag.create_sql_patch(
                                 sql_id => '&1',
                                 hint_text => 'FULL(@"SEL$1" "TAB1"@"SEL$1")',
-                                name      =>'sql_&1_patch');
+                                name      =>'sql_&1._patch');
 END;
 /
 
