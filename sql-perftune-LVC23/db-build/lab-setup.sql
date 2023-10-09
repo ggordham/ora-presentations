@@ -23,7 +23,7 @@ ALTER USER perflab QUOTA UNLIMITED ON users;
 
 GRANT READ ON hr.departments TO perflab;
 GRANT READ ON hr.employees TO perflab;
-GRANT READ ON hr.roles TO perflab;
+-- GRANT READ ON hr.roles TO perflab;
 GRANT READ ON hr.jobs TO perflab;
 GRANT READ ON hr.locations TO perflab;
 GRANT READ ON hr.regions TO perflab;
