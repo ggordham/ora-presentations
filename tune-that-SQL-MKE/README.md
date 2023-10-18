@@ -54,6 +54,7 @@ Open a SQL*Plus prompt and run the following script
 
 ```sql
 @lab-setup
+
 ```
 
 This step will create a user called PERFLAB that will be used througout the lab.
@@ -64,6 +65,7 @@ Now create the tables for the lab, along with inital baseline:
 @ctables
 @spm_stgtab.sql
 @q1-baseline.sql
+
 ```
 
 ### create some background statements
@@ -76,6 +78,7 @@ This will put some statements in the cursor cache with some load
 
 @q1.sql 10
 @q1-many.sql 10
+
 ```
 
 ### Identify bad SQL
@@ -84,6 +87,7 @@ Lets look at some executions of a specific sql statements
 
 ```sql
 @sql-executions.sql fua0hb5hfst77
+
 ```
 
 Lets the get the plan and bind variable values for that statement
@@ -91,6 +95,7 @@ Lets the get the plan and bind variable values for that statement
 ```sql
 @plan-sqlid.sql fua0hb5hfst77
 @sql-bind.sql fua0hb5hfst77
+
 ```
 
 Lets find out how many rows were returned
@@ -98,6 +103,7 @@ Lets find out how many rows were returned
 ```sql
 @q1.sql 1
 @q1.sql 10
+
 ```
 
 ### SQL Plan with execution statistics
@@ -106,6 +112,7 @@ Lets find out how many rows were returned
 @connect.sql
 @q1 10
 @plans.sql
+
 ```
 
 ### Look at baseline and addtional plan
@@ -115,6 +122,7 @@ Look at the additional execution plan that the optimizer has come up with and ca
 ```sql
 @list-baseline.sql
 @plan-baseline.sql fua0hb5hfst77
+
 ```
 
 ### Look at the table statistics including the histogram
@@ -123,6 +131,7 @@ Lets look at the table statistics and the histogram column statistics.
 
 ```sql
 @show-hist.sql
+
 ```
 
 ### Evovle the baseline to accept the new plan
@@ -132,6 +141,7 @@ The Baseline evolve task will check and then accept the new plan if it is better
 ```sql
 @spm-evolve.sql fua0hb5hfst77
 @list-baseline.sql
+
 ```
 
 Lets see the results of the new plan
@@ -141,6 +151,7 @@ Lets see the results of the new plan
 @q1.sql 10
 @q1-many.sql 10
 @sql-executions.sql fua0hb5hfst77
+
 ```
 
 ## Clean up the lab
