@@ -39,17 +39,18 @@ fi
 if [ "$MY_SID" == "" ]; then
   if [ "$ORACLE_SID" == "" ]; then
       ORACLE_SID=$( pgrep -fa ora_pmon |grep -v ASM | cut -d _ -f 3 )
-      # issue with pgrep changing sid name to lower case
-      #  if we can't match the process name force the SID to uppercase
-      if [ $( pgrep -fc ora_pmon_${ORACLE_SID} ) -eq 0 ]; then
-        ORACLE_SID=${ORACLE_SID^^}
-      fi
-      export ORACLE_SID
       unset ORACLE_HOME
   fi
 else 
   export ORACLE_SID="$MY_SID"
 fi
+
+# issue with pgrep changing sid name to lower case
+#  if we can't match the process name force the SID to uppercase
+if [ $( pgrep -fc ora_pmon_${ORACLE_SID} ) -eq 0 ]; then
+  ORACLE_SID=${ORACLE_SID^^}
+fi
+export ORACLE_SID
 
 # Check for static HOME, otherwise we use oratab for home setup
 if [ "$MY_HOME" == "" ]; then
