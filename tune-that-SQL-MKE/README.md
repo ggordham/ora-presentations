@@ -1,4 +1,4 @@
-#tune-that-sql-MKE
+# tune-that-sql-MKE
 
 Scripts from Milwaukee Tech Day October 18, 2023
 
@@ -13,9 +13,9 @@ These are for training purposes and should not be run in a production or product
 
 The scripts have been modified for the purpose of the lab and to make them easy to step through for instructional purposes.
 
-##Run the lab on Docker
+## Run the lab on Docker
 
-###Prerequisets
+### Prerequisets
 You need a working docker image with Oracle database pre installed.
 These scripts have been tested on Oracle 19c and 21c, but should also work on Oracle 12c and 18c.
 Your database / PDB should have a USERS tablespace.
@@ -48,7 +48,7 @@ SP2-0640: Not connected
 @ 06-JAN-22>
 ```
 
-###Setup test tables and user for lab
+### Setup test tables and user for lab
 
 Open a SQL*Plus prompt and run the following script
 
@@ -66,7 +66,7 @@ Now create the tables for the lab, along with inital baseline:
 @q1-baseline.sql
 ```
 
-###create some background statements
+### create some background statements
 
 This will put some statements in the cursor cache with some load
 
@@ -78,7 +78,7 @@ This will put some statements in the cursor cache with some load
 @q1-many.sql 10
 ```
 
-###Identify bad SQL
+### Identify bad SQL
 
 Lets look at some executions of a specific sql statements
 
@@ -100,7 +100,7 @@ Lets find out how many rows were returned
 @q1.sql 10
 ```
 
-###SQL Plan with execution statistics
+### SQL Plan with execution statistics
 
 ```sql
 @connect.sql
@@ -108,7 +108,7 @@ Lets find out how many rows were returned
 @plans.sql
 ```
 
-###Look at baseline and addtional plan
+### Look at baseline and addtional plan
 
 Look at the additional execution plan that the optimizer has come up with and captured in the baseline.
 
@@ -117,7 +117,7 @@ Look at the additional execution plan that the optimizer has come up with and ca
 @plan-baseline.sql fua0hb5hfst77
 ```
 
-###Look at the table statistics including the histogram
+### Look at the table statistics including the histogram
 
 Lets look at the table statistics and the histogram column statistics.
 
@@ -125,7 +125,7 @@ Lets look at the table statistics and the histogram column statistics.
 @show-hist.sql
 ```
 
-###Evovle the baseline to accept the new plan
+### Evovle the baseline to accept the new plan
 
 The Baseline evolve task will check and then accept the new plan if it is better.
 
@@ -143,7 +143,7 @@ Lets see the results of the new plan
 @sql-executions.sql fua0hb5hfst77
 ```
 
-##Clean up the lab
+## Clean up the lab
 
 To clean up and drop everything run the following.
 *Note: this will remove the perflab user and all it's objects*
@@ -153,4 +153,4 @@ To clean up and drop everything run the following.
 @clean-up.sql
 ```
 
-#END
+# END
