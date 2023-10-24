@@ -71,12 +71,14 @@ Note: bugs *********************
   defaults,noatime,nodiratime,logbufs=8,logbsize=256k,largeio,inode64,swalloc,allocsize=512m,_netdev 0 0
 - does not setup data directory before DBCA kicks off
 - /u01/app/oracle/admin is owned by root instead of oracle (if DBCA fails)
+- Had to uninstall ORDS from DB and Re-install
 - ORDS script still having issues (need to check out new version)
 
 ### Download lab scripts
 
 ```bash
 mkdir -p /opt/labsrc
+chown oracle:oinstall /opt/labsrc
 cd /opt/labsrc
 curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1 "ggordham-ora-presentations-???????/sql-perftune-LVC23"
 ```
@@ -214,19 +216,25 @@ https://help.dreamhost.com/hc/en-us/articles/4407354972692-Connecting-to-the-Dre
 
 ### load data into pdb0
 
-1. run load simulator
+1. Resize the data tablespace
+
+```SQL
+alter database datafile '/u02/oradata/LVCDB1/pdb0/data01.dbf' resize 28G;
+```
+
+2. run load simulator
 
 ```bash
 /opt/ora-lab/scripts/oraRWLRun.sh
 ```
 
-2. load old RWL data
+3. Connect to pdb as sys user, load extra rwl data
 
 ```SQL
 @/opt/labsrc/sql-perftune-LVC23/db-build/rwl_extra_data.sql
 ```
 
-3. create lab users and load lab users tables
+4. create lab users and load lab users tables
 
 ```SQL
 @/opt/labsrc/sql-perftune-LVC23/db-build/lab-setup.sql
@@ -234,7 +242,7 @@ https://help.dreamhost.com/hc/en-us/articles/4407354972692-Connecting-to-the-Dre
 @/opt/labsrc/sql-perftune-LVC23/db-build/sys-stats-stg.sql
 ```
 
-4. Install sqlt + Grant to perflab user
+5. Install sqlt + Grant to perflab user
 
 ```bash
 cd /opt/labsrc
@@ -322,7 +330,7 @@ sed -i 's/rwl_proj=pdb0/rwl_proj=pdb01/g' /opt/ora-lab/scripts/server.conf
 2. Update RWL script for bad queries
 
 ```bash
-cp /u01/app/oracle/rwloadsim/oltp/oe_handle_orders.rwl /u01/app/oracle/rwloadsim/oltp/oe_handle_orders.rwl.orig
+mv /u01/app/oracle/rwloadsim/oltp/oe_handle_orders.rwl /u01/app/oracle/rwloadsim/oltp/oe_handle_orders.rwl.orig
 cp /opt/labsrc/sql-perftune-LVC23/lab-build/oe_handle_orders.rwl /u01/app/oracle/rwloadsim/oltp
 ```
 
