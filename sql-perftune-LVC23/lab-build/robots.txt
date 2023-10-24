@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /static/
+
+User-agent: AdsBot-Google
+Disallow: /static/
