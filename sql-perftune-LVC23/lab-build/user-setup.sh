@@ -39,7 +39,7 @@ for i in $( seq ${FIRST_STUDENT} 1 ${NUM_STUDENTS} ); do
   chmod u+x "/home/${user_name}"/labstart.sh 
   chmod u+r "/home/${user_name}"/labstart.sh 
 
-  echo "if [ -t 0 ]; then /home/student01/labstart.sh; fi" >> /home/"$user_name"/.bashrc
+  echo "if [ -t 0 ]; then /home/${user_name}/labstart.sh; fi" >> /home/"${user_name}"/.bashrc
   chown "$user_name" "/home/${user_name}"/.bashrc
 
   # add ssh key for Bastillion

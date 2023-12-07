@@ -79,3 +79,5 @@ SELECT * FROM DBA_TAB_STAT_PREFS WHERE OWNER = 'PERFLAB';
 
 -- set the preferences on a specific object back to default
 EXEC DBMS_STATS.SET_TABLE_PREFS('PERFLAB', 'EMP', 'STALE_PERCENT', NULL);
+
+

@@ -27,8 +27,8 @@ Bastillion SSH server https://github.com/bastillion-io/Bastillion/
 5. Update and install additional packages.
 
 ```bash
-   dnf -y update
-   dnf -y install NetworkManager-tui bind-utils java-latest-openjdk
+   dnf update -y
+   dnf install -y NetworkManager-tui bind-utils java-17-openjdk
 ```
 
 6. Update network configuration
@@ -112,9 +112,17 @@ ords config set standalone.static.context.path /static
 ords config set standalone.static.path /u01/app/oracle/admin/ords/config/global/doc_root/static
 ords config set security.httpsHeaderCheck "X-Forwarded-Proto: https"
 ords config set security.httpsHeaderCheck "https://sqltune.visctech.com"
+ords config delete standalone.https.port
+ords config delete standalone.https.host
 ```
 
-5. restart ords as root user
+5. Update the /etc/ords.conf file
+
+```
+SERVE_EXTRA_ARGS=--port 8080
+```
+
+6. restart ords as root user
 
 ```bash
 systemctl restart ords
@@ -157,15 +165,23 @@ sessionTimeout=30
 5. Configure addtional memory for Jetty
 
 ```
-/opt/bastillion/Bastillion-jetty/jetty/bin/jetty.sh
+/opt/Bastillion-jetty/jetty/bin/jetty.sh
 JAVA_OPTIONS="-Xms1024m -Xmx20489m -server"
 ```
-
-6.  enable auto start
+6. Set inital DB password
 
 ```bash
-cp /opt/bastillion/Bastillion-jetty/jetty/bin/jetty.sh /etc/init.d/bastillion
-echo JETTY_HOME=/opt/bastillion/Bastillion-jetty/jetty > /etc/default/bastillion
+cd /opt/Bastillion-jetty
+./startBastillion.sh
+```
+
+Note: you will be prompted to enter a new database password twice.  This is for the Bastillion internal database.  After it starts you can verify the URL that it is running.  Once verified, press CTL+C to kill the application and proceed to next step.
+
+7.  enable auto start
+
+```bash
+cp /opt/Bastillion-jetty/jetty/bin/jetty.sh /etc/init.d/bastillion
+echo JETTY_HOME=/opt/Bastillion-jetty/jetty > /etc/default/bastillion
 service bastillion start
 chkconfig --add bastillion
 chkconfig --list
@@ -174,10 +190,11 @@ chkconfig --list
 default URL: https://10.x.x.x:8443/shell
 default user: admin / changeme
 
-7. Login and change admin password
+8. Login and change admin password
 
-8. Create ssh key assign to students, copy ssh key to: /opt/labsrc/student-key.key
-9. Create authorized_keys file at: /opt/labsrc/authorized_keys
+9. Create ssh key assign to students, copy ssh key to: /opt/labsrc/student-key.key
+
+10. Create authorized_keys file at: /opt/labsrc/authorized_keys - this should contain the global authorized key. You can get this from the root user authorized_keys file after creating a root user terminal and testing in Bastillion.
 
 
 ### NGNIX setup
@@ -216,10 +233,13 @@ https://help.dreamhost.com/hc/en-us/articles/4407354972692-Connecting-to-the-Dre
 
 ### load data into pdb0
 
-1. Resize the data tablespace
+1. Resize the data, system, and sysaux tablespace
 
 ```SQL
 alter database datafile '/u02/oradata/LVCDB1/pdb0/data01.dbf' resize 28G;
+alter database datafile '/u02/oradata/LVCDB1/pdb0/system01.dbf' resize 768M;
+alter database datafile '/u02/oradata/LVCDB1/pdb0/sysaux01.dbf' resize 768M;
+
 ```
 
 2. run load simulator
@@ -239,7 +259,6 @@ alter database datafile '/u02/oradata/LVCDB1/pdb0/data01.dbf' resize 28G;
 ```SQL
 @/opt/labsrc/sql-perftune-LVC23/db-build/lab-setup.sql
 @/opt/labsrc/sql-perftune-LVC23/db-build/ctables.sql
-@/opt/labsrc/sql-perftune-LVC23/db-build/sys-stats-stg.sql
 ```
 
 5. Install sqlt + Grant to perflab user
