@@ -120,22 +120,21 @@ Now lets help the Optimizer understand the cardinality by creating a histogram (
 
 ```sql
 @gatherh.sql
+@tab_stats.sql
 @show-hist.sql
 
 ```
 
 ### Re-run the query and see how it helps
 
-NOTE THIS NEEDS TO BE FIXED / WALKED THROUGH
+Show that the histogram helps the Optimizer choose correctly.
 
 ```sql
 @q1.sql 1000
 @plans.sql
 @q1.sql 10
-
-@q1.sql 1000
 @plans.sql
-@q1.sql 10
+
 ```
 
 ### Purge the query from cursor cache
@@ -145,6 +144,8 @@ NOTE THIS NEEDS TO BE FIXED / WALKED THROUGH
 @connect
 @q1.sql 10
 @plans.sql
+@q1.sql 1000
+
 -- note the plan cost
 ```
 
