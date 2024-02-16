@@ -4,6 +4,22 @@ Scripts from Oracle Presentations that I have given
 All scripts or code in this repository is use at your own risk.
 Everything here is intended for test or lab type use.
 
+ORPUB Members session - February 22, 2024 - SQL Tuning How does cardinality work?
+
+```/cardinality-sql-tune-ORAPUB```
+
+Oracle Database Tech Day Tour Florida - January 9-11, 2024 - "Tune that SQL", now what do I do?
+
+```/tune-that-SQL_SCOUG```
+
+Michigan Oracle User Summit - October 25, 2023 - "Tune that SQL", now what do I do?
+
+```/tune-that-SQL-mous```
+
+Milwaukee Technology Day - October 19, 2023 -  "Tune that SQL", now what do I do?
+
+```/tune-that-SQL-MKE```
+
 BLUEPRINT4D 2023 - May 9,2023 - Oracle SQL Plan Management (SPM) your imperative performance tool
 
 ```/spm-BP4D```
