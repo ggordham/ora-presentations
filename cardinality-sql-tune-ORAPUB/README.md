@@ -53,9 +53,9 @@ cd cardinality-sql-tune-ORAPUB
 Connect to the database as a DBA user.  In this example I'm running the script locally on the servber and connecting to the PDB called pdb1 in the container database t1db.
 
 ```bash
-echo t1db | source oraenv
+export ORACLE_SID=t1db; export ORAENV_ASK=NO; source /usr/local/bin/oraenv -s
 export ORACLE_PDB_SID=pdb1
-$ORACLE_HOME/bin/sqlplus /nolg
+$ORACLE_HOME/bin/sqlplus /nolog
 
 ```
 
@@ -73,7 +73,6 @@ We are making sure the extra column we are using is removed and setting the SH.C
 ```SQL
 @@connect.sql
 @@drop_social.sql
-@@stats.sql
 
 ```
 
@@ -83,6 +82,7 @@ We do a basic lookup of customers for the state of California and look at the ex
 
 ```SQL
 @@connect.sql
+
 @@q1.sql
 @@plan.sql
 
@@ -107,6 +107,12 @@ Add the new SOCIAL_ID column to the SH.CUSTOMERS table to hide opt out customers
 ```SQL
 @@connect.sql
 @@add_social.sql
+
+```
+
+Now run our new query and see how it works out.
+
+```SQL
 @@q2.sql
 @@plan.sql
 
@@ -182,7 +188,6 @@ To cleanup this lab you will need to remove the added SOCIAL_ID column and drop 
 ```SQL
 @@connect.sql
 @@drop_social.sql
-@@gatherh.sql
 
 ```
 

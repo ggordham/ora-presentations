@@ -4,5 +4,5 @@
 ALTER TABLE sh.customers DROP COLUMN social_id;
 
 -- re-gather basic statistics
-@@stats.sh
+@@statsh.sql
 

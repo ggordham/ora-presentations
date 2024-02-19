@@ -1,5 +1,7 @@
 /* q2.sql */
 
+SET ECHO ON
+
 SELECT /*+ gather_plan_statistics no_adaptive_plan */ 
        COUNT('x')
   FROM sh.sales s, sh.customers c
@@ -7,3 +9,4 @@ SELECT /*+ gather_plan_statistics no_adaptive_plan */
     AND c.social_id = 'XXXXXX';
 
 
+SET ECHO OFF

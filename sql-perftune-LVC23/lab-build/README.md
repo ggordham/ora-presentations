@@ -390,6 +390,7 @@ cp /opt/labsrc/sql-perftune-LVC23/lab-build/oe_handle_orders.rwl /u01/app/oracle
 Run the copy file script in the background.
 
 ```bash
+chmod +x /opt/labsrc/sql-perftune-LVC23/lab-build/copy_student_files.sh
 nohup /opt/labsrc/sql-perftune-LVC23/lab-build/copy_student_files.sh > /root/copy_student_files.log 2>&1 &
 ```
 
