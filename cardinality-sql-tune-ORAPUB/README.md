@@ -181,6 +181,20 @@ Lets provide Oracle with the proper statistics using histograms.
 
 ```
 
+## Show adaptive plan
+
+Now that the Optimizer has histogram statistics it can make better decisions about how to retrive rows and join tables automatically.
+
+```SQL
+@@q3.sql 2
+@@plans.sql
+
+@@q3.sql XXXXXX
+@@q3.sql XXXXXX
+@@plans.sql
+
+```
+
 ## Cleanup Lab
 
 To cleanup this lab you will need to remove the added SOCIAL_ID column and drop the PERFLAB user from the database.
