@@ -2,7 +2,7 @@
 
 VAR socid VARCHAR2(10);
 
-EXEC :socid := &1;
+EXEC :socid := '&1';
 
 SET ECHO ON
 
