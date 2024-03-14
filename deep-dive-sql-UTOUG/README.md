@@ -128,7 +128,7 @@ sqlt_s39943_main.html
 We will trace a SQL statement and then look at the TKPROF output
 
 ```sql
-@trace-exec-q1.sql
+@trace-exec-q1.sql basic
 
 ```
 
