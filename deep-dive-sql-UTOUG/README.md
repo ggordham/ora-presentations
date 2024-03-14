@@ -14,12 +14,12 @@ You can read the trace files directly in your browser through GIT links below.  
 
 ---
 
-ora-presentations/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
-                  indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
+ora-presentations/deep-dive-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
+                  deep-dive-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
 
-https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
-https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
-https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html
+https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/deep-dive-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
+https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/deep-dive-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
+https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/deep-dive-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html
 sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
 sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
 
@@ -29,11 +29,11 @@ sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html
 | ---- |  -------- | ----------- |
 | | `README.md` | This readme file |
 | | `sql_monitor_output.html` | Example of SQL Monitor |
-| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html) | `sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html` | SQL Health Check main report |
-| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_2_diagnostics.html) | `sqlhc_20210304_1556_fua0hb5hfst77_2_diagnostics.html` | SQL Health Check diagnostics details |
-| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_3_execution_plans.html) | `sqlhc_20210304_1556_fua0hb5hfst77_3_execution_plans.html` | SQL Health Check execution plans |
-| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html) | `sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html` | SQL Health Check diagnostic and DB info |
-| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/indepth-sql-UTOUG/sqlt_s39943_main.html) | `sqlt_s39943_main.html` | SQLTXPlain main file |
+| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/deep-dive-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html) | `sqlhc_20210304_1556_fua0hb5hfst77_1_health_check.html` | SQL Health Check main report |
+| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/deep-dive-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_2_diagnostics.html) | `sqlhc_20210304_1556_fua0hb5hfst77_2_diagnostics.html` | SQL Health Check diagnostics details |
+| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/deep-dive-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_3_execution_plans.html) | `sqlhc_20210304_1556_fua0hb5hfst77_3_execution_plans.html` | SQL Health Check execution plans |
+| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/deep-dive-sql-UTOUG/sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html) | `sqlhc_20210304_1556_fua0hb5hfst77_4_sql_detail.html` | SQL Health Check diagnostic and DB info |
+| [HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/deep-dive-sql-UTOUG/sqlt_s39943_main.html) | `sqlt_s39943_main.html` | SQLTXPlain main file |
 | | `sqlt_s39943_tc_script.sql` | SQLTXPlain script to re-run same SQL |
 | | `t1db_ora_32527_s39943_10053.trc` | SQLTXPlain CBO trace |
 | | `t1db_ora_32309_trace.out` | Simple SQL Trace run through TKPROF |
@@ -66,18 +66,18 @@ Your database / PDB should have a USERS tablespace.
 Once you have the container up and running with a working database you can install the lab scripts with the following command:
 
 ```bash
-podman exec DB213 sh -c "curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1"
+podman exec db1922 sh -c "curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1"
 
 ```
 
-*Note DB213 in the command is the container name, use your container name.  You can find your container name with the ```podman ps``` command.*
+*Note db1922 in the command is the container name, use your container name.  You can find your container name with the ```podman ps``` command.*
 
 Through out the lab you will need a SQL*Plus prompt on the databases.  This is done by running the following podman command.  (Note this command will put you in the directory with the lab scripts and set your SQL Prompt)
 
 **SQL Prompt**
 
 ```bash
-podman exec -it DB213 sh -c "chmod +x splus.sh; /home/oracle/splus.sh isqlu"
+podman exec -it db1922 sh -c "chmod +x splus.sh; /home/oracle/splus.sh ddsu"
 
 ```
 
@@ -117,12 +117,29 @@ Now create the tables for the lab:
 
 If you see any errors do not proceed with the lab.
 
+### Look at SQLT report
+
+Open the HTML file
+sqlt_s39943_main.html
+[HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/deep-dive-sql-UTOUG/sqlt_s39943_main.html)
+
+### Demo of TKPROF outoupt
+
+We will trace a SQL statement and then look at the TKPROF output
+
+```sql
+@trace-exec-q1.sql
+
+```
+
+Make sure to look at the TKPROF report.
+
 ### First test - run a trace with no object stats
 
 We will drop the stats from the tables, and run a query CBO trace.  You should open the test1.sql and look at what scripts it calls.  Each script can be inspected to review specific steps for running a trace, and clearing a cursor from the cursor cache.
 
 ```sql
-@test1
+@trace-nostat.sql
 
 ```
 
@@ -146,7 +163,7 @@ Look at "Column (#4) has a NDV (Number of Distinct Values) and the estimated sel
 We gather basic object statistics, then run a the same query with CBO trace again.  Again you should review the scripts, here we include steps for gathering basic statistics.
 
 ```sql
-@test2
+@trace-stats.sql
 
 ```
 
@@ -161,7 +178,7 @@ Look at "Column (#4) has a NDV (Number of Distinct Values) and that the estimate
 Now we will add histograms to the columns of the tables and then run the CBO trace for a final time.  This third test includes gathering histogram statistics so be sure to look at how that is done in the script.
 
 ```sql
-@test3
+@trace-hist.sql
 
 ```
 
@@ -179,6 +196,15 @@ Shows that the histograms are in place
 
 Note that for column "D" the buck for ENDPOINT_VALUE 10 has a repeat count of 2790 while the other buckets listed only have a count of one.  This lets Oracle know that the distribution of data in the table is not "normal".
 
+### Run a plan with statistics
+
+Show an execution plan with execution statistics
+
+```sql
+@q1.sql 10
+@plans.sql
+
+```
 
 ### Clean up
 To clean up the lab run if you want to re-run it.  Open a SQL window and run the following commands:
@@ -211,7 +237,7 @@ This script creates a user called perflab that will be used throughout the demo.
 ```bash
 # Set your Oracle Environment
 . oraenv
-cd indepth-sql-UTOUG
+cd deep-dive-sql-UTOUG
 # if you are using a PDB set the following variable to the name of your PDB
 export ORACLE_PDB_SID=mypdb
 sqlplus /nolog
@@ -237,6 +263,23 @@ DEFINE con_pdb="@mypdb"
 This will create two tables, T1 and T2.  The tables have skewed data distribution in the column D.  24,999 rows are unique, and 25,001 rows contain the value 10.
 By default Oracle assumes a normal distribution, as we have run enhanced statistics, a histogram is created on this column.
 
+### Look at SQLT report
+
+Open the HTML file
+sqlt_s39943_main.html
+[HTML link](https://htmlpreview.github.io/?https://github.com/ggordham/ora-presentations/blob/main/deep-dive-sql-UTOUG/sqlt_s39943_main.html)
+
+### Demo of TKPROF outoupt
+
+We will trace a SQL statement and then look at the TKPROF output
+
+```sql
+@trace-exec-q1.sql
+
+```
+
+Make sure to look at the TKPROF report.
+
 ### First test - run a trace with no object stats
 
 We will drop the stats from the tables, and run a query CBO trace.  You should open the test1.sql and look at what scripts it calls.  Each script can be inspected to review specific steps for running a trace, and clearing a cursor from the cursor cache.
@@ -248,7 +291,7 @@ DEFINE con_pdb=""
 -- if you are using a PDB define the PDB name be sure to include the @ sign
 DEFINE con_pdb="@mypdb"
 
-@test1
+@trace-nostat.sql
 
 ```
 
@@ -268,7 +311,7 @@ DEFINE con_pdb=""
 -- if you are using a PDB define the PDB name be sure to include the @ sign
 DEFINE con_pdb="@mypdb"
 
-@test2
+@trace-stats.sql
 
 ```
 
@@ -289,7 +332,7 @@ DEFINE con_pdb=""
 -- if you are using a PDB define the PDB name be sure to include the @ sign
 DEFINE con_pdb="@mypdb"
 
-@test3
+@trace-hist.sql
 
 ```
 
@@ -312,6 +355,16 @@ CONNECT perflab/perf$lab@mypdb
 ```
 
 Note that for column "D" the buck for ENDPOINT_VALUE 10 has a repeat count of 2790 while the other buckets listed only have a count of one.  This lets Oracle know that the distribution of data in the table is not "normal".
+
+### Run a plan with statistics
+
+Show an execution plan with execution statistics
+
+```sql
+@q1.sql 10
+@plans.sql
+
+```
 
 ### Clean up
 
