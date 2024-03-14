@@ -3,7 +3,7 @@
 
 SET ECHO OFF
 
-@@connect.sql
+connect perflab/perf$lab&con_pdb
 
 PROMPT ================= trace-exec-q1.sql ========================================
 prompt Do a basic SQL execution trace
