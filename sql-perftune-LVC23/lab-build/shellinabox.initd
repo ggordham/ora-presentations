@@ -1,0 +1,116 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          shellinabox
+# Required-Start:    $network $remote_fs
+# Required-Stop:     $network $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# chkconfig:         2345 20 80
+# Short-Description: Shell In A Box Daemon
+# Description:       Daemon for publishing a login shell at
+#                    http://localhost:SHELLINABOX_PORT
+#		     where default port number is 4200.
+### END INIT INFO
+
+# Authors: Markus Gutschke <markus@shellinabox.com>, Marc Singer <elf@buici.com>
+
+# PATH should only include /usr/* if it runs after the mountnfs.sh script
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
+DESC="Shell In A Box Daemon"
+NAME="shellinabox"
+DAEMON="/usr/local/bin/shellinaboxd"
+PIDFILE="/var/run/shellinaboxd.pid"
+LOGFILE="/var/log/shellinaboxd.log"
+SCRIPTNAME=/etc/init.d/$NAME
+SYSTEMCTL_SKIP_REDIRECT=1
+
+# Source function library.
+. /etc/init.d/functions
+
+# Read configuration variable file if it is present
+[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+
+# Set some default values
+SHELLINABOX_DATADIR="${SHELLINABOX_DATADIR:-/var/lib/shellinabox}"
+SHELLINABOX_PORT="${SHELLINABOX_PORT:-4200}"
+SHELLINABOX_USER="${SHELLINABOX_USER:-shellinabox}"
+SHELLINABOX_GROUP="${SHELLINABOX_GROUP:-shellinabox}"
+
+if [ ! -f "$LOGFILE" ]; then
+  touch "${LOGFILE}"
+  chown "${SHELLINABOX_USER}" "${LOGFILE}"
+  chgrp "${SHELLINABOX_GROUP}" "${LOGFILE}"
+fi
+
+#
+#       Function that starts the daemon/service.
+#
+d_start() {
+  if [ -z "$SHELLINABOX_DAEMON_START" -o                                      \
+          "$SHELLINABOX_DAEMON_START" = "0" ]; then
+    return 0
+  fi
+
+  "$DAEMON" -v -n --background="$PIDFILE"        \
+            -c "${SHELLINABOX_DATADIR}" -p "${SHELLINABOX_PORT}"  \
+            -u "${SHELLINABOX_USER}" -g "${SHELLINABOX_GROUP}"    \
+            ${SHELLINABOX_ARGS} 2> "${LOGFILE}"
+}
+
+#
+#       Function that stops the daemon/service.
+#
+d_stop() {
+  kill  $( cat "$PIDFILE" )
+  rm -f "$PIDFILE"
+}
+
+#
+#       Function that reloads the config file for the daemon/service.
+#
+d_reload() {
+  # Only reload if there are no active sessions running
+  [ -r "$PIDFILE" ] &&
+    [ `ps o pid= --ppid "\`cat "$PIDFILE"\`\`ps o pid= --ppid \
+                                                \\\`cat "$PIDFILE"\\\`|
+                                             xargs -r -n 1 printf ',%s'\`" |
+       wc -l` -gt 1 ] &&
+    return 1
+
+  d_stop
+  d_start
+}
+
+#
+#       Function that check the status of the daemon/service.
+#
+d_status() {
+  [ -r "$PIDFILE" ] && kill -0 `cat "$PIDFILE"` &&
+    echo "$DESC is running" || echo "$DESC is not running"
+}
+
+case "$1" in
+    start)
+        d_start
+        ;;
+    stop)
+        d_stop
+        ;;
+    reload)
+        d_reload
+        ;;
+    restart|force-reload)
+        d_stop
+        d_start
+        ;;
+    status)
+        d_status
+        ;;
+    *)
+        echo "Usage: $SCRIPTNAME {start|stop|restart|force-reload|reload}" >&2
+        exit 1
+        ;;
+esac
+
+exit 0
+
