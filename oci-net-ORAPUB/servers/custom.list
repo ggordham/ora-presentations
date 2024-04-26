@@ -1,0 +1,7 @@
+## pihole custom.list file
+# basic OCI build, edit the entries for your design
+10.202.202.2   dns01.cloud.oraontap.com
+10.202.202.3   proxy01.cloud.oraontap.com
+10.202.202.34  lb01.cloud.oraontap.com
+10.202.202.66  app01.cloud.oraontap.com
+10.202.202.130 db01.cloud.oraontap.com
