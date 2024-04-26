@@ -33,6 +33,20 @@ resource "oci_core_security_list" "oco_sl_proxy"{
       }
   }
 
+  # allow dns server access from internal subnets
+  ingress_security_rules { 
+      description = "Allow PROXY access from internal subnets only"
+      stateless = false
+      source = var.v_net_vcn_oraontap_cidr
+      source_type = "CIDR_BLOCK"
+      # Get protocol numbers from https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml TCP is 6
+      protocol = "6"
+      tcp_options { 
+          min = 53
+          max = 53
+      }
+  }
+
   # allow ping from internal subnets
   ingress_security_rules { 
       description = "Allow ping access from all internal subnets"
