@@ -53,7 +53,7 @@ resource "oci_core_instance" "srvr_db01" {
           private_key = file(var.v_srvr_ssh_key)
         }
     }
-    # this will copy the server setup script to the server
+    # this will copy the databse install script to the server
     provisioner "file" {
       source = "../scripts/instOraDB23cFree.sh"
       destination = "/home/opc/instOraDB23cFree.sh"
@@ -65,10 +65,10 @@ resource "oci_core_instance" "srvr_db01" {
       }
     }
 
-    # now run the server setup script
+    # now schedule the database install script
     provisioner "remote-exec" {
         inline = [
-          "/bin/bash /home/opc/instOraDB23cFree.sh > /home/opc/instOraDB23cFree.log 2>&1"
+          "echo '/bin/bash /home/opc/instOraDB23cFree.sh > /home/opc/instOraDB23cFree.log 2>&1' | /usr/bin/at now +7 minutes"
         ]
         connection {
           type = "ssh"

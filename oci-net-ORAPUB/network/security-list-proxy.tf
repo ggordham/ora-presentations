@@ -33,15 +33,28 @@ resource "oci_core_security_list" "oco_sl_proxy"{
       }
   }
 
-  # allow dns server access from internal subnets
+  # allow dns server access from internal subnets, allow both TCP and UDP
   ingress_security_rules { 
-      description = "Allow PROXY access from internal subnets only"
+      description = "Allow DNS access from internal subnets only TCP"
       stateless = false
       source = var.v_net_vcn_oraontap_cidr
       source_type = "CIDR_BLOCK"
       # Get protocol numbers from https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml TCP is 6
       protocol = "6"
       tcp_options { 
+          min = 53
+          max = 53
+      }
+  }
+
+  ingress_security_rules { 
+      description = "Allow DNS access from internal subnets only UDP"
+      stateless = false
+      source = var.v_net_vcn_oraontap_cidr
+      source_type = "CIDR_BLOCK"
+      # Get protocol numbers from https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml TCP is 6
+      protocol = "17"
+      udp_options { 
           min = 53
           max = 53
       }

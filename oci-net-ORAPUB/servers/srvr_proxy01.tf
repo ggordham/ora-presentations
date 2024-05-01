@@ -41,6 +41,30 @@ resource "oci_core_instance" "srvr_proxy01" {
       }
     }
     
+    # this will copy the config file to the server
+    provisioner "file" {
+      source = "squid.conf"
+      destination = "/home/opc/squid.conf"
+      connection {
+        type = "ssh"
+        host = self.private_ip
+        user = "opc"
+        private_key = file(var.v_srvr_ssh_key)
+      }
+    }
+
+    # this will copy the server setup script to the server
+    provisioner "file" {
+      source = "../scripts/srvrSetup.sh"
+      destination = "/home/opc/srvrSetup.sh"
+      connection {
+        type = "ssh"
+        host = self.private_ip
+        user = "opc"
+        private_key = file(var.v_srvr_ssh_key)
+      }
+    }
+    
     # now run the install script
     provisioner "remote-exec" {
         inline = [
@@ -54,4 +78,5 @@ resource "oci_core_instance" "srvr_proxy01" {
         }
     }
 
+    
 }

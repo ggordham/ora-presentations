@@ -26,11 +26,17 @@ for site in ${SITE_LIST}; do
   echo "${site}"  | /bin/sudo /bin/tee -a "${ALLOW_FILE}"
 done
 
-echo "acl allowed_sites dstdomain \"${ALLOW_FILE}\"" | /bin/sudo /bin/tee -a "${SQUID_CONF}"
-echo "http_access allow allowed_sites" | /bin/sudo /bin/tee -a "${SQUID_CONF}"
-echo "http_access deny all" | /bin/sudo /bin/tee -a "${SQUID_CONF}"
+# copy basic config file instead of ediging the file in place
+# 
+# echo "acl allowed_sites dstdomain \"${ALLOW_FILE}\"" | /bin/sudo /bin/tee -a "${SQUID_CONF}"
+# echo "http_access allow allowed_sites" | /bin/sudo /bin/tee -a "${SQUID_CONF}"
+# echo "http_access deny all" | /bin/sudo /bin/tee -a "${SQUID_CONF}"
+[ -f "${HOME}/squid.conf" ] && /bin/sudo /bin/cp "${HOME}/squid.conf" "${SQUID_CONF}"
 
 # restart squid
 /bin/sudo /bin/systemctl restart squid
+
+# now that squid is installed we can configure the server to look like everyone else
+[ -f /home/opc/srvrSetup.sh ] && /bin/bash /home/opc/srvrSetup.sh > /home/opc/srvrSetup.log
 
 # END

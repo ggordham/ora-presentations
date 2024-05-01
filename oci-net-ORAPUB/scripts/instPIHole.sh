@@ -4,16 +4,30 @@
 
 # pass in argument PRE or POST to run the specific set of actions
 
+return_code=0
+
 case "$1" in
     "PRE")
+        echo "Running instPIHole.sh PRE mode $( /usr/bin/date )" 
         # disable SELinux
+        echo "Disable SELinux"
         /bin/sudo /bin/sed -i "s/^SELINUX=.*/SELINUX=disabled/g" /etc/selinux/config
         # add /usr/local/bin to the path
+        echo "adding /usr/local/bin to PATH in user profile"
         /bin/sudo /bin/sed -i "s#^PATH=.*#PATH=\$PATH:/usr/local/bin:\$HOME/bin#g" "$HOME/.bash_profile"
+        echo "Adding execute mode to all scripts in home directory"
+        /bin/chmod +x "${HOME}"/*.sh
+        echo "Installing runonce script for run of POST step"
         /bin/chmod +x "${HOME}"/*.sh
         "${HOME}"/runonce.sh "${HOME}/instPIHole.sh POST > ${HOME}/instPIHole2.log 2>&1"  > "${HOME}/runonceInst.log" 2>&1
-        /bin/sleep 2
-        /bin/sudo /sbin/reboot
+        echo "Crontab list"
+        /usr/bin/crontab -l
+        echo "setting up reboot command"
+        echo "/usr/bin/sudo /usr/sbin/reboot" | /usr/bin/at now +1 minute
+        /usr/bin/at -l
+        
+        echo "returning with no error"
+        return_code=0
         ;;
 
     "POST")
@@ -48,22 +62,35 @@ case "$1" in
         echo "DNSMASQ_LISTENING=local" | /bin/sudo tee -a "${PIH_FILE}"
 
         /bin/chmod +x "${HOME}/basic-install.sh"
-        /bin/sudo /bin/su -c "export PIHOLE_SKIP_OS_CHECK=true; ${HOME}/basic-install.sh --unattended"
+        set -o pipefail; /bin/sudo /bin/su -c "export PIHOLE_SKIP_OS_CHECK=true; ${HOME}/basic-install.sh --unattended"
+        return_code=$?
 
         # install custom IP list
         /bin/sudo /bin/cp "${HOME}/custom.list" "/etc/pihole/"
         /bin/sudo /bin/cp "/etc/pihole/custom.list" "/etc/pihole/custom.list.bak"
 
-        /usr/local/bin/pihole restartdns
-        
-        # update http server port
-        /bin/sudo sed -i "s/server.port =.*/server.port = 9999/g" /etc/lighttpd/lighttpd.conf
-        /bin/sudo /bin/systemctl restart lighttpd
+        if (( return_code < 1 )); then
+
+            # configure PI Hole to respond to all requets on local interface, not just local subnet
+            /usr/local/bin/pihole -a -i single
+
+            # restart DNS to adjust settings
+            /usr/local/bin/pihole restartdns
+            
+            # update http server port
+            /bin/sudo sed -i "s/server.port =.*/server.port = 9999/g" /etc/lighttpd/lighttpd.conf
+            /bin/sudo /bin/systemctl restart lighttpd
+
+            # now that DNS is installed we can configure the server to look like everyone else
+            [ -f /home/opc/srvrSetup.sh ] && /bin/bash /home/opc/srvrSetup.sh > /home/opc/srvrSetup.log
+
+        fi
         ;;
     *)
         echo "ERROR! not a valid script run mode!" >&2
-        exit 1
+        return_code=1
         ;;
 esac
 
+exit $return_code
 #END
