@@ -1,0 +1,75 @@
+Trace file /u01/app/oracle/diag/rdbms/t1db/t1db/trace/t1db_ora_32683_tdemo2.trc
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.6.0.0.0
+Build label:    RDBMS_19.3.0.0.0DBRU_LINUX.X64_190417
+ORACLE_HOME:    /u01/app/oracle/product/19.6.0/dbhome_1
+System name:	Linux
+Node name:	srvr03.gg.wi.rr.com
+Release:	4.14.35-1902.11.3.1.el7uek.x86_64
+Version:	#2 SMP Sat Mar 14 20:57:52 PDT 2020
+Machine:	x86_64
+Instance name: t1db
+Redo thread mounted by this instance: 1
+Oracle process number: 56
+Unix process pid: 32683, image: oracle@srvr03.gg.wi.rr.com (TNS V1-V3)
+
+
+*** 2021-03-19T15:48:26.428729-05:00
+*** SESSION ID:(18.47625) 2021-03-19T15:48:26.429976-05:00
+*** CLIENT ID:() 2021-03-19T15:48:26.431266-05:00
+*** SERVICE NAME:(SYS$USERS) 2021-03-19T15:48:26.432529-05:00
+*** MODULE NAME:(SQL*Plus) 2021-03-19T15:48:26.433921-05:00
+*** ACTION NAME:() 2021-03-19T15:48:26.435355-05:00
+*** CLIENT DRIVER:(SQL*PLUS) 2021-03-19T15:48:26.436729-05:00
+ 
+WAIT #139839682699024: nam='SQL*Net message to client' ela= 5 driver id=1650815232 #bytes=1 p3=0 obj#=-1 tim=1295120511807
+
+*** 2021-03-19T15:48:58.116377-05:00
+WAIT #139839682699024: nam='SQL*Net message from client' ela= 31646554 driver id=1650815232 #bytes=1 p3=0 obj#=-1 tim=1295152281627
+CLOSE #139839682699024:c=15,e=15,dep=0,type=1,tim=1295152288202
+=====================
+PARSING IN CURSOR #139839682677240 len=27 dep=0 uid=136 oct=47 lid=136 tim=1295152290390 hv=1196393762 ad='7e4d1ca8' sqlid='02tj2zp3nz192'
+BEGIN :idnum := 1000; END;
+
+END OF STMT
+PARSE #139839682677240:c=112,e=112,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=0,tim=1295152290388
+BINDS #139839682677240:
+
+ Bind#0
+  oacdty=02 mxl=22(22) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1400000 frm=00 csi=00 siz=24 off=0
+  kxsbbbfp=7f2ef69c85b0  bln=22  avl=00  flg=05
+WAIT #139839682677240: nam='SQL*Net message to client' ela= 4 driver id=1650815232 #bytes=1 p3=0 obj#=-1 tim=1295152305993
+EXEC #139839682677240:c=1251,e=9259,p=0,cr=0,cu=0,mis=0,r=1,dep=0,og=1,plh=0,tim=1295152307560
+WAIT #139839682677240: nam='SQL*Net message from client' ela= 1105 driver id=1650815232 #bytes=1 p3=0 obj#=-1 tim=1295152309997
+CLOSE #139839682677240:c=34,e=34,dep=0,type=1,tim=1295152311443
+=====================
+PARSING IN CURSOR #139839682675600 len=122 dep=0 uid=136 oct=3 lid=136 tim=1295152312901 hv=1626105063 ad='682c4ee0' sqlid='fua0hb5hfst77'
+SELECT /*+ gather_plan_statistics NO_ADAPTIVE_PLAN */ sum(t1.c), sum(t2.c) FROM t1, t2 WHERE t1.a = t2.a AND t1.d = :idnum
+END OF STMT
+PARSE #139839682675600:c=91,e=91,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=3534348942,tim=1295152312901
+BINDS #139839682675600:
+
+ Bind#0
+  oacdty=02 mxl=22(22) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=00 csi=00 siz=24 off=0
+  kxsbbbfp=7f2ef69c7f48  bln=22  avl=02  flg=05
+  value=1000
+EXEC #139839682675600:c=989,e=7800,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=3534348942,tim=1295152327125
+WAIT #139839682675600: nam='SQL*Net message to client' ela= 1 driver id=1650815232 #bytes=1 p3=0 obj#=-1 tim=1295152328390
+FETCH #139839682675600:c=12460,e=12668,p=0,cr=1981,cu=0,mis=0,r=1,dep=0,og=1,plh=3534348942,tim=1295152342270
+STAT #139839682675600 id=1 cnt=1 pid=0 pos=1 obj=0 op='SORT AGGREGATE (cr=1981 pr=0 pw=0 str=1 time=12670 us)'
+STAT #139839682675600 id=2 cnt=1 pid=1 pos=1 obj=0 op='NESTED LOOPS  (cr=1981 pr=0 pw=0 str=1 time=12642 us cost=553 size=22 card=1)'
+STAT #139839682675600 id=3 cnt=1 pid=2 pos=1 obj=0 op='NESTED LOOPS  (cr=1980 pr=0 pw=0 str=1 time=12586 us cost=553 size=22 card=1)'
+STAT #139839682675600 id=4 cnt=1 pid=3 pos=1 obj=139459 op='TABLE ACCESS FULL T1 (cr=1977 pr=0 pw=0 str=1 time=12523 us cost=550 size=13 card=1)'
+STAT #139839682675600 id=5 cnt=1 pid=3 pos=2 obj=139465 op='INDEX RANGE SCAN T2I (cr=3 pr=0 pw=0 str=1 time=58 us cost=2 size=0 card=1)'
+STAT #139839682675600 id=6 cnt=1 pid=2 pos=2 obj=139463 op='TABLE ACCESS BY INDEX ROWID T2 (cr=1 pr=0 pw=0 str=1 time=46 us cost=3 size=9 card=1)'
+WAIT #139839682675600: nam='SQL*Net message from client' ela= 412 driver id=1650815232 #bytes=1 p3=0 obj#=-1 tim=1295152383550
+FETCH #139839682675600:c=1,e=1,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=0,plh=3534348942,tim=1295152384865
+WAIT #139839682675600: nam='SQL*Net message to client' ela= 1 driver id=1650815232 #bytes=1 p3=0 obj#=-1 tim=1295152386342
+
+*** 2021-03-19T15:49:01.886525-05:00
+WAIT #139839682675600: nam='SQL*Net message from client' ela= 3664007 driver id=1650815232 #bytes=1 p3=0 obj#=-1 tim=1295156051775
+XCTEND rlbk=0, rd_only=1, tim=1295156058765
+CLOSE #139839682675600:c=12,e=13,dep=0,type=0,tim=1295156061463
+CLOSE #139839682529216:c=17,e=17,dep=0,type=0,tim=1295156063754

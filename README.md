@@ -4,6 +4,18 @@ Scripts from Oracle Presentations that I have given
 All scripts or code in this repository is use at your own risk.
 Everything here is intended for test or lab type use.
 
+ASCEND - June 20, 2024 - Deep dive into SQL tuning (with EBS)
+
+```/deep-dive-sql-ASCEND```
+
+ORAPUB Members session - May 2, 2024 - FAST! How to setup networking in OCI
+
+```/oci-net-ORAPUB```
+
+UTOUG Training Days - March 21, 2024 - Deep dive into SQL tuning
+
+```/deep-dive-sql-UTOUG```
+
 ORPUB Members session - February 22, 2024 - SQL Tuning How does cardinality work?
 
 ```/cardinality-sql-tune-ORAPUB```

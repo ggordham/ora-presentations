@@ -1,0 +1,375 @@
+<html>
+<!-- $Header: 1366133.1 sqlhc.sql 12.1.07 2019/04/21 carlos.sierra $ -->
+<!-- Copyright (c) 2000-2012, Oracle Corporation. All rights reserved. -->
+<!-- Author: carlos.sierra@oracle.com -->
+
+<head>
+<title>sqlhc_20210304_1556_fua0hb5hfst77_3_execution_plans.html</title>
+
+<style type="text/css">
+body {font:10pt Arial,Helvetica,Verdana,Geneva,sans-serif; color:black; background:white;}
+a {font-weight:bold; color:#663300;}
+pre {font:8pt Monaco,"Courier New",Courier,monospace;} /* for code */
+h1 {font-size:16pt; font-weight:bold; color:#336699;}
+h2 {font-size:14pt; font-weight:bold; color:#336699;}
+h3 {font-size:12pt; font-weight:bold; color:#336699;}
+li {font-size:10pt; font-weight:bold; color:#336699; padding:0.1em 0 0 0;}
+table {font-size:8pt; color:black; background:white;}
+th {font-weight:bold; background:#cccc99; color:#336699; vertical-align:bottom; padding-left:3pt; padding-right:3pt; padding-top:1pt; padding-bottom:1pt;}
+td {text-align:left; background:#fcfcf0; vertical-align:top; padding-left:3pt; padding-right:3pt; padding-top:1pt; padding-bottom:1pt;}
+td.c {text-align:center;} /* center */
+td.l {text-align:left;} /* left (default) */
+td.r {text-align:right;} /* right */
+font.n {font-size:8pt; font-style:italic; color:#336699;} /* table footnote in blue */
+font.f {font-size:8pt; color:#999999;} /* footnote in gray */
+</style>
+
+</head>
+<body>
+<h1><a target="MOS" href="https://support.oracle.com/CSP/main/article?cmd=show&type=NOT&id=1366133.1">1366133.1</a> SQLHC
+12.1.07 Report: sqlhc_20210304_1556_fua0hb5hfst77_3_execution_plans.html</h1>
+
+<pre>
+License    : T
+Input      : fua0hb5hfst77
+SIGNATURE  : 4.0225E+18
+SIGNATUREF : 4022507629801686773
+RDBMS      : 19.0.0.0.0
+Platform   :
+Database   : t1db
+DBID       :  447509184
+Host       : srvr03
+Instance   : 1
+CPU_Count  : 4
+Num CPUs   : 4
+Num Cores  : 4
+Num Sockets: 1
+Block Size : 8192
+OFE        : 19.1.0
+DYN_SAMP   : 2
+EBS        : ""
+SIEBEL     : ""
+PSFT       : ""
+Date       : 2021-03-04/15:56:46
+User       : PERFLAB
+</pre>
+<ul>
+<li><a href="#text">SQL Text</a></li>
+<li><a href="#mem_plans_last">Current Execution Plans (last execution)</a></li>
+<li><a href="#mem_plans_all">Current Execution Plans (all executions)</a></li>
+<li><a href="#awr_plans">Historical Execution Plans</a></li>
+</ul>
+<a name="text"></a><h2>SQL Text</h2>
+
+<pre>
+SELECT /*+ gather_plan_statistics NO_ADAPTIVE_PLAN */ sum(t1.c), sum(t2.c) FROM t1, t2 WHERE t1.a = t2.a AND t1.d = :idnum
+</pre>
+<a name="mem_plans_last"></a><h2>Current Execution Plans (last execution)</h2>
+
+Captured while still in memory. Metrics below are for the last execution of each child cursor.<br>
+If STATISTICS_LEVEL was set to ALL at the time of the hard-parse then A-Rows column is populated.
+
+<!-- 2021-03-04/15:58:04 -->
+<!-- Please Wait -->
+<pre>
+Inst: 1   Child: 0    Plan hash value: 3534348942
+
+                      -----------------------------------------------------------------------------------------------------------------------------------------
+                      | Id  | Operation                     | Name | Starts | E-Rows |E-Bytes| Cost (%CPU)| E-Time   | A-Rows |   A-Time   | Buffers | Reads  |
+                      -----------------------------------------------------------------------------------------------------------------------------------------
+                      |   0 | SELECT STATEMENT              |      |      1 |        |       |   553 (100)|          |      1 |00:00:00.03 |    1980 |   1971 |
+                      |   1 |  SORT AGGREGATE               |      |      1 |      1 |    22 |            |          |      1 |00:00:00.03 |    1980 |   1971 |
+                      |   2 |   NESTED LOOPS                |      |      1 |      1 |    22 |   553   (1)| 00:00:01 |      1 |00:00:00.03 |    1980 |   1971 |
+                      |   3 |    NESTED LOOPS               |      |      1 |      1 |    22 |   553   (1)| 00:00:01 |      1 |00:00:00.03 |    1979 |   1971 |
+                      |*  4 |     TABLE ACCESS FULL         | T1   |      1 |      1 |    13 |   550   (1)| 00:00:01 |      1 |00:00:00.03 |    1976 |   1971 |
+                      |*  5 |     INDEX RANGE SCAN          | T2I  |      1 |      1 |       |     2   (0)| 00:00:01 |      1 |00:00:00.01 |       3 |      0 |
+                      |   6 |    TABLE ACCESS BY INDEX ROWID| T2   |      1 |      1 |     9 |     3   (0)| 00:00:01 |      1 |00:00:00.01 |       1 |      0 |
+                      -----------------------------------------------------------------------------------------------------------------------------------------
+
+                      Query Block Name / Object Alias (identified by operation id):
+                      -------------------------------------------------------------
+
+                         1 - SEL$1
+                         4 - SEL$1 / T1@SEL$1
+                         5 - SEL$1 / T2@SEL$1
+                         6 - SEL$1 / T2@SEL$1
+
+                      Outline Data
+                      -------------
+
+                        /*+
+                            BEGIN_OUTLINE_DATA
+                            IGNORE_OPTIM_EMBEDDED_HINTS
+                            OPTIMIZER_FEATURES_ENABLE('19.1.0')
+                            DB_VERSION('19.1.0')
+                            ALL_ROWS
+                            OUTLINE_LEAF(@"SEL$1")
+                            FULL(@"SEL$1" "T1"@"SEL$1")
+                            INDEX(@"SEL$1" "T2"@"SEL$1" ("T2"."A"))
+                            LEADING(@"SEL$1" "T1"@"SEL$1" "T2"@"SEL$1")
+                            USE_NL(@"SEL$1" "T2"@"SEL$1")
+                            NLJ_BATCHING(@"SEL$1" "T2"@"SEL$1")
+                            END_OUTLINE_DATA
+                        */
+
+                      Peeked Binds (identified by position):
+                      --------------------------------------
+
+                         1 - (NUMBER): 1000
+
+                      Predicate Information (identified by operation id):
+                      ---------------------------------------------------
+
+                         4 - filter("T1"."D"=:IDNUM)
+                         5 - access("T1"."A"="T2"."A")
+
+                      Column Projection Information (identified by operation id):
+                      -----------------------------------------------------------
+
+                         1 - (#keys=0) SUM("T2"."C")[22], SUM("T1"."C")[22]
+                         2 - "T1"."C"[NUMBER,22], "T2"."C"[NUMBER,22]
+                         3 - "T1"."C"[NUMBER,22], "T2".ROWID[ROWID,10]
+                         4 - "T1"."A"[NUMBER,22], "T1"."C"[NUMBER,22]
+                         5 - "T2".ROWID[ROWID,10]
+                         6 - "T2"."C"[NUMBER,22]
+
+                      Hint Report (identified by operation id / Query Block Name / Object Alias):
+                      Total hints for statement: 1
+                      ---------------------------------------------------------------------------
+
+                         0 -  STATEMENT
+                                 -  NO_ADAPTIVE_PLAN
+
+                      Query Block Registry:
+                      ---------------------
+
+                        <q o="2" f="y"><n><![CDATA[SEL$1]]></n><f><h><t><![CDATA[T1]]></t><s><![CDATA[SEL$1]]></s></h><h><t><![CDATA[T2]]></t><s><![CDATA
+                              [SEL$1]]></s></h></f></q>
+
+
+
+</pre>
+<a name="mem_plans_all"></a><h2>Current Execution Plans (all executions)</h2>
+
+Captured while still in memory. Metrics below are an aggregate for all the execution of each child cursor.<br>
+If STATISTICS_LEVEL was set to ALL at the time of the hard-parse then A-Rows column is populated.
+
+<!-- 2021-03-04/15:58:04 -->
+<!-- Please Wait -->
+<pre>
+Inst: 1   Child: 0    Plan hash value: 3534348942
+
+                      -----------------------------------------------------------------------------------------------------------------------------------------
+                      | Id  | Operation                     | Name | Starts | E-Rows |E-Bytes| Cost (%CPU)| E-Time   | A-Rows |   A-Time   | Buffers | Reads  |
+                      -----------------------------------------------------------------------------------------------------------------------------------------
+                      |   0 | SELECT STATEMENT              |      |      2 |        |       |   553 (100)|          |      2 |00:00:00.48 |    3958 |   3947 |
+                      |   1 |  SORT AGGREGATE               |      |      2 |      1 |    22 |            |          |      2 |00:00:00.48 |    3958 |   3947 |
+                      |   2 |   NESTED LOOPS                |      |      2 |      1 |    22 |   553   (1)| 00:00:01 |      2 |00:00:00.48 |    3958 |   3947 |
+                      |   3 |    NESTED LOOPS               |      |      2 |      1 |    22 |   553   (1)| 00:00:01 |      2 |00:00:00.47 |    3956 |   3946 |
+                      |*  4 |     TABLE ACCESS FULL         | T1   |      2 |      1 |    13 |   550   (1)| 00:00:01 |      2 |00:00:00.38 |    3950 |   3943 |
+                      |*  5 |     INDEX RANGE SCAN          | T2I  |      2 |      1 |       |     2   (0)| 00:00:01 |      2 |00:00:00.09 |       6 |      3 |
+                      |   6 |    TABLE ACCESS BY INDEX ROWID| T2   |      2 |      1 |     9 |     3   (0)| 00:00:01 |      2 |00:00:00.01 |       2 |      1 |
+                      -----------------------------------------------------------------------------------------------------------------------------------------
+
+                      Query Block Name / Object Alias (identified by operation id):
+                      -------------------------------------------------------------
+
+                         1 - SEL$1
+                         4 - SEL$1 / T1@SEL$1
+                         5 - SEL$1 / T2@SEL$1
+                         6 - SEL$1 / T2@SEL$1
+
+                      Outline Data
+                      -------------
+
+                        /*+
+                            BEGIN_OUTLINE_DATA
+                            IGNORE_OPTIM_EMBEDDED_HINTS
+                            OPTIMIZER_FEATURES_ENABLE('19.1.0')
+                            DB_VERSION('19.1.0')
+                            ALL_ROWS
+                            OUTLINE_LEAF(@"SEL$1")
+                            FULL(@"SEL$1" "T1"@"SEL$1")
+                            INDEX(@"SEL$1" "T2"@"SEL$1" ("T2"."A"))
+                            LEADING(@"SEL$1" "T1"@"SEL$1" "T2"@"SEL$1")
+                            USE_NL(@"SEL$1" "T2"@"SEL$1")
+                            NLJ_BATCHING(@"SEL$1" "T2"@"SEL$1")
+                            END_OUTLINE_DATA
+                        */
+
+                      Peeked Binds (identified by position):
+                      --------------------------------------
+
+                         1 - (NUMBER): 1000
+
+                      Predicate Information (identified by operation id):
+                      ---------------------------------------------------
+
+                         4 - filter("T1"."D"=:IDNUM)
+                         5 - access("T1"."A"="T2"."A")
+
+                      Column Projection Information (identified by operation id):
+                      -----------------------------------------------------------
+
+                         1 - (#keys=0) SUM("T2"."C")[22], SUM("T1"."C")[22]
+                         2 - "T1"."C"[NUMBER,22], "T2"."C"[NUMBER,22]
+                         3 - "T1"."C"[NUMBER,22], "T2".ROWID[ROWID,10]
+                         4 - "T1"."A"[NUMBER,22], "T1"."C"[NUMBER,22]
+                         5 - "T2".ROWID[ROWID,10]
+                         6 - "T2"."C"[NUMBER,22]
+
+                      Hint Report (identified by operation id / Query Block Name / Object Alias):
+                      Total hints for statement: 1
+                      ---------------------------------------------------------------------------
+
+                         0 -  STATEMENT
+                                 -  NO_ADAPTIVE_PLAN
+
+                      Query Block Registry:
+                      ---------------------
+
+                        <q o="2" f="y"><n><![CDATA[SEL$1]]></n><f><h><t><![CDATA[T1]]></t><s><![CDATA[SEL$1]]></s></h><h><t><![CDATA[T2]]></t><s><![CDATA
+                              [SEL$1]]></s></h></f></q>
+
+
+
+</pre>
+<a name="awr_plans"></a><h2>Historical Execution Plans</h2>
+
+This section includes data captured by AWR. If this is a stand-by read-only database then the AWR information below is from the Primary database.
+
+<!-- 2021-03-04/15:58:04 -->
+<!-- Please Wait -->
+<pre>
+SQL_ID fua0hb5hfst77
+--------------------
+SELECT /*+ gather_plan_statistics NO_ADAPTIVE_PLAN */ sum(t1.c),
+sum(t2.c) FROM t1, t2 WHERE t1.a = t2.a AND t1.d = :idnum
+
+Plan hash value: 906334482
+
+------------------------------------------------------------------------------------
+| Id  | Operation           | Name | Rows  | Bytes |TempSpc| Cost (%CPU)| Time     |
+------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT    |      |       |       |       |  1893 (100)|          |
+|   1 |  SORT AGGREGATE     |      |     1 |    22 |       |            |          |
+|   2 |   HASH JOIN         |      |   246K|  5305K|  6032K|  1893   (1)| 00:00:01 |
+|   3 |    TABLE ACCESS FULL| T1   |   246K|  3134K|       |   550   (1)| 00:00:01 |
+|   4 |    TABLE ACCESS FULL| T2   |   500K|  4394K|       |   549   (1)| 00:00:01 |
+------------------------------------------------------------------------------------
+
+Query Block Name / Object Alias (identified by operation id):
+-------------------------------------------------------------
+
+   1 - SEL$1
+   3 - SEL$1 / T1@SEL$1
+   4 - SEL$1 / T2@SEL$1
+
+Outline Data
+-------------
+
+  /*+
+      BEGIN_OUTLINE_DATA
+      IGNORE_OPTIM_EMBEDDED_HINTS
+      OPTIMIZER_FEATURES_ENABLE('19.1.0')
+      DB_VERSION('19.1.0')
+      ALL_ROWS
+      OUTLINE_LEAF(@"SEL$1")
+      FULL(@"SEL$1" "T1"@"SEL$1")
+      FULL(@"SEL$1" "T2"@"SEL$1")
+      LEADING(@"SEL$1" "T1"@"SEL$1" "T2"@"SEL$1")
+      USE_HASH(@"SEL$1" "T2"@"SEL$1")
+      END_OUTLINE_DATA
+  */
+
+Peeked Binds (identified by position):
+--------------------------------------
+
+   1 - :IDNUM (NUMBER): 10
+
+Hint Report (identified by operation id / Query Block Name / Object Alias):
+Total hints for statement: 1
+---------------------------------------------------------------------------
+
+   0 -  STATEMENT
+           -  NO_ADAPTIVE_PLAN
+
+Query Block Registry:
+---------------------
+
+  <q o="2" f="y"><n><![CDATA[SEL$1]]></n><f><h><t><![CDATA[T1]]></t><s><![CDAT
+        A[SEL$1]]></s></h><h><t><![CDATA[T2]]></t><s><![CDATA[SEL$1]]></s></h></f></
+        q>
+
+
+SQL_ID fua0hb5hfst77
+--------------------
+SELECT /*+ gather_plan_statistics NO_ADAPTIVE_PLAN */ sum(t1.c),
+sum(t2.c) FROM t1, t2 WHERE t1.a = t2.a AND t1.d = :idnum
+
+Plan hash value: 3534348942
+
+--------------------------------------------------------------------------------------
+| Id  | Operation                     | Name | Rows  | Bytes | Cost (%CPU)| Time     |
+--------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT              |      |       |       |   553 (100)|          |
+|   1 |  SORT AGGREGATE               |      |     1 |    22 |            |          |
+|   2 |   NESTED LOOPS                |      |     1 |    22 |   553   (1)| 00:00:01 |
+|   3 |    NESTED LOOPS               |      |     1 |    22 |   553   (1)| 00:00:01 |
+|   4 |     TABLE ACCESS FULL         | T1   |     1 |    13 |   550   (1)| 00:00:01 |
+|   5 |     INDEX RANGE SCAN          | T2I  |     1 |       |     2   (0)| 00:00:01 |
+|   6 |    TABLE ACCESS BY INDEX ROWID| T2   |     1 |     9 |     3   (0)| 00:00:01 |
+--------------------------------------------------------------------------------------
+
+Query Block Name / Object Alias (identified by operation id):
+-------------------------------------------------------------
+
+   1 - SEL$1
+   4 - SEL$1 / T1@SEL$1
+   5 - SEL$1 / T2@SEL$1
+   6 - SEL$1 / T2@SEL$1
+
+Outline Data
+-------------
+
+  /*+
+      BEGIN_OUTLINE_DATA
+      IGNORE_OPTIM_EMBEDDED_HINTS
+      OPTIMIZER_FEATURES_ENABLE('19.1.0')
+      DB_VERSION('19.1.0')
+      ALL_ROWS
+      OUTLINE_LEAF(@"SEL$1")
+      FULL(@"SEL$1" "T1"@"SEL$1")
+      INDEX(@"SEL$1" "T2"@"SEL$1" ("T2"."A"))
+      LEADING(@"SEL$1" "T1"@"SEL$1" "T2"@"SEL$1")
+      USE_NL(@"SEL$1" "T2"@"SEL$1")
+      NLJ_BATCHING(@"SEL$1" "T2"@"SEL$1")
+      END_OUTLINE_DATA
+  */
+
+Peeked Binds (identified by position):
+--------------------------------------
+
+   1 - :IDNUM (NUMBER): 1000
+
+Hint Report (identified by operation id / Query Block Name / Object Alias):
+Total hints for statement: 1
+---------------------------------------------------------------------------
+
+   0 -  STATEMENT
+           -  NO_ADAPTIVE_PLAN
+
+Query Block Registry:
+---------------------
+
+  <q o="2" f="y"><n><![CDATA[SEL$1]]></n><f><h><t><![CDATA[T1]]></t><s><![CDATA[
+        SEL$1]]></s></h><h><t><![CDATA[T2]]></t><s><![CDATA[SEL$1]]></s></h></f></q>
+
+
+</pre>
+
+<!-- 2021-03-04/15:58:04 -->
+<hr size="3">
+<font class="f">1366133.1 SQLHC 12.1.07 2021-03-04/15:56:46</font>
+</body>
+</html>
