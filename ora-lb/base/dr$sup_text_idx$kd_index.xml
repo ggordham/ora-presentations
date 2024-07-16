@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="93ec4cf7b34c66f4164e726d9a8d55a2b4b646b1" author="(SH)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createSxmlObject objectName="DR$SUP_TEXT_IDX$KD" objectType="INDEX" ownerName="SH"  replaceIfExists="true" >
+			<n0:source><![CDATA[
+  <INDEX xmlns="http://xmlns.oracle.com/ku" version="1.0">
+   <UNIQUE></UNIQUE>
+   <SCHEMA>SH</SCHEMA>
+   <NAME>DR$SUP_TEXT_IDX$KD</NAME>
+   <TABLE_INDEX>
+      <ON_TABLE>
+         <SCHEMA>SH</SCHEMA>
+         <NAME>DR$SUP_TEXT_IDX$K</NAME>
+      </ON_TABLE>
+      <COL_LIST>
+         <COL_LIST_ITEM>
+            <NAME>DOCID</NAME>
+         </COL_LIST_ITEM>
+         <COL_LIST_ITEM>
+            <NAME>TEXTKEY</NAME>
+         </COL_LIST_ITEM>
+      </COL_LIST>
+      <INDEX_ATTRIBUTES>
+         <PCTFREE>10</PCTFREE>
+         <INITRANS>2</INITRANS>
+         <MAXTRANS>255</MAXTRANS>
+         <TABLESPACE>USERS</TABLESPACE>
+         <LOGGING>Y</LOGGING>
+      </INDEX_ATTRIBUTES>
+   </TABLE_INDEX>
+</INDEX>]]></n0:source>
+		</n0:createSxmlObject>
+	</changeSet>
+</databaseChangeLog>

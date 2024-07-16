@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="b031bcd330be629913fd2396467e8f90bb52dfb8" author="(SH)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createSxmlObject objectName="SUP_TEXT_IDX" objectType="INDEX" ownerName="SH"  replaceIfExists="true" >
+			<n0:source><![CDATA[
+  <INDEX xmlns="http://xmlns.oracle.com/ku" version="1.0">
+   <SCHEMA>SH</SCHEMA>
+   <NAME>SUP_TEXT_IDX</NAME>
+   <TABLE_INDEX>
+      <ON_TABLE>
+         <SCHEMA>SH</SCHEMA>
+         <NAME>SUPPLEMENTARY_DEMOGRAPHICS</NAME>
+      </ON_TABLE>
+      <COL_LIST>
+         <COL_LIST_ITEM>
+            <NAME>COMMENTS</NAME>
+         </COL_LIST_ITEM>
+      </COL_LIST>
+      <DOMAIN_INDEX_PROPERTIES>
+         <INDEXTYPE>
+            <SCHEMA>CTXSYS</SCHEMA>
+            <NAME>CONTEXT</NAME>
+         </INDEXTYPE>
+         <PARAMETERS>nopopulate</PARAMETERS>
+      </DOMAIN_INDEX_PROPERTIES>
+   </TABLE_INDEX>
+</INDEX>]]></n0:source>
+		</n0:createSxmlObject>
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="e691d037bfd2650fc54845399ac8d640efb74eba" author="(SH)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createOracleComment objectName="COUNTRIES_COMMENTS" objectType="COMMENT" ownerName="SH" sourceType="STRING" replaceIfExists="true" >
+			<n0:source><![CDATA[
+   COMMENT ON COLUMN "SH"."COUNTRIES"."COUNTRY_ID" IS 'primary key';
+   COMMENT ON COLUMN "SH"."COUNTRIES"."COUNTRY_NAME" IS 'country name';
+   COMMENT ON COLUMN "SH"."COUNTRIES"."COUNTRY_SUBREGION" IS 'e.g. Western Europe, to allow hierarchies';
+   COMMENT ON COLUMN "SH"."COUNTRIES"."COUNTRY_REGION" IS 'e.g. Europe, Asia';
+   COMMENT ON TABLE "SH"."COUNTRIES"  IS 'country dimension table (snowflake)';]]></n0:source>
+		</n0:createOracleComment>
+	</changeSet>
+</databaseChangeLog>

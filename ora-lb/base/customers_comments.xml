@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="7dec1c6d7edf11a5859ad078eee41c3594e219ee" author="(SH)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createOracleComment objectName="CUSTOMERS_COMMENTS" objectType="COMMENT" ownerName="SH" sourceType="STRING" replaceIfExists="true" >
+			<n0:source><![CDATA[
+   COMMENT ON COLUMN "SH"."CUSTOMERS"."CUST_ID" IS 'primary key';
+   COMMENT ON COLUMN "SH"."CUSTOMERS"."CUST_FIRST_NAME" IS 'first name of the customer';
+   COMMENT ON COLUMN "SH"."CUSTOMERS"."CUST_LAST_NAME" IS 'last name of the customer';
+   COMMENT ON COLUMN "SH"."CUSTOMERS"."CUST_GENDER" IS 'gender; low cardinality attribute';
+   COMMENT ON COLUMN "SH"."CUSTOMERS"."CUST_YEAR_OF_BIRTH" IS 'customer year of birth';
+   COMMENT ON COLUMN "SH"."CUSTOMERS"."CUST_MARITAL_STATUS" IS 'customer marital status; low cardinality attribute';
+   COMMENT ON COLUMN "SH"."CUSTOMERS"."CUST_STREET_ADDRESS" IS 'customer street address';
+   COMMENT ON COLUMN "SH"."CUSTOMERS"."CUST_POSTAL_CODE" IS 'postal code of the customer';
+   COMMENT ON COLUMN "SH"."CUSTOMERS"."CUST_CITY" IS 'city where the customer lives';
+   COMMENT ON COLUMN "SH"."CUSTOMERS"."CUST_STATE_PROVINCE" IS 'customer geography: state or province';
+   COMMENT ON COLUMN "SH"."CUSTOMERS"."COUNTRY_ID" IS 'foreign key to the countries table (snowflake)';
+   COMMENT ON COLUMN "SH"."CUSTOMERS"."CUST_MAIN_PHONE_NUMBER" IS 'customer main phone number';
+   COMMENT ON COLUMN "SH"."CUSTOMERS"."CUST_INCOME_LEVEL" IS 'customer income level';
+   COMMENT ON COLUMN "SH"."CUSTOMERS"."CUST_CREDIT_LIMIT" IS 'customer credit limit';
+   COMMENT ON COLUMN "SH"."CUSTOMERS"."CUST_EMAIL" IS 'customer email id';
+   COMMENT ON TABLE "SH"."CUSTOMERS"  IS 'dimension table';]]></n0:source>
+		</n0:createOracleComment>
+	</changeSet>
+</databaseChangeLog>

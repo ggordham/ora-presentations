@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="3efc206ae0da1f468ee9155d711d29eca28faebb" author="(SH)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createSxmlObject objectName="SALES_TRANSACTIONS_EXT" objectType="TABLE" ownerName="SH"  replaceIfExists="true" >
+			<n0:source><![CDATA[
+  <TABLE xmlns="http://xmlns.oracle.com/ku" version="1.0">
+   <SCHEMA>SH</SCHEMA>
+   <NAME>SALES_TRANSACTIONS_EXT</NAME>
+   <RELATIONAL_TABLE>
+      <COL_LIST>
+         <COL_LIST_ITEM>
+            <NAME>PROD_ID</NAME>
+            <DATATYPE>NUMBER</DATATYPE>
+         </COL_LIST_ITEM>
+         <COL_LIST_ITEM>
+            <NAME>CUST_ID</NAME>
+            <DATATYPE>NUMBER</DATATYPE>
+         </COL_LIST_ITEM>
+         <COL_LIST_ITEM>
+            <NAME>TIME_ID</NAME>
+            <DATATYPE>DATE</DATATYPE>
+         </COL_LIST_ITEM>
+         <COL_LIST_ITEM>
+            <NAME>CHANNEL_ID</NAME>
+            <DATATYPE>NUMBER</DATATYPE>
+         </COL_LIST_ITEM>
+         <COL_LIST_ITEM>
+            <NAME>PROMO_ID</NAME>
+            <DATATYPE>NUMBER</DATATYPE>
+         </COL_LIST_ITEM>
+         <COL_LIST_ITEM>
+            <NAME>QUANTITY_SOLD</NAME>
+            <DATATYPE>NUMBER</DATATYPE>
+         </COL_LIST_ITEM>
+         <COL_LIST_ITEM>
+            <NAME>AMOUNT_SOLD</NAME>
+            <DATATYPE>NUMBER</DATATYPE>
+            <PRECISION>10</PRECISION>
+            <SCALE>2</SCALE>
+         </COL_LIST_ITEM>
+         <COL_LIST_ITEM>
+            <NAME>UNIT_COST</NAME>
+            <DATATYPE>NUMBER</DATATYPE>
+            <PRECISION>10</PRECISION>
+            <SCALE>2</SCALE>
+         </COL_LIST_ITEM>
+         <COL_LIST_ITEM>
+            <NAME>UNIT_PRICE</NAME>
+            <DATATYPE>NUMBER</DATATYPE>
+            <PRECISION>10</PRECISION>
+            <SCALE>2</SCALE>
+         </COL_LIST_ITEM>
+      </COL_LIST>
+      <DEFAULT_COLLATION>USING_NLS_COMP</DEFAULT_COLLATION>
+      <PHYSICAL_PROPERTIES>
+         <EXTERNAL_TABLE>
+            <ACCESS_DRIVER_TYPE>ORACLE_LOADER</ACCESS_DRIVER_TYPE>
+            <DEFAULT_DIRECTORY>DATA_FILE_DIR</DEFAULT_DIRECTORY>
+            <ACCESS_PARAMETERS>RECORDS DELIMITED BY NEWLINE CHARACTERSET US7ASCII
+    TERRITORY AMERICA
+    BADFILE log_file_dir:'ext_1v3.bad'
+    LOGFILE log_file_dir:'ext_1v3.log'
+    FIELDS TERMINATED BY "|" OPTIONALLY ENCLOSED BY '^' LDRTRIM
+    ( PROD_ID         ,
+      CUST_ID         ,
+      TIME_ID         DATE(10) "YYYY-MM-DD",
+      CHANNEL_ID      ,
+      PROMO_ID        ,
+      QUANTITY_SOLD   ,
+      AMOUNT_SOLD     ,
+      UNIT_COST       ,
+      UNIT_PRICE
+    )
+ </ACCESS_PARAMETERS>
+            <LOCATION>
+               <LOCATION_ITEM>
+                  <NAME>sale1v3.dat</NAME>
+               </LOCATION_ITEM>
+            </LOCATION>
+            <REJECT_LIMIT>100</REJECT_LIMIT>
+         </EXTERNAL_TABLE>
+      </PHYSICAL_PROPERTIES>
+   </RELATIONAL_TABLE>
+</TABLE>]]></n0:source>
+		</n0:createSxmlObject>
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="ffd46b8e1c78486b2a255c7bae4a5eb95d493c88" author="(SH)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createSxmlObject objectName="CAL_MONTH_SALES_MV" objectType="MATERIALIZED_VIEW" ownerName="SH"  replaceIfExists="true" >
+			<n0:source><![CDATA[
+  <MATERIALIZED_VIEW xmlns="http://xmlns.oracle.com/ku" version="1.0">
+   <SCHEMA>SH</SCHEMA>
+   <NAME>CAL_MONTH_SALES_MV</NAME>
+   <COL_LIST>
+      <COL_LIST_ITEM>
+         <NAME>CALENDAR_MONTH_DESC</NAME>
+      </COL_LIST_ITEM>
+      <COL_LIST_ITEM>
+         <NAME>DOLLARS</NAME>
+      </COL_LIST_ITEM>
+   </COL_LIST>
+   <DEFAULT_COLLATION>USING_NLS_COMP</DEFAULT_COLLATION>
+   <ON_PREBUILT_TABLE>
+      <REDUCED_PRECISION>N</REDUCED_PRECISION>
+   </ON_PREBUILT_TABLE>
+   <REFRESH>
+      <LOCAL_ROLLBACK_SEGMENT>
+         <DEFAULT></DEFAULT>
+      </LOCAL_ROLLBACK_SEGMENT>
+      <CONSTRAINTS>ENFORCED</CONSTRAINTS>
+   </REFRESH>
+   <QUERY_REWRITE></QUERY_REWRITE>
+   <SUBQUERY>SELECT   t.calendar_month_desc
+  ,        sum(s.amount_sold) AS dollars
+  FROM     sales s
+  ,        times t
+  WHERE    s.time_id = t.time_id
+  GROUP BY t.calendar_month_desc</SUBQUERY>
+</MATERIALIZED_VIEW>]]></n0:source>
+		</n0:createSxmlObject>
+	</changeSet>
+</databaseChangeLog>

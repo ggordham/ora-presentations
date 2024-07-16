@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="a30f7c1505044641808cfc87deb1bf72ea297fae" author="(SH)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createOracleComment objectName="PRODUCTS_COMMENTS" objectType="COMMENT" ownerName="SH" sourceType="STRING" replaceIfExists="true" >
+			<n0:source><![CDATA[
+   COMMENT ON COLUMN "SH"."PRODUCTS"."PROD_ID" IS 'primary key';
+   COMMENT ON COLUMN "SH"."PRODUCTS"."PROD_NAME" IS 'product name';
+   COMMENT ON COLUMN "SH"."PRODUCTS"."PROD_DESC" IS 'product description';
+   COMMENT ON COLUMN "SH"."PRODUCTS"."PROD_SUBCATEGORY" IS 'product subcategory';
+   COMMENT ON COLUMN "SH"."PRODUCTS"."PROD_SUBCATEGORY_DESC" IS 'product subcategory description';
+   COMMENT ON COLUMN "SH"."PRODUCTS"."PROD_CATEGORY" IS 'product category';
+   COMMENT ON COLUMN "SH"."PRODUCTS"."PROD_CATEGORY_DESC" IS 'product category description';
+   COMMENT ON COLUMN "SH"."PRODUCTS"."PROD_WEIGHT_CLASS" IS 'product weight class';
+   COMMENT ON COLUMN "SH"."PRODUCTS"."PROD_UNIT_OF_MEASURE" IS 'product unit of measure';
+   COMMENT ON COLUMN "SH"."PRODUCTS"."PROD_PACK_SIZE" IS 'product package size';
+   COMMENT ON COLUMN "SH"."PRODUCTS"."SUPPLIER_ID" IS 'this column';
+   COMMENT ON COLUMN "SH"."PRODUCTS"."PROD_STATUS" IS 'product status';
+   COMMENT ON COLUMN "SH"."PRODUCTS"."PROD_LIST_PRICE" IS 'product list price';
+   COMMENT ON COLUMN "SH"."PRODUCTS"."PROD_MIN_PRICE" IS 'product minimum price';
+   COMMENT ON TABLE "SH"."PRODUCTS"  IS 'dimension table';]]></n0:source>
+		</n0:createOracleComment>
+	</changeSet>
+</databaseChangeLog>

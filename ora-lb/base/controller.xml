@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+############ 2024.07.16.15.24.56 #################################
+############ ddl.parms  ########################################
+BODY                           : ON
+COLLATION_CLAUSE               : NEVER
+CONSTRAINTS                    : ON
+CONSTRAINTS_AS_ALTER           : ON
+EMIT_SCHEMA                    : ON
+FORCE                          : ON
+INHERIT                        : ON
+INSERT                         : ON
+OID                            : ON
+PARTITIONING                   : ON
+PRETTY                         : ON
+REF_CONSTRAINTS                : ON
+SEGMENT_ATTRIBUTES             : ON
+SIZE_BYTE_KEYWORD              : ON
+SPECIFICATION                  : ON
+SQLTERMINATOR                  : ON
+STORAGE                        : ON
+TABLESPACE                     : ON
+
+############ lb.parameters ########################################
+basecommand                    : lb
+command                        : generate-schema
+database-changelog-table-name  : DATABASECHANGELOG
+fail-on-error                  : false
+grants                         : false
+log                            : false
+replace                        : true
+runalways                      : false
+runonchange                    : true
+sqlclversion                   : 23.1.1.0
+synonyms                       : false
+############ End Parameters #######################################
+-->
+<databaseChangeLog 
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+  <include file="dr$sup_text_idx$n_table.xml"/> 
+  <include file="dr$sup_text_idx$i_table.xml"/> 
+  <include file="times_table.xml"/> 
+  <include file="products_table.xml"/> 
+  <include file="channels_table.xml"/> 
+  <include file="promotions_table.xml"/> 
+  <include file="countries_table.xml"/> 
+  <include file="supplementary_demographics_table.xml"/> 
+  <include file="sales_transactions_ext_table.xml"/> 
+  <include file="dr$sup_text_idx$k_table.xml"/> 
+  <include file="dr$sup_text_idx$u_table.xml"/> 
+  <include file="costs_table.xml"/> 
+  <include file="customers_table.xml"/> 
+  <include file="sales_table.xml"/> 
+  <include file="cal_month_sales_mv_materialized_view.xml"/> 
+  <include file="fweek_pscat_sales_mv_materialized_view.xml"/> 
+  <include file="profits_view.xml"/> 
+  <include file="customers_dim_dimension.xml"/> 
+  <include file="products_dim_dimension.xml"/> 
+  <include file="times_dim_dimension.xml"/> 
+  <include file="channels_dim_dimension.xml"/> 
+  <include file="promotions_dim_dimension.xml"/> 
+  <include file="sales_channel_bix_index.xml"/> 
+  <include file="fw_psc_s_mv_chan_bix_index.xml"/> 
+  <include file="customers_marital_bix_index.xml"/> 
+  <include file="fw_psc_s_mv_subcat_bix_index.xml"/> 
+  <include file="dr$sup_text_idx$kr_index.xml"/> 
+  <include file="products_prod_subcat_ix_index.xml"/> 
+  <include file="products_prod_cat_ix_index.xml"/> 
+  <include file="sales_cust_bix_index.xml"/> 
+  <include file="costs_prod_bix_index.xml"/> 
+  <include file="sales_promo_bix_index.xml"/> 
+  <include file="fw_psc_s_mv_promo_bix_index.xml"/> 
+  <include file="customers_gender_bix_index.xml"/> 
+  <include file="dr$sup_text_idx$kd_index.xml"/> 
+  <include file="costs_time_bix_index.xml"/> 
+  <include file="products_prod_status_bix_index.xml"/> 
+  <include file="sales_prod_bix_index.xml"/> 
+  <include file="sup_text_idx_index.xml"/> 
+  <include file="customers_yob_bix_index.xml"/> 
+  <include file="fw_psc_s_mv_wd_bix_index.xml"/> 
+  <include file="sales_time_bix_index.xml"/> 
+  <include file="dr$sup_text_idx$x_index.xml"/> 
+  <include file="sales_comments.xml"/> 
+  <include file="times_comments.xml"/> 
+  <include file="products_comments.xml"/> 
+  <include file="channels_comments.xml"/> 
+  <include file="promotions_comments.xml"/> 
+  <include file="customers_comments.xml"/> 
+  <include file="countries_comments.xml"/> 
+</databaseChangeLog> 

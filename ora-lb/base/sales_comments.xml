@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="87df9b9670ddd57872ca931cbf162fe79153b49f" author="(SH)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createOracleComment objectName="SALES_COMMENTS" objectType="COMMENT" ownerName="SH" sourceType="STRING" replaceIfExists="true" >
+			<n0:source><![CDATA[
+   COMMENT ON COLUMN "SH"."SALES"."PROD_ID" IS 'FK to the products dimension table';
+   COMMENT ON COLUMN "SH"."SALES"."CUST_ID" IS 'FK to the customers dimension table';
+   COMMENT ON COLUMN "SH"."SALES"."TIME_ID" IS 'FK to the times dimension table';
+   COMMENT ON COLUMN "SH"."SALES"."CHANNEL_ID" IS 'FK to the channels dimension table';
+   COMMENT ON COLUMN "SH"."SALES"."PROMO_ID" IS 'promotion identifier, without FK constraint (intentionally) to show outer join optimization';
+   COMMENT ON COLUMN "SH"."SALES"."QUANTITY_SOLD" IS 'product quantity sold with the transaction';
+   COMMENT ON COLUMN "SH"."SALES"."AMOUNT_SOLD" IS 'invoiced amount to the customer';
+   COMMENT ON TABLE "SH"."SALES"  IS 'facts table, without a primary key; all rows are uniquely identified by the combination of all foreign keys';]]></n0:source>
+		</n0:createOracleComment>
+	</changeSet>
+</databaseChangeLog>

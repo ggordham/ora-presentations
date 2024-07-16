@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="2b421a99390167d7a78469e5c34309f2e0aca210" author="(SH)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createOracleComment objectName="PROMOTIONS_COMMENTS" objectType="COMMENT" ownerName="SH" sourceType="STRING" replaceIfExists="true" >
+			<n0:source><![CDATA[
+   COMMENT ON COLUMN "SH"."PROMOTIONS"."PROMO_ID" IS 'primary key column';
+   COMMENT ON COLUMN "SH"."PROMOTIONS"."PROMO_NAME" IS 'promotion description';
+   COMMENT ON COLUMN "SH"."PROMOTIONS"."PROMO_SUBCATEGORY" IS 'enables to investigate promotion hierarchies';
+   COMMENT ON COLUMN "SH"."PROMOTIONS"."PROMO_CATEGORY" IS 'promotion category';
+   COMMENT ON COLUMN "SH"."PROMOTIONS"."PROMO_COST" IS 'promotion cost, to do promotion effect calculations';
+   COMMENT ON COLUMN "SH"."PROMOTIONS"."PROMO_BEGIN_DATE" IS 'promotion begin day';
+   COMMENT ON COLUMN "SH"."PROMOTIONS"."PROMO_END_DATE" IS 'promotion end day';
+   COMMENT ON TABLE "SH"."PROMOTIONS"  IS 'dimension table without a PK-FK relationship with the facts table, to show outer join functionality';]]></n0:source>
+		</n0:createOracleComment>
+	</changeSet>
+</databaseChangeLog>

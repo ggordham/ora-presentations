@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="df702569a6dd60afaed5d61f3b8101536ab38bdd" author="(SH)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createOracleComment objectName="CHANNELS_COMMENTS" objectType="COMMENT" ownerName="SH" sourceType="STRING" replaceIfExists="true" >
+			<n0:source><![CDATA[
+   COMMENT ON COLUMN "SH"."CHANNELS"."CHANNEL_ID" IS 'primary key column';
+   COMMENT ON COLUMN "SH"."CHANNELS"."CHANNEL_DESC" IS 'e.g. telesales, internet, catalog';
+   COMMENT ON COLUMN "SH"."CHANNELS"."CHANNEL_CLASS" IS 'e.g. direct, indirect';
+   COMMENT ON TABLE "SH"."CHANNELS"  IS 'small dimension table';]]></n0:source>
+		</n0:createOracleComment>
+	</changeSet>
+</databaseChangeLog>

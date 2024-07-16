@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="f781b14c0ae80cc712785d176fd5199bece3f1e4" author="(SH)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createOracleComment objectName="TIMES_COMMENTS" objectType="COMMENT" ownerName="SH" sourceType="STRING" replaceIfExists="true" >
+			<n0:source><![CDATA[
+   COMMENT ON COLUMN "SH"."TIMES"."TIME_ID" IS 'primary key; day date, finest granularity, CORRECT ORDER';
+   COMMENT ON COLUMN "SH"."TIMES"."DAY_NAME" IS 'Monday to Sunday, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."DAY_NUMBER_IN_WEEK" IS '1 to 7, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."DAY_NUMBER_IN_MONTH" IS '1 to 31, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."CALENDAR_WEEK_NUMBER" IS '1 to 53, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."FISCAL_WEEK_NUMBER" IS '1 to 53, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."WEEK_ENDING_DAY" IS 'date of last day in week, CORRECT ORDER';
+   COMMENT ON COLUMN "SH"."TIMES"."CALENDAR_MONTH_NUMBER" IS '1 to 12, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."FISCAL_MONTH_NUMBER" IS '1 to 12, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."CALENDAR_MONTH_DESC" IS 'e.g. 1998-01, CORRECT ORDER';
+   COMMENT ON COLUMN "SH"."TIMES"."FISCAL_MONTH_DESC" IS 'e.g. 1998-01, CORRECT ORDER';
+   COMMENT ON COLUMN "SH"."TIMES"."DAYS_IN_CAL_MONTH" IS 'e.g. 28,31, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."DAYS_IN_FIS_MONTH" IS 'e.g. 25,32, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."END_OF_CAL_MONTH" IS 'last day of calendar month';
+   COMMENT ON COLUMN "SH"."TIMES"."END_OF_FIS_MONTH" IS 'last day of fiscal month';
+   COMMENT ON COLUMN "SH"."TIMES"."CALENDAR_MONTH_NAME" IS 'January to December, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."FISCAL_MONTH_NAME" IS 'January to December, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."CALENDAR_QUARTER_DESC" IS 'e.g. 1998-Q1, CORRECT ORDER';
+   COMMENT ON COLUMN "SH"."TIMES"."FISCAL_QUARTER_DESC" IS 'e.g. 1999-Q3, CORRECT ORDER';
+   COMMENT ON COLUMN "SH"."TIMES"."DAYS_IN_CAL_QUARTER" IS 'e.g. 88,90, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."DAYS_IN_FIS_QUARTER" IS 'e.g. 88,90, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."END_OF_CAL_QUARTER" IS 'last day of calendar quarter';
+   COMMENT ON COLUMN "SH"."TIMES"."END_OF_FIS_QUARTER" IS 'last day of fiscal quarter';
+   COMMENT ON COLUMN "SH"."TIMES"."CALENDAR_QUARTER_NUMBER" IS '1 to 4, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."FISCAL_QUARTER_NUMBER" IS '1 to 4, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."CALENDAR_YEAR" IS 'e.g. 1999, CORRECT ORDER';
+   COMMENT ON COLUMN "SH"."TIMES"."FISCAL_YEAR" IS 'e.g. 1999, CORRECT ORDER';
+   COMMENT ON COLUMN "SH"."TIMES"."DAYS_IN_CAL_YEAR" IS '365,366 repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."DAYS_IN_FIS_YEAR" IS 'e.g. 355,364, repeating';
+   COMMENT ON COLUMN "SH"."TIMES"."END_OF_CAL_YEAR" IS 'last day of cal year';
+   COMMENT ON COLUMN "SH"."TIMES"."END_OF_FIS_YEAR" IS 'last day of fiscal year';
+   COMMENT ON TABLE "SH"."TIMES"  IS 'Time dimension table to support multiple hierarchies and materialized views';]]></n0:source>
+		</n0:createOracleComment>
+	</changeSet>
+</databaseChangeLog>

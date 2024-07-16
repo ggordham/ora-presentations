@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="3640f50ad46e9b0e2680c28798c449b65ee0f86f" author="(SH)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createOracleDimension objectName="CHANNELS_DIM" objectType="DIMENSION" ownerName="SH"  replaceIfExists="true" >
+			<n0:source><![CDATA[
+   CREATE DIMENSION "SH"."CHANNELS_DIM" LEVEL "CHANNEL" IS ("CHANNELS"."CHANNEL_ID") LEVEL "CHANNEL_CLASS" IS ("CHANNELS"."CHANNEL_CLASS_ID") LEVEL "CHANNEL_TOTAL" IS ("CHANNELS"."CHANNEL_TOTAL_ID") HIERARCHY "CHANNEL_ROLLUP" ("CHANNEL" CHILD OF "CHANNEL_CLASS" CHILD OF "CHANNEL_TOTAL") ATTRIBUTE "CHANNEL" LEVEL "CHANNEL" DETERMINES "CHANNELS"."CHANNEL_DESC" ATTRIBUTE "CHANNEL_CLASS" LEVEL "CHANNEL_CLASS" DETERMINES "CHANNELS"."CHANNEL_CLASS" ATTRIBUTE "CHANNEL_TOTAL" LEVEL "CHANNEL_TOTAL" DETERMINES "CHANNELS"."CHANNEL_TOTAL"]]></n0:source>
+		</n0:createOracleDimension>
+	</changeSet>
+</databaseChangeLog>

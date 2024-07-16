@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="6fda28e97ba8e07e71379043a728a56537d626af" author="(SH)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createOracleDimension objectName="PROMOTIONS_DIM" objectType="DIMENSION" ownerName="SH"  replaceIfExists="true" >
+			<n0:source><![CDATA[
+   CREATE DIMENSION "SH"."PROMOTIONS_DIM" LEVEL "PROMO" IS ("PROMOTIONS"."PROMO_ID") LEVEL "SUBCATEGORY" IS ("PROMOTIONS"."PROMO_SUBCATEGORY_ID") LEVEL "CATEGORY" IS ("PROMOTIONS"."PROMO_CATEGORY_ID") LEVEL "PROMO_TOTAL" IS ("PROMOTIONS"."PROMO_TOTAL_ID") HIERARCHY "PROMO_ROLLUP" ("PROMO" CHILD OF "SUBCATEGORY" CHILD OF "CATEGORY" CHILD OF "PROMO_TOTAL") ATTRIBUTE "PROMO" LEVEL "PROMO" DETERMINES "PROMOTIONS"."PROMO_NAME" ATTRIBUTE "PROMO" LEVEL "PROMO" DETERMINES "PROMOTIONS"."PROMO_END_DATE" ATTRIBUTE "PROMO" LEVEL "PROMO" DETERMINES "PROMOTIONS"."PROMO_BEGIN_DATE" ATTRIBUTE "PROMO" LEVEL "PROMO" DETERMINES "PROMOTIONS"."PROMO_COST" ATTRIBUTE "SUBCATEGORY" LEVEL "SUBCATEGORY" DETERMINES "PROMOTIONS"."PROMO_SUBCATEGORY" ATTRIBUTE "CATEGORY" LEVEL "CATEGORY" DETERMINES "PROMOTIONS"."PROMO_CATEGORY" ATTRIBUTE "PROMO_TOTAL" LEVEL "PROMO_TOTAL" DETERMINES "PROMOTIONS"."PROMO_TOTAL"]]></n0:source>
+		</n0:createOracleDimension>
+	</changeSet>
+</databaseChangeLog>
