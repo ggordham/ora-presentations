@@ -23,7 +23,7 @@ Script will create the three schemas and load the base HR demo schema to all of 
 ```sql
 connect hr_prd/hr_prd_pa55wd@//srvr08/pdb1
 
-cd workdir
+cd workarea
 
 lb generate-schema -split -sql
 
@@ -51,7 +51,9 @@ Lets check the stats of the changes.
 
 connect hr_prd/hr_prd_pa55wd@//srvr08/pdb1
 
+cd base
 lb status -changelog-file controller.xml
+cd ..
 
 ```
 
@@ -82,7 +84,7 @@ CREATE INDEX "HR_DEV"."EMP_CONTACT_INDEX1" ON "HR_DEV"."EMP_CONTACT" ("EMPLOYEE_
 We will generate a XML file for the table and a controller file for the change overall.
 
 ```sql
-cd workdir
+cd workarea
 
 lb generate-db-object -object-type table -object-name emp_contact
 
@@ -188,7 +190,7 @@ Lets make a change to the employee table and then generate a change for that.
 ```sql
 connect hr_dev/hr_dev_pa55wd@//srvr08/pdb1
 
-cd workdir
+cd workarea
 
 ALTER TABLE employees ADD pref_contact CHAR(1);
 
