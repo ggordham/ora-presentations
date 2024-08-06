@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="fc8a9deea9e5b225de57e4d95d53b90079e7a75f" author="(HR_TST)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createSxmlObject objectName="LOCATIONS_SEQ" objectType="SEQUENCE" ownerName="HR_TST"  replaceIfExists="true" >
+			<n0:source><![CDATA[
+  <SEQUENCE xmlns="http://xmlns.oracle.com/ku" version="1.0">
+   <SCHEMA>HR_TST</SCHEMA>
+   <NAME>LOCATIONS_SEQ</NAME>
+   <START_WITH>3300</START_WITH>
+   <INCREMENT>100</INCREMENT>
+   <MINVALUE>1</MINVALUE>
+   <MAXVALUE>9900</MAXVALUE>
+   <CACHE>0</CACHE>
+   <SCALE>NOSCALE</SCALE>
+</SEQUENCE>]]></n0:source>
+		</n0:createSxmlObject>
+	</changeSet>
+</databaseChangeLog>
