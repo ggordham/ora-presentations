@@ -10,7 +10,7 @@ As with any scripts I have for demos, these are use at your own risk and should 
 I run these on a VM that I can throw away. So a Podman / Docker container with an Oracle database is a good place to try these out on your own.
 
 # Schemas:
-    #
+
 - hr_prd - Production
 - hr_tst - Test
 - hr_dev - Development
