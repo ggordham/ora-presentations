@@ -2,7 +2,15 @@
 
 This is a demonstration of the Liquibase tool built into Oracle SQLci tool.  We will start with an existing schema and then walk through some capture and implimentation of change.  The demonstration is based on using three schemas to represent the different lifecycles of the application (Production PRD, Test TST, Development DEV).
 
-Schemas:
+
+# Warnings
+
+As with any scripts I have for demos, these are use at your own risk and should not be run on any system that is used by your company for any reason.
+
+I run these on a VM that I can throw away. So a Podman / Docker container with an Oracle database is a good place to try these out on your own.
+
+# Schemas:
+    #
 - hr_prd - Production
 - hr_tst - Test
 - hr_dev - Development
@@ -17,6 +25,12 @@ We are using the test environment, but this could be done from any environment a
 
 Script will create the three schemas and load the base HR demo schema to all of them.
 
+```bash
+cd setup
+
+./setup.sh
+
+```
 
 # Capture schema
 
@@ -283,6 +297,8 @@ Now lets refresh test and apply all the changes we have done so far.
 From the command line of the database server:
 
 ```bash
+cd setup
+
 ./refresh_tst.sh
 
 ```
