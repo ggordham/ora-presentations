@@ -48,7 +48,6 @@ Lets check the stats of the changes.
 
 
 ```sql
-
 connect hr_prd/hr_prd_pa55wd@//srvr08/pdb1
 
 cd base
@@ -65,7 +64,9 @@ Here we will switch to development and make a change.  Again we will start by ba
 ## Create our new table
 
 ```sql
-CREATE TABLE "HR_DEV"."EMP_CONTACT"
+connect hr_dev/hr_dev_pa55wd@//srvr08/pdb1
+
+CREATE TABLE "EMP_CONTACT"
   ("CONTACT_ID" NUMBER,
    "EMPLOYEE_ID" NUMBER,
    "CONTACT_TYPE" VARCHAR2(20 BYTE),
@@ -88,7 +89,7 @@ cd workarea
 
 lb generate-db-object -object-type table -object-name emp_contact
 
-lb generate-control-file -changelog-file controller.xml
+lb generate-controlfile -output-file controller-blank.xml
 
 cd ..
 
@@ -108,7 +109,7 @@ We will now connect to our test system and apply the v1.1 update.
 
 connect hr_tst/hr_tst_pa55wd@//srvr08/pdb1
 
-cd ../v1.1
+cd v1.1
 
 lb update -changelog-file controller.xml
 
@@ -133,7 +134,6 @@ select count(1) from emp_contact;
 
 ```sql
 
-exec upd_emp_contact_proc(100,'C','JUNK');
 
 exec upd_emp_contact_proc(100,'I','employee1');
 
@@ -154,9 +154,11 @@ We will now test an already developed v1.2 code.
 ```sql
 connect hr_tst/hr_tst_pa55wd@//srvr08/pdb1
 
-cd ../v1.2
+cd v1.2
 
 lb update -changelog-file controller.xml
+lb tag -tag v1.2
+cd ..
 
 ```
 
@@ -166,6 +168,8 @@ lb update -changelog-file controller.xml
 Lets try the new code and verify it works.
 
 ```sql
+employees_view
+
 exec upd_emp_contact_proc(100,'I','employee1');
 
 select * from emp_contact where employee_id = 100;
@@ -179,7 +183,39 @@ rollback;
 Rollback the change as it's not needed
 
 ```sql
+
+cd v1.2
+
 lb rollback -changelog-file controller.xml -tag v1.1
+
+cd ..
+
+```
+
+## Verify that the rollback
+
+Lets verify the rollback is completed
+
+```sql
+
+exec upd_emp_contact_proc(100,'I','employee1');
+
+desc employees_view;
+
+```
+
+# apply v1.1 to production
+
+While we are still developing v1.2 and v1.3, business has approved v1.1 to move to production.
+
+```sql
+
+connect hr_prd/hr_prd_pa55wd@//srvr08/pdb1
+
+cd v1.1
+lb update -changelog-file controller.xml
+lb tag -tag v1.1
+cd ..
 
 ```
 
@@ -190,12 +226,10 @@ Lets make a change to the employee table and then generate a change for that.
 ```sql
 connect hr_dev/hr_dev_pa55wd@//srvr08/pdb1
 
-cd workarea
-
 ALTER TABLE employees ADD pref_contact CHAR(1);
 
-lb generate-db-object -object-type table -object-name employee
-
+cd workarea
+lb generate-db-object -object-type table -object-name employees
 cd ..
 
 ```
@@ -207,20 +241,40 @@ lets apply the draft v1.3 change to test, note we have not applied v1.2.
 ```sql
 connect hr_tst/hr_tst_pa55wd@//srvr08/pdb1
 
-cd ../v1.3
+cd v1.3
 
 lb update -changelog-file employees_table.xml
+cd ..
 
 ```
 
 ## Rollback v1.3
 
 ```sql
-lb rollback -changelog-file employees_table.xml -tag v1.1
+connect hr_tst/hr_tst_pa55wd@//srvr08/pdb1
 
+cd v1.3
+lb rollback -changelog-file employees_table.xml -tag v1.1
 cd ..
 
 ```
+
+## Preview a change
+
+Lets preview the SQL for a change
+
+```sql
+connect hr_tst/hr_tst_pa55wd@//srvr08/pdb1
+
+cd v1.3
+
+lb update-sql -changelog-file employees_table.xml
+cd ..
+
+DISCONNECT;
+
+```
+
 
 
 # Refresh test and apply all changes
@@ -238,17 +292,20 @@ Then from SQLcl run:
 ```sql
 connect hr_tst/hr_tst_pa55wd@//srvr08/pdb1
 
-cd ../v1.1
+cd v1.1
 lb update -changelog-file controller.xml
 lb tag -tag v1.1
+cd ..
 
-cd ../v1.2
+cd v1.2
 lb update -changelog-file controller.xml
 lb tag -tag v1.2
+cd ..
 
-cd ../v1.3
+cd v1.3
 lb update -changelog-file employees_table.xml
-
+cd ..
 
 ```
 
+# END

@@ -30,8 +30,23 @@ drop user hr_tst cascade;
 !EOF
 
 
-"${ORACLE_HOME}"/bin/expdp "system/${system_password}@pdb1" directory="${db_directory}" dumpfile="${db_file}" logfile=hr-refresh-exp.log schemas=hr_prd
+"${ORACLE_HOME}"/bin/expdp "system/${system_password}@pdb1" directory="${db_directory}" dumpfile="${db_file}" logfile=hr-refresh-exp.log schemas=hr_prd REUSE_DUMPFILES=YES
 
 "${ORACLE_HOME}"/bin/impdp "system/${system_password}@pdb1" directory="${db_directory}" dumpfile="${db_file}" logfile=hr-refresh-imp-tst.log remap_schema=hr_prd:hr_tst TRANSFORM=OID:N EXCLUDE=USER
+
+# temporary fix for liquibase code that doesn't import correctly
+# 
+"${ORACLE_HOME}"/bin/sqlplus /nolog << !EOF > "${log_file}" 2>&1
+
+SET ECHO ON
+WHENEVER sqlerror EXIT sql.sqlcode;
+
+connect system/${system_password}@${connect_string}
+
+WHENEVER sqlerror CONTINUE;
+
+@@fix-hr_tst.sql
+
+!EOF
 
 

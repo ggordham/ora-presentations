@@ -1,7 +1,7 @@
 --liquibase formatted sql
---changeset ggordham:create_employees_view_v1.0 endDelimiter:/ rollbackEndDelimiter:/
+--changeset ggordham:create_employees_view_v1.0
 --comment first version of view v1.0
--CREATE OR REPLACE VIEW employees_view AS
+CREATE OR REPLACE VIEW employees_view AS
 SELECT
     e.employee_id,
     e.first_name,
