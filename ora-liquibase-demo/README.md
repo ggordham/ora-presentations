@@ -9,17 +9,6 @@ As with any scripts I have for demos, these are use at your own risk and should 
 
 I run these on a VM that I can throw away. So a Podman / Docker container with an Oracle database is a good place to try these out on your own.
 
-# Schemas:
-
-- hr_prd - Production
-- hr_tst - Test
-- hr_dev - Development
-
-We will start by loading all three schemas with the same set of objects and data by using Oracle data pump.
-
-Next we will use Liquibase to generate a baseline of the schema in XML format.  This will be used to set the main version in the other environments.
-We are using the test environment, but this could be done from any environment as we started with a synced set.
-
 # Table of Contents
 
 1. [Setup](#Setup)
@@ -33,6 +22,14 @@ We are using the test environment, but this could be done from any environment a
 
 # Setup
 
+## Schemas:
+
+- hr_prd - Production
+- hr_tst - Test
+- hr_dev - Development
+
+We will start by loading all three schemas with the same set of objects and data by using Oracle data pump.
+
 Script will create the three schemas and load the base HR demo schema to all of them.
 
 ```bash
@@ -43,6 +40,8 @@ cd setup
 ```
 
 # Capture schema
+
+Next we will use Liquibase to generate a baseline of the schema in XML format.  This will be used to set the main version in the other environments.
 
 ```sql
 connect hr_prd/hr_prd_pa55wd@//srvr08/pdb1
