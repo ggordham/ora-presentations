@@ -20,6 +20,16 @@ We will start by loading all three schemas with the same set of objects and data
 Next we will use Liquibase to generate a baseline of the schema in XML format.  This will be used to set the main version in the other environments.
 We are using the test environment, but this could be done from any environment as we started with a synced set.
 
+# Table of Contents
+
+1. [Setup](#Setup)
+2. [Capture Schema](#capture-schema)
+3. [Make a change in development](#make-a-change-in-development)
+4. [Setup v1.1 change](#Setup-v1.1-change)
+5. [v1.2 Change](#v1.2-change)
+6. [Apply v1.1 to production](#apply-v1.1-to-production)
+7. [Genreate a table change](#genreate-a-table-change)
+8. [Refresh test and apply all changes] (#refresh-test-and-apply-all-changes)
 
 # Setup
 
@@ -110,7 +120,7 @@ cd ..
 ```
 
 
-# Setup our v1.1 change
+# Setup v1.1 change
 
 Look at the contorll file and the related SQL and XML files
 
@@ -160,6 +170,8 @@ select * from emp_contact where employee_id = 100;
 rollback;
 
 ```
+
+# v1.2 Change
 
 ## apply v1.2 to test
 
