@@ -25,9 +25,9 @@ We are using the test environment, but this could be done from any environment a
 1. [Setup](#Setup)
 2. [Capture Schema](#capture-schema)
 3. [Make a change in development](#make-a-change-in-development)
-4. [Setup v1.1 change](#Setup-v1.1-change)
-5. [v1.2 Change](#v1.2-change)
-6. [Apply v1.1 to production](#apply-v1.1-to-production)
+4. [Setup v1.1 change](#Setup-v1\.1-change)
+5. [v1.2 Change](#v1\.2-change)
+6. [Apply v1.1 to production](#apply-v1\.1-to-production)
 7. [Genreate a table change](#genreate-a-table-change)
 8. [Refresh test and apply all changes] (#refresh-test-and-apply-all-changes)
 
