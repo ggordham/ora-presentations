@@ -29,7 +29,7 @@ We are using the test environment, but this could be done from any environment a
 5. [v1.2 Change](#v12-change)
 6. [Apply v1.1 to production](#apply-v11-to-production)
 7. [Genreate a table change](#genreate-a-table-change)
-8. [Refresh test and apply all changes] (#refresh-test-and-apply-all-changes)
+8. [Refresh test and apply all changes](#refresh-test-and-apply-all-changes)
 
 # Setup
 
