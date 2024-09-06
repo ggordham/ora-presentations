@@ -4,6 +4,10 @@ Scripts from Oracle Presentations that I have given
 All scripts or code in this repository is use at your own risk.
 Everything here is intended for test or lab type use.
 
+DB Community of Interest - September 17, 2024 - Oracle Tuning Tips, My best developer tuning tips
+
+```/tune-tips-DBCoI```
+
 ASCEND - June 20, 2024 - Deep dive into SQL tuning (with EBS)
 
 ```/deep-dive-sql-ASCEND```
