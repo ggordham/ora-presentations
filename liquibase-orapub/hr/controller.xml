@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+-->
+<databaseChangeLog 
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+  <include file="sequence/departments_seq_sequence.xml"/> 
+  <include file="sequence/employees_seq_sequence.xml"/> 
+  <include file="sequence/locations_seq_sequence.xml"/> 
+  <include file="table/countries_table.xml"/> 
+  <include file="table/departments_table.xml"/> 
+  <include file="table/employees_table.xml"/> 
+  <include file="table/jobs_table.xml"/> 
+  <include file="table/job_history_table.xml"/> 
+  <include file="table/locations_table.xml"/> 
+  <include file="table/regions_table.xml"/> 
+  <include file="view/emp_details_view_view.xml"/> 
+  <include file="ref_constraint/countr_reg_fk_ref_constraint.xml"/> 
+  <include file="ref_constraint/dept_loc_fk_ref_constraint.xml"/> 
+  <include file="ref_constraint/dept_mgr_fk_ref_constraint.xml"/> 
+  <include file="ref_constraint/emp_dept_fk_ref_constraint.xml"/> 
+  <include file="ref_constraint/emp_job_fk_ref_constraint.xml"/> 
+  <include file="ref_constraint/emp_manager_fk_ref_constraint.xml"/> 
+  <include file="ref_constraint/jhist_dept_fk_ref_constraint.xml"/> 
+  <include file="ref_constraint/jhist_emp_fk_ref_constraint.xml"/> 
+  <include file="ref_constraint/jhist_job_fk_ref_constraint.xml"/> 
+  <include file="ref_constraint/loc_c_id_fk_ref_constraint.xml"/> 
+  <include file="procedure/add_job_history_procedure.xml"/> 
+  <include file="procedure/secure_dml_procedure.xml"/> 
+  <include file="index/dept_location_ix_index.xml"/> 
+  <include file="index/emp_department_ix_index.xml"/> 
+  <include file="index/emp_email_uk_index.xml"/> 
+  <include file="index/emp_job_ix_index.xml"/> 
+  <include file="index/emp_manager_ix_index.xml"/> 
+  <include file="index/emp_name_ix_index.xml"/> 
+  <include file="index/jhist_department_ix_index.xml"/> 
+  <include file="index/jhist_employee_ix_index.xml"/> 
+  <include file="index/jhist_job_ix_index.xml"/> 
+  <include file="index/loc_city_ix_index.xml"/> 
+  <include file="index/loc_country_ix_index.xml"/> 
+  <include file="index/loc_state_province_ix_index.xml"/> 
+  <include file="trigger/secure_employees_trigger.xml"/> 
+  <include file="trigger/update_job_history_trigger.xml"/> 
+  <include file="comment/countries_comment.xml"/> 
+  <include file="comment/departments_comment.xml"/> 
+  <include file="comment/employees_comment.xml"/> 
+  <include file="comment/jobs_comment.xml"/> 
+  <include file="comment/job_history_comment.xml"/> 
+  <include file="comment/locations_comment.xml"/> 
+</databaseChangeLog> 
