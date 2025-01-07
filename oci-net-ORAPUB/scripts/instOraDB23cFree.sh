@@ -2,7 +2,8 @@
 #
 # instOraDB23cFree.sh
 
-DB_RPM_URL="https://download.oracle.com/otn-pub/otn_software/db-free/oracle-database-free-23c-1.0-1.el8.x86_64.rpm"
+DB_RPM_URL="https://download.oracle.com/otn-pub/otn_software/db-free/oracle-database-free-23ai-1.0-1.el8.x86_64.rpm"
+# "https://download.oracle.com/otn-pub/otn_software/db-free/oracle-database-free-23c-1.0-1.el8.x86_64.rpm"
 RPM_LOC=/home/opc
 LSNR_PORT=1521
 PASSWORD=Oracle_4U
@@ -10,7 +11,7 @@ PASSWORD=Oracle_4U
 # install the pre-install RPM
 /usr/bin/sudo /usr/bin/dnf install -y oraclelinux-developer-release-el8
 /usr/bin/sudo /usr/bin/dnf config-manager --set-enabled ol8_developer 
-/usr/bin/sudo /usr/bin/dnf -y install oracle-database-preinstall-23c
+/usr/bin/sudo /usr/bin/dnf -y install oracle-database-preinstall-23ai
 
 # configure firewall for Oracle listener
 /usr/bin/sudo sh -c "/usr/bin/firewall-cmd --permanent --zone=public --add-port=${LSNR_PORT}/tcp"

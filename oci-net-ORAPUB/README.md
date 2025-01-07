@@ -21,6 +21,11 @@ There are two shared files that are duplicated to each directory
 
 ## Design
 
+The basic design is to provide a segmented / compartmentalized network in OCI that could support a simple application.  The network could easily be grown to support more if needed.  Main configuraiton settings are handled by variables.
+
+Seperation of server function and access to the internet is designed into the subnets.  All non-application traffic would be goverend to the internet through DNS and PROXY servers that are built out as part of the design.  As much basic configuration as can be automated is already in the scripts.
+
+*Note: version 1.0 has a little extra hard coding that will be weeded out in future verions*
 
 ### compartments
 
@@ -32,6 +37,10 @@ The basic design has two compartments for seperation of cloud console administra
 This could easily be expanded if you want additioanl compartments for production vs non-production or to split things out by application such as ERP vs a web application.
 
 ### network
+
+The basic design is four networks that have spcific access to the internet and each other.
+
+
 
 ![Alt text](./network-diagram.jpg)
 
