@@ -5,8 +5,8 @@
  xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
- <changeSet id="10610e892c98d4f6d3484894f38587ab22684503" author="(HR_PRD)-Generated" failOnError="true"    runOnChange="false"  runAlways="false"  runInTransaction="false"  >
-  <n0:createOracleComment objectName="LOCATIONS" objectType="COMMENT" ownerName="HR_PRD" sourceType="STRING" replaceIfExists="false" >
+ <changeSet id="10610e892c98d4f6d3484894f38587ab22684503" author="(HR)-Generated" failOnError="true"    runOnChange="false"  runAlways="false"  runInTransaction="false"  >
+  <n0:createOracleComment objectName="LOCATIONS" objectType="COMMENT" ownerName="HR" sourceType="STRING" replaceIfExists="false" >
     <n0:source><![CDATA[
    COMMENT ON COLUMN "LOCATIONS"."LOCATION_ID" IS 'Primary key of locations table';
    COMMENT ON COLUMN "LOCATIONS"."STREET_ADDRESS" IS 'Street address of an office, warehouse, or production site of a company.

@@ -5,8 +5,8 @@
  xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
- <changeSet id="9093001d3dfcc15939a63e7a92538c6a6639d13e" author="(HR_PRD)-Generated" failOnError="true"    runOnChange="false"  runAlways="false"  runInTransaction="false"  >
-  <n0:createOracleProcedure objectName="ADD_JOB_HISTORY" objectType="PROCEDURE" ownerName="HR_PRD"  replaceIfExists="false" >
+ <changeSet id="9093001d3dfcc15939a63e7a92538c6a6639d13e" author="(HR)-Generated" failOnError="true"    runOnChange="false"  runAlways="false"  runInTransaction="false"  >
+  <n0:createOracleProcedure objectName="ADD_JOB_HISTORY" objectType="PROCEDURE" ownerName="HR"  replaceIfExists="false" >
     <n0:source><![CDATA[CREATE OR REPLACE EDITIONABLE PROCEDURE "%USER_NAME%"."ADD_JOB_HISTORY" 
   (  p_emp_id          job_history.employee_id%type
    , p_start_date      job_history.start_date%type

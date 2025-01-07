@@ -5,8 +5,8 @@
  xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
- <changeSet id="57907483a823d299399df6f738ce7d16cc68a4a8" author="(HR_PRD)-Generated" failOnError="true"    runOnChange="false"  runAlways="false"  runInTransaction="false"  >
-  <n0:createOracleTrigger objectName="SECURE_EMPLOYEES" objectType="TRIGGER" ownerName="HR_PRD"  replaceIfExists="false" >
+ <changeSet id="57907483a823d299399df6f738ce7d16cc68a4a8" author="(HR)-Generated" failOnError="true"    runOnChange="false"  runAlways="false"  runInTransaction="false"  >
+  <n0:createOracleTrigger objectName="SECURE_EMPLOYEES" objectType="TRIGGER" ownerName="HR"  replaceIfExists="false" >
     <n0:source><![CDATA[CREATE OR REPLACE EDITIONABLE TRIGGER "%USER_NAME%"."SECURE_EMPLOYEES" 
   BEFORE INSERT OR UPDATE OR DELETE ON employees
 BEGIN

@@ -5,8 +5,8 @@
  xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
- <changeSet id="19cbcaa1f90c2b4b6503af1aa3a6c8841ece9b8b" author="(HR_PRD)-Generated" failOnError="true"    runOnChange="false"  runAlways="false"  runInTransaction="false"  >
-  <n0:createSxmlObject objectName="EMPLOYEES" objectType="TABLE" ownerName="HR_PRD"  replaceIfExists="false" >
+ <changeSet id="19cbcaa1f90c2b4b6503af1aa3a6c8841ece9b8b" author="(HR)-Generated" failOnError="true"    runOnChange="false"  runAlways="false"  runInTransaction="false"  >
+  <n0:createSxmlObject objectName="EMPLOYEES" objectType="TABLE" ownerName="HR"  replaceIfExists="false" >
     <n0:source><![CDATA[
   <TABLE xmlns="http://xmlns.oracle.com/ku" version="1.0">
    <SCHEMA>%USER_NAME%</SCHEMA>

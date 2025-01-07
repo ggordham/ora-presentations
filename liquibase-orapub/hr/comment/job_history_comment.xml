@@ -5,8 +5,8 @@
  xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
- <changeSet id="24e849b5ecbe23f580568579ba5c85a5ca5f305e" author="(HR_PRD)-Generated" failOnError="true"    runOnChange="false"  runAlways="false"  runInTransaction="false"  >
-  <n0:createOracleComment objectName="JOB_HISTORY" objectType="COMMENT" ownerName="HR_PRD" sourceType="STRING" replaceIfExists="false" >
+ <changeSet id="24e849b5ecbe23f580568579ba5c85a5ca5f305e" author="(HR)-Generated" failOnError="true"    runOnChange="false"  runAlways="false"  runInTransaction="false"  >
+  <n0:createOracleComment objectName="JOB_HISTORY" objectType="COMMENT" ownerName="HR" sourceType="STRING" replaceIfExists="false" >
     <n0:source><![CDATA[
    COMMENT ON COLUMN "JOB_HISTORY"."EMPLOYEE_ID" IS 'A not null column in the complex primary key employee_id+start_date.
 Foreign key to employee_id column of the employee table';

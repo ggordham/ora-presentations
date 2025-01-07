@@ -5,8 +5,8 @@
  xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
- <changeSet id="c1d0d2d54cec45336ffa66cda58f117411d49b93" author="(HR_PRD)-Generated" failOnError="true"    runOnChange="false"  runAlways="false"  runInTransaction="false"  >
-  <n0:createOracleComment objectName="EMPLOYEES" objectType="COMMENT" ownerName="HR_PRD" sourceType="STRING" replaceIfExists="false" >
+ <changeSet id="c1d0d2d54cec45336ffa66cda58f117411d49b93" author="(HR)-Generated" failOnError="true"    runOnChange="false"  runAlways="false"  runInTransaction="false"  >
+  <n0:createOracleComment objectName="EMPLOYEES" objectType="COMMENT" ownerName="HR" sourceType="STRING" replaceIfExists="false" >
     <n0:source><![CDATA[
    COMMENT ON COLUMN "EMPLOYEES"."EMPLOYEE_ID" IS 'Primary key of employees table.';
    COMMENT ON COLUMN "EMPLOYEES"."FIRST_NAME" IS 'First name of the employee. A not null column.';
