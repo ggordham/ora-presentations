@@ -5,9 +5,11 @@
  xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
- <changeSet id="c1d0d2d54cec45336ffa66cda58f117411d49b93" author="(HR)-Generated" failOnError="true"    runOnChange="false"  runAlways="false"  runInTransaction="false"  >
+ <changeSet id="e216ace58de7cee3bcc1700ea1d990bc8ce7054a" author="(HR)-Generated" failOnError="true"    runOnChange="false"  runAlways="false"  runInTransaction="false"  >
   <n0:createOracleComment objectName="EMPLOYEES" objectType="COMMENT" ownerName="HR" sourceType="STRING" replaceIfExists="false" >
     <n0:source><![CDATA[
+   COMMENT ON TABLE "EMPLOYEES"  IS 'employees table. Contains 107 rows. References with departments,
+jobs, job_history tables. Contains a self reference.';
    COMMENT ON COLUMN "EMPLOYEES"."EMPLOYEE_ID" IS 'Primary key of employees table.';
    COMMENT ON COLUMN "EMPLOYEES"."FIRST_NAME" IS 'First name of the employee. A not null column.';
    COMMENT ON COLUMN "EMPLOYEES"."LAST_NAME" IS 'Last name of the employee. A not null column.';
@@ -24,9 +26,7 @@ department elgible for commission percentage';
 departments table. Foreign key to employee_id column of employees table.
 (useful for reflexive joins and CONNECT BY query)';
    COMMENT ON COLUMN "EMPLOYEES"."DEPARTMENT_ID" IS 'Department id where employee works; foreign key to department_id
-column of the departments table';
-   COMMENT ON TABLE "EMPLOYEES"  IS 'employees table. Contains 107 rows. References with departments,
-jobs, job_history tables. Contains a self reference.';]]></n0:source>
+column of the departments table';]]></n0:source>
       </n0:createOracleComment>
  </changeSet>
 </databaseChangeLog>

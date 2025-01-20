@@ -1,4 +1,6 @@
 
+   COMMENT ON TABLE "EMPLOYEES"  IS 'employees table. Contains 107 rows. References with departments,
+jobs, job_history tables. Contains a self reference.';
    COMMENT ON COLUMN "EMPLOYEES"."EMPLOYEE_ID" IS 'Primary key of employees table.';
    COMMENT ON COLUMN "EMPLOYEES"."FIRST_NAME" IS 'First name of the employee. A not null column.';
    COMMENT ON COLUMN "EMPLOYEES"."LAST_NAME" IS 'Last name of the employee. A not null column.';
@@ -16,5 +18,3 @@ departments table. Foreign key to employee_id column of employees table.
 (useful for reflexive joins and CONNECT BY query)';
    COMMENT ON COLUMN "EMPLOYEES"."DEPARTMENT_ID" IS 'Department id where employee works; foreign key to department_id
 column of the departments table';
-   COMMENT ON TABLE "EMPLOYEES"  IS 'employees table. Contains 107 rows. References with departments,
-jobs, job_history tables. Contains a self reference.';
