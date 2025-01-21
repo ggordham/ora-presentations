@@ -335,4 +335,32 @@ cd ..
 
 ```
 
+# Schema DIFF examples
+
+```sql
+lb diff -REFERENCE-USERNAME hr_prd -REFERENCE-PASSWORD hr_prd_pa55wd -REFERENCE-URL jdbc:oracle:thin://srvr08/pdb1
+
+lb diff-changelog -REFERENCE-USERNAME hr_prd -REFERENCE-PASSWORD hr_prd_pa55wd -REFERENCE-URL jdbc:oracle:thin:@//srvr08/pdb1 -output-file controller-struct.xml
+
+lb diff-changelog -REFERENCE-USERNAME hr_dev -REFERENCE-PASSWORD hr_dev_pa55wd -REFERENCE-URL jdbc:oracle:thin:@//srvr08/pdb1 -output-file controller-struct.xml
+
+```
+
+# Other Notes
+
+
+
+Formatting on PL/SQL in .sql files.
+be sure to set the delimiter correctlly on both the SQL and any rollback sections.
+
+Using rollback without a seperate file, expecially for PL/SQL objects.
+
+Queries for database change log
+
+select dateexecuted,tag from hr_tst.databasechangelog where tag is not null;
+
+ideas on tagging
+
+information on SQLcl
+
 # END
