@@ -1,6 +1,6 @@
 # Liquibase ORAPUB demo
 
-This is a demonstration of the Liquibase tool built into Oracle SQLci tool.  We will start with an existing schema and then walk through some capture and implimentation of change.  The demonstration is based on using three schemas to represent the different lifecycles of the application (Production PRD, Test TST, Development DEV).
+This is a demonstration of the Liquibase tool built into Oracle SQLcl (SQL Command Line).  We will start with an existing schema and then walk through some capture and implimentation of changes.  The demonstration is based on using three PDBs to represent the different lifecycles of the application (Production PRD, Test TST, Development DEV).
 
 
 # Warnings
@@ -90,8 +90,6 @@ lb status -changelog-file controller.xml
 
 Here we will switch to development and make a change.  Again we will start by baselineing development, this is a one-time change.
 
-### Baseline and tag DEV
-
 ```sql
 connect hr/Oracle_4U@"//srvr08/hrdev"
 
@@ -144,27 +142,20 @@ git ls-files --exclude-standard --others
 
 ### Refresh test
 
-We will use a DB link to refresh the test system.  Prior to running, make sure a DB-Link exists in the system user such as:
+Refresh the schema using automated script, utilizing datapump and a database link.
 
-```sql 
-connect system/Oracle_4U@"//srvr08/hrtst"
-
-create database link hrprd connect to system identified by Oracle_4U using '//srvr08/hrprd';
-
-```
-
-Drop the existing hr schema:
-
-```sql
-connect system/Oracle_4U@"//srvr08/hrtst"
-
-drop user hr cascade;
-
-```
-Refresh the schema using datapump
+First change to the proper directory and start sqlplus.
 
 ```bash
-"${ORACLE_HOME}"/bin/impdp "system/Oracle_4U@hrtst" directory="DATA_PUMP_DIR" network_link=hrprd logfile=hrtst-refersh.log TRANSFORM=OID:N schemas=hr
+cd liquibase-orapu/setup
+sqlplus /nolog
+
+```
+
+Run the script, providing the password on the command line.
+
+```sql
+@refresh_tst.sql <system_password>
 
 ```
 
@@ -208,10 +199,29 @@ We are going to jump right in with our existing baseline schema we created in th
 
 Steps
 
-1. v1.1 - add new table / procedure
-2. v1.2 - upate the procedure add a view
-3. v1.3 - add a column to existing table
+1. Refresh test
+2. v1.1 - add new table / procedure
+3. v1.2 - upate the procedure add a view
+4. v1.3 - add a column to existing table
 
+### Refresh test
+
+Refresh the schema using automated script, utilizing datapump and a database link.
+
+First change to the proper directory and start sqlplus.
+
+```bash
+cd liquibase-orapu/setup
+sqlplus /nolog
+
+```
+
+Run the script, providing the password on the command line.
+
+```sql
+@refresh_tst.sql <system_password>
+
+```
 
 ### v1.1 change
 
@@ -379,9 +389,8 @@ lb update -changelog-file employees_table.xml
 ## Rollback v1.3
 
 ```sql
-connect hr_tst/hr_tst_pa55wd@//srvr08/pdb1
+connect hr/Oracle_4U@//srvr08/hrtst
 
-cd v1.3
 lb rollback -changelog-file employees_table.xml -tag v1.1
 
 
@@ -412,7 +421,7 @@ cd setup
 Then from SQLcl run:
 
 ```sql
-connect hr_tst/hr_tst_pa55wd@//srvr08/pdb1
+connect hr/Oracle_4U@//srvr08/hrtst
 
 cd v1.1
 lb update -changelog-file controller.xml
@@ -433,17 +442,15 @@ cd ..
 # Schema DIFF examples
 
 ```sql
-lb diff -REFERENCE-USERNAME hr_prd -REFERENCE-PASSWORD hr_prd_pa55wd -REFERENCE-URL jdbc:oracle:thin://srvr08/pdb1
+lb diff -REFERENCE-USERNAME hr -REFERENCE-PASSWORD Oracle_4U -REFERENCE-URL jdbc:oracle:thin:@//srvr08/hrprd
 
-lb diff-changelog -REFERENCE-USERNAME hr_prd -REFERENCE-PASSWORD hr_prd_pa55wd -REFERENCE-URL jdbc:oracle:thin:@//srvr08/pdb1 -output-file controller-struct.xml
+lb diff-changelog -REFERENCE-USERNAME hr -REFERENCE-PASSWORD Oracle_4U -REFERENCE-URL jdbc:oracle:thin:@//srvr08/hrprd -output-file controller-struct.xml
 
-lb diff-changelog -REFERENCE-USERNAME hr_dev -REFERENCE-PASSWORD hr_dev_pa55wd -REFERENCE-URL jdbc:oracle:thin:@//srvr08/pdb1 -output-file controller-struct.xml
+lb diff-changelog -REFERENCE-USERNAME hr -REFERENCE-PASSWORD Oracle_4U -REFERENCE-URL jdbc:oracle:thin:@//srvr08/hrdev controller-struct.xml
 
 ```
 
 # Other Notes
-
-
 
 Formatting on PL/SQL in .sql files.
 be sure to set the delimiter correctlly on both the SQL and any rollback sections.
