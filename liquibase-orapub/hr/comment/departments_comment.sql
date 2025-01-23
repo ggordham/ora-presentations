@@ -1,7 +1,7 @@
 
-   COMMENT ON COLUMN "DEPARTMENTS"."DEPARTMENT_ID" IS 'Primary key column of departments table.';
    COMMENT ON TABLE "DEPARTMENTS"  IS 'Departments table that shows details of departments where employees
 work. Contains 27 rows; references with locations, employees, and job_history tables.';
+   COMMENT ON COLUMN "DEPARTMENTS"."DEPARTMENT_ID" IS 'Primary key column of departments table.';
    COMMENT ON COLUMN "DEPARTMENTS"."DEPARTMENT_NAME" IS 'A not null column that shows name of a department. Administration,
 Marketing, Purchasing, Human Resources, Shipping, IT, Executive, Public
 Relations, Sales, Finance, and Accounting. ';
