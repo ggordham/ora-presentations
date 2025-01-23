@@ -18,6 +18,15 @@ I run these on a VM that I can throw away. So a Podman / Docker container with a
 
 # Setup
 
+### Download scripts
+
+To download the scripts direclty from the internet to a Linux machine run the following:
+
+```bash
+curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1 "ggordham-ora-presentations-???????/liquibase-orapub"
+
+```
+
 ## PDBs:
 
 - hrprd - Production
@@ -175,7 +184,7 @@ Apply the changes to TST.
 ```SQL
 connect hr/Oracle_4U@"//srvr08/hrtst"
 
-lb update -changelog-file controller.xml 
+lb update -changelog-file controller.xml
 
 
 ```
@@ -193,7 +202,7 @@ lb rollback -changelog-file controller.xml -tag v1.0
 
 # Demo 2 - Waterfall
 
-In this demo we are going to treat each change as independt set of scripts.  
+In this demo we are going to treat each change as independt set of scripts.
 
 We are going to jump right in with our existing baseline schema we created in the first demonstration.
 
@@ -242,17 +251,17 @@ We have also created two SQL files by hand that will update the contact data bas
 Finally we have crafted the controller.xml to have the needed information to tell Liquibase how to apply this change.
 
 ```xml
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-  <include file="emp_contact_table.xml"/> 
-  <include file="contact_id_seq_sequence.xml"/> 
-  <include file="cr_contact_data.sql"/> 
-  <include file="upd_emp_contact_proc.sql"/> 
-</databaseChangeLog> 
+  <include file="emp_contact_table.xml"/>
+  <include file="contact_id_seq_sequence.xml"/>
+  <include file="cr_contact_data.sql"/>
+  <include file="upd_emp_contact_proc.sql"/>
+</databaseChangeLog>
 ```
 
 ### apply v1.1 to Test
