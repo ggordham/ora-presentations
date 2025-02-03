@@ -4,6 +4,23 @@ Scripts from Oracle Presentations that I have given
 All scripts or code in this repository is use at your own risk.
 Everything here is intended for test or lab type use.
 
+
+RMOUG Training Days - February 13th, 2025 - 23ai New SQL performance Features -
+
+```23ai-sql-perf-RMOUG```
+
+RMOUG Training Days - February 12th, 2025 - Oracle Tuning Tips, My best developer tuning tips
+
+```/tune-tips-RMOUG```
+
+Suncoast Oracle User Group, The ARtifical Intelligence Takeover - February 5th, 2025 - 23ai New SQL performance Features -
+
+```23ai-sql-perf-scoug```
+
+ORAPUB - Janurary 2025 - Liquibase with Oracle, Automate your schema management
+
+```liquibase-orapub```
+
 DB Community of Interest - September 17, 2024 - Oracle Tuning Tips, My best developer tuning tips
 
 ```/tune-tips-DBCoI```
