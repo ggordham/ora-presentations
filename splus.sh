@@ -3,7 +3,8 @@
 # Simple script to use for labs to get to a PDB when needed
 #  can be run inside a docker container
 preso=$1
-subdir=$2
+# subdir=$2
+stype=$2
 
 # Set the following items to overide the discovered items
 # if you leave these blank, everything will be discovered
@@ -11,6 +12,10 @@ MY_SID=
 MY_PDB=
 MY_HOME=
 MY_TNS=
+
+# check for sql command type
+[ -z "${stype:-}" ] && stype=splus
+
 
 working_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -27,12 +32,15 @@ else
   fi
 fi
 
-if [ "$subdir" == "" ]; then
+if [ "${subdir:-}" == "" ]; then
   run_dir="$working_dir/$preso_dir" 
 else
   run_dir="$working_dir/$preso_dir/$subdir" 
 fi
-  
+
+# set SQL Path
+export SQLPATH=${run_dir}
+
 #######################################################
 
 # Check for static SID set, otherwise we try to discover SID
@@ -110,9 +118,10 @@ splus_profile="$run_dir"/login.sql
 echo "" > "$splus_profile"
 echo "set pagesize 999" >> "$splus_profile"
 echo "set linesize 200" >> "$splus_profile"
-echo "ALTER SESSION SET nls_date_format = 'HH24:MI:SS';" >> "$splus_profile"
-echo "SET SQLPROMPT \"_USER'@'_CONNECT_IDENTIFIER _DATE> \"" >> "$splus_profile"
-echo "ALTER SESSION SET nls_date_format = 'YYYY-MM-DD HH24:MI:SS';" >> "$splus_profile"
+echo "--ALTER SESSION SET nls_date_format = 'HH24:MI:SS';" >> "$splus_profile"
+echo "--SET SQLPROMPT \"_USER'@'_CONNECT_IDENTIFIER _DATE> \"" >> "$splus_profile"
+echo "--ALTER SESSION SET nls_date_format = 'YYYY-MM-DD HH24:MI:SS';" >> "$splus_profile"
+echo "SET SQLPROMPT \"_USER'@'_CONNECT_IDENTIFIER> \"" >> "$splus_profile"
 if [ "$ORACLE_PDB_SID" == "" ]; then
   echo "define con_pdb =''"  >> "$splus_profile"
 else
@@ -120,5 +129,7 @@ else
 fi
 
 cd "$run_dir" || exit 2
-sqlplus /nolog
+
+[ "${stype}" == "splus" ] && sqlplus /nolog
+[ "${stype}" == "scl" ] && "${ORACLE_HOME}"/sqlcl/bin/sql /nolog
 

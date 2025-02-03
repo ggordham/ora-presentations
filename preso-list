@@ -19,6 +19,7 @@ spmr,spm-RMOUG
 spmu,spm-UTOUG
 spmv,spm-VNA
 spmb,spm-BP4D
+sql23ns,23ai-sql-perf-scoug
 tsqll,tune-that-SQL-GLOC
 tsqlg,tune-that-SQL-GTOUG
 tsqln,tune-that-SQL-NYOUG
@@ -33,3 +34,4 @@ ttipt,tune-tips-TPA
 ttipu,tune-tips-UTOUG
 ttipb,tune-tips-BP4D
 ttipc,tune-tips-DBCoI
+ttipr,tune-tips-RMOUG
