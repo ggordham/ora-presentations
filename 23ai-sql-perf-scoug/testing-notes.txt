@@ -1,0 +1,35 @@
+
+exec dbms_spm.configure('AUTO_SPM_EVOLVE_TASK', 'ON')
+
+SELECT task_name, interval,status, last_schedule_time, systimestamp-last_schedule_time ago
+  FROM dba_autotask_schedule_control
+  WHERE dbid = sys_context('userenv','con_dbid')
+    AND task_name in ('Auto STS Capture Task','Auto SPM Task');
+
+High Frequency SPM Evolve Advisor Task
+
+exec :report := dbms_spm.add_verified_sql_plan_baseline('9y5vtn2knayhs');
+select :report report from dual;
+
+Automatic SQL Tuning Sets (SYS_AUTO_STS)
+
+
+Real-Time SQL Monitoring: a MUST for SQL Tuning - Ulrike Schwinn
+
+License Change for Automatic SQL Plan Management (yes, you can do more)
+
+What is automatic SQL plan management and why should you care?
+
+SELECT t1.region_id,SUM(t1.amount*t2.icount)
+FROM sales t1,
+sales_emea t2
+WHERE t1.sale_code = t2.sale_code
+GROUP BY t1.region_id;
+
+SELECT t1.region_id, SUM(t1.amount*v_gbc_3.sb)
+FROM sales t1,
+(SELECT t2.sale_code, SUM(t2.icount) as sb
+FROM sales_emea t2
+GROUP BY t2.sale_code) v_gbc_3
+WHERE t1.sale_code = v_gbc_3.sale_code
+GROUP BY t1.region_id;
