@@ -113,7 +113,7 @@ Note: a sample copy of the monitor report is saved to this GITHub repository.
 
 @@q.sql
 
-@@sql-report.sql fk70ks7ztdspf
+@@sql_report.sql fk70ks7ztdspf
 
 ```
 
