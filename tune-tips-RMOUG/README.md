@@ -44,6 +44,7 @@ Through out the lab you will need a SQL*Plus prompt on the databases.  This is d
 **SQL Prompt**
 ```bash
 podman exec -it ttipr sh -c "chmod +x splus.sh; /home/oracle/splus.sh ttipr"
+
 ```
 
 You should get a prompt that looks something like this:
@@ -56,7 +57,7 @@ Version 21.3.0.0.0
 Copyright (c) 1982, 2021, Oracle.  All rights reserved.
 
 SP2-0640: Not connected
-@ 06-JAN-22>
+@>
 ```
 
 You will need multiple windows with SQL*Plus prompts throughout the lab.
@@ -67,6 +68,7 @@ Open a SQL*Plus prompt and run the following script
 
 ```sql
 @lab-setup
+
 ```
 
 This step will create a user called PERFLAB that will be used througout the lab.
@@ -75,6 +77,7 @@ Now create the tables for the lab:
 
 ```sql
 @ctables
+
 ```
 
 If you see any errors do not proceed with the lab.
@@ -89,6 +92,7 @@ connect perflab/perf$lab&con_pdb
 
 @q1.sql 1
 @plan.sql
+
 ```
 
 This is a simple plan with very litle information.
@@ -97,6 +101,7 @@ For the next example lets gather statistics on the execution and show that in th
 ```sql
 @q1.sql 1
 @plan_stats.sql
+
 ```
 
 ### Look at histogram information
@@ -107,6 +112,7 @@ Histograms are very useful set of statistics for performance. Let see the histog
 connect perflab/perf$lab&con_pdb
 
 @show-hist.sql
+
 ```
 
 This shows the top few buckets, notice that one bucket has many more rows than most the other entries.
@@ -119,6 +125,7 @@ AWR SQL history can be very useful, this query shows you the current settings fo
 connect perflab/perf$lab&con_pdb
 
 @awr_settings.sql
+
 ```
 
 ### Create a SQL Profile
@@ -132,6 +139,7 @@ connect perflab/perf$lab&con_pdb
 
 @q2.sql
 @plan.sql
+
 ```
 
 Now lets run the tuning advisor and look at the report.
@@ -139,6 +147,7 @@ Now lets run the tuning advisor and look at the report.
 ```sql
 @tune.sql
 @report.sql
+
 ```
 
 You should see that a SQL profile is recomended.  So lets go ahead and accept the profile.  Then lets run the query again, and look at the explain plan.  In the notes section it shoudl say that a profile was used.
@@ -147,6 +156,7 @@ You should see that a SQL profile is recomended.  So lets go ahead and accept th
 @accept.sql
 @q2.sql
 @plan.sql
+
 ```
 
 Finally lets view the information about the SQL profile.
@@ -154,6 +164,7 @@ Finally lets view the information about the SQL profile.
 ```sql
 @lsprofile.sql
 @viewhint.sql
+
 ```
 
 ### Load a baseline from cursor cache
@@ -166,6 +177,7 @@ connect perflab/perf$lab&con_pdb
 @q1.sql 10
 @q1.sql 10
 @plan_stats.sql
+
 ```
 
 Now lets create a baseline using the sql id and plan hash value of the above.
@@ -173,6 +185,7 @@ Now lets create a baseline using the sql id and plan hash value of the above.
 ```sql
 @cr_baseline fua0hb5hfst77 906334482
 @lsbaseline.sql
+
 ```
 
 We can now also prove that the baseline is being used.  Lets run query 1 with a value of 1 and see that the baseline forces a hash join plan when it prevously used a nested loop join.
@@ -180,6 +193,7 @@ We can now also prove that the baseline is being used.  Lets run query 1 with a 
 ```sql
 @q1.sql 1
 @plan_stats.sql
+
 ```
 
 ### Creating a SQL Patch
@@ -192,12 +206,14 @@ connect perflab/perf$lab&con_pdb
 
 @q3.sql
 @plan.sql
+
 ```
 
 Note that the query does not use a full table scan.  Now lets create a patch with some code from the outline to force the statement to do a full table scan.
 
 ```sql
 @patchq3.sql
+
 ```
 
 Now we will re-run the same query and look at the explain plan and see that the patch is forcing a full table scan and that the patch is used.
@@ -208,12 +224,14 @@ connect perflab/perf$lab&con_pdb
 
 @q3.sql
 @plan.sql
+
 ```
 
 Note a full table scan is now used.  Lets view the patch information.
 
 ```sql
 @lspatch.sql
+
 ```
 
 ### Index clustering
@@ -226,6 +244,7 @@ connect perflab/perf$lab&con_pdb
 @q4.sql
 @plan.sql
 @show-idx-clus.sql CUSTOMERS CUST_LNAME_IX
+
 ```
 
 Note that the query does not use an index when looking up the last name.
@@ -235,6 +254,7 @@ Lets create a new table that is organized by cuswtomer last name, and then a new
 
 ```sql
 @crcustomer3.sql
+
 ```
 
 Now lets query the new table and see if the index gets used.
@@ -243,10 +263,54 @@ Now lets query the new table and see if the index gets used.
 @q5.sql
 @plan.sql
 @show-idx-clus.sql CUSTOMERS3 CUST3_LNAME_IX
+
 ```
 
 Note the clustering factor in relation to the number of blocks and rows in the table.
 
+### SPM One Shot - Bonus
+
+This new feature will allow you to create a baseline based on a SQL statement that is in cursor cache.  It will run the evolve task real time and create baselines for plans that pass.
+
+Run our test query a few times to get a few different execution plans.
+
+```sql
+@@q6.sql 1
+@@q6.sql 1
+@@plan_stats.sql
+
+@@q6.sql 10
+@@q6.sql 10
+@@plan_stats.sql
+
+```
+
+Now load the baselines and have them verified in one shot.
+
+```sql
+@@spm_one_shot.sql 3tbpavnz7rnc4
+
+```
+
+Now test that the baselines are being used
+
+```sql
+@@q6.sql 1
+@@q6.sql 1
+@@plan_stats.sql
+
+@@q6.sql 10
+@@q6.sql 10
+@@plan_stats.sql
+
+```
+
+Show the baseline information.
+
+```sql
+@@list-baseline.sql
+
+```
 
 ### Clean up
 To clean up the lab run if you want to re-run it.  Open a SQL window and run the following commands:
@@ -257,6 +321,7 @@ connect / as sysdba
 @drop_profile
 @drop_patch
 DROP USER PERFLAB CASCADE;
+
 ```
 
 ---
