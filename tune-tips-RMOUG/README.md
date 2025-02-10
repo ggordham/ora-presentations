@@ -34,21 +34,21 @@ Your database / PDB should have a USERS tablespace.
 Once you have the container up and running with a working database you can install the lab scripts with the following command:
 
 ```bash
-podman exec DB193 sh -c "curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1"
+podman exec ttipr sh -c "curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1"
 ```
 
-*Note DB193 in the command is the container name, use your container name.  You can find your container name with the ```podman ps``` command.*
+*Note ttipr in the command is the container name, use your container name.  You can find your container name with the ```podman ps``` command.*
 
 Through out the lab you will need a SQL*Plus prompt on the databases.  This is done by running the following podman command.  (Note this command will put you in the directory with the lab scripts and set your SQL Prompt)
 
 **SQL Prompt**
 ```bash
-podman exec -it DB193 sh -c "chmod +x splus.sh; /home/oracle/splus.sh ttipr"
+podman exec -it ttipr sh -c "chmod +x splus.sh; /home/oracle/splus.sh ttipr"
 ```
 
 You should get a prompt that looks something like this:
 ```
-$ podman exec -it DB193 sh -c "chmod +x splus.sh; /home/oracle/splus.sh ttipr"
+$ podman exec -it ttipr sh -c "chmod +x splus.sh; /home/oracle/splus.sh ttipr"
 
 SQL*Plus: Release 21.0.0.0.0 - Production on Thu Jan 6 19:24:17 2022
 Version 21.3.0.0.0
