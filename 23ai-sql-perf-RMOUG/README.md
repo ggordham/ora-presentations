@@ -58,7 +58,7 @@ connect / as sysdba
 
 @lab-setup.sql
 
-@ctables.sal
+@ctables.sql
 
 ```
 
@@ -106,7 +106,7 @@ start ./monitor_output.html
 Note: a sample copy of the monitor report is saved to this GITHub repository.
 
 
-### SQL Analysis Report HTML
+### SQL Report HTML
 
 
 ```sql
