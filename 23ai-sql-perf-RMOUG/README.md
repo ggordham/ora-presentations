@@ -34,16 +34,16 @@ Your database / PDB should have a USERS tablespace.
 Once you have the container up and running with a working database you can install the lab scripts with the following command:
 
 ```bash
-podman exec ttipr sh -c "curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1"
+podman exec sql23nr sh -c "curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1"
 ```
 
-*Note ttipr in the command is the container name, use your container name.  You can find your container name with the ```podman ps``` command.*
+*Note sql23nr in the command is the container name, use your container name.  You can find your container name with the ```podman ps``` command.*
 
 Through out the lab you will need a SQL*Plus prompt on the databases.  This is done by running the following podman command.  (Note this command will put you in the directory with the lab scripts and set your SQL Prompt)
 
 **SQL Prompt**
 ```bash
-podman exec -it ttipr sh -c "chmod +x splus.sh; /home/oracle/splus.sh sql23ns"
+podman exec -it sql23nr sh -c "chmod +x splus.sh; /home/oracle/splus.sh sql23nr"
 
 ```
 ### Lab setup
@@ -96,7 +96,7 @@ To download the report run the following podman command:
 
 ```sh
 
-podman cp ttipr:/home/orcle/23ai-sql-perf-scoug/monitor_output.html .
+podman cp sql23nr:/home/orcle/23ai-sql-perf-scoug/monitor_output.html .
 
 open ./monitor_output.html
 start ./monitor_output.html

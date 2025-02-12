@@ -20,6 +20,7 @@ spmu,spm-UTOUG
 spmv,spm-VNA
 spmb,spm-BP4D
 sql23ns,23ai-sql-perf-scoug
+sql23nr,23ai-sql-perf-RMOUG
 tsqll,tune-that-SQL-GLOC
 tsqlg,tune-that-SQL-GTOUG
 tsqln,tune-that-SQL-NYOUG
