@@ -89,7 +89,7 @@ curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --st
 
 ```bash
 firewall-cmd --permanent --zone=public --add-port=8080/tcp
-````
+```
 
 2. Make static directories for ORDS
 
