@@ -7,7 +7,7 @@ by Marco Pachaly-Mischke
 SET ECHO OFF
 
 PROMPT
-PROMPT connect as the SYS user to create the patch
+PROMPT connect as the SYS user to see the patch hint
 PROMPT
 
 CONNECT / AS SYSDBA
