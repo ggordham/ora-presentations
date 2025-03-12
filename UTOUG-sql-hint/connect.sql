@@ -1,0 +1,2 @@
+connect perflab/perf$lab
+
