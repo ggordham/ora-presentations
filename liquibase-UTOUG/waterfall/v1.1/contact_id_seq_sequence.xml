@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="06a149b16a13e042def4baaec63ab569abb15420" author="(HR_DEV)-Generated" failOnError="false"   runOnChange="true" runAlways="false" runWithSpoolFile="contact_id_seq_spool.log" >
+		<n0:createSxmlObject objectName="CONTACT_ID_SEQ" objectType="SEQUENCE" ownerName="HR_DEV"  replaceIfExists="true" >
+			<n0:source><![CDATA[
+  <SEQUENCE xmlns="http://xmlns.oracle.com/ku" version="1.0">
+   <SCHEMA>HR_DEV</SCHEMA>
+   <NAME>CONTACT_ID_SEQ</NAME>
+   <START_WITH>1</START_WITH>
+   <INCREMENT>1</INCREMENT>
+   <MINVALUE>1</MINVALUE>
+   <MAXVALUE>9999999999999999999999999999</MAXVALUE>
+   <CACHE>20</CACHE>
+   <SCALE>NOSCALE</SCALE>
+</SEQUENCE>]]></n0:source>
+		</n0:createSxmlObject>
+	</changeSet>
+</databaseChangeLog>
