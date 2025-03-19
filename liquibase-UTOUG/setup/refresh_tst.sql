@@ -15,7 +15,7 @@ alter session set container=hrtst;
 
 drop user hr cascade;
 
-create database link hrprd connect to system identified by &&v_system_pass using '//srvr08/hrprd';
+create database link hrprd connect to system identified by &&v_system_pass using '//localhost/hrprd';
 
 declare
   v_dp_handle       number;

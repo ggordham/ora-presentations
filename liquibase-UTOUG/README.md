@@ -143,7 +143,7 @@ exit
 Show what files have changed
 
 ```bash
-git diff --name-only
+git diff --name-only | grep liquibase-UTOUG
 
 git ls-files --exclude-standard --others
 
@@ -420,12 +420,21 @@ lb update-sql -changelog-file employees_table.xml
 # Refresh test and apply all changes
 
 Now lets refresh test and apply all the changes we have done so far.
+
+First disconnect from the database in SQLcl and also from SQLDeveloper.
+
+```sql
+DISCONNECT;
+@login.sql
+
+```
+
 From the command line of the database server:
 
-```bash
-cd setup
+```sql
+connect / as sysdba
 
-./refresh_tst.sh
+@refresh_tst.sql <system_password>
 
 ```
 
@@ -457,7 +466,7 @@ lb diff -REFERENCE-USERNAME hr -REFERENCE-PASSWORD Oracle_4U -REFERENCE-URL jdbc
 
 lb diff-changelog -REFERENCE-USERNAME hr -REFERENCE-PASSWORD Oracle_4U -REFERENCE-URL jdbc:oracle:thin:@//localhost/hrprd -output-file controller-struct.xml
 
-lb diff-changelog -REFERENCE-USERNAME hr -REFERENCE-PASSWORD Oracle_4U -REFERENCE-URL jdbc:oracle:thin:@//localhost/hrdev controller-struct.xml
+lb diff-changelog -REFERENCE-USERNAME hr -REFERENCE-PASSWORD Oracle_4U -REFERENCE-URL jdbc:oracle:thin:@//localhost/hrdev 
 
 ```
 
