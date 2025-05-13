@@ -98,7 +98,7 @@ To download the report run the following podman command:
 
 ```sh
 
-podman cp ncoug:/home/orcle/23ai-sql-perf-scoug/monitor_output.html .
+podman cp ncoug:/home/oracle/23ai-sql-perf-NoCOUG/monitor_output.html .
 
 open ./monitor_output.html
 start ./monitor_output.html
@@ -115,7 +115,7 @@ Note: a sample copy of the monitor report is saved to this GITHub repository.
 
 @@q.sql
 
-@@sql_report.sql fk70ks7ztdspf
+@@sql_report.sql g6hqazvppxq6m
 
 ```
 
@@ -123,6 +123,7 @@ Note: a sample copy of the monitor report is saved to this GITHub repository.
 
 
 ```sql
+@connect.sql
 
 @@subsumption-view.sql
 
@@ -311,4 +312,26 @@ Now re-run the query and view the SPM captured information
 @@spm_notes.sql
 
 ```
+## Legacy sample schemas install
+
+Run through the following steps inside the container to install the legacy sample schemas.
+
+```bash
+
+cd  23ai-sql-perf-NoCOUG
+mkdir samp
+cd samp
+unzip -q ../db-sample-schemas-legacy-20220307.zip
+
+$ORACLE_HOME/perl/bin/perl -p -i.bak -e 's#__SUB__CWD__#'$(pwd)'#g' *.sql */*.sql */*.dat
+
+sqlplus /nolog << EOF
+@mksample.sql Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U users temp /home/oracle/23ai-sql-perf-NoCOUG/samp/ freepdb1
+
+@customer_orders/co_main.sql Oracle_4U freepdb1 users temp
+EOF
+
+```
+
+
 # END
