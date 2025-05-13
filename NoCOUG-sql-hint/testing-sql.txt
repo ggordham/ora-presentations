@@ -1,0 +1,581 @@
+SELECT c.cust_state_province, sum(s.amount_sold)
+  FROM sh.sales s, sh.customers c,
+    (SELECT ch.channel_id FROM sh.channels ch
+       WHERE ch.channel_class_id = 13) chan13
+  WHERE c.cust_id = s.cust_id
+    AND s.channel_id = chan13.channel_id
+    AND c.cust_city_id IN (52114,52292,51738,51508)
+  GROUP BY c.cust_state_province;
+
+
+
+
+SQL_ID  g7nbvhkdhxy5m, child number 1
+-------------------------------------
+SELECT c.cust_state_province, sum(s.amount_sold)   FROM sh.sales s,
+sh.customers c,     (SELECT ch.channel_id        FROM sh.channels ch
+    WHERE ch.channel_class_id = 13) chan13   WHERE c.cust_id =
+s.cust_id     AND s.channel_id = chan13.channel_id     AND
+c.cust_city_id IN ( 52114,52292,51738,51508)   GROUP BY
+c.cust_state_province
+
+Plan hash value: 2093637951
+
+--------------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation              | Name      | E-Rows |E-Bytes| Cost (%CPU)| E-Time   | Pstart| Pstop |  OMem |  1Mem | Used-Mem |
+--------------------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT       |           |        |       |   945 (100)|          |       |       |       |       |          |
+|   1 |  HASH GROUP BY         |           |      2 |    80 |   945   (2)| 00:00:01 |       |       |  1034K|  1034K|  622K (0)|
+|*  2 |   HASH JOIN            |           |  19420 |   758K|   944   (2)| 00:00:01 |       |       |  2546K|  2546K|  750K (0)|
+|*  3 |    TABLE ACCESS FULL   | CHANNELS  |      2 |    12 |     3   (0)| 00:00:01 |       |       |       |       |          |
+|*  4 |    HASH JOIN           |           |  46608 |  1547K|   941   (2)| 00:00:01 |       |       |  1399K|  1399K| 2691K (0)|
+|*  5 |     TABLE ACCESS FULL  | CUSTOMERS |    358 |  7518 |   423   (1)| 00:00:01 |       |       |       |       |          |
+|   6 |     PARTITION RANGE ALL|           |    918K|    11M|   515   (2)| 00:00:01 |     1 |    28 |       |       |          |
+|   7 |      TABLE ACCESS FULL | SALES     |    918K|    11M|   515   (2)| 00:00:01 |     1 |    28 |       |       |          |
+--------------------------------------------------------------------------------------------------------------------------------
+
+Query Block Name / Object Alias (identified by operation id):
+-------------------------------------------------------------
+
+   1 - SEL$F5BB74E1
+   3 - SEL$F5BB74E1 / CH@SEL$2
+   5 - SEL$F5BB74E1 / C@SEL$1
+   7 - SEL$F5BB74E1 / S@SEL$1
+
+Outline Data
+-------------
+
+  /*+
+      BEGIN_OUTLINE_DATA
+      IGNORE_OPTIM_EMBEDDED_HINTS
+      OPTIMIZER_FEATURES_ENABLE('19.1.0')
+      DB_VERSION('19.1.0')
+      ALL_ROWS
+      OUTLINE_LEAF(@"SEL$F5BB74E1")
+      MERGE(@"SEL$2" >"SEL$1")
+      OUTLINE(@"SEL$1")
+      OUTLINE(@"SEL$2")
+      FULL(@"SEL$F5BB74E1" "C"@"SEL$1")
+      FULL(@"SEL$F5BB74E1" "S"@"SEL$1")
+      FULL(@"SEL$F5BB74E1" "CH"@"SEL$2")
+      LEADING(@"SEL$F5BB74E1" "C"@"SEL$1" "S"@"SEL$1" "CH"@"SEL$2")
+      USE_HASH(@"SEL$F5BB74E1" "S"@"SEL$1")
+      USE_HASH(@"SEL$F5BB74E1" "CH"@"SEL$2")
+      SWAP_JOIN_INPUTS(@"SEL$F5BB74E1" "CH"@"SEL$2")
+      USE_HASH_AGGREGATION(@"SEL$F5BB74E1")
+      END_OUTLINE_DATA
+  */
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   2 - access("S"."CHANNEL_ID"="CH"."CHANNEL_ID")
+   3 - filter("CH"."CHANNEL_CLASS_ID"=13)
+   4 - access("C"."CUST_ID"="S"."CUST_ID")
+   5 - filter(("C"."CUST_CITY_ID"=51508 OR "C"."CUST_CITY_ID"=51738 OR "C"."CUST_CITY_ID"=52114 OR
+              "C"."CUST_CITY_ID"=52292))
+
+Column Projection Information (identified by operation id):
+-----------------------------------------------------------
+
+   1 - "C"."CUST_STATE_PROVINCE"[VARCHAR2,40], SUM("S"."AMOUNT_SOLD")[22]
+   2 - (#keys=1) "S"."AMOUNT_SOLD"[NUMBER,22], "C"."CUST_STATE_PROVINCE"[VARCHAR2,40], "S"."AMOUNT_SOLD"[NUMBER,22]
+   3 - (rowset=256) "CH"."CHANNEL_ID"[NUMBER,22]
+   4 - (#keys=1) "S"."AMOUNT_SOLD"[NUMBER,22], "C"."CUST_STATE_PROVINCE"[VARCHAR2,40], "S"."CHANNEL_ID"[NUMBER,22],
+       "S"."AMOUNT_SOLD"[NUMBER,22], "S"."CHANNEL_ID"[NUMBER,22]
+   5 - "C"."CUST_ID"[NUMBER,22], "C"."CUST_STATE_PROVINCE"[VARCHAR2,40]
+   6 - "S"."CUST_ID"[NUMBER,22], "S"."CHANNEL_ID"[NUMBER,22], "S"."AMOUNT_SOLD"[NUMBER,22]
+   7 - "S"."CUST_ID"[NUMBER,22], "S"."CHANNEL_ID"[NUMBER,22], "S"."AMOUNT_SOLD"[NUMBER,22]
+
+Note
+-----
+   - statistics feedback used for this statement
+   - this is an adaptive plan
+   - Warning: basic plan statistics not available. These are only collected when:
+       * hint 'gather_plan_statistics' is used for the statement or
+       * parameter 'statistics_level' is set to 'ALL', at session or system level
+
+
+
+SELECT /*+ no_adaptive_plan gather_plan_statistics */ c.cust_state_province, sum(s.amount_sold)
+  FROM sh.sales s, sh.customers c,
+    (SELECT ch.channel_id
+       FROM sh.channels ch
+       WHERE ch.channel_class_id = 13) chan13
+  WHERE c.cust_id = s.cust_id
+    AND s.channel_id = chan13.channel_id
+    AND c.cust_city_id IN ( 52114,52292,51738,51508)
+  GROUP BY c.cust_state_province;
+
+SQL_ID  gmzzw5khv4n2m, child number 0
+-------------------------------------
+SELECT /*+ no_adaptive_plan gather_plan_statistics */
+c.cust_state_province, sum(s.amount_sold)   FROM sh.sales s,
+sh.customers c,     (SELECT ch.channel_id        FROM sh.channels ch
+    WHERE ch.channel_class_id = 13) chan13   WHERE c.cust_id =
+s.cust_id     AND s.channel_id = chan13.channel_id     AND
+c.cust_city_id IN ( 52114,52292,51738,51508)   GROUP BY
+c.cust_state_province
+
+Plan hash value: 2093637951
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation              | Name      | Starts | E-Rows |E-Bytes| Cost (%CPU)| E-Time   | Pstart| Pstop | A-Rows |   A-Time   | Buffers |  OMem |  1Mem | Used-Mem |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT       |           |      1 |        |       |   945 (100)|          |       |       |      2 |00:00:00.08 |    3129 |       |       |          |
+|   1 |  HASH GROUP BY         |           |      1 |    118 |  4720 |   945   (2)| 00:00:01 |       |       |      2 |00:00:00.08 |    3129 |  1034K|  1034K|  648K (0)|
+|*  2 |   HASH JOIN            |           |      1 |  19420 |   758K|   944   (2)| 00:00:01 |       |       |    626 |00:00:00.11 |    3129 |  2546K|  2546K|  613K (0)|
+|*  3 |    TABLE ACCESS FULL   | CHANNELS  |      1 |      2 |    12 |     3   (0)| 00:00:01 |       |       |      2 |00:00:00.01 |       2 |       |       |          |
+|*  4 |    HASH JOIN           |           |      1 |  46608 |  1547K|   941   (2)| 00:00:01 |       |       |   7724 |00:00:00.10 |    3126 |  1506K|  1506K| 1564K (0)|
+|*  5 |     TABLE ACCESS FULL  | CUSTOMERS |      1 |    358 |  7518 |   423   (1)| 00:00:01 |       |       |    593 |00:00:00.01 |    1521 |       |       |          |
+|   6 |     PARTITION RANGE ALL|           |      1 |    918K|    11M|   515   (2)| 00:00:01 |     1 |    28 |    918K|00:00:00.06 |    1604 |       |       |          |
+|   7 |      TABLE ACCESS FULL | SALES     |     28 |    918K|    11M|   515   (2)| 00:00:01 |     1 |    28 |    918K|00:00:00.06 |    1604 |       |       |          |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Query Block Name / Object Alias (identified by operation id):
+-------------------------------------------------------------
+
+   1 - SEL$F5BB74E1
+   3 - SEL$F5BB74E1 / CH@SEL$2
+   5 - SEL$F5BB74E1 / C@SEL$1
+   7 - SEL$F5BB74E1 / S@SEL$1
+
+Outline Data
+-------------
+
+  /*+
+      BEGIN_OUTLINE_DATA
+      IGNORE_OPTIM_EMBEDDED_HINTS
+      OPTIMIZER_FEATURES_ENABLE('19.1.0')
+      DB_VERSION('19.1.0')
+      ALL_ROWS
+      OUTLINE_LEAF(@"SEL$F5BB74E1")
+      MERGE(@"SEL$2" >"SEL$1")
+      OUTLINE(@"SEL$1")
+      OUTLINE(@"SEL$2")
+      FULL(@"SEL$F5BB74E1" "C"@"SEL$1")
+      FULL(@"SEL$F5BB74E1" "S"@"SEL$1")
+      FULL(@"SEL$F5BB74E1" "CH"@"SEL$2")
+      LEADING(@"SEL$F5BB74E1" "C"@"SEL$1" "S"@"SEL$1" "CH"@"SEL$2")
+      USE_HASH(@"SEL$F5BB74E1" "S"@"SEL$1")
+      USE_HASH(@"SEL$F5BB74E1" "CH"@"SEL$2")
+      SWAP_JOIN_INPUTS(@"SEL$F5BB74E1" "CH"@"SEL$2")
+      USE_HASH_AGGREGATION(@"SEL$F5BB74E1")
+      END_OUTLINE_DATA
+  */
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   2 - access("S"."CHANNEL_ID"="CH"."CHANNEL_ID")
+   3 - filter("CH"."CHANNEL_CLASS_ID"=13)
+   4 - access("C"."CUST_ID"="S"."CUST_ID")
+   5 - filter(("C"."CUST_CITY_ID"=51508 OR "C"."CUST_CITY_ID"=51738 OR "C"."CUST_CITY_ID"=52114 OR "C"."CUST_CITY_ID"=52292))
+
+Column Projection Information (identified by operation id):
+-----------------------------------------------------------
+
+   1 - (rowset=256) "C"."CUST_STATE_PROVINCE"[VARCHAR2,40], SUM("S"."AMOUNT_SOLD")[22]
+   2 - (#keys=1; rowset=256) "C"."CUST_STATE_PROVINCE"[VARCHAR2,40], "S"."AMOUNT_SOLD"[NUMBER,22]
+   3 - (rowset=256) "CH"."CHANNEL_ID"[NUMBER,22]
+   4 - (#keys=1; rowset=256) "C"."CUST_STATE_PROVINCE"[VARCHAR2,40], "S"."AMOUNT_SOLD"[NUMBER,22], "S"."CHANNEL_ID"[NUMBER,22]
+   5 - (rowset=256) "C"."CUST_ID"[NUMBER,22], "C"."CUST_STATE_PROVINCE"[VARCHAR2,40]
+   6 - (rowset=256) "S"."CUST_ID"[NUMBER,22], "S"."CHANNEL_ID"[NUMBER,22], "S"."AMOUNT_SOLD"[NUMBER,22]
+   7 - (rowset=256) "S"."CUST_ID"[NUMBER,22], "S"."CHANNEL_ID"[NUMBER,22], "S"."AMOUNT_SOLD"[NUMBER,22]
+
+Hint Report (identified by operation id / Query Block Name / Object Alias):
+Total hints for statement: 1
+---------------------------------------------------------------------------
+
+   0 -  STATEMENT
+           -  no_adaptive_plan
+
+
+SELECT /*+ monitor no_adaptive_plan full( s ) gather_plan_stats index( sales SALES_CHANNEL_BIX ) index( c customers_pk ) full( c ) */
+       c.cust_state_province, sum(s.amount_sold)
+  FROM sh.sales s, sh.customers c,
+    (SELECT ch.channel_id
+       FROM sh.channels ch
+       WHERE ch.channel_class_id = 13) chan13
+  WHERE c.cust_id = s.cust_id
+    AND s.channel_id = chan13.channel_id
+    AND c.cust_city_id IN ( 52114,52292,51738,51508)
+  GROUP BY c.cust_state_province;
+
+set long 100000 pagesize 0 linesize 250 tab off trims on
+column report format a230
+set termout off feedback off
+spool monitor_output.html
+
+select DBMS_SQL_MONITOR.REPORT_SQL_MONITOR (sql_id=>'5raftduabwup9', report_level=>'all', type=>'active') report from dual;
+spool off
+
+set termout on feedback off
+
+
+SELECT /*+ monitor no_adaptive_plan full( s ) gather_plan_stats index( sales SALES_CHANNEL_BIX ) index( c customers_pk ) full( c ) */
+       c.cust_state_province, sum(s.amount_sold)
+  FROM sh.sales s, sh.customers c,
+    (SELECT ch.channel_id
+       FROM sh.channels ch
+       WHERE ch.channel_class_id = 13) chan13
+  WHERE c.cust_id = s.cust_id
+    AND s.channel_id = chan13.channel_id
+    AND c.cust_city_id IN ( 52114,52292,51738,51508)
+  GROUP BY c.cust_state_province;
+
+
+SELECT /*+ monitor no_adaptive_plan gather_plan_statistics index( s SALES_CHANNEL_BIX ) index( c customers_pk ) */
+       c.cust_state_province, sum(s.amount_sold)
+  FROM sh.sales s, sh.customers c,
+    (SELECT ch.channel_id
+       FROM sh.channels ch
+       WHERE ch.channel_class_id = 13) chan13
+  WHERE c.cust_id = s.cust_id
+    AND s.channel_id = chan13.channel_id
+    AND c.cust_city_id IN ( 52114,52292,51738,51508)
+  GROUP BY c.cust_state_province;
+
+
+SQL_ID  009ym2v4nkdjp, child number 0
+-------------------------------------
+SELECT /*+ monitor no_adaptive_plan gather_plan_statistics index( s
+SALES_CHANNEL_BIX ) index( c customers_pk ) */
+c.cust_state_province, sum(s.amount_sold)   FROM sh.sales s,
+sh.customers c,     (SELECT ch.channel_id        FROM sh.channels ch
+    WHERE ch.channel_class_id = 13) chan13   WHERE c.cust_id =
+s.cust_id     AND s.channel_id = chan13.channel_id     AND
+c.cust_city_id IN ( 52114,52292,51738,51508)   GROUP BY
+c.cust_state_province
+
+Plan hash value: 3207623194
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                               | Name              | Starts | E-Rows |E-Bytes| Cost (%CPU)| E-Time   | Pstart| Pstop | A-Rows |   A-Time   | Buffers |  OMem |  1Me
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                        |                   |      1 |        |       |  9205 (100)|          |       |       |      2 |00:00:00.07 |    8561 |       |
+|   1 |  HASH GROUP BY                          |                   |      1 |    133 |  5187 |  9205   (1)| 00:00:01 |       |       |      2 |00:00:00.07 |    8561 |  1034K|  103
+|   2 |   NESTED LOOPS                          |                   |      1 |    358 | 13962 |  9204   (1)| 00:00:01 |       |       |     26 |00:00:00.08 |    8561 |       |
+|   3 |    NESTED LOOPS                         |                   |      1 |   7059 | 13962 |  9204   (1)| 00:00:01 |       |       |   3614 |00:00:00.07 |    4952 |       |
+|   4 |     VIEW                                | VW_GBC_10         |      1 |   7059 |   124K|  2143   (1)| 00:00:01 |       |       |   3614 |00:00:00.07 |    1434 |       |
+|   5 |      HASH GROUP BY                      |                   |      1 |   7059 |   130K|  2143   (1)| 00:00:01 |       |       |   3614 |00:00:00.07 |    1434 |  1173K|  117
+|   6 |       NESTED LOOPS                      |                   |      1 |    382K|  7103K|  2133   (1)| 00:00:01 |       |       |    118K|00:00:00.07 |    1434 |       |
+|   7 |        NESTED LOOPS                     |                   |      1 |    382K|  7103K|  2133   (1)| 00:00:01 |       |       |    118K|00:00:00.02 |      67 |       |
+|*  8 |         TABLE ACCESS FULL               | CHANNELS          |      1 |      2 |    12 |     3   (0)| 00:00:01 |       |       |      2 |00:00:00.01 |       2 |       |
+|   9 |         PARTITION RANGE ALL             |                   |      2 |        |       |            |          |     1 |    28 |    118K|00:00:00.01 |      65 |       |
+|  10 |          BITMAP CONVERSION TO ROWIDS    |                   |     56 |        |       |            |          |       |       |    118K|00:00:00.01 |      65 |       |
+|* 11 |           BITMAP INDEX SINGLE VALUE     | SALES_CHANNEL_BIX |     56 |        |       |            |          |     1 |    28 |     20 |00:00:00.01 |      65 |       |
+|  12 |        TABLE ACCESS BY LOCAL INDEX ROWID| SALES             |    118K|    229K|  2916K|  2133   (1)| 00:00:01 |     1 |     1 |    118K|00:00:00.04 |    1367 |       |
+|* 13 |     INDEX UNIQUE SCAN                   | CUSTOMERS_PK      |   3614 |      1 |       |     0   (0)|          |       |       |   3614 |00:00:00.01 |    3518 |       |
+|* 14 |    TABLE ACCESS BY INDEX ROWID          | CUSTOMERS         |   3614 |      1 |    21 |     1   (0)| 00:00:01 |       |       |     26 |00:00:00.01 |    3609 |       |
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Query Block Name / Object Alias (identified by operation id):
+-------------------------------------------------------------
+
+   1 - SEL$09FF82E3
+   4 - SEL$C1C92257 / VW_GBC_10@SEL$67910E1A
+   5 - SEL$C1C92257
+   8 - SEL$C1C92257 / CH@SEL$2
+  12 - SEL$C1C92257 / S@SEL$1
+  13 - SEL$09FF82E3 / C@SEL$1
+  14 - SEL$09FF82E3 / C@SEL$1
+
+Outline Data
+-------------
+
+  /*+
+      BEGIN_OUTLINE_DATA
+      IGNORE_OPTIM_EMBEDDED_HINTS
+      OPTIMIZER_FEATURES_ENABLE('19.1.0')
+      DB_VERSION('19.1.0')
+      ALL_ROWS
+      OUTLINE_LEAF(@"SEL$C1C92257")
+      OUTLINE_LEAF(@"SEL$09FF82E3")
+      PLACE_GROUP_BY(@"SEL$F5BB74E1" ( "S"@"SEL$1"   "CH"@"SEL$2" ) 10)
+      OUTLINE(@"SEL$67910E1A")
+      OUTLINE(@"SEL$F5BB74E1")
+      MERGE(@"SEL$2" >"SEL$1")
+      OUTLINE(@"SEL$1")
+      OUTLINE(@"SEL$2")
+      NO_ACCESS(@"SEL$09FF82E3" "VW_GBC_10"@"SEL$67910E1A")
+      INDEX(@"SEL$09FF82E3" "C"@"SEL$1" ("CUSTOMERS"."CUST_ID"))
+      LEADING(@"SEL$09FF82E3" "VW_GBC_10"@"SEL$67910E1A" "C"@"SEL$1")
+      USE_NL(@"SEL$09FF82E3" "C"@"SEL$1")
+      NLJ_BATCHING(@"SEL$09FF82E3" "C"@"SEL$1")
+      USE_HASH_AGGREGATION(@"SEL$09FF82E3")
+      FULL(@"SEL$C1C92257" "CH"@"SEL$2")
+      BITMAP_TREE(@"SEL$C1C92257" "S"@"SEL$1" AND(("SALES"."CHANNEL_ID")))
+      LEADING(@"SEL$C1C92257" "CH"@"SEL$2" "S"@"SEL$1")
+      USE_NL(@"SEL$C1C92257" "S"@"SEL$1")
+      NLJ_BATCHING(@"SEL$C1C92257" "S"@"SEL$1")
+      USE_HASH_AGGREGATION(@"SEL$C1C92257")
+      END_OUTLINE_DATA
+  */
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   8 - filter("CH"."CHANNEL_CLASS_ID"=13)
+  11 - access("S"."CHANNEL_ID"="CH"."CHANNEL_ID")
+  13 - access("C"."CUST_ID"="ITEM_1")
+  14 - filter(("C"."CUST_CITY_ID"=51508 OR "C"."CUST_CITY_ID"=51738 OR "C"."CUST_CITY_ID"=52114 OR "C"."CUST_CITY_ID"=52292))
+
+Column Projection Information (identified by operation id):
+-----------------------------------------------------------
+
+   1 - (rowset=256) "C"."CUST_STATE_PROVINCE"[VARCHAR2,40], SUM("ITEM_2")[22]
+   2 - "ITEM_2"[NUMBER,22], "C"."CUST_STATE_PROVINCE"[VARCHAR2,40]
+   3 - "ITEM_2"[NUMBER,22], "C".ROWID[ROWID,10]
+   4 - "ITEM_1"[NUMBER,22], "ITEM_2"[NUMBER,22]
+   5 - "S"."CUST_ID"[NUMBER,22], SUM("S"."AMOUNT_SOLD")[22]
+   6 - "S"."CUST_ID"[NUMBER,22], "S"."AMOUNT_SOLD"[NUMBER,22]
+   7 - "S".ROWID[ROWID,10]
+   8 - "CH"."CHANNEL_ID"[NUMBER,22]
+   9 - "S".ROWID[ROWID,10]
+  10 - "S".ROWID[ROWID,10], "S"."CHANNEL_ID"[NUMBER,22]
+  11 - STRDEF[BM VAR, 10], STRDEF[BM VAR, 10], STRDEF[BM VAR, 7920], "S"."CHANNEL_ID"[NUMBER,22]
+  12 - "S"."CUST_ID"[NUMBER,22], "S"."AMOUNT_SOLD"[NUMBER,22]
+  13 - "C".ROWID[ROWID,10]
+  14 - "C"."CUST_STATE_PROVINCE"[VARCHAR2,40]
+
+Hint Report (identified by operation id / Query Block Name / Object Alias):
+Total hints for statement: 3
+---------------------------------------------------------------------------
+
+   0 -  STATEMENT
+           -  no_adaptive_plan
+
+  12 -  SEL$C1C92257 / S@SEL$1
+           -  index( s SALES_CHANNEL_BIX )
+
+  13 -  SEL$09FF82E3 / C@SEL$1
+           -  index( c customers_pk )
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                               | Name              | Starts | E-Rows |E-Bytes| Cost (%CPU)| E-Time   | A-Rows |
+--------------------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                        |                   |      1 |        |       |  9205 (100)|          |      2 |
+|   1 |  HASH GROUP BY                          |                   |      1 |    133 |  5187 |  9205   (1)| 00:00:01 |      2 |
+|   2 |   NESTED LOOPS                          |                   |      1 |    358 | 13962 |  9204   (1)| 00:00:01 |     26 |
+|   3 |    NESTED LOOPS                         |                   |      1 |   7059 | 13962 |  9204   (1)| 00:00:01 |   3614 |
+|   4 |     VIEW                                | VW_GBC_10         |      1 |   7059 |   124K|  2143   (1)| 00:00:01 |   3614 |
+|   5 |      HASH GROUP BY                      |                   |      1 |   7059 |   130K|  2143   (1)| 00:00:01 |   3614 |
+|   6 |       NESTED LOOPS                      |                   |      1 |    382K|  7103K|  2133   (1)| 00:00:01 |    118K|
+|   7 |        NESTED LOOPS                     |                   |      1 |    382K|  7103K|  2133   (1)| 00:00:01 |    118K|
+|*  8 |         TABLE ACCESS FULL               | CHANNELS          |      1 |      2 |    12 |     3   (0)| 00:00:01 |      2 |
+|   9 |         PARTITION RANGE ALL             |                   |      2 |        |       |            |          |    118K|
+|  10 |          BITMAP CONVERSION TO ROWIDS    |                   |     56 |        |       |            |          |    118K|
+|* 11 |           BITMAP INDEX SINGLE VALUE     | SALES_CHANNEL_BIX |     56 |        |       |            |          |     20 |
+|  12 |        TABLE ACCESS BY LOCAL INDEX ROWID| SALES             |    118K|    229K|  2916K|  2133   (1)| 00:00:01 |    118K|
+|* 13 |     INDEX UNIQUE SCAN                   | CUSTOMERS_PK      |   3614 |      1 |       |     0   (0)|          |   3614 |
+|* 14 |    TABLE ACCESS BY INDEX ROWID          | CUSTOMERS         |   3614 |      1 |    21 |     1   (0)| 00:00:01 |     26 |
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+
+DECLARE
+  pname VARCHAR2(4000);
+BEGIN
+  pname := sys.dbms_sqldiag.create_sql_patch(
+                sql_id    => 'fc25kvvvb1aar',
+                hint_text => 'INDEX(@"SEL$09FF82E3" "C"@"SEL$1" ("CUSTOMERS"."CUST_ID"))' || ' ' ||
+                             'BITMAP_TREE(@"SEL$C1C92257" "S"@"SEL$1" AND(("SALES"."CHANNEL_ID")))',
+                name     => 'sql_fc25kvvvb1aar_index');
+END;
+/
+
+
+
+SELECT c.cust_state_province, sum(s.amount_sold)
+  FROM sh.sales s, sh.customers c,
+    (SELECT ch.channel_id FROM sh.channels ch
+       WHERE ch.channel_class_id = 13) chan13
+  WHERE c.cust_id = s.cust_id
+    AND s.channel_id = chan13.channel_id
+    AND c.cust_city_id IN (52114,52292,51738,51508)
+  GROUP BY c.cust_state_province;
+  2    3    4    5    6    7    8
+CUST_STATE_PROVINCE                      SUM(S.AMOUNT_SOLD)
+---------------------------------------- ------------------
+Nordrhein-Westfalen                                 5115.66
+FL                                                 82360.67
+
+SQL> @plans
+SQL> SELECT *
+  2  FROM table(DBMS_XPLAN.DISPLAY_CURSOR(FORMAT=>'ALL ALLSTATS LAST +cost +bytes +OUTLINE'));
+
+PLAN_TABLE_OUTPUT
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SQL_ID  fc25kvvvb1aar, child number 1
+-------------------------------------
+SELECT c.cust_state_province, sum(s.amount_sold)   FROM sh.sales s,
+sh.customers c,     (SELECT ch.channel_id FROM sh.channels ch
+WHERE ch.channel_class_id = 13) chan13   WHERE c.cust_id = s.cust_id
+ AND s.channel_id = chan13.channel_id     AND c.cust_city_id IN
+(52114,52292,51738,51508)   GROUP BY c.cust_state_province
+
+Plan hash value: 2093637951
+
+--------------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation              | Name      | E-Rows |E-Bytes| Cost (%CPU)| E-Time   | Pstart| Pstop |  OMem |  1Mem | Used-Mem |
+--------------------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT       |           |        |       |   945 (100)|          |       |       |       |       |          |
+|   1 |  HASH GROUP BY         |           |      2 |    80 |   945   (2)| 00:00:01 |       |       |  1034K|  1034K|  661K (0)|
+|*  2 |   HASH JOIN            |           |  19420 |   758K|   944   (2)| 00:00:01 |       |       |  2546K|  2546K|  694K (0)|
+|*  3 |    TABLE ACCESS FULL   | CHANNELS  |      2 |    12 |     3   (0)| 00:00:01 |       |       |       |       |          |
+|*  4 |    HASH JOIN           |           |  46608 |  1547K|   941   (2)| 00:00:01 |       |       |  1399K|  1399K| 2527K (0)|
+|*  5 |     TABLE ACCESS FULL  | CUSTOMERS |    358 |  7518 |   423   (1)| 00:00:01 |       |       |       |       |          |
+|   6 |     PARTITION RANGE ALL|           |    918K|    11M|   515   (2)| 00:00:01 |     1 |    28 |       |       |          |
+|   7 |      TABLE ACCESS FULL | SALES     |    918K|    11M|   515   (2)| 00:00:01 |     1 |    28 |       |       |          |
+--------------------------------------------------------------------------------------------------------------------------------
+
+Query Block Name / Object Alias (identified by operation id):
+-------------------------------------------------------------
+
+   1 - SEL$F5BB74E1
+   3 - SEL$F5BB74E1 / CH@SEL$2
+   5 - SEL$F5BB74E1 / C@SEL$1
+   7 - SEL$F5BB74E1 / S@SEL$1
+
+Outline Data
+-------------
+
+  /*+
+      BEGIN_OUTLINE_DATA
+      IGNORE_OPTIM_EMBEDDED_HINTS
+      OPTIMIZER_FEATURES_ENABLE('19.1.0')
+      DB_VERSION('19.1.0')
+      ALL_ROWS
+      OUTLINE_LEAF(@"SEL$F5BB74E1")
+      MERGE(@"SEL$2" >"SEL$1")
+      OUTLINE(@"SEL$1")
+      OUTLINE(@"SEL$2")
+      FULL(@"SEL$F5BB74E1" "C"@"SEL$1")
+      FULL(@"SEL$F5BB74E1" "S"@"SEL$1")
+      FULL(@"SEL$F5BB74E1" "CH"@"SEL$2")
+      LEADING(@"SEL$F5BB74E1" "C"@"SEL$1" "S"@"SEL$1" "CH"@"SEL$2")
+      USE_HASH(@"SEL$F5BB74E1" "S"@"SEL$1")
+      USE_HASH(@"SEL$F5BB74E1" "CH"@"SEL$2")
+      SWAP_JOIN_INPUTS(@"SEL$F5BB74E1" "CH"@"SEL$2")
+      USE_HASH_AGGREGATION(@"SEL$F5BB74E1")
+      END_OUTLINE_DATA
+  */
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   2 - access("S"."CHANNEL_ID"="CH"."CHANNEL_ID")
+   3 - filter("CH"."CHANNEL_CLASS_ID"=13)
+   4 - access("C"."CUST_ID"="S"."CUST_ID")
+   5 - filter(("C"."CUST_CITY_ID"=51508 OR "C"."CUST_CITY_ID"=51738 OR "C"."CUST_CITY_ID"=52114 OR
+              "C"."CUST_CITY_ID"=52292))
+
+Column Projection Information (identified by operation id):
+-----------------------------------------------------------
+
+   1 - "C"."CUST_STATE_PROVINCE"[VARCHAR2,40], SUM("S"."AMOUNT_SOLD")[22]
+   2 - (#keys=1) "S"."AMOUNT_SOLD"[NUMBER,22], "C"."CUST_STATE_PROVINCE"[VARCHAR2,40], "S"."AMOUNT_SOLD"[NUMBER,22]
+   3 - (rowset=256) "CH"."CHANNEL_ID"[NUMBER,22]
+   4 - (#keys=1) "S"."AMOUNT_SOLD"[NUMBER,22], "C"."CUST_STATE_PROVINCE"[VARCHAR2,40], "S"."CHANNEL_ID"[NUMBER,22],
+       "S"."AMOUNT_SOLD"[NUMBER,22], "S"."CHANNEL_ID"[NUMBER,22]
+   5 - "C"."CUST_ID"[NUMBER,22], "C"."CUST_STATE_PROVINCE"[VARCHAR2,40]
+   6 - "S"."CUST_ID"[NUMBER,22], "S"."CHANNEL_ID"[NUMBER,22], "S"."AMOUNT_SOLD"[NUMBER,22]
+   7 - "S"."CUST_ID"[NUMBER,22], "S"."CHANNEL_ID"[NUMBER,22], "S"."AMOUNT_SOLD"[NUMBER,22]
+
+Note
+-----
+   - statistics feedback used for this statement
+   - this is an adaptive plan
+   - Warning: basic plan statistics not available. These are only collected when:
+       * hint 'gather_plan_statistics' is used for the statement or
+       * parameter 'statistics_level' is set to 'ALL', at session or system level
+
+
+84 rows selected.
+
+SQL>
+SQL>
+SQL> set wrap on
+SQL> SET ECHO OFF
+SQL>
+
+
+SELECT /*+ no_adaptive_plan index( s SALES_CHANNEL_BIX ) index( c customers_pk ) */
+       c.cust_state_province, sum(s.amount_sold)
+  FROM sh.sales s, sh.customers c,
+    (SELECT ch.channel_id
+       FROM sh.channels ch
+       WHERE ch.channel_class_id = 13) chan13
+  WHERE c.cust_id = s.cust_id
+    AND s.channel_id = chan13.channel_id
+    AND c.cust_city_id IN ( 52114,52292,51738,51508)
+  GROUP BY c.cust_state_province;
+
+
+@mk_patch.sql fc25kvvvb1aar fg3r46v0twq4h
+
+exec DBMS_SQLDIAG.DROP_SQL_PATCH(NAME=>'sql_fc25kvvvb1aar_index', IGNORE=>TRUE);
+exec DBMS_SQLDIAG.DROP_SQL_PATCH(NAME=>'sql_fc25kvvvb1aar_patch', IGNORE=>TRUE);
+
+
+-- run the following block to create the patch
+DECLARE
+  pname VARCHAR2(4000);
+BEGIN
+
+  pname := sys.dbms_sqldiag.create_sql_patch(
+                   sql_id    => 'fc25kvvvb1aar',
+                   hint_text =>'IGNORE_OPTIM_EMBEDDED_HINTS'||
+                               'OPTIMIZER_FEATURES_ENABLE(''19.1.0'')'||
+                               'DB_VERSION(''19.1.0'')'||
+                               'ALL_ROWS'||
+                               'OUTLINE_LEAF(@"SEL$C1C92257")'||
+                               'OUTLINE_LEAF(@"SEL$09FF82E3")'||
+                               'PLACE_GROUP_BY(@"SEL$F5BB74E1" ( "S"@"SEL$1"   "CH"@"SEL$2" ) 10)'||
+                               'OUTLINE(@"SEL$67910E1A")'||
+                               'OUTLINE(@"SEL$F5BB74E1")'||
+                               'MERGE(@"SEL$2" >"SEL$1")'||
+                               'OUTLINE(@"SEL$1")'||
+                               'OUTLINE(@"SEL$2")'||
+                               'NO_ACCESS(@"SEL$09FF82E3" "VW_GBC_10"@"SEL$67910E1A")'||
+                               'INDEX(@"SEL$09FF82E3" "C"@"SEL$1" ("CUSTOMERS"."CUST_ID"))'||
+                               'LEADING(@"SEL$09FF82E3" "VW_GBC_10"@"SEL$67910E1A" "C"@"SEL$1")'||
+                               'USE_NL(@"SEL$09FF82E3" "C"@"SEL$1")'||
+                               'NLJ_BATCHING(@"SEL$09FF82E3" "C"@"SEL$1")'||
+                               'USE_HASH_AGGREGATION(@"SEL$09FF82E3")'||
+                               'FULL(@"SEL$C1C92257" "CH"@"SEL$2")'||
+                               'BITMAP_TREE(@"SEL$C1C92257" "S"@"SEL$1" AND(("SALES"."CHANNEL_ID")))'||
+                               'LEADING(@"SEL$C1C92257" "CH"@"SEL$2" "S"@"SEL$1")'||
+                               'USE_NL(@"SEL$C1C92257" "S"@"SEL$1")'||
+                               'NLJ_BATCHING(@"SEL$C1C92257" "S"@"SEL$1")'||
+                               'USE_HASH_AGGREGATION(@"SEL$C1C92257")',
+                   name      =>'sql_fc25kvvvb1aar_patch');
+END;
+/
+-- end of patch block
+
+
+DECLARE
+  pname VARCHAR2(4000);
+BEGIN
+  pname := sys.dbms_sqldiag.create_sql_patch(
+                sql_id    => 'fc25kvvvb1aar',
+                hint_text => 'INDEX(@"SEL$F5BB74E1" "C"@"SEL$1" ("CUSTOMERS"."CUST_ID")) BITMAP_TREE(@"SEL$F5BB74E1" "S"@"SEL$1" AND(("SALES"."CHANNEL_ID")))',
+                name     => 'sql_fc25kvvvb1aar_patch');
+END;
+/
+
+
+@drop-patch sql_fc25kvvvb1aar_patch
+
+@mk-patch.sql fc25kvvvb1aar fg3r46v0twq4h
+
+@cp-plan-patch.sql fc25kvvvb1aar fg3r46v0twq4h
+
+@list-patch
+
+@patch-see-hint fc25kvvvb1aar
+
+
