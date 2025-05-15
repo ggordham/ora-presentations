@@ -1,0 +1,44 @@
+
+
+-- These did not prove helpful
+@orders_q1.sql "Dinah Paredes"
+@plansa.sql
+
+@orders_q1.sql "MEGA Warehouse Inc"
+@plansa.sql
+
+
+Note: purge cursor in-between to see adaptvie plan change
+
+-- Using OE scheam
+-- 13 items
+@products_q1.sql 15
+@planba
+
+-- 1 item
+@products_q1.sql 211
+@planba
+
+-- 24 items
+@products_q1.sql 1.1
+@planba
+
+-- Parallel adaptive
+@dept_q1.sql
+@planbp.sql
+
+-- show cardinality / statistics feedback
+@orders_q2.sql
+@planba
+@sql-adaptive.sql b8p3r7kpq6p99
+
+
+@sql-adaptive.sql 5vbwybuytw362
+
+select child_number, user_bind_peek_mismatch, use_feedback_stats,
+       reason
+  from v$sql_shared_cursor
+  where sql_id = '5vbwybuytw362';
+
+@purge-cursor.sql b8p3r7kpq6p99
+@drop_spd.sql OE PRODUCT_INFORMATION
