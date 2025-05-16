@@ -159,7 +159,7 @@ Refresh the schema using automated script, utilizing datapump and a database lin
 First change to the proper directory and start sqlplus.
 
 ```bash
-cd liquibase-orapu/setup
+cd liquibase-NoCOUG/setup
 sqlplus /nolog
 
 ```
@@ -223,7 +223,7 @@ Refresh the schema using automated script, utilizing datapump and a database lin
 First change to the proper directory and start sqlplus.
 
 ```bash
-cd liquibase-orapu/setup
+cd liquibase-NoCOUG/setup
 sqlplus /nolog
 
 ```
