@@ -16,6 +16,7 @@ PROMPT
 -- now re-connect and run the query
 @@connect.sql
 
+set echo on
 SELECT count(1) FROM (
 SELECT /*+ gather_plan_statistics NO_ADAPTIVE_PLAN */
        o.order_id, v.product_name
@@ -28,6 +29,7 @@ SELECT /*+ gather_plan_statistics NO_ADAPTIVE_PLAN */
   WHERE o.order_id = v.order_id);
 
 -- now look at the plan and see how it does nested loops
+set echo off
 @@plans.sql
 @@cursors.sql c7db4mrf05vtx
 
@@ -37,6 +39,7 @@ PROMPT
 PROMPT "=== The first run uses nested loops and has a large number of buffer gets"
 PROMPT "===  and marked as is_reoptimizable as yes."
 
+set echo on
 -- now lets run it agaih and see that statistics feedback is used
 SELECT count(1) FROM (
 SELECT /*+ gather_plan_statistics NO_ADAPTIVE_PLAN */
@@ -50,6 +53,7 @@ SELECT /*+ gather_plan_statistics NO_ADAPTIVE_PLAN */
   WHERE o.order_id = v.order_id);
 
 -- now look at the plan and see how it does nested loops
+set echo off
 @@plans.sql
 @@cursors.sql c7db4mrf05vtx
 

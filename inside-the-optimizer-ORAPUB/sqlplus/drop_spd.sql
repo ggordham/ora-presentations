@@ -5,6 +5,8 @@
   on the schema and object name
 */
 
+connect / as sysdba
+
 col owner format a20
 set serverout on
 set verify off
