@@ -7,17 +7,21 @@ PROMPT Basic table details
 PROMPT
 column table_name format a12
 
+set echo on
 SELECT table_name, num_rows 
   FROM all_tables
   WHERE table_name IN ('CUSTOMERS')
     AND owner = 'SH';
 
+set echo off
 PROMPT
 PROMPT Histogram information for largest 9 buckets
 PROMPT
-column column_name format a12
+column column_name format a25
+column endpoint_actual_value format a25
 /* note this specific way to show num_endpoints only works for frequency histogram */
 
+set echo on
 SELECT * FROM (
 SELECT column_name, endpoint_number, 
        endpoint_actual_value, 
@@ -30,8 +34,10 @@ SELECT column_name, endpoint_number,
 WHERE rownum < 10
   AND num_endpoints is not null;
 
+set echo off
 PROMPT "Actual row counts for first values with more than 1,000 values"
 
+set echo on
 select cust_state_province, count(1) 
   from sh.customers 
   group by cust_state_province 

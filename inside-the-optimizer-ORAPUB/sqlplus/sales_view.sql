@@ -7,11 +7,13 @@
 prompt "==========================================================================="
 set echo on
 
+/*
 -- view needed for demo
 CREATE OR REPLACE VIEW sh.cust_prod_totals_v AS
 SELECT SUM(s.quantity_sold) total, s.cust_id, s.prod_id
 FROM   sh.sales s
 GROUP BY s.cust_id, s.prod_id;
+*/
 
 -- the query without view merging
 SELECT /*+ NO_MERGE(cust_prod_totals_v) */
