@@ -38,7 +38,7 @@ PROMPT
 -- create index sh.customers_prov on sh.customers(cust_state_province);
 -- exec dbms_stats.gather_schema_stats('SH');
 
-var cust_prov varchar2
+var cust_prov varchar2(256)
 
 PROMPT "For each query run look at the count of rows processed, the execution plan"
 PROMPT "  and the status in v$sql for bind_aware, bind_sensitive, and buffer_gets"
