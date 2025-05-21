@@ -42,7 +42,7 @@ PROMPT "Note that the plan has been updated, and the E-ROWS matches the A-ROWS, 
 PROMPT "  statistics feedback updating the estimates."
 
 @@flush_spd.sql
-@@sql_pd1.sql
+@@sql_pd.sql
 
 PROMPT "This shows the SQL Plan directive that was captured."
 PROMPT " you can run @@sql_pd2.sql to see even more detail."
