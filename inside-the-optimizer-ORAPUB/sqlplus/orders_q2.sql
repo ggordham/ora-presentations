@@ -62,5 +62,11 @@ PROMPT "=== The second run uses statistcs feedback, this is in the notest part o
 PROMPT "===   the plan, as well as the reduced buffer gets and the new plan is    "
 PROMPT "===   marked as is_reoptimizable no."
 
+SELECT hint_text 
+  FROM V$SQL_REOPTIMIZATION_HINTS 
+  WHERE sql_id ='c7db4mrf05vtx';  
 
+PROMPT
+PROMPT "=== This shows the sotred hint with the saved statistics feedback information."
+PROMPT ==============================================================================================
 
