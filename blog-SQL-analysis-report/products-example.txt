@@ -1,0 +1,258 @@
+connect perflab/Perf$_Lab42@"//localhost/freepdb1"
+
+
+var bind1 number;
+exec :bind1 := 1;
+
+select t1.p_category, t2.tpmethod
+  from products t1, products t2
+  where t1.prod_category || '_1' = 'SFD_1'
+  and   t2.method_typ != 'SEA'
+  union
+  select t3.p_category, t4.tpmethod
+  from products t3, sources t4
+  where t3.scid = t4.scid
+  and   t4.carrier   = 'AAC'
+  and   t4.s_area    = :bind1;
+
+set linesize 200
+set tab off
+set trims on
+set pagesize 1000
+column plan_table_output format a180
+
+SELECT *
+  FROM table(DBMS_XPLAN.DISPLAY_CURSOR(format=>'typical +alias +sql_analysis_report'));
+
+-------------------------------------------------------------------------------------------------------
+| Id  | Operation                              | Name         | Rows  | Bytes | Cost (%CPU)| Time     |
+-------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                       |              |       |       |    24 (100)|          |
+|   1 |  HASH UNIQUE                           |              | 10482 | 83866 |    24   (5)| 00:00:01 |
+|   2 |   UNION-ALL                            |              | 10482 | 83866 |    24   (5)| 00:00:01 |
+|   3 |    MERGE JOIN CARTESIAN                |              | 10481 | 83848 |    18   (0)| 00:00:01 |
+|*  4 |     TABLE ACCESS FULL                  | PRODUCTS     |    10 |    40 |     3   (0)| 00:00:01 |
+|   5 |     BUFFER SORT                        |              |  1024 |  4096 |    15   (0)| 00:00:01 |
+|*  6 |      TABLE ACCESS FULL                 | PRODUCTS     |  1024 |  4096 |     2   (0)| 00:00:01 |
+|*  7 |    HASH JOIN                           |              |     1 |    18 |     5   (0)| 00:00:01 |
+|*  8 |     TABLE ACCESS BY INDEX ROWID BATCHED| SOURCES      |     1 |    14 |     2   (0)| 00:00:01 |
+|*  9 |      INDEX RANGE SCAN                  | SRC_CARR_IDX |     1 |       |     1   (0)| 00:00:01 |
+|  10 |     TABLE ACCESS FULL                  | PRODUCTS     |  1024 |  4096 |     3   (0)| 00:00:01 |
+-------------------------------------------------------------------------------------------------------
+
+Query Block Name / Object Alias (identified by operation id):
+-------------------------------------------------------------
+
+   1 - SET$1
+   3 - SEL$1
+   4 - SEL$1 / "T1"@"SEL$1"
+   6 - SEL$1 / "T2"@"SEL$1"
+   7 - SEL$2
+   8 - SEL$2 / "T4"@"SEL$2"
+   9 - SEL$2 / "T4"@"SEL$2"
+  10 - SEL$2 / "T3"@"SEL$2"
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   4 - filter("T1"."PROD_CATEGORY"||'_1'='SFD_1')
+   6 - filter("T2"."METHOD_TYP"<>'SEA')
+   7 - access("T3"."SCID"="T4"."SCID")
+   8 - filter(TO_NUMBER("T4"."S_AREA")=:BIND1)
+   9 - access("T4"."CARRIER"='AAC')
+
+SQL Analysis Report (identified by operation id/Query Block Name/Object Alias):
+-------------------------------------------------------------------------------
+
+   1 -  SET$1
+           -  The query block contains UNION which may be expensive.
+              Consider using UNION ALL if duplicates are allowed or
+              uniqueness is guaranteed.
+
+   3 -  SEL$1
+           -  The query block has 1 cartesian product which may be
+              expensive. Consider adding join conditions or removing the
+              disconnected tables or views.
+
+   4 -  SEL$1 / "T1"@"SEL$1"
+           -  The following columns have predicates which preclude their
+              use as keys in index range scan. Consider rewriting the
+              predicates.
+                "PROD_CATEGORY"
+
+   6 -  SEL$1 / "T2"@"SEL$1"
+           -  The following columns have predicates which preclude their
+              use as keys in index range scan. Consider rewriting the
+              predicates.
+                "METHOD_TYP"
+
+
+select t1.p_category, t2.tpmethod
+  from products t1, products t2
+  where t1.prod_category  = 'SFD'
+  and   t2.method_typ != 'SEA'
+  union all
+  select t3.p_category, t4.tpmethod
+  from products t3, sources t4
+  where t3.scid = t4.scid
+  and   t4.carrier   = 'AAC'
+  and   t4.s_area    = :bind1;
+
+
+set linesize 200
+set tab off
+set trims on
+set pagesize 1000
+column plan_table_output format a180
+
+SELECT *
+  FROM table(DBMS_XPLAN.DISPLAY_CURSOR(format=>'typical +alias +sql_analysis_report'));
+
+-------------------------------------------------------------------------------------------------------
+| Id  | Operation                              | Name         | Rows  | Bytes | Cost (%CPU)| Time     |
+-------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                       |              |       |       |    11 (100)|          |
+|   1 |  HASH UNIQUE                           |              |   513 |  4114 |    11  (10)| 00:00:01 |
+|   2 |   UNION-ALL                            |              |   513 |  4114 |    11  (10)| 00:00:01 |
+|   3 |    MERGE JOIN CARTESIAN                |              |   512 |  4096 |     5   (0)| 00:00:01 |
+|   4 |     TABLE ACCESS BY INDEX ROWID BATCHED| PRODUCTS     |     1 |     4 |     2   (0)| 00:00:01 |
+|*  5 |      INDEX RANGE SCAN                  | PROD_CAT_IDX |     1 |       |     1   (0)| 00:00:01 |
+|   6 |     BUFFER SORT                        |              |  1024 |  4096 |     3   (0)| 00:00:01 |
+|*  7 |      TABLE ACCESS FULL                 | PRODUCTS     |  1024 |  4096 |     3   (0)| 00:00:01 |
+|*  8 |    HASH JOIN                           |              |     1 |    18 |     5   (0)| 00:00:01 |
+|*  9 |     TABLE ACCESS BY INDEX ROWID BATCHED| SOURCES      |     1 |    14 |     2   (0)| 00:00:01 |
+|* 10 |      INDEX RANGE SCAN                  | SRC_CARR_IDX |     1 |       |     1   (0)| 00:00:01 |
+|  11 |     TABLE ACCESS FULL                  | PRODUCTS     |  1024 |  4096 |     3   (0)| 00:00:01 |
+-------------------------------------------------------------------------------------------------------
+
+Query Block Name / Object Alias (identified by operation id):
+-------------------------------------------------------------
+
+   1 - SET$1
+   3 - SEL$1
+   4 - SEL$1 / "T1"@"SEL$1"
+   5 - SEL$1 / "T1"@"SEL$1"
+   7 - SEL$1 / "T2"@"SEL$1"
+   8 - SEL$2
+   9 - SEL$2 / "T4"@"SEL$2"
+  10 - SEL$2 / "T4"@"SEL$2"
+  11 - SEL$2 / "T3"@"SEL$2"
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   5 - access("T1"."PROD_CATEGORY"='SFD')
+   7 - filter("T2"."METHOD_TYP"<>'SEA')
+   8 - access("T3"."SCID"="T4"."SCID")
+   9 - filter(TO_NUMBER("T4"."S_AREA")=:BIND1)
+  10 - access("T4"."CARRIER"='AAC')
+
+SQL Analysis Report (identified by operation id/Query Block Name/Object Alias):
+-------------------------------------------------------------------------------
+
+   1 -  SET$1
+           -  The query block contains UNION which may be expensive.
+              Consider using UNION ALL if duplicates are allowed or
+              uniqueness is guaranteed.
+
+   3 -  SEL$1
+           -  The query block has 1 cartesian product which may be
+              expensive. Consider adding join conditions or removing the
+              disconnected tables or views.
+
+   7 -  SEL$1 / "T2"@"SEL$1"
+           -  The following columns have predicates which preclude their
+              use as keys in index range scan. Consider rewriting the
+              predicates.
+                "METHOD_TYP"
+
+   9 -  SEL$2 / "T4"@"SEL$2"
+           -  The following columns have predicates which preclude their
+              use as keys in index range scan. Consider rewriting the
+              predicates.
+                "S_AREA"
+
+
+
+
+var bind1 char(4);
+exec :bind1 := '1';
+
+select t1.p_category, t2.tpmethod
+  from products t1, products t2
+  where t1.prod_category  = 'SFD'
+  and   t2.method_typ != 'SEA'
+  union all
+  select t3.p_category, t4.tpmethod
+  from products t3, sources t4
+  where t3.scid = t4.scid
+  and   t4.carrier   = 'AAC'
+  and   t4.s_area    = :bind1;
+
+
+set linesize 200
+set tab off
+set trims on
+set pagesize 1000
+column plan_table_output format a180
+
+SELECT *
+  FROM table(DBMS_XPLAN.DISPLAY_CURSOR(format=>'typical +alias +sql_analysis_report'));
+
+-------------------------------------------------------------------------------------------------------
+| Id  | Operation                              | Name         | Rows  | Bytes | Cost (%CPU)| Time     |
+-------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                       |              |       |       |    11 (100)|          |
+|   1 |  HASH UNIQUE                           |              |   513 |  4114 |    11  (10)| 00:00:01 |
+|   2 |   UNION-ALL                            |              |   513 |  4114 |    11  (10)| 00:00:01 |
+|   3 |    MERGE JOIN CARTESIAN                |              |   512 |  4096 |     5   (0)| 00:00:01 |
+|   4 |     TABLE ACCESS BY INDEX ROWID BATCHED| PRODUCTS     |     1 |     4 |     2   (0)| 00:00:01 |
+|*  5 |      INDEX RANGE SCAN                  | PROD_CAT_IDX |     1 |       |     1   (0)| 00:00:01 |
+|   6 |     BUFFER SORT                        |              |  1024 |  4096 |     3   (0)| 00:00:01 |
+|*  7 |      TABLE ACCESS FULL                 | PRODUCTS     |  1024 |  4096 |     3   (0)| 00:00:01 |
+|*  8 |    HASH JOIN                           |              |     1 |    18 |     5   (0)| 00:00:01 |
+|*  9 |     TABLE ACCESS BY INDEX ROWID BATCHED| SOURCES      |     1 |    14 |     2   (0)| 00:00:01 |
+|* 10 |      INDEX RANGE SCAN                  | SRC_CARR_IDX |     1 |       |     1   (0)| 00:00:01 |
+|  11 |     TABLE ACCESS FULL                  | PRODUCTS     |  1024 |  4096 |     3   (0)| 00:00:01 |
+-------------------------------------------------------------------------------------------------------
+
+Query Block Name / Object Alias (identified by operation id):
+-------------------------------------------------------------
+
+   1 - SET$1
+   3 - SEL$1
+   4 - SEL$1 / "T1"@"SEL$1"
+   5 - SEL$1 / "T1"@"SEL$1"
+   7 - SEL$1 / "T2"@"SEL$1"
+   8 - SEL$2
+   9 - SEL$2 / "T4"@"SEL$2"
+  10 - SEL$2 / "T4"@"SEL$2"
+  11 - SEL$2 / "T3"@"SEL$2"
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   5 - access("T1"."PROD_CATEGORY"='SFD')
+   7 - filter("T2"."METHOD_TYP"<>'SEA')
+   8 - access("T3"."SCID"="T4"."SCID")
+   9 - filter("T4"."S_AREA"=:BIND1)
+  10 - access("T4"."CARRIER"='AAC')
+
+SQL Analysis Report (identified by operation id/Query Block Name/Object Alias):
+-------------------------------------------------------------------------------
+
+   1 -  SET$1
+           -  The query block contains UNION which may be expensive.
+              Consider using UNION ALL if duplicates are allowed or
+              uniqueness is guaranteed.
+
+   3 -  SEL$1
+           -  The query block has 1 cartesian product which may be
+              expensive. Consider adding join conditions or removing the
+              disconnected tables or views.
+
+   7 -  SEL$1 / "T2"@"SEL$1"
+           -  The following columns have predicates which preclude their
+              use as keys in index range scan. Consider rewriting the
+              predicates.
+                "METHOD_TYP"
