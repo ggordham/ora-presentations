@@ -22,6 +22,7 @@ spmb,spm-BP4D
 sql23ns,23ai-sql-perf-scoug
 sql23nr,23ai-sql-perf-RMOUG
 sql23nnc,23ai-sql-perf-NoCOUG
+sql23c,23ai-sql-perf-COUG
 tsqll,tune-that-SQL-GLOC
 tsqlg,tune-that-SQL-GTOUG
 tsqln,tune-that-SQL-NYOUG
