@@ -123,9 +123,24 @@ Note: a sample copy of the monitor report is saved to this GITHub repository.
 
 
 ```sql
+
 @connect.sql
 
 @@subsumption-view.sql
+
+```
+
+### Time Bucket
+
+See and example of SQL statement before and then after switching to using time_bucket function.  For more information check out the Oracle blog:
+
+https://blogs.oracle.com/sql/post/group-rows-into-n-minute-intervals-with-sql#cheat-sheet
+
+```sql
+
+@@connect.sql
+
+@@time_bucket.sql
 
 ```
 
@@ -329,10 +344,10 @@ unzip -q ../db-sample-schemas-legacy-20220307.zip
 
 $ORACLE_HOME/perl/bin/perl -p -i.bak -e 's#__SUB__CWD__#'$(pwd)'#g' *.sql */*.sql */*.dat
 
-sqlplus /nolog << EOF
-@mksample.sql Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U users temp /home/oracle/23ai-sql-perf-COUG/samp/ freepdb1
+sqlplus /nolog <<'EOF'
+@mksample.sql Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 users temp /home/oracle/23ai-sql-perf-COUG/samp/ freepdb1
 
-@customer_orders/co_main.sql Oracle_4U freepdb1 users temp
+@customer_orders/co_main.sql Oradb$_Lab42 freepdb1 users temp
 EOF
 
 ```

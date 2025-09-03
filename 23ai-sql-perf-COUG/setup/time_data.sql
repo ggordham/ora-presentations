@@ -17,9 +17,7 @@ select * from (
            + ( level / 4 )  
            + ( sin ( level ) / 24 ) datetime  
   from   dual  
-  connect by level <= 100  
-  
-)  
+  connect by level <= 100  )  
 where  datetime >= date'2022-08-01'  
 and    datetime not between date'2022-08-01' + 15/24/60 and date'2022-08-01' + 19/24/60   
 order  by datetime;
