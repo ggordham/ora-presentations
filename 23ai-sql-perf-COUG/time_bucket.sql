@@ -5,6 +5,8 @@
   splitting time data over 5 minute intervals
 */
 
+ALTER SESSION SET NLS_DATE_FORMAT='YYYY-MM-DD HH24:MI:SS';
+
 set echo on
 
 DESC time_data
