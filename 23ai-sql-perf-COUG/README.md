@@ -301,6 +301,15 @@ Now lets make sure the automatic SQL tuning set has captured the SQL we just ran
 
 ```
 
+You can now flush the shared pool to verify that the query will not regress again.
+
+```sql
+connect / as sysdba
+
+alter system flush shared_pool;
+
+```
+
 Now lets set the index usage costs be expensive and run the query adn see that real-time SPM kicks in and creates a baseline for the good plan so that future regressions don't happen
 
 ```sql
@@ -312,14 +321,6 @@ Now lets set the index usage costs be expensive and run the query adn see that r
 
 ```
 
-You can now flush the shared pool to verify that the query will not regress again.
-
-```sql
-connect / as sysdba
-
-alter system flush shared_pool;
-
-```
 
 Now re-run the query and view the SPM captured information
 
@@ -331,6 +332,7 @@ Now re-run the query and view the SPM captured information
 @@spm_notes.sql
 
 ```
+
 ## Legacy sample schemas install
 
 Run through the following steps inside the container to install the legacy sample schemas.
