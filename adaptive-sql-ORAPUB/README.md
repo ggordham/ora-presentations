@@ -120,7 +120,7 @@ unzip -q ../db-sample-schemas-legacy-20220307.zip
 $ORACLE_HOME/perl/bin/perl -p -i.bak -e 's#__SUB__CWD__#'$(pwd)'#g' *.sql */*.sql */*.dat
 
 sqlplus /nolog <<'EOF'
-@mksample.sql Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 users temp /home/oracle/23ai-sql-perf-COUG/samp/ pdb1
+@mksample.sql Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 Oradb$_Lab42 users temp /home/oracle/adaptive-sql-ORAPUB/samp/ pdb1
 
 @customer_orders/co_main.sql Oradb$_Lab42 freepdb1 users temp
 EOF
