@@ -37,9 +37,9 @@ This script creates a user called perflab that will be used throughout the demo.
 ```bash
 # Set your Oracle Environment
 . oraenv
-cd tune-tips-UTOUG
+cd adaptive-sql-ORAPUB
 # if you are using a PDB set the PDB name
-export ORACLE_PDB_SID=mypdb
+export ORACLE_PDB_SID=pdb1
 sqlplus /nolog
 ```
 
