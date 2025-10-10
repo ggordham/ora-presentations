@@ -98,7 +98,7 @@ To download the report run the following podman command:
 
 ```sh
 
-podman cp ncoug:/home/oracle/23ai-sql-perf-COUG/monitor_output.html .
+podman cp coug:/home/oracle/23ai-sql-perf-COUG/monitor_output.html .
 
 open ./monitor_output.html
 start ./monitor_output.html
