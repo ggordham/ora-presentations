@@ -4,10 +4,41 @@ Scripts from Oracle Presentations that I have given
 All scripts or code in this repository is use at your own risk.
 Everything here is intended for test or lab type use.
 
+**2025**
+---
+
+2025 DBT Oracle Database October Meet-Up - October 10th, 2025 - Oracle 23ai – new SQL Performance features
+
+```/23ai-sql-perf-DBT```
+
+Midwest & Chicago Oracle Users Group Joint Conference
+- September 12, 2025 - 23ai Performance Features SQL Performance Tips & Tricks
+
+```/23ai-sql-perf-COUG```
+
+NoCOUG Performance & Innovation Summit - May 16th, 2025 - Liquibase with Oracle – automating your schema management
+
+```/liquibase-NoCOUG```
+
+NoCOUG Performance & Innovation Summit - May 16th, 2025 - Oracle 23ai – new SQL Performance features
+
+```/23ai-sql-perf-NoCOUG```
+
+UTOUG Virtual Event - April 17th, 2025 - Oracle Database Patching the Right Way - Out of Place
+
+**No Scripts**
+
+UTOUG Training Days 2025 - March 24th, 2025 - Oracle Developer Tuning Tips
+
+```/tune-tips-UTOUG```
+
+UTOUG Training Days 2025 - March 25th, 2025 - Liquibase with Oracle – automating your schema management
+
+```/liquibase-UTOUG```
 
 RMOUG Training Days - February 13th, 2025 - 23ai New SQL performance Features -
 
-```23ai-sql-perf-RMOUG```
+```/23ai-sql-perf-RMOUG```
 
 RMOUG Training Days - February 12th, 2025 - Oracle Tuning Tips, My best developer tuning tips
 
@@ -15,11 +46,14 @@ RMOUG Training Days - February 12th, 2025 - Oracle Tuning Tips, My best develope
 
 Suncoast Oracle User Group, The ARtifical Intelligence Takeover - February 5th, 2025 - 23ai New SQL performance Features -
 
-```23ai-sql-perf-scoug```
+```/23ai-sql-perf-scoug```
 
 ORAPUB - Janurary 2025 - Liquibase with Oracle, Automate your schema management
 
 ```liquibase-orapub```
+
+**2024**
+---
 
 DB Community of Interest - September 17, 2024 - Oracle Tuning Tips, My best developer tuning tips
 
@@ -44,6 +78,9 @@ ORPUB Members session - February 22, 2024 - SQL Tuning How does cardinality work
 Oracle Database Tech Day Tour Florida - January 9-11, 2024 - "Tune that SQL", now what do I do?
 
 ```/tune-that-SQL_SCOUG```
+
+**2023**
+---
 
 Michigan Oracle User Summit - October 25, 2023 - "Tune that SQL", now what do I do?
 
@@ -80,6 +117,9 @@ RMOUG Training Days 2023 - Feb 17, 2023 - Oracle SQL Profiles – In Depth
 Tampa Performanc Technology Day - Jan 18, 2023 - Oracle Tuning Tips, My best developer tuning tips.
 
 ```/tune-tips-TPA```
+
+**2022**
+---
 
 Viscosity North America Webinar - Nov 15, 2022 - Oracle SQL Plan Management (SPM) Your imperative performance tool
 
@@ -141,9 +181,8 @@ GTOUG - Jan 25, 2022 - "Tune that SQL", Now what do I do? <sup>*2</sup>
 
 ```/tune-that-SQL-GTOUG```
 
-NOCOUG - Nov 19, 2020 - Oracle 19c performance tuning
-
-```/nocoug-perflab```
+**2021**
+---
 
 MOUG - Oct 27, 2021 - Oracle SQL Plan Management (SPM) your imperative performance tool <sup>*1</sup>
 
@@ -181,9 +220,19 @@ RMOUG - Feb 10, 2021 - Oracle SQL Plan Management (SPM) Your imperative performa
 
 ```/spm-RMOUG```
 
+**2020**
+---
+
+NOCOUG - Nov 19, 2020 - Oracle 19c performance tuning
+
+```/nocoug-perflab```
+
+
 ---
 
 *Notes:*
+
 1. Scripts have been updated to run all test steps as the perflab user by granting the needed privileges to use the DBMS_SPM package as well as ADDM.
+
 2. Scripts have been updated to work with a PDB as well as to run through docker with minimal setup.
 
