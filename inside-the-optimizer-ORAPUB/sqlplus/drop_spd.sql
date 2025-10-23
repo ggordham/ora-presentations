@@ -5,7 +5,7 @@
   on the schema and object name
 */
 
-connect / as sysdba
+@@connect_sys.sql
 
 col owner format a20
 set serverout on

@@ -26,6 +26,7 @@ ALTER SESSION SET EVENTS '10053 trace name context off';
 ALTER SESSION SET EVENTS '10046 trace name context off';
 
 SET ECHO OFF
+COLUMN command_to_run FORMAT A90
 PROMPT ============================================================================
 PROMPT Look at the trace file that is listed
 SELECT value, 'host more ' || value AS command_to_run
@@ -35,4 +36,5 @@ SELECT value, 'host more ' || value AS command_to_run
 PROMPT Look at the trace file listed above
 PROMPT run: "host more <filename>"
 PROMPT
+
 

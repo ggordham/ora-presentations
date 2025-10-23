@@ -4,7 +4,7 @@
  This example will go through the steps of an adaptive plan that
  uses query executioj statistics feedback to adjust the plan between runs.
 */
-
+SET ECHO OFF
 PROMPT ========================== Adaptive SQL statistics feedback ==================================
 PROMPT
 PROMPT "First we purge the cursor and then the first run should be inefficent"
@@ -33,6 +33,7 @@ set echo off
 @@plans.sql
 @@cursors.sql c7db4mrf05vtx
 
+SET ECHO OFF
 PROMPT "For each query run look at the execution plan and the status in "
 PROMPT "  v$sql for is_bind_aware, and buffer_gets"
 PROMPT
@@ -57,15 +58,18 @@ set echo off
 @@plans.sql
 @@cursors.sql c7db4mrf05vtx
 
+set echo off
 PROMPT
 PROMPT "=== The second run uses statistcs feedback, this is in the notest part of "
 PROMPT "===   the plan, as well as the reduced buffer gets and the new plan is    "
 PROMPT "===   marked as is_reoptimizable no."
 
+set echo on
 SELECT hint_text 
   FROM V$SQL_REOPTIMIZATION_HINTS 
   WHERE sql_id ='c7db4mrf05vtx';  
 
+set echo off
 PROMPT
 PROMPT "=== This shows the sotred hint with the saved statistics feedback information."
 PROMPT ==============================================================================================

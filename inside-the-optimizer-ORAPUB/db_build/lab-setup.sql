@@ -19,6 +19,7 @@ GRANT SELECT ON co.order_items TO perflab;
 GRANT SELECT ON co.stores TO perflab;
 
 GRANT SELECT ON sh.customers TO perflab;
+GRANT SELECT ON oe.orders TO perflab;
 GRANT SELECT ON oe.order_items TO perflab;
 GRANT SELECT ON oe.product_information TO perflab;
 
