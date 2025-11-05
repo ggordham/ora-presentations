@@ -7,6 +7,18 @@ Everything here is intended for test or lab type use.
 **2025**
 ---
 
+DOAG 2025 Conference + Exhibition - November 18th, 2025 - Liquibase with Oracle – automating your schema management
+
+```/liquibase-DOAG```
+
+NLOUG Database Cloud & Developer Day in Utrecht - November 13th, 2025 - Liquibase with Oracle – automating your schema management
+
+```/liquibase-NLOUG```
+
+NLOUG Database Cloud & Developer Day in Utrecht - November 13th, 2025 - Oracle 26ai – new SQL Performance features
+
+```/26ai-sql-perf-NLOUG```
+
 2025 DBT Oracle Database October Meet-Up - October 10th, 2025 - Oracle 23ai – new SQL Performance features
 
 ```/23ai-sql-perf-DBT```
