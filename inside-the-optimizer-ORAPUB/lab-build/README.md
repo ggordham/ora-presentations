@@ -239,6 +239,8 @@ More information at:
 https://help.dreamhost.com/hc/en-us/articles/4407354972692-Connecting-to-the-DreamHost-API
 *Note: I run these commands from Linux so Browser will not cache this key*
 
+*NOTE: if you are seeing HTTPS erorrs, be sure NGINX configuration file has been setup and reloaded.*
+
 ## Get ready for the lab
 
 ### load data into pdb0
@@ -316,7 +318,7 @@ Builds out OS users for students and stage all their scripts.
 3.  make TNS entry for each database
 
 ```bash
-for i in $( seq 1 1 29 ); do
+for i in $( seq 1 1 14 ); do
   if (( i > 9 )); then
       db_name=pdb${i}
   else
@@ -339,34 +341,7 @@ show pdbs
 5. setup static pages in ords
 
 ```bash
-cp /opt/labsrc/sql-perftune-LVC23/lab-build/index.html /u01/app/oracle/admin/ords/config/global/doc_root/static
-```
-
-### Configure RWL for pdb01
-
-1. Update RWL project to point to pdb01
-
-```bash
-cp -r /u01/app/oracle/admin/rwlout/workdir/pdb0 /u01/app/oracle/admin/rwlout/workdir/pdb01
-cd /u01/app/oracle/admin/rwlout/workdir/pdb01
-mv pdb0.env pdb01.env
-mv pdb0.rwl pdb01.rwl
-sed -i 's/pdb0/pdb01/g' pdb01.env
-sed -i 's/pdb0/pdb01/g' pdb01.rwl
-sed -i 's/rwl_proj=pdb0/rwl_proj=pdb01/g' /opt/ora-lab/scripts/server.conf
-```
-
-2. Update RWL script for bad queries
-
-```bash
-mv /u01/app/oracle/rwloadsim/oltp/oe_handle_orders.rwl /u01/app/oracle/rwloadsim/oltp/oe_handle_orders.rwl.orig
-cp /opt/labsrc/sql-perftune-LVC23/lab-build/oe_handle_orders.rwl /u01/app/oracle/rwloadsim/oltp
-```
-
-3. run test RWL on pdb01
-
-```bash
-/opt/ora-lab/scripts/oraRWLRun.sh
+cp /opt/labsrc/inside-the-optimizer-ORAPUB/lab-build/index.html /u01/app/oracle/admin/ords/config/global/doc_root/static
 ```
 
 ### Setup student profiles in Bastillion
