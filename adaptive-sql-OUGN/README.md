@@ -37,7 +37,7 @@ Through out the lab you will need a SQL*Plus prompt on the databases. This is do
 ### SQL Prompt
 
 ```bash
-podman exec -it emea sh -c "chmod +x splus.sh; /home/oracle/splus.sh adss"
+podman exec -it emea sh -c "chmod +x splus.sh; /home/oracle/splus.sh adsn"
 ```
 
 ### Basic Setup Steps Podman
@@ -177,7 +177,7 @@ EOF
 
 To drop the sample schemas in order to reload them or clean up run the following:
 ```SQL
-@drop_sch.sql
+@drop_sch.sql 
 ```
 
 # END
