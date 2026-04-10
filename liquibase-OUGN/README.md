@@ -81,7 +81,6 @@ cd hr
 
 lb generate-schema -split -sql -ovf
 
-
 ```
 
 ### Set baseline and tag
@@ -168,7 +167,7 @@ Refresh the schema using automated script, utilizing datapump and a database lin
 First change to the proper directory and start sqlplus.
 
 ```bash
-cd liquibase-DOAG/setup
+cd liquibase-OUGN/setup
 sqlplus /nolog
 
 ```
@@ -232,7 +231,7 @@ Refresh the schema using automated script, utilizing datapump and a database lin
 First change to the proper directory and start sqlplus.
 
 ```bash
-cd liquibase-DOAG/setup
+cd liquibase-OUGN/setup
 sqlplus /nolog
 
 ```
