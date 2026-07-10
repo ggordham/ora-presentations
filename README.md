@@ -4,7 +4,27 @@ Scripts from Oracle Presentations that I have given
 All scripts or code in this repository is use at your own risk.
 Everything here is intended for test or lab type use.
 
-**2025**
+## 2026
+
+---
+TCOUG  Summer 2026 Workshop - July 16th, 2026 - Oracle Adaptive SQL Optimization - Why do things go so bad?
+
+```/adaptive-sql-TCOUG```
+
+OUGN - OUGN 2026 - April 14th, 2026 - Liquibase with Oracle – automating your schema management
+
+```/liquibase-OUGN```
+
+OUGN - OUGN 2026 - April 14th, 2026 - Oracle Adaptive SQL Optimization - Why do things go so bad?
+
+```/adaptive-sql-OUGN```
+
+SCOUG - Suncoast Oracle Users Group Tech Day - Mar 24th, 2026 - Oracle Adaptive SQL Optimization - Why Do Things Go So Bad?
+
+```/adaptive-sql-SOUG```
+
+## 2025
+
 ---
 
 DOAG 2025 Conference + Exhibition - November 18th, 2025 - Liquibase with Oracle – automating your schema management
@@ -64,7 +84,8 @@ ORAPUB - Janurary 2025 - Liquibase with Oracle, Automate your schema management
 
 ```liquibase-orapub```
 
-**2024**
+## 2024
+
 ---
 
 DB Community of Interest - September 17, 2024 - Oracle Tuning Tips, My best developer tuning tips
@@ -91,7 +112,8 @@ Oracle Database Tech Day Tour Florida - January 9-11, 2024 - "Tune that SQL", no
 
 ```/tune-that-SQL_SCOUG```
 
-**2023**
+## 2023
+
 ---
 
 Michigan Oracle User Summit - October 25, 2023 - "Tune that SQL", now what do I do?
@@ -130,7 +152,8 @@ Tampa Performanc Technology Day - Jan 18, 2023 - Oracle Tuning Tips, My best dev
 
 ```/tune-tips-TPA```
 
-**2022**
+## 2022
+
 ---
 
 Viscosity North America Webinar - Nov 15, 2022 - Oracle SQL Plan Management (SPM) Your imperative performance tool
@@ -193,7 +216,8 @@ GTOUG - Jan 25, 2022 - "Tune that SQL", Now what do I do? <sup>*2</sup>
 
 ```/tune-that-SQL-GTOUG```
 
-**2021**
+## 2021
+
 ---
 
 MOUG - Oct 27, 2021 - Oracle SQL Plan Management (SPM) your imperative performance tool <sup>*1</sup>
@@ -232,17 +256,17 @@ RMOUG - Feb 10, 2021 - Oracle SQL Plan Management (SPM) Your imperative performa
 
 ```/spm-RMOUG```
 
-**2020**
+## 2020
+
 ---
 
 NOCOUG - Nov 19, 2020 - Oracle 19c performance tuning
 
 ```/nocoug-perflab```
 
-
 ---
 
-*Notes:*
+## Notes:
 
 1. Scripts have been updated to run all test steps as the perflab user by granting the needed privileges to use the DBMS_SPM package as well as ADDM.
 

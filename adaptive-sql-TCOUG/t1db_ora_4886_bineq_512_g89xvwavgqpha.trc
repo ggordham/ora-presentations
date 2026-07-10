@@ -1,0 +1,255 @@
+Trace file /u01/app/oracle/diag/rdbms/t1db/t1db/trace/t1db_ora_4886_acs_g89xvwavgqpha.trc
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+Build label:    RDBMS_19.28.0.0.0DBRU_LINUX.X64_250704
+ORACLE_HOME:    /u01/app/oracle/product/19/dbhome_1
+System name:	Linux
+Node name:	srvr08.gg.wi.rr.com
+Release:	5.4.17-2136.351.3.2.el8uek.x86_64
+Version:	#3 SMP Fri Jan 16 05:38:57 PST 2026
+Machine:	x86_64
+CLID:	P
+Instance name: t1db
+Instance number: 1
+Database name: t1db 
+Database unique name: t1db 
+Database id: 634851809
+Database role: PRIMARY
+Redo thread mounted by this instance: 1
+Oracle process number: 48
+Unix process pid: 4886, image: oracle@srvr08.gg.wi.rr.com
+
+
+*** 2026-07-09T19:34:15.238530+00:00 (PDB1(3))
+*** SESSION ID:(39.5634) 2026-07-09T19:34:15.238547+00:00
+*** CLIENT ID:() 2026-07-09T19:34:15.238550+00:00
+*** SERVICE NAME:(pdb1) 2026-07-09T19:34:15.238553+00:00
+*** MODULE NAME:(SQL*Plus) 2026-07-09T19:34:15.238555+00:00
+*** ACTION NAME:() 2026-07-09T19:34:15.238557+00:00
+*** CLIENT DRIVER:(SQL*PLUS) 2026-07-09T19:34:15.238559+00:00
+*** CONTAINER ID:(3) 2026-07-09T19:34:15.238561+00:00
+ 
+****** Begin CFB Hints (APA) [sql_id=g89xvwavgqpha] xsc=0x7f366039d158 ctx=0x7ba7e690 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+
+*** 2026-07-09T19:34:16.509390+00:00 (PDB1(3))
+****** Begin CFB Hints (APA) [sql_id=cb21bacyh3c7d] xsc=0x7f366039c478 ctx=0x824856d8 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=2guyk4pkbp3c9] xsc=0x7f366039ca98 ctx=0x824866d8 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=2syvqzbxp4k9z] xsc=0x7f36603931f0 ctx=0x7ba8c890 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+kkocfbInitCardFdbkCompCtx [sql_id=2guyk4pkbp3c9] monitor=y
+****** Begin CFB Hints (APA) [sql_id=5u7g54s63p4ts] xsc=0x7f366037b288 ctx=0x7ba35290 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=0vz3zkn2448tk] xsc=0x7f366014e008 ctx=0x7ba38290 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=2syvqzbxp4k9z] xsc=0x7f366037b288 ctx=0x7ba30290 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=63a2kpp7nbjaz] xsc=0x7f3660194eb8 ctx=0x7ba24290 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=f7b069b8zkhvu] xsc=0x7f366018d7d0 ctx=0x7ba15290 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=cdb3bpf55v0ab] xsc=0x7f3660186810 ctx=0x7ba0e290 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=7y117j0ctjqb7] xsc=0x7f366004ca18 ctx=0x7b9ee290 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=3mjfxdhy1hh4f] xsc=0x7f36600edba0 ctx=0x7b9e7290 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=gghk7k6vt9gzq] xsc=0x7f365fd5b468 ctx=0x7b9ba290 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=cq9qx1bu6ks45] xsc=0x7f365fe1b4e0 ctx=0x7b9b5290 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=fg4skgcja2cyj] xsc=0x7f365fe01738 ctx=0x7b9aa290 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=8c6h57z3ab1pu] xsc=0x7f365fd5d000 ctx=0x7b99e290 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+Reparsing due to card est...
+ @=0x892bb218 type=1 nodeid=1 monitor=Y bulkOp=N halias="KOKBF$0" loc="SEL$2" act=80 min=0 est=8168 next=(nil)
+kkocfbCheckCardEst [sql_id=2guyk4pkbp3c9] misestimate=y reparse=y ecs=n efb=n ost=n fbs=n
+ *********** Begin Dump Context (kkocfbCheckCardEst) [sql_id=2guyk4pkbp3c9 cpcnt=0] ***********
+ @=0x892bb218 type=1 nodeid=1 monitor=Y bulkOp=N halias="KOKBF$0" loc="SEL$2" act=80 min=0 est=8168 next=(nil)
+ *********** End Dump Context ***********
+****** Begin CFB Hints (APA) [sql_id=4w8a4gs7ygkva] xsc=0x7f366039ca98 ctx=0x7b998290 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+kkocfbInitCardFdbkCompCtx [sql_id=4w8a4gs7ygkva] monitor=y
+kkocfbCheckCardEst: No feedback for short running query (BG 0.000000, CPU 0.000000 (ms) 
+****** Begin CFB Hints (APA) [sql_id=g89xvwavgqpha] xsc=0x7f366039d158 ctx=0x7b987190 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+kkoarCopyCtx: [sql_id=2guyk4pkbp3c9] origin=CFB old=0x892ba6b0 new=0x7f366039cf58 copyCnt=1 copyClient=y 
+**************************************************************
+kkocfbCopyBestEst: Best Stats
+  Exec count:         37
+  CR gets:            1168
+  CU gets:            0
+  Disk Reads:         0
+  Disk Writes:        0
+  IO Read Requests:   0
+  IO Write Requests:  0
+  Bytes Read:         0
+  Bytes Written:      0
+  Bytes Exchanged with Storage:  0
+  Bytes Exchanged with Disk:  0
+  Bytes Simulated Read:  0
+  Bytes Simulated Returned:  0
+  Cached consistent + current read gets: 0
+  Direct consistent + current read gets: 0
+  Elapsed Time: 67 (ms)
+
+  CPU Time: 67 (ms)
+
+  User I/O Time: 0 (us)
+
+ *********** Begin Dump Context (kkocfbCopyBestEst) **********
+ *********** End Dump Context ***********
+kkocfbCopyCardCtx: oldCtx Dumping string mapping
+----------------------
+kkocfbCopyCardCtx: newCtx Dumping string mapping
+----------------------
+**************************************************************
+kkocfbCopyCardCtx: Best stats 
+  Exec count:         37
+  CR gets:            1168
+  CU gets:            0
+  Disk Reads:         0
+  Disk Writes:        0
+  IO Read Requests:   0
+  IO Write Requests:  0
+  Bytes Read:         0
+  Bytes Written:      0
+  Bytes Exchanged with Storage:  0
+  Bytes Exchanged with Disk:  0
+  Bytes Simulated Read:  0
+  Bytes Simulated Returned:  0
+  Cached consistent + current read gets: 0
+  Direct consistent + current read gets: 0
+  Elapsed Time: 67 (ms)
+
+  CPU Time: 67 (ms)
+
+  User I/O Time: 0 (us)
+
+ **** Begin Dump Context (kkocfbCopyCardCtx - best est) ****
+ ********************* End Dump Context ********************
+   *********** Begin Dump Context (Copy:old) [sql_id=2guyk4pkbp3c9 cpcnt=0] ***********
+   @=0x892bb218 type=1 nodeid=1 monitor=Y bulkOp=N halias="KOKBF$0" loc="SEL$2" act=80 min=0 est=8168 next=(nil)
+   *********** End Dump Context ***********
+   *********** Begin Dump Context (Copy:new) [sql_id=2guyk4pkbp3c9 cpcnt=0] ***********
+   @=0x7f366039cc70 type=1 nodeid=1 monitor=Y bulkOp=N halias="KOKBF$0" loc="SEL$2" act=80 min=0 est=8168 next=(nil)
+   *********** End Dump Context ***********
+kkoarReparse: xsc=0x7f366039d158 kxsAutoReoptCtx=0x7f366039cf58
+kkocfbAddCardHints: Dumping string mapping
+----------------------
+******** Begin CFB Hints [sql_id=2guyk4pkbp3c9]  xsc=0x7f366039d158 ********
+Dumping Hints
+=============
+  atom_hint=(@=0x7f36602b8f68 err=0 resol=0 used=0 token=1018 org=8 lvl=3 txt=OPT_ESTIMATE (@"SEL$2" TABLE "KOKBF$0"@"SEL$2" ROWS=80.000000 ) )
+********** End CFB Hints **********
+****** Begin CFB Hints (APA) [sql_id=2guyk4pkbp3c9] xsc=0x7f366039d158 ctx=0x7b982190 ******
+Dumping Hints
+=============
+  atom_hint=(@=0x7f36602b8f68 err=0 resol=1 used=0 token=1018 org=8 lvl=3 txt=OPT_ESTIMATE (@"SEL$2" TABLE "KOKBF$0"@"SEL$2" ROWS=80.000000 ) )
+*********** End CFB Hints (APA) ***********
+kkocfbInitCardFdbkCompCtx [sql_id=2guyk4pkbp3c9] monitor=y
+****** Begin CFB Hints (APA) [sql_id=g8pyws84yg4zz] xsc=0x7f36600802c0 ctx=0x7b97d190 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+**************************************************************
+kkocfbCopyBestEst: Best Stats
+  Exec count:         37
+  CR gets:            1168
+  CU gets:            0
+  Disk Reads:         0
+  Disk Writes:        0
+  IO Read Requests:   0
+  IO Write Requests:  0
+  Bytes Read:         0
+  Bytes Written:      0
+  Bytes Exchanged with Storage:  0
+  Bytes Exchanged with Disk:  0
+  Bytes Simulated Read:  0
+  Bytes Simulated Returned:  0
+  Cached consistent + current read gets: 0
+  Direct consistent + current read gets: 0
+  Elapsed Time: 67 (ms)
+
+  CPU Time: 67 (ms)
+
+  User I/O Time: 0 (us)
+
+ *********** Begin Dump Context (kkocfbCopyBestEst) **********
+ *********** End Dump Context ***********
+kkocfbCheckCardEst [sql_id=2guyk4pkbp3c9] misestimate=n reparse=n ecs=n efb=y ost=n fbs=n
+****** Begin CFB Hints (APA) [sql_id=g89xvwavgqpha] xsc=0x7f366039d158 ctx=0x7b959090 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=9h47j4p6pp2s5] xsc=0x7f36601339c8 ctx=0x7b954090 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+
+*** 2026-07-09T19:34:16.699048+00:00 (PDB1(3))
+****** Begin CFB Hints (APA) [sql_id=g89xvwavgqpha] xsc=0x7f366039d158 ctx=0x7b92ff90 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=7bvgc8uqfxb43] xsc=0x7f36601334f0 ctx=0x7b92af90 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+****** Begin CFB Hints (APA) [sql_id=7wgyyyh4m1s0a] xsc=0x7f366013be48 ctx=0x7b90af90 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+kkocfbInitCardFdbkCompCtx [sql_id=7wgyyyh4m1s0a] monitor=y
+kkocfbCheckCardEst: No feedback for short running query (BG 0.000000, CPU 0.000000 (ms) 
+****** Begin CFB Hints (APA) [sql_id=bhmfb1mcts0by] xsc=0x7f366013be48 ctx=0x7b8fcf90 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+kkocfbInitCardFdbkCompCtx [sql_id=bhmfb1mcts0by] monitor=y
+kkocfbCheckCardEst: No feedback for short running query (BG 0.000000, CPU 0.000000 (ms) 
+****** Begin CFB Hints (APA) [sql_id=5aa5bpwk39u2q] xsc=0x7f366013be48 ctx=0x7b8e2f90 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+kkocfbInitCardFdbkCompCtx [sql_id=5aa5bpwk39u2q] monitor=y
+kkocfbCheckCardEst: No feedback for short running query (BG 0.000000, CPU 0.000000 (ms) 
