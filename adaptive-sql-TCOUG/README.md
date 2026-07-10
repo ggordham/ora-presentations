@@ -181,12 +181,11 @@ Optionally you can run a trace to see the bind equivalence actions happen:
 @@trace_bind_eq.sql
 ```
 
-```
 ## Legacy sample schemas install
 
 Run through the following steps inside the container to install the legacy sample schemas.
 
-*Note: the first two paramters for the mksample.sql script are the passwords for the SYSTEM and SYS user of your PDB / NON-CDB.  Be sure to update the command line accordingly.  The last paramter on the command line is the dataqbase connection string.*
+_Note: the first two paramters for the mksample.sql script are the passwords for the SYSTEM and SYS user of your PDB / NON-CDB.  Be sure to update the command line accordingly.  The last paramter on the command line is the dataqbase connection string._
 
 ```bash
 
