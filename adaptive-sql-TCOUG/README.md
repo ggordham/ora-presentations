@@ -141,7 +141,6 @@ This demonstration will show a plan that is adaptive, meaning it will change dur
 
 ```
 
-```
 ### Statistics Feedback
 This example will show how the Optimizer uses statistics feedback, where previous run data is used to make a note for future runs.  This data is stored in to places.  One is in memory using a hint, and the second is stored for future usage by automated statistics jobs called a SQL Plan Directive.
 
