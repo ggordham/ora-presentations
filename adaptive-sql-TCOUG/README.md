@@ -120,7 +120,13 @@ This demo will walk though how a query makes adaptive cursors.  There are multip
 @@connect.sql
 @@customers_bind_aware.sql
 
+```
+Look at the adaptive cursor sharing details.
+
+```sql
 @@shared_cursor.sql 6tdjh6rt27mt2
+
+@@cursor_share.sql 6tdjh6rt27mt2
 
 ```
 
@@ -135,6 +141,7 @@ This demonstration will show a plan that is adaptive, meaning it will change dur
 
 ```
 
+```
 ### Statistics Feedback
 This example will show how the Optimizer uses statistics feedback, where previous run data is used to make a note for future runs.  This data is stored in to places.  One is in memory using a hint, and the second is stored for future usage by automated statistics jobs called a SQL Plan Directive.
 

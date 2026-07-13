@@ -45,6 +45,7 @@ PROMPT "For each query run look at the count of rows processed, the execution pl
 PROMPT "  and the status in v$sql for bind_aware, bind_sensitive, and buffer_gets"
 PROMPT
 PROMPT "=== The first time this query runs it will look at a small number of rows."
+PROMPT "    cust_state_province = 'Tokyo'"
 
 exec :cust_prov := 'Tokyo'
 
@@ -58,6 +59,7 @@ select /*+ gather_plan_statistics */ /*ACS_1*/ count(1), max(cust_id)
 PROMPT
 PROMPT "=== The second time this query runs it will look at a large number of rows."
 PROMPT "=== no plan change."
+PROMPT "    cust_state_province = 'CA'"
 
 exec :cust_prov := 'CA'
 
@@ -71,6 +73,7 @@ select /*+ gather_plan_statistics */ /*ACS_1*/ count(1), max(cust_id)
 PROMPT
 PROMPT "=== The third time this query runs it will look at a large number of rows."
 PROMPT "=== now there will be a plan change."
+PROMPT "    cust_state_province = 'CA'"
 
 exec :cust_prov := 'CA'
 
@@ -84,6 +87,7 @@ select /*+ gather_plan_statistics */ /*ACS_1*/ count(1), max(cust_id)
 PROMPT
 PROMPT "=== The fourth time this query runs it will look at a small number of rows."
 PROMPT "=== A new cursor will be created matching the first plan, but bind aware."
+PROMPT "    cust_state_province = 'Tokyo'"
 
 exec :cust_prov := 'Tokyo'
 

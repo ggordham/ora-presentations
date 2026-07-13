@@ -6,6 +6,11 @@
  child cursor that have retrivied < 1K, > 1K < 1M, and > 1M rows
 */
 
+COLUMN predicate FORMAT A20
+COLUMN 1 format 999
+COLUMN "<1M" format 999
+COLUMN ">1M" format 999
+
 SELECT * FROM (
 SELECT s.sql_id, s.plan_hash_value, s.is_bind_aware AS ba, s.is_bind_sensitive AS bs,
        s.executions,
@@ -19,6 +24,6 @@ SELECT s.sql_id, s.plan_hash_value, s.is_bind_aware AS ba, s.is_bind_sensitive A
     AND s.sql_id = sl.sql_id (+)
     AND s.child_number = sl.child_number (+)
   )
-  pivot( sum("COUNT") for bucket_id in ('0' AS "<1K", '1' AS "<1M", '2' AS ">1M") );
+  pivot( sum("COUNT") for bucket_id in ('0' AS "1", '1' AS "<1M", '2' AS ">1M") );
 
 

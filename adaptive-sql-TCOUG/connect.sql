@@ -1,2 +1,2 @@
-connect perflab/Perf$_Lab42@pdb1@orclpdb1
+connect perflab/Perf$_Lab42@orclpdb1
 

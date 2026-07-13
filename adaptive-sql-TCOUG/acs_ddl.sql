@@ -3,16 +3,13 @@ set verify off
 var g1 varchar2(100)
 var g2 varchar2(100)
 var g3 varchar2(100)
-var g4 varchar2(100)
 begin
     :g1 := '&1';
     :g2 := '&2';
     :g3 := '&3';
-    :g4 := '&4';
     dbms_output.put_line(:g1);
     dbms_output.put_line(:g2);
     dbms_output.put_line(:g3);
-    dbms_output.put_line(:g4);
 end;
 /
 
@@ -66,7 +63,6 @@ set echo off
 undefine 1
 undefine 2
 undefine 3
-undefine 4
 
 
 
