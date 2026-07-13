@@ -26,4 +26,3 @@ SELECT s.sql_id, s.plan_hash_value, s.is_bind_aware AS ba, s.is_bind_sensitive A
   )
   pivot( sum("COUNT") for bucket_id in ('0' AS "1", '1' AS "<1M", '2' AS ">1M") );
 
-

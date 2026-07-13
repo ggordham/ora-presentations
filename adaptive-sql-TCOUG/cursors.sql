@@ -9,7 +9,8 @@ COLUMN bins FORMAT A4
 
 set echo on
 select child_number, plan_hash_value, executions, buffer_gets, 
-     is_bind_sensitive AS bins, is_bind_aware AS bina, is_reoptimizable AS reop
+     is_bind_sensitive AS bins, is_bind_aware AS bina, is_reoptimizable AS reop,
+     is_shareable AS shar
      from v$sql 
      where sql_id = '&1';
 

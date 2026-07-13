@@ -204,9 +204,9 @@ unzip -q db-sample-schemas-legacy-20220307.zip
 $ORACLE_HOME/perl/bin/perl -p -i.bak -e 's#__SUB__CWD__#'$(pwd)'#g' *.sql */*.sql */*.dat
 
 sqlplus /nolog <<EOF
-@mksample.sql Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U users temp $(pwd) pdb1
+@mksample.sql Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U Oracle_4U users temp $(pwd) orclpdb1
 
-@customer_orders/co_main.sql Oracle_4U pdb1 users temp
+@customer_orders/co_main.sql Oracle_4U orclpdb1 users temp
 EOF
 
 ```

@@ -18,3 +18,11 @@ select ssc.sql_id, ssc.child_number, ssc.BIND_EQUIV_FAILURE as BIND_E_FAIL, ssc.
   group by ssc.sql_id, ssc.child_number, ssc.BIND_EQUIV_FAILURE, ssc.LOAD_OPTIMIZER_STATS;
 
 set echo off
+
+PROMPT "Lookup information for v$sql_shared_cursor in Database Reference -> Dynamic Performance Views"
+PROMPT
+PROMPT "LOAD_OPTIMIZER_STATS (Y|N) A hard parse is forced to initialize extended cursor sharing"
+PROMPT "BIND_EQUIV_FAILURE (Y|N) The bind value's selectivity does not match that used to optimize the existing child cursor"
+PROMPT
+PROMPT
+set echo on
