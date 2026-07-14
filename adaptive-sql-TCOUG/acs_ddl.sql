@@ -1,4 +1,5 @@
 set verify off
+SET SERVEROUTPUT ON
 
 var g1 varchar2(100)
 var g2 varchar2(100)
@@ -23,20 +24,61 @@ create table if not exists  acs_test
 
 
 declare
- v varchar2(100) :=    DBMS_RANDOM.STRING('A', 100) ;    
- v1 varchar2(50)  :=    DBMS_RANDOM.STRING('A', 50) ;  
-begin 
+   v varchar2(100) :=    DBMS_RANDOM.STRING('A', 100) ;    
+   v1 varchar2(50)  :=    DBMS_RANDOM.STRING('A', 50) ;  
+   v_batch NUMBER := 200000;
+   v_return NUMBER;
+   v_loop NUMBER;
+   v_left NUMBER;
+   v_total NUMBER;
 
-	insert into acs_test (grp_name, price)
-    select grp, price from (
-    select :g1  grp, dbms_random.value(1,10) as price, floor (DBMS_RANDOM.value( 1, 100) ) n from dual  where :g1 is not null  connect by level <= :g1
-    union all
-    select :g2 grp , dbms_random.value(1,10) as price,  floor (DBMS_RANDOM.value( 1, 100) ) n from dual where :g2 is not null  connect by level <= :g2
-    union all
-    select :g3 grp , dbms_random.value(1,10) as price,  floor (DBMS_RANDOM.value( 1, 100) ) n from dual where :g3 is not null  connect by level <= :g3
-    union all
-    select :g4 grp , dbms_random.value(1,10) as price,  floor (DBMS_RANDOM.value( 1, 100) ) n from dual where :g4 is not null  connect by level <= :g4
-) ;
+FUNCTION mk_row (p_qty NUMBER) RETURN NUMBER IS
+BEGIN 
+
+    v_total := 0;
+
+    IF p_qty < v_batch THEN
+        insert into acs_test (grp_name, price)
+            select grp, price from (
+               select p_qty  grp, dbms_random.value(1,10) as price, floor (DBMS_RANDOM.value( 1, 100) ) n from dual  where :g1 is not null  connect by level <= p_qty);
+        v_total := v_total + SQL%ROWCOUNT;
+        COMMIT;
+    ELSE
+        v_loop := p_qty / v_batch;
+        v_left := MOD(p_qty, v_batch);
+        DBMS_OUTPUT.PUT_LINE( 'Loop count ' || v_loop);
+        DBMS_OUTPUT.PUT_LINE( 'Remainder  ' || v_left);
+        FOR i in 1..v_loop LOOP
+             insert /*+ APPEND */ into acs_test (grp_name, price)
+                   select grp, price from (
+                        select p_qty  grp, dbms_random.value(1,10) as price, floor (DBMS_RANDOM.value( 1, 100) ) n from dual  where :g1 is not null  connect by level <= v_batch);
+             v_total := v_total + SQL%ROWCOUNT;
+             DBMS_OUTPUT.PUT_LINE( SQL%ROWCOUNT || ' Rows inserted');
+             COMMIT;
+        END LOOP; 
+
+        IF v_left > 0 THEN
+            insert into acs_test (grp_name, price)
+                select grp, price from (
+                   select p_qty  grp, dbms_random.value(1,10) as price, floor (DBMS_RANDOM.value( 1, 100) ) n from dual  where :g1 is not null  connect by level <= v_left );
+            v_total := v_total + SQL%ROWCOUNT;
+            COMMIT;
+        END IF;
+
+    END IF;
+
+    RETURN v_total;
+
+END mk_row;
+
+BEGIN
+
+    v_return := mk_row(:g1); 
+    DBMS_OUTPUT.PUT_LINE( v_return || ' Rows inserted total');
+    v_return := mk_row(:g2); 
+    DBMS_OUTPUT.PUT_LINE( v_return || ' Rows inserted total');
+    v_return := mk_row(:g3); 
+    DBMS_OUTPUT.PUT_LINE( v_return || ' Rows inserted total');
 
 -- insert a few single value records
    insert into acs_test(grp_name, price)
