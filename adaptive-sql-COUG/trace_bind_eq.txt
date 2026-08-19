@@ -1,0 +1,379 @@
+SQL> @trace_bind_eq
+
+Session altered.
+
+
+Session altered.
+
+
+Session altered.
+
+
+Session altered.
+
+
+Session altered.
+
+
+Session altered.
+
+
+PL/SQL procedure successfully completed.
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+1                       3222222          2
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+1                       3222222          2
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+1                       3222222          2
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+1                       3222222          2
+
+
+PL/SQL procedure successfully completed.
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+500                         500  2735.4211
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+500                         500  2735.4211
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+500                         500  2735.4211
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+500                         500  2735.4211
+
+
+PL/SQL procedure successfully completed.
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+2000000                 2510500   10997521
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+2000000                 2510500   10997521
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+2000000                 2510500   10997521
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+2000000                 2510500   10997521
+
+
+PL/SQL procedure successfully completed.
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+10000                     10500 55026.1716
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+10000                     10500 55026.1716
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+10000                     10500 55026.1716
+
+
+GRP_NAME                MAX(ID) SUM(PRICE)
+-------------------- ---------- ----------
+10000                     10500 55026.1716
+
+
+Session altered.
+
+
+Session altered.
+
+Look at the trace file that is listed
+
+VALUE
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+COMMAND_TO_RUN
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/u01/app/oracle/diag/rdbms/t1db/t1db/trace/t1db_ora_7017_bineq_trace_.trc
+host more /u01/app/oracle/diag/rdbms/t1db/t1db/trace/t1db_ora_7017_bineq_trace_.trc
+
+
+SQL> @@cursors.sql g89xvwavgqpha
+@@cursor_share.sql g89xvwavgqpha
+@@shared_cursor_reason.sql g89xvwavgqpha
+SQL> select child_number, plan_hash_value, executions, buffer_gets,
+  2       is_bind_sensitive AS bins, is_bind_aware AS bina, is_reoptimizable AS reop
+  3       from v$sql
+  4       where sql_id = '&1';
+
+CHILD_NUMBER PLAN_HASH_VALUE EXECUTIONS BUFFER_GETS BINS BINA REOP
+------------ --------------- ---------- ----------- ---- ---- ----
+           0      2366003765          8          44 Y    N    N
+           1      1723173041          4       56720 Y    Y    N
+           2      2366003765          4         312 Y    Y    N
+
+SQL>
+SQL> set echo off
+SQL>
+SQL_ID        PLAN_HASH_VALUE B B EXECUTIONS PREDICATE                                  RANGE_ID LOW        HIGH              <1K        <1M        >1M
+------------- --------------- - - ---------- ---------------------------------------- ---------- ---------- ---------- ---------- ---------- ----------
+g89xvwavgqpha      2366003765 N Y          8                                                                                    4          4          0
+g89xvwavgqpha      1723173041 Y Y          4 =GRP                                              0 0.716989   0.876319            0          0          4
+g89xvwavgqpha      2366003765 Y Y          4 =GRP                                              0 0.003585   0.004382            0          4          0
+
+SQL>
+REASON_NOT_SHARED                CURSORS    SQL_IDS
+----------------------------- ---------- ----------
+BIND_EQUIV_FAILURE                     2          1
+LOAD_OPTIMIZER_STATS                   1          1
+
+
+
+===========================================================
+ALTER SESSION SET EVENTS '10507 trace name context forever, level 512';
+
+host less /u01/app/oracle/diag/rdbms/t1db/t1db/trace/t1db_ora_6975_bineq_trace_.trc
+
+Trace:
+PARSING IN CURSOR #140063952009936 len=122 dep=0 uid=157 oct=3 lid=157 tim=260173275689 hv=3069924874 ad='83b489f8' sqlid='g89xvwavgqpha'
+select /*+ gather_plan_statistics */ grp_name, max(id), sum(price) from acs_test a where grp_name = :grp GROUP BY grp_name
+END OF STMT
+PARSE #140063952009936:c=16,e=16,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=260173275689
+BINDS #140063952009936:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f632e1aee98  bln=2000  avl=01  flg=05
+  value="1"
+EXEC #140063952009936:c=30,e=30,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=260173275739
+WAIT #140063952009936: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=82027 tim=260173275749
+FETCH #140063952009936:c=0,e=11,p=0,cr=4,cu=0,mis=0,r=1,dep=0,og=1,plh=2366003765,tim=260173275768
+WAIT #140063952009936: nam='SQL*Net message from client' ela= 111 driver id=1413697536 #bytes=1 p3=0 obj#=82027 tim=260173275888
+FETCH #140063952009936:c=0,e=1,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=260173275900
+STAT #140063952009936 id=1 cnt=1 pid=0 pos=1 obj=0 op='SORT GROUP BY NOSORT (cr=4 pr=0 pw=0 str=1 time=13 us cost=4 size=34 card=1)'
+STAT #140063952009936 id=2 cnt=2 pid=1 pos=1 obj=82025 op='TABLE ACCESS BY INDEX ROWID ACS_TEST (cr=4 pr=0 pw=0 str=1 time=7 us cost=4 size=68 card=2)'
+STAT #140063952009936 id=3 cnt=2 pid=2 pos=1 obj=82027 op='INDEX RANGE SCAN I (cr=3 pr=0 pw=0 str=1 time=6 us cost=3 size=0 card=2)'
+WAIT #140063952009936: nam='SQL*Net message to client' ela= 1 driver id=1413697536 #bytes=1 p3=0 obj#=82027 tim=260173275952
+WAIT #140063952009936: nam='SQL*Net message from client' ela= 153 driver id=1413697536 #bytes=1 p3=0 obj#=82027 tim=260173276113
+CLOSE #140063952009936:c=0,e=2,dep=0,type=0,tim=260173276132
+=====
+
+BINDS #140063952008208:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1400000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f632e1ad830  bln=2000  avl=03  flg=05
+  value="500"
+WAIT #140063952008208: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=260173282582
+EXEC #140063952008208:c=0,e=69,p=0,cr=0,cu=0,mis=0,r=1,dep=0,og=1,plh=0,tim=260173282588
+WAIT #140063952008208: nam='SQL*Net message from client' ela= 89 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=260173282702
+CLOSE #140063952008208:c=4,e=4,dep=0,type=0,tim=260173282717
+PARSE #140063952009936:c=4,e=4,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=260173282733
+****** Begin CFB Hints (APA) [sql_id=g89xvwavgqpha] xsc=0x7f632e1afad0 ctx=0x7d5c1d58 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+
+======================================================================
+ALTER SESSION SET EVENTS '10507 trace name context forever, level 4294967295';
+
+host less /u01/app/oracle/diag/rdbms/t1db/t1db/trace/t1db_ora_7017_bineq_trace_.trc
+
+=====================
+PARSING IN CURSOR #139986510955536 len=122 dep=0 uid=157 oct=3 lid=157 tim=261282650749 hv=3069924874 ad='83b489f8' sqlid='g89xvwavgqpha'
+select /*+ gather_plan_statistics */ grp_name, max(id), sum(price) from acs_test a where grp_name = :grp GROUP BY grp_name
+END OF STMT
+PARSE #139986510955536:c=164,e=164,p=0,cr=0,cu=0,mis=1,r=0,dep=0,og=1,plh=0,tim=261282650749
+****** Begin CFB Hints (APA) [sql_id=g89xvwavgqpha] xsc=0x7f5126424410 ctx=0x827a26c0 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+kkocsBindSensCheck: new elements found:1 total:1
+kkocsInitAdaptiveCtx: initialized Adaptive Sharing Ctx ****
+
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422830  bln=2000  avl=03  flg=05
+  value="500"
+EXEC #139986510955536:c=28,e=28,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282656533
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 1 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282656543
+FETCH #139986510955536:c=0,e=151,p=0,cr=7,cu=0,mis=0,r=1,dep=0,og=1,plh=2366003765,tim=261282656705
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 57 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282656773
+FETCH #139986510955536:c=0,e=2,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282656786
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 201884475
+  Peeked Bind Bucket: 0
+  Execution Histogram:
+    1: 4
+    1000: 2
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 6
+      Buffer Gets: 30
+      CPU Time: 0
+      # Executions: 6
+Execution Histogram:
+  1: 4
+  1000: 2
+  1000000: 0
+kkocsMarkBindAware: stats distance= 0.33
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282656849
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 92 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282656947
+CLOSE #139986510955536:c=0,e=2,dep=0,type=3,tim=261282656962
+PARSE #139986510955536:c=0,e=5,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282656976
+BINDS #139986510955536:
+
+
+
+----- Bind Info (kkscoacd) -----
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422418  bln=2000  avl=07  flg=05
+  value="2000000"
+----- Current SQL Statement for this session (sql_id=g89xvwavgqpha) -----
+select /*+ gather_plan_statistics */ grp_name, max(id), sum(price) from acs_test a where grp_name = :grp GROUP BY grp_name
+----- Parser State -----
+Parser state1: len1=0 len2=123 pos1=122 pos2=122
+Parser state2: flg=0x0 xflg=0x4380000 xxflg=0x0
+Parser state3: tty=0 tlen=8
+Parser string: prx=0x7f512c7bad60 base=(nil) cur=0x7f512c62bdc2
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 3640740885
+  Peeked Bind Bucket: none
+  Execution Histogram:
+    1: 0
+    1000: 0
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 0
+      Buffer Gets: 0
+      CPU Time: 0
+      # Executions: 0
+KKSMEC: Invalidating old cursor 0 with hash val = 2366003765
+KKSMEC: Produced New cursor 1 with hash val = 1723173041
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422418  bln=2000  avl=07  flg=05
+  value="2000000"
+
+
+----- Bind Info (kxscoacd) -----
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412418  bln=2000  avl=05  flg=05
+  value="10000"
+kkslMatchEquivLiterals: initialized range vector, length=1
+kkocsPredSel: cursor matching selectivity: 0.0040
+kkscsFindMatchingRange: Matching ranges so far: [1 ]
+kkscsFindMatchingRange: mysel = 0.003983, cursel_start = 0.716989, cursel_end =0.876319  <- no match
+kkocsFindMatchingRange: Matching ranges after update: [0
+kkscsFindMatchingRange: found NO equivalent bind set
+Checking bind equivalence for child #1
+
+----- Bind Info (kxscoacd) -----
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412418  bln=2000  avl=05  flg=05
+  value="10000"
+kkslMatchEquivLiterals: initialized range vector, length=1
+kkocsPredSel: cursor matching selectivity: 0.0040
+kkscsFindMatchingRange: Matching ranges so far: [1 ]
+kkscsFindMatchingRange: mysel = 0.003983, cursel_start = 0.716989, cursel_end =0.876319  <- no match
+kkocsFindMatchingRange: Matching ranges after update: [0
+kkscsFindMatchingRange: found NO equivalent bind set
+****** Begin CFB Hints (APA) [sql_id=g89xvwavgqpha] xsc=0x7f5126424410 ctx=0x7d5bed58 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+kkocsBindSensCheck: new elements found:1 total:1
+stat found - col=GRP_NAME, sig=1169562901
+kkocsPredSel: cursor matching selectivity: 0.0040
+kkocsInitAdaptiveCtx: initialized Adaptive Sharing Ctx ****
+
+
+=====================
+PARSING IN CURSOR #139986510984712 len=29 dep=0 uid=157 oct=47 lid=157 tim=261283961968 hv=3683215466 ad='7ac70a10' sqlid='6f8qm0rdsku3a'
+begin
+    :grp := 10000;
+end;
+END OF STMT
+PARSE #139986510984712:c=32,e=32,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=0,tim=261283961968
+BINDS #139986510984712:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1400000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412418  bln=2000  avl=07  flg=05
+  value="2000000"
+WAIT #139986510984712: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283962047
+EXEC #139986510984712:c=63,e=63,p=0,cr=0,cu=0,mis=0,r=1,dep=0,og=1,plh=0,tim=261283962054
+WAIT #139986510984712: nam='SQL*Net message from client' ela= 135 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283962199
+CLOSE #139986510984712:c=5,e=5,dep=0,type=1,tim=261283962218
+PARSE #139986510955536:c=5,e=5,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=1723173041,tim=261283962233
+Checking bind equivalence for child #1
+
+----- Bind Info (kxscoacd) -----
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412418  bln=2000  avl=05  flg=05
+  value="10000"
+kkslMatchEquivLiterals: initialized range vector, length=1
+kkocsPredSel: cursor matching selectivity: 0.0040
+kkscsFindMatchingRange: Matching ranges so far: [1 ]
+kkscsFindMatchingRange: mysel = 0.003983, cursel_start = 0.716989, cursel_end =0.876319  <- no match
+kkocsFindMatchingRange: Matching ranges after update: [0
+kkscsFindMatchingRange: found NO equivalent bind set
+****** Begin CFB Hints (APA) [sql_id=g89xvwavgqpha] xsc=0x7f5126424410 ctx=0x7d5bed58 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+kkocsBindSensCheck: new elements found:1 total:1
+stat found - col=GRP_NAME, sig=1169562901
+kkocsPredSel: cursor matching selectivity: 0.0040
+kkocsInitAdaptiveCtx: initialized Adaptive Sharing Ctx ****
+

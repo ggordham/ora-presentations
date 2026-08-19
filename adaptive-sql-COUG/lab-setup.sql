@@ -1,0 +1,47 @@
+
+CONNECT / as sysdba
+
+-- Create perflab user for demo tables etc..
+CREATE USER perflab IDENTIFIED BY Perf$_Lab42
+  DEFAULT TABLESPACE users TEMPORARY TABLESPACE temp;
+
+GRANT resource TO perflab;
+GRANT connect TO perflab;
+GRANT select_catalog_role TO perflab;
+GRANT administer sql management object TO perflab;
+GRANT advisor TO perflab;
+GRANT alter session TO perflab;
+GRANT sqlt_user_role TO peflab;
+
+GRANT SELECT ON co.products TO perflab;
+GRANT SELECT ON co.orders TO perflab;
+GRANT SELECT ON co.order_items TO perflab;
+GRANT SELECT ON co.stores TO perflab;
+
+GRANT SELECT ON sh.customers TO perflab;
+GRANT SELECT ON oe.orders TO perflab;
+GRANT SELECT ON oe.order_items TO perflab;
+GRANT SELECT ON oe.product_information TO perflab;
+
+ALTER USER perflab QUOTA UNLIMITED ON users;
+
+GRANT READ ON hr.departments TO perflab;
+GRANT READ ON hr.employees TO perflab;
+-- GRANT READ ON hr.roles TO perflab;
+GRANT READ ON hr.jobs TO perflab;
+GRANT READ ON hr.locations TO perflab;
+GRANT READ ON hr.regions TO perflab;
+GRANT READ ON hr.countries TO perflab;
+GRANT READ ON hr.job_history TO perflab;
+
+-- add index and histogram to sh.customers
+create index sh.customers_prov on sh.customers(cust_state_province);
+exec dbms_stats.gather_table_stats('SH','CUSTOMERS',method_opt=>'for all columns size 254',no_invalidate=>false)
+
+-- remove our q1 example statement from the ASTS so that it does not show up for tuning advisor
+EXEC DBMS_SQLTUNE.DELETE_SQLSET(sqlset_name => 'SYS_AUTO_STS', basic_filter => 'sql_id = ''9bpjmtthj7f41''');
+COMMIT;
+
+@connect.sql
+
+

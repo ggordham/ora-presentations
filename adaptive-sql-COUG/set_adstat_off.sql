@@ -1,0 +1,5 @@
+
+set echo on
+ALTER SESSION SET OPTIMIZER_ADAPTIVE_STATISTICS = FALSE;
+
+set echo off

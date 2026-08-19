@@ -7,6 +7,10 @@ Everything here is intended for test or lab type use.
 ## 2026
 
 ---
+MOUG and COUG annual joint conference in Chicago on - August 28, 2026 - Oracle Adaptive SQL Optimization - Why do things go so bad?
+
+```/adaptive-sql-COUG```
+
 TCOUG  Summer 2026 Workshop - July 16th, 2026 - Oracle Adaptive SQL Optimization - Why do things go so bad?
 
 ```/adaptive-sql-TCOUG```
