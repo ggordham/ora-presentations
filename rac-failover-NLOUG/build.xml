@@ -1,0 +1,90 @@
+<project name="" default="all" basedir=".">
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+  <property name="lib" location="lib"/>
+  <property name="classes" location="classes"/>
+
+  <target name="all" depends="clean,dist"/>
+
+  <target name="dist" depends="dist-acdemo, dist-watchfan">
+
+  <target name="compile" depends="compile-acdemo, compile-watchfan">
+
+  <target name="init">
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${classes}"/>
+    <mkdir dir="${lib}"/>
+  </target>
+
+  <target name="compile-acdemo" depends="init"
+        description="compile the source " >
+    <!-- Compile the java code from ${src} into ${classes} -->
+    <!-- remove debug information: debug="true" -->
+  <javac srcdir="${src}/acdemo" debug="on" destdir="${classes}/acdemo">
+      <classpath>
+        <pathelement path="${classpath}"/>
+        <pathelement location="./lib/ucp17.jar"/>
+      </classpath>
+      <classpath>
+        <pathelement path="${classpath}"/>
+        <pathelement location="./lib/ojdbc17.jar"/>
+      </classpath>
+      <classpath>
+        <pathelement path="${classpath}"/>
+        <pathelement location="./lib/ons.jar"/>
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="dist-acdemo" depends="compile-acdemo"
+        description="Jar the source files" >
+    <!-- Create the distribution directory -->
+    <delete dir="./lib/acdemo.jar"/>
+    <jar destfile="./lib/acdemo.jar" basedir="${classes}/acdemo" excludes="*.xml,*.cdi" manifest="MANIFEST-acdemo.MF"/>
+  </target>
+
+  <target name="clean-watchfan"
+        description="clean up" >
+    <!-- Delete the ${classes} and ${dist} directory trees -->
+    <delete dir="${classes}/watchfan"/>
+    <delete dir="./lib/watchfan.jar"/>
+  </target>
+  
+  <target name="compile-watchfan" depends="init"
+        description="compile the source " >
+    <!-- Compile the java code from ${src} into ${classes} -->
+    <!-- remove debug information: debug="true" -->
+  <javac srcdir="${src}/watchfan" debug="on" destdir="${classes}/watchfan">
+      <classpath>
+        <pathelement path="${classpath}"/>
+        <pathelement location="./lib/ucp17.jar"/>
+      </classpath>
+      <classpath>
+        <pathelement path="${classpath}"/>
+        <pathelement location="./lib/ojdbc17.jar"/>
+      </classpath>
+      <classpath>
+        <pathelement path="${classpath}"/>
+        <pathelement location="./lib/ons.jar"/>
+      </classpath>
+      <classpath>
+        <pathelement path="${classpath}"/>
+        <pathelement location="./lib/simplefan.jar"/>
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="dist-watchfan" depends="compile-watchfan"
+        description="Jar the source files" >
+    <!-- Create the distribution directory -->
+    <delete dir="./lib/watchfan.jar"/>
+    <jar destfile="./lib/watchfan.jar" basedir="${classes}/watchfan" excludes="*.xml,*.cdi" manifest="MANIFEST-watchfan.MF"/>
+  </target>
+
+  <target name="clean-watchfan"
+        description="clean up" >
+    <!-- Delete the ${classes} and ${dist} directory trees -->
+    <delete dir="${classes}/watchfan"/>
+    <delete dir="./lib/watchfan.jar"/>
+  </target>
+</project>

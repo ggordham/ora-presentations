@@ -1,0 +1,2 @@
+Main-Class: watchfan.WatchFan
+Class-Path: ojdbc17.jar ucp17.jar ons.jar simplefan.jar

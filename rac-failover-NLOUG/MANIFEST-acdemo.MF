@@ -1,0 +1,2 @@
+Main-Class: acdemo.ACDemo
+Class-Path: ojdbc17.jar ucp17.jar ons.jar
