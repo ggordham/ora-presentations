@@ -19,6 +19,11 @@ I always recommend using the latest versions of these files. For files from the 
 
 ## Stage the source code
 
+Download the lab scripts and scource code to the Linux system you will run these on.  This should be seperate from the Oracle RAC DB system.
+
+```bash
+curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1 --wildcards "ggordham-ora-presentations-???????/rac-failover-NLOUG"
+```
 
 ## Prepare the database
 

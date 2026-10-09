@@ -6,6 +6,8 @@
 
   <target name="all" depends="clean,dist"/>
 
+  <target name="clean" depends="clean-acdemo, clean-watchfan"/>
+
   <target name="dist" depends="dist-acdemo, dist-watchfan"/>
 
   <target name="compile" depends="compile-acdemo, compile-watchfan"/>
@@ -13,6 +15,8 @@
   <target name="init">
     <!-- Create the build directory structure used by compile -->
     <mkdir dir="${classes}"/>
+    <mkdir dir="${classes}/acdemo"/>
+    <mkdir dir="${classes}/watchfan"/>
     <mkdir dir="${lib}"/>
   </target>
 
@@ -20,7 +24,7 @@
         description="compile the source " >
     <!-- Compile the java code from ${src} into ${classes} -->
     <!-- remove debug information: debug="true" -->
-  <javac srcdir="${src}/acdemo" debug="on" destdir="${classes}/acdemo">
+  <javac includeantruntime="false" srcdir="${src}/acdemo" debug="on" destdir="${classes}/acdemo">
       <classpath>
         <pathelement path="${classpath}"/>
         <pathelement location="./lib/ucp17.jar"/>
@@ -54,7 +58,7 @@
         description="compile the source " >
     <!-- Compile the java code from ${src} into ${classes} -->
     <!-- remove debug information: debug="true" -->
-  <javac srcdir="${src}/watchfan" debug="on" destdir="${classes}/watchfan">
+  <javac includeantruntime="false" srcdir="${src}/watchfan" debug="on" destdir="${classes}/watchfan">
       <classpath>
         <pathelement path="${classpath}"/>
         <pathelement location="./lib/ucp17.jar"/>

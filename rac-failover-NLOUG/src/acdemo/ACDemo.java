@@ -110,7 +110,11 @@ public class ACDemo extends Thread {
       pds.setPassword(prop.getProperty("password","HR"));
       pds.setURL(prop.getProperty("url"));
       pds.setConnectionPoolName(UCP_POOL_NAME);
-      pds.setConnectionWaitTimeout(connectionWaitTimeout);
+
+      // setConnectionWaitTimeout is deprated using new setConnectionWaitDuration
+      //pds.setConnectionWaitTimeout(connectionWaitTimeout);
+      pds.setConnectionWaitDuration(DurationofSeconds(connectionWaitTimeout);
+
       pds.setFastConnectionFailoverEnabled(fastConnectionFailover);
       pds.setValidateConnectionOnBorrow(validateConnectionOnBorrow);
       pds.setInitialPoolSize(ucpPoolSize);

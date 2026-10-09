@@ -71,7 +71,7 @@ class Worker implements Runnable {
     }
     {
        PreparedStatement pstmt = c.prepareStatement("insert into emp4AC(empno,ename,sal) values(?,?,?)");
-       int empno = (int)System.nanoTime()%9999;
+       int empno = (int)System.nanoTime()%999999;
        pstmt.setInt(1,empno);
        pstmt.setString(2,"Bob"+empno);
        pstmt.setInt(3,8000);

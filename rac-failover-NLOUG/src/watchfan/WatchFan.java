@@ -127,17 +127,17 @@ public class WatchFan {
 * @param args
 */
 public static void main(String[] args) {
-// TODO Auto-generated method stub
-WatchFan wf = new WatchFan();
 
-int i = 0;
-while ( i < 100000)  {
-    try {
-        Thread.sleep(100);
-        i++;
-    } catch (Exception e) {
-        System.out.println(e);
-    }
+    WatchFan wf = new WatchFan();
+
+    int i = 0;
+    while ( i < 100000)  {
+        try {
+            Thread.sleep(100);
+            i++;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
         System.out.println("execution ended");

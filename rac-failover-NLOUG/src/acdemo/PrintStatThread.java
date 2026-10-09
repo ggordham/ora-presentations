@@ -97,8 +97,11 @@ class PrintStatThread extends Thread {
         System.out.print("\n");
 
         // GG AC statistics
-        System.out.printf("          %,9d Req, %,9d Calls, %,9d Protected, %3d Outages, Replay: %3d Attempts, %3d Failed, %3d Success %n",
-                      ACDemo.TotalRequests, ACDemo.acTotalCalls, ACDemo.acTotalProtectedCalls, ACDemo.TotalCallsAffectedByOutages, ACDemo.TotalReplayAttempts, ACDemo.FailedReplayCount, ACDemo.SuccessfulReplayCount);
+        if ( PRINTACSTAT ){
+            System.out.printf("          %,9d Req, %,9d Calls, %,9d Protected, %3d Outages, Replay: %3d Attempts, %3d Failed, %3d Success %n",
+                          ACDemo.TotalRequests, ACDemo.acTotalCalls, ACDemo.acTotalProtectedCalls, ACDemo.TotalCallsAffectedByOutages, ACDemo.TotalReplayAttempts,
+                          ACDemo.FailedReplayCount, ACDemo.SuccessfulReplayCount);
+      }
 
       } catch (Exception ea) {}
     }

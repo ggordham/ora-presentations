@@ -1,12 +1,13 @@
 /* cr_hr.sql */
 
-create user hr identified by %%PSWD%% default tablespace %%TB_NAME%% temporary tablespace TEMP;
+create user hr identified by Oracle_4U default tablespace users temporary tablespace TEMP;
 grant connect, resource, create session to hr;
-alter user hr quota unlimited on %%TB_NAME%%;
+alter user hr quota unlimited on users;
 
-connect hr/%%PSWD%%@acservice
+connect hr/Oracle_4U@"//crs01-scan.gg.wi.rr.com/hr_tac"
 
 drop table EMP4AC;
+
 create table EMP4AC(
  empno number(4) not null,
  ename varchar2(10),
