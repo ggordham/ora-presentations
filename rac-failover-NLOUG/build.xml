@@ -6,9 +6,9 @@
 
   <target name="all" depends="clean,dist"/>
 
-  <target name="dist" depends="dist-acdemo, dist-watchfan">
+  <target name="dist" depends="dist-acdemo, dist-watchfan"/>
 
-  <target name="compile" depends="compile-acdemo, compile-watchfan">
+  <target name="compile" depends="compile-acdemo, compile-watchfan"/>
 
   <target name="init">
     <!-- Create the build directory structure used by compile -->
@@ -43,11 +43,11 @@
     <jar destfile="./lib/acdemo.jar" basedir="${classes}/acdemo" excludes="*.xml,*.cdi" manifest="MANIFEST-acdemo.MF"/>
   </target>
 
-  <target name="clean-watchfan"
+  <target name="clean-acdemo"
         description="clean up" >
     <!-- Delete the ${classes} and ${dist} directory trees -->
-    <delete dir="${classes}/watchfan"/>
-    <delete dir="./lib/watchfan.jar"/>
+    <delete dir="${classes}/acdemo"/>
+    <delete dir="./lib/acdemo.jar"/>
   </target>
   
   <target name="compile-watchfan" depends="init"
