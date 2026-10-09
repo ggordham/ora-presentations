@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
  * when it needs to reconnect and replay.
  *
  * @author Jean de Lavarene
+ * @updated Gary Gordhamer
  */
 class PrintStatThread extends Thread {
 
@@ -97,11 +98,9 @@ class PrintStatThread extends Thread {
         System.out.print("\n");
 
         // GG AC statistics
-        if ( PRINTACSTAT ){
-            System.out.printf("          %,9d Req, %,9d Calls, %,9d Protected, %3d Outages, Replay: %3d Attempts, %3d Failed, %3d Success %n",
-                          ACDemo.TotalRequests, ACDemo.acTotalCalls, ACDemo.acTotalProtectedCalls, ACDemo.TotalCallsAffectedByOutages, ACDemo.TotalReplayAttempts,
-                          ACDemo.FailedReplayCount, ACDemo.SuccessfulReplayCount);
-      }
+        System.out.printf("          %,9d Req, %,9d Calls, %,9d Protected, %3d Outages, Replay: %3d Attempts, %3d Failed, %3d Success %n",
+                      ACDemo.TotalRequests, ACDemo.acTotalCalls, ACDemo.acTotalProtectedCalls, ACDemo.TotalCallsAffectedByOutages, ACDemo.TotalReplayAttempts,
+                      ACDemo.FailedReplayCount, ACDemo.SuccessfulReplayCount);
 
       } catch (Exception ea) {}
     }

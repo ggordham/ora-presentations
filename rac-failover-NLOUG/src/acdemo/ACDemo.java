@@ -1,4 +1,5 @@
 package acdemo;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -6,6 +7,8 @@ import java.util.Properties;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.Duration;
+
 // GG Added for database driver information
 import java.sql.DatabaseMetaData;
 
@@ -36,6 +39,7 @@ import oracle.ucp.UniversalConnectionPoolStatistics;
  * @author Jean de Lavarene
  * @contributing author Kuassi Mensah
  * @contributing author Troy Anthony
+ * @rebuilt Gary Gordhamer
  */
 public class ACDemo extends Thread {
 
@@ -113,7 +117,7 @@ public class ACDemo extends Thread {
 
       // setConnectionWaitTimeout is deprated using new setConnectionWaitDuration
       //pds.setConnectionWaitTimeout(connectionWaitTimeout);
-      pds.setConnectionWaitDuration(DurationofSeconds(connectionWaitTimeout);
+      pds.setConnectionWaitDuration(Duration.ofSeconds(connectionWaitTimeout));
 
       pds.setFastConnectionFailoverEnabled(fastConnectionFailover);
       pds.setValidateConnectionOnBorrow(validateConnectionOnBorrow);
@@ -189,21 +193,12 @@ public class ACDemo extends Thread {
       t[i].start();
     }
 
+    // Need to get this value to the printstats thread somehow
+    //if ( PRINTACSTAT ) {
+    //
     /*  Stats thread - displays some UCP statistics */
     Thread stat = new PrintStatThread();
     stat.start();
-
-    //if ( PRINTACSTAT ) {
-        /*  AC Stats thread - displays AC client statistics
-             Note: The acchk utility is database resident in 19.12 and provides view-based access to the Application Continuity statistics.
-             The acchk utility is available from within Orachk prior to Oracle Database 19c
-        */
-    /*
-        Thread acStat = new PrintACStatThread(pds);
-        acStat.start();
-
-    }
-    */
 
     // Wait for all threads to be done:
     for (int i = 0; i < nbOfThreads; ++i) {
