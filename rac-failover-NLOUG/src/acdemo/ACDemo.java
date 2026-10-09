@@ -128,8 +128,9 @@ public class ACDemo extends Thread {
 
       System.out.println("######################################################");
       System.out.println("Connecting to            " + prop.getProperty("url"));
-      System.out.println(" # of Threads:           " + nbOfThreads);
-      System.out.println(" UCP pool size:          " + ucpPoolSize);
+      System.out.println("Datasource               " + pds.getConnectionFactoryClassName());
+      System.out.println("# of Threads:            " + nbOfThreads);
+      System.out.println("UCP pool size:           " + ucpPoolSize);
       System.out.println("FCF Enabled:             " + pds.getFastConnectionFailoverEnabled());
       System.out.println("VCoB Enabled:            " + pds.getValidateConnectionOnBorrow());
       System.out.println("ONS Configuration:       " + pds.getONSConfiguration());

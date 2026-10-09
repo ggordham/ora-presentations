@@ -85,10 +85,25 @@ class PrintStatThread extends Thread {
             .getConnectionPool(ACDemo.UCP_POOL_NAME)
             .getStatistics().getAverageConnectionWaitTime();
 
+        long avgBorConCount =  UniversalConnectionPoolManagerImpl
+            .getUniversalConnectionPoolManager()
+            .getConnectionPool(ACDemo.UCP_POOL_NAME)
+            .getStatistics().getAverageBorrowedConnectionsCount();
+
+        long. peakConCount = UniversalConnectionPoolManagerImpl
+            .getUniversalConnectionPoolManager()
+            .getConnectionPool(ACDemo.UCP_POOL_NAME)
+            .getStatistics().getPeakConnectionCount();
+
+        long. peakConWaitms = UniversalConnectionPoolManagerImpl
+            .getUniversalConnectionPoolManager()
+            .getConnectionPool(ACDemo.UCP_POOL_NAME)
+            .getStatistics().getPeakConnectionWaitTime();
+
         // GG add timestamp data to output
         now = LocalDateTime.now();
         // GG Added more statistics
-        System.out.println(now.format(formatter) + ": "+connectionsCreated+" Connections, "+availableConnections+" Available, "+avgObtConWaitms+" ms AVG wait to obtain, " + ACDemo.nbOfExceptions + " SQL Exceptions");
+        System.out.println(now.format(formatter) + ": "+connectionsCreated+" Connections, "+availableConnections+" Available, "+avgObtConWaitms+" ms AVG wait to obtain, " + ACDemo.nbOfExceptions + " SQL Exceptions, " + avgBorConCount + " AVG Borrowed, " + peakConCount + " peak Borrowed, " + peakConWaitms + " Peak wait") ;
         System.out.print("          " + ucpBorrowedConnectionCount + " borrowed, "+ucpPendingRequests+" pending, "+ucpWaitTime+"ms getConnection wait, TotalBorrowed " + totalBorrowed);
 
         // Print the average response time:
