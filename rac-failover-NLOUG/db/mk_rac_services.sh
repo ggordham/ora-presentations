@@ -24,8 +24,9 @@ source /usr/local/bin/oraenv -s
 
 "${ORACLE_HOME}"/bin/srvctl start  service -d "${DB_NAME}" -s "${SERVICE_NAME}"
 
-"${ORACLE_HOME}"/bin/srvctl add service -d "${DB_NAME}" -s "${SERVICE_NAME_NOTAC}" -failovertype NONE -failover_restore NONE -commit_outcome FALSE 
+"${ORACLE_HOME}"/bin/srvctl add service -d "${DB_NAME}" -s "${SERVICE_NAME_NOTAC}" -failovertype NONE -failover_restore NONE -commit_outcome FALSE -preferred orcl1 -available orcl2
 
+"${ORACLE_HOME}"/bin/srvctl start  service -d "${DB_NAME}" -s "${SERVICE_NAME_NOTAC}"
 
 # additional settings from demo, though they were all commented out in source script
 #

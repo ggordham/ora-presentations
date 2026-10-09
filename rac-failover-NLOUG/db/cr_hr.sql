@@ -9,7 +9,7 @@ connect hr/Oracle_4U@"//crs01-scan.gg.wi.rr.com/hr_tac"
 drop table EMP4AC;
 
 create table EMP4AC(
- empno number(4) not null,
+ empno number(8) not null,
  ename varchar2(10),
  job char(9),
  mgr number(4),

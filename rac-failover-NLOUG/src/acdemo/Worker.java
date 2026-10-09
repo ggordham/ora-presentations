@@ -144,16 +144,20 @@ class Worker implements Runnable {
         if (ACDemo.VERBOSE) { System.out.println("Executing databaseWorkload()"); }
         databaseWorkload(c);
 
-        // Caputre replay statistics
-        ReplayStatistics stats = (((oracle.jdbc.replay.ReplayableConnection) c).getReplayStatistics(ReplayableConnection.StatisticsReportType.FOR_ALL_CONNECTIONS));
+        // GG AC statistics if set to true
+        if ( ACDemo.PRINTACSTAT ) {
 
-        ACDemo.acTotalCalls          = stats.getTotalCalls();
-        ACDemo.acTotalProtectedCalls = stats.getTotalProtectedCalls();
-        ACDemo.TotalReplayAttempts   = stats.getTotalReplayAttempts();
-        ACDemo.FailedReplayCount     = stats.getFailedReplayCount();
-        ACDemo.SuccessfulReplayCount = stats.getSuccessfulReplayCount();
-        ACDemo.TotalCallsAffectedByOutages = stats.getTotalCallsAffectedByOutages();
-        ACDemo.TotalRequests         = stats.getTotalRequests();
+            // Caputre replay statistics
+            ReplayStatistics stats = (((oracle.jdbc.replay.ReplayableConnection) c).getReplayStatistics(ReplayableConnection.StatisticsReportType.FOR_ALL_CONNECTIONS));
+
+            ACDemo.acTotalCalls          = stats.getTotalCalls();
+            ACDemo.acTotalProtectedCalls = stats.getTotalProtectedCalls();
+            ACDemo.TotalReplayAttempts   = stats.getTotalReplayAttempts();
+            ACDemo.FailedReplayCount     = stats.getFailedReplayCount();
+            ACDemo.SuccessfulReplayCount = stats.getSuccessfulReplayCount();
+            ACDemo.TotalCallsAffectedByOutages = stats.getTotalCallsAffectedByOutages();
+            ACDemo.TotalRequests         = stats.getTotalRequests();
+        }
 
       } catch (SQLException ea) {
         // Application developers have to write code to recover
