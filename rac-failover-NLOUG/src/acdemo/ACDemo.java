@@ -99,8 +99,8 @@ public class ACDemo extends Thread {
 
       // get settings if we print AC statistics
       PRINTACSTAT = Boolean.parseBoolean(prop.getProperty("print_ac_stats","false"));
-      VERBOSE = Boolean.parseBoolean(prop.getProperty("verbose","false"));
-      LONGQUERY = Boolean.parseBoolean(prop.getProperty("longquery","false"));
+      VERBOSE = Boolean.parseBoolean(prop.getProperty("VERBOSE","false"));
+      LONGQUERY = Boolean.parseBoolean(prop.getProperty("LONGQUERY","false"));
 
       // get settings for pool size / threads
       nbOfThreads = Integer.parseInt(prop.getProperty("number_of_threads"));
@@ -199,7 +199,12 @@ public class ACDemo extends Thread {
     Thread[] t = new Thread[nbOfThreads];
 
     for (int i = 0; i < nbOfThreads; ++i) {
-      t[i] = new Thread(new Worker(pds));
+        // for the 4th thread check if longquery is enabled
+        if ( i = 4 && LONGQUERY) {
+            t[i] = new Thread(new Worker(pds, true));
+        } else {
+            t[i] = new Thread(new Worker(pds, false));
+        }
       t[i].start();
     }
 

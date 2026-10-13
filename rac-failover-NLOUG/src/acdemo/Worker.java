@@ -31,8 +31,10 @@ class Worker implements Runnable {
   PoolDataSource ds;
   Random random;
   Boolean cpuIntensive;
-  Worker(PoolDataSource _ds) {
+  Boolean longQuery = false;
+  Worker(PoolDataSource _ds, Boolean _longQuery) {
     ds = _ds;
+    longQuery = _longQuery;
     random = new Random();
   }
 
@@ -172,7 +174,7 @@ class Worker implements Runnable {
           databaseWorkload(c);
 
           // GG run long workload every 100 transactions
-          if ( ACDemo.LONGQUERY && counter % 1000 == 0 ){
+          if ( longQuery && counter % 1000 == 0 ){
                runLongQuery(c);
           }
 
