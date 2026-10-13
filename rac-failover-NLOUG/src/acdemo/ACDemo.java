@@ -50,6 +50,7 @@ public class ACDemo extends Thread {
   static final int DELAY_BETWEEN_PRINTING_STATS = 5 * 1000;
   static boolean VERBOSE = true;
   static boolean PRINTACSTAT = false;
+  static boolean LONGQUERY = false;
   private static String PROP_FILE="acdemo.properties";
   static int connectionWaitTimeout = 3; // seconds
 
@@ -96,17 +97,23 @@ public class ACDemo extends Thread {
         prop.load(new FileInputStream(PROP_FILE));
       } catch (IOException e) {e.printStackTrace();}
 
-      // get swetting if we print AC statistics
+      // get settings if we print AC statistics
       PRINTACSTAT = Boolean.parseBoolean(prop.getProperty("print_ac_stats","false"));
+      VERBOSE = Boolean.parseBoolean(prop.getProperty("verbose","false"));
+      LONGQUERY = Boolean.parseBoolean(prop.getProperty("longquery","false"));
 
+      // get settings for pool size / threads
       nbOfThreads = Integer.parseInt(prop.getProperty("number_of_threads"));
       ucpPoolSize = Integer.parseInt(prop.getProperty("ucp_pool_size"));
       threadThinkTime = Integer.parseInt(prop.getProperty("thread_think_time","20"));
-      VERBOSE = Boolean.parseBoolean(prop.getProperty("verbose","false"));
+
+      // Additional pool settings
       applicationCrashOnErrors = Boolean.parseBoolean(prop.getProperty("application_crash_on_errors","true"));
       fastConnectionFailover = Boolean.parseBoolean(prop.getProperty("fastConnectionFailover","false"));
       validateConnectionOnBorrow = Boolean.parseBoolean(prop.getProperty("validateConnectionOnBorrow","false"));
       connectionWaitTimeout = Integer.parseInt(prop.getProperty("connectionWaitTimeout","3"));
+
+      // Setup our pool data source
       PoolDataSource pds = PoolDataSourceFactory.getPoolDataSource();
       pds.setConnectionFactoryClassName(prop.getProperty("datasource"));
       // Set DataSource Property
@@ -138,6 +145,8 @@ public class ACDemo extends Thread {
       System.out.format("Thread think time:        %d ms\n",
         threadThinkTime);
       System.out.println("Print AC Statistics:     " + PRINTACSTAT);
+      System.out.println("Long Query:              " + LONGQUERY);
+      System.out.println("Verbose:                 " + VERBOSE);
       System.out.println("######################################################");
       System.out.println("");
 

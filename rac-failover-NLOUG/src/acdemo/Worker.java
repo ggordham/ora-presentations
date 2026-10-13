@@ -106,7 +106,7 @@ class Worker implements Runnable {
         stmt = stmt + "  FROM hr.emp4ac e, all_objects o";
         stmt = stmt + "  WHERE e.empno != o.object_id";
         stmt = stmt + "  AND o.object_id < 10000";
-        stmt = stmt + "  AND e.empno between 1 and 10000"
+        stmt = stmt + "  AND e.empno between 1 and 10000";
         // run a long SQL twice
         for(int i=0;i<2;i++) {
 
@@ -172,7 +172,7 @@ class Worker implements Runnable {
           databaseWorkload(c);
 
           // GG run long workload every 100 transactions
-          if ( ACDEMO.LONGQUERY && ACDemo.operationsCompleted % 1000 == 0 ){
+          if ( ACDemo.LONGQUERY && counter % 1000 == 0 ){
                runLongQuery(c);
           }
 
