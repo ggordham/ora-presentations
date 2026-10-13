@@ -98,6 +98,33 @@ class Worker implements Runnable {
      c.commit();
   }
 
+  // GG long running query
+  // Stupid query should run about 20 seconds each time
+  void runLongQuery(Connection c) throws SQLException {
+
+        String stmt = "select /*+ RULE */ sum(e.empno), max(e.sal), avg(e.sal), min(e.sal)";
+        stmt = stmt + "  FROM hr.emp4ac e, all_objects o";
+        stmt = stmt + "  WHERE e.empno != o.object_id";
+        stmt = stmt + "  AND o.object_id < 10000";
+        stmt = stmt + "  AND e.empno between 1 and 10000"
+        // run a long SQL twice
+        for(int i=0;i<2;i++) {
+
+            PreparedStatement pstmt = c.prepareStatement(stmt);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next())
+            {
+              String row = rs.getString(1);
+              // trick the JIT:
+              if(row.equals("")) {
+                System.exit(1);
+              }
+            }
+            pstmt.close();
+        }
+  }
+
+  // RUN executes when thread starts
   public void run() {
     long counter = 0;
      boolean retry = false;
@@ -108,56 +135,61 @@ class Worker implements Runnable {
 
       long nanoTimeStart=0,timeSpentOnDb = 0;
       try {
-        // Step 1: Get a connection from UCP. This corresponds to the beginning
-        // of the AC request. The replay driver will now start recording all the
-        // JDBC calls.
-        c = ds.getConnection();
-        // Make sure auto commit if off:
-        c.setAutoCommit(false);
+          // Step 1: Get a connection from UCP. This corresponds to the beginning
+          // of the AC request. The replay driver will now start recording all the
+          // JDBC calls.
+          c = ds.getConnection();
+          // Make sure auto commit if off:
+          c.setAutoCommit(false);
 
-        /*
-         *  Print connection instance
-         */
-        /*
-          ResultSet rs;
-          Statement stmt = c.createStatement();
-
-          rs =
-
-           stmt.executeQuery("select '... Connected to '||sys_context('userenv','instance_name') from dual");
-
-          while (rs.next()) {
-              // Only display for VERBOSE operation
-              if (ACDemo.VERBOSE) { System.out.println( dateFormat.format(cal.getTime()) + "  " + rs.getString(1)); }
-          }
-          rs.close();
-          stmt.close();
-          */
-           if (retry) {
+          if (retry) {
               System.out.println(" Application driven connection retry succeeded");
               retry = false;
-           }
+          }
 
-        nanoTimeStart = System.nanoTime();
+          /*
+           *  Print connection instance
+           */
+          // Only display for VERBOSE operation
+          if (ACDemo.VERBOSE) {
 
-        // Step 2: run the workload
-        if (ACDemo.VERBOSE) { System.out.println("Executing databaseWorkload()"); }
-        databaseWorkload(c);
+              ResultSet rs;
+              Statement stmt = c.createStatement();
 
-        // GG AC statistics if set to true
-        if ( ACDemo.PRINTACSTAT ) {
+              rs = stmt.executeQuery("select '... Connected to '||sys_context('userenv','instance_name') from dual");
 
-            // Caputre replay statistics
-            ReplayStatistics stats = (((oracle.jdbc.replay.ReplayableConnection) c).getReplayStatistics(ReplayableConnection.StatisticsReportType.FOR_ALL_CONNECTIONS));
+              while (rs.next()) {
+                  System.out.println( dateFormat.format(cal.getTime()) + "  " + rs.getString(1)); }
 
-            ACDemo.acTotalCalls          = stats.getTotalCalls();
-            ACDemo.acTotalProtectedCalls = stats.getTotalProtectedCalls();
-            ACDemo.TotalReplayAttempts   = stats.getTotalReplayAttempts();
-            ACDemo.FailedReplayCount     = stats.getFailedReplayCount();
-            ACDemo.SuccessfulReplayCount = stats.getSuccessfulReplayCount();
-            ACDemo.TotalCallsAffectedByOutages = stats.getTotalCallsAffectedByOutages();
-            ACDemo.TotalRequests         = stats.getTotalRequests();
-        }
+              rs.close();
+              stmt.close();
+          }
+
+          nanoTimeStart = System.nanoTime();
+
+          // Step 2: run the workload
+          if (ACDemo.VERBOSE) { System.out.println("Executing databaseWorkload()"); }
+          databaseWorkload(c);
+
+          // GG run long workload every 100 transactions
+          if ( ACDEMO.LONGQUERY && ACDemo.operationsCompleted % 1000 == 0 ){
+               runLongQuery(c);
+          }
+
+          // GG AC statistics if set to true
+          if ( ACDemo.PRINTACSTAT ) {
+
+              // Caputre replay statistics
+              ReplayStatistics stats = (((oracle.jdbc.replay.ReplayableConnection) c).getReplayStatistics(ReplayableConnection.StatisticsReportType.FOR_ALL_CONNECTIONS));
+
+              ACDemo.acTotalCalls          = stats.getTotalCalls();
+              ACDemo.acTotalProtectedCalls = stats.getTotalProtectedCalls();
+              ACDemo.TotalReplayAttempts   = stats.getTotalReplayAttempts();
+              ACDemo.FailedReplayCount     = stats.getFailedReplayCount();
+              ACDemo.SuccessfulReplayCount = stats.getSuccessfulReplayCount();
+              ACDemo.TotalCallsAffectedByOutages = stats.getTotalCallsAffectedByOutages();
+              ACDemo.TotalRequests         = stats.getTotalRequests();
+          }
 
       } catch (SQLException ea) {
         // Application developers have to write code to recover

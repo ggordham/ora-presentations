@@ -90,12 +90,12 @@ class PrintStatThread extends Thread {
             .getConnectionPool(ACDemo.UCP_POOL_NAME)
             .getStatistics().getAverageBorrowedConnectionsCount();
 
-        long. peakConCount = UniversalConnectionPoolManagerImpl
+        long peakConCount = UniversalConnectionPoolManagerImpl
             .getUniversalConnectionPoolManager()
             .getConnectionPool(ACDemo.UCP_POOL_NAME)
-            .getStatistics().getPeakConnectionCount();
+            .getStatistics().getPeakConnectionsCount();
 
-        long. peakConWaitms = UniversalConnectionPoolManagerImpl
+        long peakConWaitms = UniversalConnectionPoolManagerImpl
             .getUniversalConnectionPoolManager()
             .getConnectionPool(ACDemo.UCP_POOL_NAME)
             .getStatistics().getPeakConnectionWaitTime();
