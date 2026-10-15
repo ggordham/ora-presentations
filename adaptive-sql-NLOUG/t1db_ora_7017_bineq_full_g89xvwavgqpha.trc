@@ -1,0 +1,1950 @@
+Trace file /u01/app/oracle/diag/rdbms/t1db/t1db/trace/t1db_ora_7017_bineq_trace_.trc
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+Build label:    RDBMS_19.28.0.0.0DBRU_LINUX.X64_250704
+ORACLE_HOME:    /u01/app/oracle/product/19/dbhome_1
+System name:	Linux
+Node name:	srvr08.gg.wi.rr.com
+Release:	5.4.17-2136.351.3.2.el8uek.x86_64
+Version:	#3 SMP Fri Jan 16 05:38:57 PST 2026
+Machine:	x86_64
+CLID:	P
+Instance name: t1db
+Instance number: 1
+Database name: t1db 
+Database unique name: t1db 
+Database id: 634851809
+Database role: PRIMARY
+Redo thread mounted by this instance: 1
+Oracle process number: 48
+Unix process pid: 7017, image: oracle@srvr08.gg.wi.rr.com
+
+
+*** 2026-07-10T14:00:48.728505+00:00 (PDB1(3))
+*** SESSION ID:(39.9588) 2026-07-10T14:00:48.728523+00:00
+*** CLIENT ID:() 2026-07-10T14:00:48.728526+00:00
+*** SERVICE NAME:(pdb1) 2026-07-10T14:00:48.728528+00:00
+*** MODULE NAME:(SQL*Plus) 2026-07-10T14:00:48.728531+00:00
+*** ACTION NAME:() 2026-07-10T14:00:48.728533+00:00
+*** CLIENT DRIVER:(SQL*PLUS) 2026-07-10T14:00:48.728535+00:00
+*** CONTAINER ID:(3) 2026-07-10T14:00:48.728537+00:00
+ 
+WAIT #139986510965104: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282649533
+WAIT #139986510965104: nam='SQL*Net message from client' ela= 96 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282649852
+CLOSE #139986510965104:c=2,e=2,dep=0,type=1,tim=261282649869
+=====================
+PARSING IN CURSOR #139986510958936 len=77 dep=0 uid=157 oct=42 lid=157 tim=261282650015 hv=2969241148 ad='0' sqlid='9hxcvkfsgq1jw'
+ALTER SESSION SET EVENTS '10507 trace name context forever, level 4294967295'
+END OF STMT
+PARSE #139986510958936:c=137,e=137,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=0,plh=0,tim=261282650015
+EXEC #139986510958936:c=0,e=95,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=0,plh=0,tim=261282650139
+WAIT #139986510958936: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282650161
+WAIT #139986510958936: nam='SQL*Net message from client' ela= 117 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282650286
+CLOSE #139986510958936:c=0,e=2,dep=0,type=1,tim=261282650307
+=====================
+PARSING IN CURSOR #139986510957264 len=25 dep=0 uid=157 oct=47 lid=157 tim=261282650341 hv=2873550897 ad='7ad0a918' sqlid='8xyp602pndu1j'
+begin
+    :grp := 1;
+end;
+END OF STMT
+PARSE #139986510957264:c=0,e=24,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=0,tim=261282650341
+BINDS #139986510957264:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1400000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126423e98  bln=2000  avl=05  flg=05
+  value="10000"
+WAIT #139986510957264: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282650414
+EXEC #139986510957264:c=0,e=64,p=0,cr=0,cu=0,mis=0,r=1,dep=0,og=1,plh=0,tim=261282650425
+WAIT #139986510957264: nam='SQL*Net message from client' ela= 117 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282650557
+CLOSE #139986510957264:c=5,e=5,dep=0,type=1,tim=261282650576
+=====================
+PARSING IN CURSOR #139986510955536 len=122 dep=0 uid=157 oct=3 lid=157 tim=261282650749 hv=3069924874 ad='83b489f8' sqlid='g89xvwavgqpha'
+select /*+ gather_plan_statistics */ grp_name, max(id), sum(price) from acs_test a where grp_name = :grp GROUP BY grp_name
+END OF STMT
+PARSE #139986510955536:c=164,e=164,p=0,cr=0,cu=0,mis=1,r=0,dep=0,og=1,plh=0,tim=261282650749
+****** Begin CFB Hints (APA) [sql_id=g89xvwavgqpha] xsc=0x7f5126424410 ctx=0x827a26c0 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+kkocsBindSensCheck: new elements found:1 total:1
+kkocsInitAdaptiveCtx: initialized Adaptive Sharing Ctx ****
+
+----- Bind Info (kkscoacd) -----
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422830  bln=2000  avl=01  flg=05
+  value="1"
+----- Current SQL Statement for this session (sql_id=g89xvwavgqpha) -----
+select /*+ gather_plan_statistics */ grp_name, max(id), sum(price) from acs_test a where grp_name = :grp GROUP BY grp_name
+----- Parser State -----
+Parser state1: len1=0 len2=123 pos1=122 pos2=122
+Parser state2: flg=0x0 xflg=0x4380000 xxflg=0x400
+Parser state3: tty=0 tlen=8
+Parser string: prx=0x7f512c7bad60 base=(nil) cur=0x7ffc98f567f2
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 201884475
+  Peeked Bind Bucket: none
+  Execution Histogram:
+    1: 0
+    1000: 0
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 0
+      Buffer Gets: 0
+      CPU Time: 0
+      # Executions: 0
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422830  bln=2000  avl=01  flg=05
+  value="1"
+EXEC #139986510955536:c=1344,e=2451,p=0,cr=0,cu=0,mis=1,r=0,dep=0,og=1,plh=2366003765,tim=261282653222
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 1 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282653250
+FETCH #139986510955536:c=44,e=44,p=0,cr=4,cu=0,mis=0,r=1,dep=0,og=1,plh=2366003765,tim=261282653315
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 104 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282653441
+FETCH #139986510955536:c=1,e=2,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282653456
+kkocsCheckStoreStats: sampling execution #1, sampling rate = 1
+ACS: Storing execution stats [sql_id=g89xvwavgqpha]
+  Bind Set:
+    Hash: 201884475
+  Exec Stats:
+    Rows Processed: 10
+    Buffer Gets: 4
+    CPU Time: 0
+    # Executions: 1
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 201884475
+  Peeked Bind Bucket: none
+  Execution Histogram:
+    1: 1
+    1000: 0
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 1
+      Buffer Gets: 4
+      CPU Time: 0
+      # Executions: 1
+STAT #139986510955536 id=1 cnt=1 pid=0 pos=1 obj=0 op='SORT GROUP BY NOSORT (cr=4 pr=0 pw=0 str=1 time=65 us cost=4 size=34 card=1)'
+STAT #139986510955536 id=2 cnt=2 pid=1 pos=1 obj=82025 op='TABLE ACCESS BY INDEX ROWID ACS_TEST (cr=4 pr=0 pw=0 str=1 time=40 us cost=4 size=68 card=2)'
+STAT #139986510955536 id=3 cnt=2 pid=2 pos=1 obj=82027 op='INDEX RANGE SCAN I (cr=3 pr=0 pw=0 str=1 time=31 us cost=3 size=0 card=2)'
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 1 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282654178
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 126 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282654310
+CLOSE #139986510955536:c=2,e=2,dep=0,type=0,tim=261282654326
+=====================
+PARSING IN CURSOR #139986510955536 len=122 dep=0 uid=157 oct=3 lid=157 tim=261282654372 hv=3069924874 ad='83b489f8' sqlid='g89xvwavgqpha'
+select /*+ gather_plan_statistics */ grp_name, max(id), sum(price) from acs_test a where grp_name = :grp GROUP BY grp_name
+END OF STMT
+PARSE #139986510955536:c=31,e=31,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282654372
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422830  bln=2000  avl=01  flg=05
+  value="1"
+EXEC #139986510955536:c=31,e=31,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282654425
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 1 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282654435
+FETCH #139986510955536:c=12,e=12,p=0,cr=4,cu=0,mis=0,r=1,dep=0,og=1,plh=2366003765,tim=261282654455
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 64 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282654530
+FETCH #139986510955536:c=1,e=1,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282654542
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 201884475
+  Peeked Bind Bucket: 0
+  Execution Histogram:
+    1: 2
+    1000: 0
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 2
+      Buffer Gets: 8
+      CPU Time: 0
+      # Executions: 2
+Execution Histogram:
+  1: 2
+  1000: 0
+  1000000: 0
+kkocsMarkBindAware: stats distance= 0.00
+Execution Histogram:
+  1: 2
+  1000: 0
+  1000000: 0
+kkocsMarkBindAware: stats distance= 0.00
+STAT #139986510955536 id=1 cnt=1 pid=0 pos=1 obj=0 op='SORT GROUP BY NOSORT (cr=4 pr=0 pw=0 str=1 time=17 us cost=4 size=34 card=1)'
+STAT #139986510955536 id=2 cnt=2 pid=1 pos=1 obj=82025 op='TABLE ACCESS BY INDEX ROWID ACS_TEST (cr=4 pr=0 pw=0 str=1 time=10 us cost=4 size=68 card=2)'
+STAT #139986510955536 id=3 cnt=2 pid=2 pos=1 obj=82027 op='INDEX RANGE SCAN I (cr=3 pr=0 pw=0 str=1 time=8 us cost=3 size=0 card=2)'
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282654633
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 110 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282654748
+CLOSE #139986510955536:c=2,e=2,dep=0,type=0,tim=261282654764
+=====================
+PARSING IN CURSOR #139986510955536 len=122 dep=0 uid=157 oct=3 lid=157 tim=261282654785 hv=3069924874 ad='83b489f8' sqlid='g89xvwavgqpha'
+select /*+ gather_plan_statistics */ grp_name, max(id), sum(price) from acs_test a where grp_name = :grp GROUP BY grp_name
+END OF STMT
+PARSE #139986510955536:c=10,e=10,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282654785
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422830  bln=2000  avl=01  flg=05
+  value="1"
+EXEC #139986510955536:c=53,e=53,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282654858
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282654868
+FETCH #139986510955536:c=9,e=10,p=0,cr=4,cu=0,mis=0,r=1,dep=0,og=1,plh=2366003765,tim=261282654903
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 58 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282654970
+FETCH #139986510955536:c=1,e=1,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282654983
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 201884475
+  Peeked Bind Bucket: 0
+  Execution Histogram:
+    1: 3
+    1000: 0
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 3
+      Buffer Gets: 12
+      CPU Time: 0
+      # Executions: 3
+Execution Histogram:
+  1: 3
+  1000: 0
+  1000000: 0
+kkocsMarkBindAware: stats distance= 0.00
+Execution Histogram:
+  1: 3
+  1000: 0
+  1000000: 0
+kkocsMarkBindAware: stats distance= 0.00
+STAT #139986510955536 id=1 cnt=1 pid=0 pos=1 obj=0 op='SORT GROUP BY NOSORT (cr=4 pr=0 pw=0 str=1 time=13 us cost=4 size=34 card=1)'
+STAT #139986510955536 id=2 cnt=2 pid=1 pos=1 obj=82025 op='TABLE ACCESS BY INDEX ROWID ACS_TEST (cr=4 pr=0 pw=0 str=1 time=8 us cost=4 size=68 card=2)'
+STAT #139986510955536 id=3 cnt=2 pid=2 pos=1 obj=82027 op='INDEX RANGE SCAN I (cr=3 pr=0 pw=0 str=1 time=6 us cost=3 size=0 card=2)'
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282655113
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 94 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282655226
+CLOSE #139986510955536:c=0,e=2,dep=0,type=1,tim=261282655242
+PARSE #139986510955536:c=0,e=5,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282655257
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422830  bln=2000  avl=01  flg=05
+  value="1"
+EXEC #139986510955536:c=0,e=28,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282655293
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 1 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282655303
+FETCH #139986510955536:c=0,e=9,p=0,cr=4,cu=0,mis=0,r=1,dep=0,og=1,plh=2366003765,tim=261282655319
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 69 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282655397
+FETCH #139986510955536:c=0,e=1,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282655414
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 201884475
+  Peeked Bind Bucket: 0
+  Execution Histogram:
+    1: 4
+    1000: 0
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 4
+      Buffer Gets: 16
+      CPU Time: 0
+      # Executions: 4
+Execution Histogram:
+  1: 4
+  1000: 0
+  1000000: 0
+kkocsMarkBindAware: stats distance= 0.00
+Execution Histogram:
+  1: 4
+  1000: 0
+  1000000: 0
+kkocsMarkBindAware: stats distance= 0.00
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282655464
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 99 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282655569
+CLOSE #139986510955536:c=2,e=2,dep=0,type=3,tim=261282655585
+=====================
+PARSING IN CURSOR #139986510953752 len=27 dep=0 uid=157 oct=47 lid=157 tim=261282655617 hv=4211999037 ad='7ad0cd80' sqlid='a8ufywbxhw09x'
+begin
+    :grp := 500;
+end;
+END OF STMT
+PARSE #139986510953752:c=23,e=23,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=0,tim=261282655617
+BINDS #139986510953752:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1400000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422830  bln=2000  avl=01  flg=05
+  value="1"
+WAIT #139986510953752: nam='SQL*Net message to client' ela= 1 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282655747
+EXEC #139986510953752:c=117,e=117,p=0,cr=0,cu=0,mis=0,r=1,dep=0,og=1,plh=0,tim=261282655754
+WAIT #139986510953752: nam='SQL*Net message from client' ela= 109 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282655872
+CLOSE #139986510953752:c=5,e=5,dep=0,type=1,tim=261282655889
+PARSE #139986510955536:c=6,e=6,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282655904
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422830  bln=2000  avl=03  flg=05
+  value="500"
+EXEC #139986510955536:c=28,e=28,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282655940
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282655949
+FETCH #139986510955536:c=236,e=236,p=0,cr=7,cu=0,mis=0,r=1,dep=0,og=1,plh=2366003765,tim=261282656193
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 58 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282656291
+FETCH #139986510955536:c=1,e=1,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282656305
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 201884475
+  Peeked Bind Bucket: 0
+  Execution Histogram:
+    1: 4
+    1000: 1
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 5
+      Buffer Gets: 23
+      CPU Time: 0
+      # Executions: 5
+Execution Histogram:
+  1: 4
+  1000: 1
+  1000000: 0
+kkocsMarkBindAware: stats distance= 0.20
+Execution Histogram:
+  1: 4
+  1000: 1
+  1000000: 0
+kkocsMarkBindAware: stats distance= 0.20
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282656354
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 106 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282656466
+CLOSE #139986510955536:c=2,e=2,dep=0,type=3,tim=261282656482
+PARSE #139986510955536:c=5,e=5,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282656496
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422830  bln=2000  avl=03  flg=05
+  value="500"
+EXEC #139986510955536:c=28,e=28,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282656533
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 1 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282656543
+FETCH #139986510955536:c=0,e=151,p=0,cr=7,cu=0,mis=0,r=1,dep=0,og=1,plh=2366003765,tim=261282656705
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 57 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282656773
+FETCH #139986510955536:c=0,e=2,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282656786
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 201884475
+  Peeked Bind Bucket: 0
+  Execution Histogram:
+    1: 4
+    1000: 2
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 6
+      Buffer Gets: 30
+      CPU Time: 0
+      # Executions: 6
+Execution Histogram:
+  1: 4
+  1000: 2
+  1000000: 0
+kkocsMarkBindAware: stats distance= 0.33
+Execution Histogram:
+  1: 4
+  1000: 2
+  1000000: 0
+kkocsMarkBindAware: stats distance= 0.33
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282656849
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 92 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282656947
+CLOSE #139986510955536:c=0,e=2,dep=0,type=3,tim=261282656962
+PARSE #139986510955536:c=0,e=5,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282656976
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422830  bln=2000  avl=03  flg=05
+  value="500"
+EXEC #139986510955536:c=0,e=67,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282657051
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 1 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282657061
+FETCH #139986510955536:c=153,e=153,p=0,cr=7,cu=0,mis=0,r=1,dep=0,og=1,plh=2366003765,tim=261282657221
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 97 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282657327
+FETCH #139986510955536:c=1,e=1,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282657340
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 201884475
+  Peeked Bind Bucket: 0
+  Execution Histogram:
+    1: 4
+    1000: 3
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 7
+      Buffer Gets: 37
+      CPU Time: 0
+      # Executions: 7
+Execution Histogram:
+  1: 4
+  1000: 3
+  1000000: 0
+kkocsMarkBindAware: stats distance= 0.43
+Execution Histogram:
+  1: 4
+  1000: 3
+  1000000: 0
+kkocsMarkBindAware: stats distance= 0.43
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282657389
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 98 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282657496
+CLOSE #139986510955536:c=2,e=2,dep=0,type=3,tim=261282657511
+PARSE #139986510955536:c=5,e=5,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282657525
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422830  bln=2000  avl=03  flg=05
+  value="500"
+EXEC #139986510955536:c=29,e=28,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282657561
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282657571
+FETCH #139986510955536:c=153,e=153,p=0,cr=7,cu=0,mis=0,r=1,dep=0,og=1,plh=2366003765,tim=261282657732
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 56 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282657798
+FETCH #139986510955536:c=1,e=1,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282657810
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 201884475
+  Peeked Bind Bucket: 0
+  Execution Histogram:
+    1: 4
+    1000: 4
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 8
+      Buffer Gets: 44
+      CPU Time: 0
+      # Executions: 8
+Execution Histogram:
+  1: 4
+  1000: 4
+  1000000: 0
+kkocsMarkBindAware: stats distance= 0.50
+kkocsMarkBindAware: Marked cursor bind aware
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282657870
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 109 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282657986
+CLOSE #139986510955536:c=2,e=2,dep=0,type=3,tim=261282658018
+=====================
+PARSING IN CURSOR #139986510951968 len=31 dep=0 uid=157 oct=47 lid=157 tim=261282658056 hv=3149027262 ad='7ac76cb0' sqlid='0td0sxfxv4pxy'
+begin
+    :grp := 2000000;
+end;
+END OF STMT
+PARSE #139986510951968:c=22,e=22,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=0,tim=261282658056
+BINDS #139986510951968:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1400000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422830  bln=2000  avl=03  flg=05
+  value="500"
+WAIT #139986510951968: nam='SQL*Net message to client' ela= 1 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282658110
+EXEC #139986510951968:c=0,e=39,p=0,cr=0,cu=0,mis=0,r=1,dep=0,og=1,plh=0,tim=261282658116
+WAIT #139986510951968: nam='SQL*Net message from client' ela= 95 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282658220
+CLOSE #139986510951968:c=0,e=20,dep=0,type=1,tim=261282658262
+PARSE #139986510955536:c=0,e=5,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261282658291
+****** Begin CFB Hints (APA) [sql_id=g89xvwavgqpha] xsc=0x7f5126424410 ctx=0x67cfa028 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+kkocsBindSensCheck: new elements found:1 total:1
+stat found - col=GRP_NAME, sig=1169562901
+kkocsPredSel: cursor matching selectivity: 0.7967
+kkocsInitAdaptiveCtx: initialized Adaptive Sharing Ctx ****
+
+----- Bind Info (kkscoacd) -----
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422418  bln=2000  avl=07  flg=05
+  value="2000000"
+----- Current SQL Statement for this session (sql_id=g89xvwavgqpha) -----
+select /*+ gather_plan_statistics */ grp_name, max(id), sum(price) from acs_test a where grp_name = :grp GROUP BY grp_name
+----- Parser State -----
+Parser state1: len1=0 len2=123 pos1=122 pos2=122
+Parser state2: flg=0x0 xflg=0x4380000 xxflg=0x0
+Parser state3: tty=0 tlen=8
+Parser string: prx=0x7f512c7bad60 base=(nil) cur=0x7f512c62bdc2
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 3640740885
+  Peeked Bind Bucket: none
+  Execution Histogram:
+    1: 0
+    1000: 0
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 0
+      Buffer Gets: 0
+      CPU Time: 0
+      # Executions: 0
+KKSMEC: Invalidating old cursor 0 with hash val = 2366003765
+KKSMEC: Produced New cursor 1 with hash val = 1723173041
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126422418  bln=2000  avl=07  flg=05
+  value="2000000"
+EXEC #139986510955536:c=608,e=859,p=0,cr=0,cu=0,mis=1,r=0,dep=0,og=1,plh=1723173041,tim=261282659200
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=-1 tim=261282659212
+WAIT #139986510955536: nam='asynch descriptor resize' ela= 5 outstanding #aio=0 current aio limit=0 new aio limit=128 obj#=82025 tim=261282660263
+WAIT #139986510955536: nam='Disk file operations I/O' ela= 47 FileOperation=2 fileno=12 filetype=2 obj#=82025 tim=261282660307
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=48715 block cnt=13 obj#=82025 tim=261282660376
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=48729 block cnt=15 obj#=82025 tim=261282660453
+WAIT #139986510955536: nam='direct path read' ela= 14 file number=12 first dba=48745 block cnt=15 obj#=82025 tim=261282660532
+WAIT #139986510955536: nam='direct path read' ela= 6 file number=12 first dba=48761 block cnt=7 obj#=82025 tim=261282660590
+WAIT #139986510955536: nam='direct path read' ela= 7 file number=12 first dba=55424 block cnt=8 obj#=82025 tim=261282660645
+WAIT #139986510955536: nam='direct path read' ela= 16 file number=12 first dba=55433 block cnt=15 obj#=82025 tim=261282660688
+WAIT #139986510955536: nam='direct path read' ela= 23 file number=12 first dba=55449 block cnt=15 obj#=82025 tim=261282660742
+WAIT #139986510955536: nam='direct path read' ela= 17 file number=12 first dba=55465 block cnt=15 obj#=82025 tim=261282660805
+WAIT #139986510955536: nam='direct path read' ela= 24 file number=12 first dba=55481 block cnt=15 obj#=82025 tim=261282660876
+WAIT #139986510955536: nam='direct path read' ela= 154 file number=12 first dba=55554 block cnt=62 obj#=82025 tim=261282661081
+WAIT #139986510955536: nam='direct path read' ela= 154 file number=12 first dba=55616 block cnt=64 obj#=82025 tim=261282661285
+WAIT #139986510955536: nam='direct path read' ela= 89 file number=12 first dba=55682 block cnt=62 obj#=82025 tim=261282661547
+WAIT #139986510955536: nam='direct path read' ela= 88 file number=12 first dba=55744 block cnt=64 obj#=82025 tim=261282661819
+WAIT #139986510955536: nam='direct path read' ela= 83 file number=12 first dba=55810 block cnt=62 obj#=82025 tim=261282662071
+WAIT #139986510955536: nam='direct path read' ela= 82 file number=12 first dba=55872 block cnt=64 obj#=82025 tim=261282662334
+WAIT #139986510955536: nam='direct path read' ela= 90 file number=12 first dba=55938 block cnt=62 obj#=82025 tim=261282662595
+WAIT #139986510955536: nam='direct path read' ela= 75 file number=12 first dba=56000 block cnt=64 obj#=82025 tim=261282662836
+WAIT #139986510955536: nam='direct path read' ela= 80 file number=12 first dba=56066 block cnt=62 obj#=82025 tim=261282663162
+WAIT #139986510955536: nam='direct path read' ela= 69 file number=12 first dba=56128 block cnt=64 obj#=82025 tim=261282663387
+WAIT #139986510955536: nam='direct path read' ela= 75 file number=12 first dba=56194 block cnt=62 obj#=82025 tim=261282663606
+WAIT #139986510955536: nam='direct path read' ela= 86 file number=12 first dba=56256 block cnt=64 obj#=82025 tim=261282663841
+WAIT #139986510955536: nam='direct path read' ela= 91 file number=12 first dba=56322 block cnt=62 obj#=82025 tim=261282664066
+WAIT #139986510955536: nam='direct path read' ela= 72 file number=12 first dba=56384 block cnt=64 obj#=82025 tim=261282664282
+WAIT #139986510955536: nam='direct path read' ela= 68 file number=12 first dba=56450 block cnt=62 obj#=82025 tim=261282664486
+WAIT #139986510955536: nam='direct path read' ela= 76 file number=12 first dba=56512 block cnt=64 obj#=82025 tim=261282664709
+WAIT #139986510955536: nam='direct path read' ela= 65 file number=12 first dba=56578 block cnt=62 obj#=82025 tim=261282664906
+WAIT #139986510955536: nam='direct path read' ela= 75 file number=12 first dba=56640 block cnt=64 obj#=82025 tim=261282665128
+WAIT #139986510955536: nam='direct path read' ela= 76 file number=12 first dba=56706 block cnt=62 obj#=82025 tim=261282665334
+WAIT #139986510955536: nam='direct path read' ela= 73 file number=12 first dba=56768 block cnt=64 obj#=82025 tim=261282665543
+WAIT #139986510955536: nam='direct path read' ela= 73 file number=12 first dba=56834 block cnt=62 obj#=82025 tim=261282665746
+WAIT #139986510955536: nam='direct path read' ela= 90 file number=12 first dba=56896 block cnt=64 obj#=82025 tim=261282665967
+WAIT #139986510955536: nam='direct path read' ela= 74 file number=12 first dba=56962 block cnt=62 obj#=82025 tim=261282666186
+WAIT #139986510955536: nam='direct path read' ela= 83 file number=12 first dba=57024 block cnt=64 obj#=82025 tim=261282666407
+WAIT #139986510955536: nam='direct path read' ela= 75 file number=12 first dba=57090 block cnt=62 obj#=82025 tim=261282666616
+WAIT #139986510955536: nam='direct path read' ela= 71 file number=12 first dba=57152 block cnt=64 obj#=82025 tim=261282666821
+WAIT #139986510955536: nam='direct path read' ela= 84 file number=12 first dba=57218 block cnt=62 obj#=82025 tim=261282667068
+WAIT #139986510955536: nam='direct path read' ela= 69 file number=12 first dba=57280 block cnt=64 obj#=82025 tim=261282667281
+WAIT #139986510955536: nam='direct path read' ela= 78 file number=12 first dba=57346 block cnt=62 obj#=82025 tim=261282667487
+WAIT #139986510955536: nam='direct path read' ela= 69 file number=12 first dba=57408 block cnt=64 obj#=82025 tim=261282667705
+WAIT #139986510955536: nam='direct path read' ela= 91 file number=12 first dba=57474 block cnt=62 obj#=82025 tim=261282667926
+WAIT #139986510955536: nam='direct path read' ela= 79 file number=12 first dba=57536 block cnt=64 obj#=82025 tim=261282668167
+WAIT #139986510955536: nam='direct path read' ela= 90 file number=12 first dba=57602 block cnt=62 obj#=82025 tim=261282668387
+WAIT #139986510955536: nam='direct path read' ela= 88 file number=12 first dba=57664 block cnt=64 obj#=82025 tim=261282668609
+WAIT #139986510955536: nam='direct path read' ela= 77 file number=12 first dba=57730 block cnt=62 obj#=82025 tim=261282668815
+WAIT #139986510955536: nam='direct path read' ela= 72 file number=12 first dba=57792 block cnt=64 obj#=82025 tim=261282669018
+WAIT #139986510955536: nam='direct path read' ela= 73 file number=12 first dba=57858 block cnt=62 obj#=82025 tim=261282669224
+WAIT #139986510955536: nam='direct path read' ela= 67 file number=12 first dba=57920 block cnt=64 obj#=82025 tim=261282669421
+WAIT #139986510955536: nam='direct path read' ela= 75 file number=12 first dba=57986 block cnt=62 obj#=82025 tim=261282669627
+WAIT #139986510955536: nam='direct path read' ela= 65 file number=12 first dba=58048 block cnt=64 obj#=82025 tim=261282669824
+WAIT #139986510955536: nam='direct path read' ela= 67 file number=12 first dba=58114 block cnt=62 obj#=82025 tim=261282670019
+WAIT #139986510955536: nam='direct path read' ela= 68 file number=12 first dba=58176 block cnt=64 obj#=82025 tim=261282670222
+WAIT #139986510955536: nam='direct path read' ela= 73 file number=12 first dba=48770 block cnt=62 obj#=82025 tim=261282671006
+WAIT #139986510955536: nam='direct path read' ela= 73 file number=12 first dba=48832 block cnt=64 obj#=82025 tim=261282671217
+WAIT #139986510955536: nam='direct path read' ela= 66 file number=12 first dba=48898 block cnt=62 obj#=82025 tim=261282672984
+WAIT #139986510955536: nam='direct path read' ela= 77 file number=12 first dba=48960 block cnt=64 obj#=82025 tim=261282674816
+WAIT #139986510955536: nam='direct path read' ela= 67 file number=12 first dba=49026 block cnt=62 obj#=82025 tim=261282676617
+WAIT #139986510955536: nam='direct path read' ela= 86 file number=12 first dba=49088 block cnt=64 obj#=82025 tim=261282678457
+WAIT #139986510955536: nam='direct path read' ela= 68 file number=12 first dba=49154 block cnt=62 obj#=82025 tim=261282680276
+WAIT #139986510955536: nam='direct path read' ela= 82 file number=12 first dba=49216 block cnt=64 obj#=82025 tim=261282682120
+WAIT #139986510955536: nam='direct path read' ela= 79 file number=12 first dba=49282 block cnt=62 obj#=82025 tim=261282683960
+WAIT #139986510955536: nam='direct path read' ela= 86 file number=12 first dba=49344 block cnt=64 obj#=82025 tim=261282685790
+WAIT #139986510955536: nam='direct path read' ela= 144 file number=12 first dba=49410 block cnt=62 obj#=82025 tim=261282688228
+WAIT #139986510955536: nam='direct path read' ela= 99 file number=12 first dba=49472 block cnt=64 obj#=82025 tim=261282690680
+WAIT #139986510955536: nam='direct path read' ela= 73 file number=12 first dba=49538 block cnt=62 obj#=82025 tim=261282692638
+WAIT #139986510955536: nam='direct path read' ela= 64 file number=12 first dba=49600 block cnt=64 obj#=82025 tim=261282694501
+WAIT #139986510955536: nam='direct path read' ela= 82 file number=12 first dba=49666 block cnt=62 obj#=82025 tim=261282696335
+WAIT #139986510955536: nam='direct path read' ela= 71 file number=12 first dba=49728 block cnt=64 obj#=82025 tim=261282698216
+WAIT #139986510955536: nam='direct path read' ela= 88 file number=12 first dba=49794 block cnt=62 obj#=82025 tim=261282700073
+WAIT #139986510955536: nam='direct path read' ela= 80 file number=12 first dba=49856 block cnt=64 obj#=82025 tim=261282701931
+WAIT #139986510955536: nam='direct path read' ela= 77 file number=12 first dba=49922 block cnt=62 obj#=82025 tim=261282703761
+WAIT #139986510955536: nam='direct path read' ela= 80 file number=12 first dba=49984 block cnt=64 obj#=82025 tim=261282705632
+WAIT #139986510955536: nam='direct path read' ela= 82 file number=12 first dba=50050 block cnt=62 obj#=82025 tim=261282707466
+WAIT #139986510955536: nam='direct path read' ela= 127 file number=12 first dba=50112 block cnt=64 obj#=82025 tim=261282709389
+WAIT #139986510955536: nam='direct path read' ela= 79 file number=12 first dba=50178 block cnt=62 obj#=82025 tim=261282711223
+WAIT #139986510955536: nam='direct path read' ela= 76 file number=12 first dba=50240 block cnt=64 obj#=82025 tim=261282713083
+WAIT #139986510955536: nam='direct path read' ela= 80 file number=12 first dba=50306 block cnt=62 obj#=82025 tim=261282714908
+WAIT #139986510955536: nam='direct path read' ela= 80 file number=12 first dba=50368 block cnt=64 obj#=82025 tim=261282716781
+WAIT #139986510955536: nam='direct path read' ela= 85 file number=12 first dba=50434 block cnt=62 obj#=82025 tim=261282720415
+WAIT #139986510955536: nam='direct path read' ela= 87 file number=12 first dba=50496 block cnt=64 obj#=82025 tim=261282720519
+WAIT #139986510955536: nam='direct path read' ela= 78 file number=12 first dba=50562 block cnt=62 obj#=82025 tim=261282722464
+WAIT #139986510955536: nam='direct path read' ela= 89 file number=12 first dba=50624 block cnt=64 obj#=82025 tim=261282724351
+WAIT #139986510955536: nam='direct path read' ela= 81 file number=12 first dba=50690 block cnt=62 obj#=82025 tim=261282726183
+WAIT #139986510955536: nam='direct path read' ela= 83 file number=12 first dba=50752 block cnt=64 obj#=82025 tim=261282728060
+WAIT #139986510955536: nam='direct path read' ela= 59 file number=12 first dba=50818 block cnt=62 obj#=82025 tim=261282729872
+WAIT #139986510955536: nam='direct path read' ela= 76 file number=12 first dba=50880 block cnt=64 obj#=82025 tim=261282731747
+WAIT #139986510955536: nam='direct path read' ela= 74 file number=12 first dba=50946 block cnt=62 obj#=82025 tim=261282733558
+WAIT #139986510955536: nam='direct path read' ela= 66 file number=12 first dba=51008 block cnt=64 obj#=82025 tim=261282735408
+WAIT #139986510955536: nam='direct path read' ela= 72 file number=12 first dba=51074 block cnt=62 obj#=82025 tim=261282737228
+WAIT #139986510955536: nam='direct path read' ela= 58 file number=12 first dba=51136 block cnt=64 obj#=82025 tim=261282739083
+WAIT #139986510955536: nam='direct path read' ela= 66 file number=12 first dba=51202 block cnt=62 obj#=82025 tim=261282740899
+WAIT #139986510955536: nam='direct path read' ela= 66 file number=12 first dba=51264 block cnt=64 obj#=82025 tim=261282742765
+WAIT #139986510955536: nam='direct path read' ela= 69 file number=12 first dba=51330 block cnt=62 obj#=82025 tim=261282744572
+WAIT #139986510955536: nam='direct path read' ela= 74 file number=12 first dba=51392 block cnt=64 obj#=82025 tim=261282746437
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=51458 block cnt=62 obj#=82025 tim=261282748250
+WAIT #139986510955536: nam='direct path read' ela= 59 file number=12 first dba=51520 block cnt=64 obj#=82025 tim=261282750104
+WAIT #139986510955536: nam='direct path read' ela= 80 file number=12 first dba=51586 block cnt=62 obj#=82025 tim=261282751896
+WAIT #139986510955536: nam='direct path read' ela= 63 file number=12 first dba=51648 block cnt=64 obj#=82025 tim=261282753725
+WAIT #139986510955536: nam='direct path read' ela= 66 file number=12 first dba=51714 block cnt=62 obj#=82025 tim=261282755532
+WAIT #139986510955536: nam='direct path read' ela= 62 file number=12 first dba=51776 block cnt=64 obj#=82025 tim=261282757355
+WAIT #139986510955536: nam='direct path read' ela= 70 file number=12 first dba=51842 block cnt=62 obj#=82025 tim=261282759164
+WAIT #139986510955536: nam='direct path read' ela= 66 file number=12 first dba=51904 block cnt=64 obj#=82025 tim=261282760986
+WAIT #139986510955536: nam='direct path read' ela= 64 file number=12 first dba=51970 block cnt=62 obj#=82025 tim=261282762760
+WAIT #139986510955536: nam='direct path read' ela= 85 file number=12 first dba=52032 block cnt=64 obj#=82025 tim=261282764607
+WAIT #139986510955536: nam='direct path read' ela= 59 file number=12 first dba=52098 block cnt=62 obj#=82025 tim=261282766397
+WAIT #139986510955536: nam='direct path read' ela= 62 file number=12 first dba=52160 block cnt=64 obj#=82025 tim=261282768264
+WAIT #139986510955536: nam='direct path read' ela= 88 file number=12 first dba=52226 block cnt=62 obj#=82025 tim=261282770050
+WAIT #139986510955536: nam='direct path read' ela= 73 file number=12 first dba=52288 block cnt=64 obj#=82025 tim=261282771869
+WAIT #139986510955536: nam='direct path read' ela= 71 file number=12 first dba=52354 block cnt=62 obj#=82025 tim=261282773653
+WAIT #139986510955536: nam='direct path read' ela= 65 file number=12 first dba=52416 block cnt=64 obj#=82025 tim=261282775481
+WAIT #139986510955536: nam='direct path read' ela= 62 file number=12 first dba=52482 block cnt=62 obj#=82025 tim=261282777264
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=52544 block cnt=64 obj#=82025 tim=261282779071
+WAIT #139986510955536: nam='direct path read' ela= 70 file number=12 first dba=52610 block cnt=62 obj#=82025 tim=261282780851
+WAIT #139986510955536: nam='direct path read' ela= 76 file number=12 first dba=52672 block cnt=64 obj#=82025 tim=261282782685
+WAIT #139986510955536: nam='direct path read' ela= 63 file number=12 first dba=52738 block cnt=62 obj#=82025 tim=261282784469
+WAIT #139986510955536: nam='direct path read' ela= 89 file number=12 first dba=52800 block cnt=64 obj#=82025 tim=261282786303
+WAIT #139986510955536: nam='direct path read' ela= 69 file number=12 first dba=52866 block cnt=62 obj#=82025 tim=261282788087
+WAIT #139986510955536: nam='direct path read' ela= 73 file number=12 first dba=52928 block cnt=64 obj#=82025 tim=261282789912
+WAIT #139986510955536: nam='direct path read' ela= 68 file number=12 first dba=52994 block cnt=62 obj#=82025 tim=261282791733
+WAIT #139986510955536: nam='direct path read' ela= 77 file number=12 first dba=53056 block cnt=64 obj#=82025 tim=261282793537
+WAIT #139986510955536: nam='direct path read' ela= 59 file number=12 first dba=53122 block cnt=62 obj#=82025 tim=261282795308
+WAIT #139986510955536: nam='direct path read' ela= 83 file number=12 first dba=53184 block cnt=64 obj#=82025 tim=261282797114
+WAIT #139986510955536: nam='direct path read' ela= 77 file number=12 first dba=53250 block cnt=62 obj#=82025 tim=261282798867
+WAIT #139986510955536: nam='direct path read' ela= 73 file number=12 first dba=53312 block cnt=64 obj#=82025 tim=261282800664
+WAIT #139986510955536: nam='direct path read' ela= 65 file number=12 first dba=53378 block cnt=62 obj#=82025 tim=261282802400
+WAIT #139986510955536: nam='direct path read' ela= 78 file number=12 first dba=53440 block cnt=64 obj#=82025 tim=261282804271
+WAIT #139986510955536: nam='direct path read' ela= 79 file number=12 first dba=53506 block cnt=62 obj#=82025 tim=261282806023
+WAIT #139986510955536: nam='direct path read' ela= 74 file number=12 first dba=53568 block cnt=64 obj#=82025 tim=261282807821
+WAIT #139986510955536: nam='direct path read' ela= 67 file number=12 first dba=53634 block cnt=62 obj#=82025 tim=261282809555
+WAIT #139986510955536: nam='direct path read' ela= 69 file number=12 first dba=53696 block cnt=64 obj#=82025 tim=261282811374
+WAIT #139986510955536: nam='direct path read' ela= 68 file number=12 first dba=53762 block cnt=62 obj#=82025 tim=261282813123
+WAIT #139986510955536: nam='direct path read' ela= 68 file number=12 first dba=53824 block cnt=64 obj#=82025 tim=261282814912
+WAIT #139986510955536: nam='direct path read' ela= 68 file number=12 first dba=53890 block cnt=62 obj#=82025 tim=261282816648
+WAIT #139986510955536: nam='direct path read' ela= 66 file number=12 first dba=53952 block cnt=64 obj#=82025 tim=261282818428
+WAIT #139986510955536: nam='direct path read' ela= 63 file number=12 first dba=54017 block cnt=63 obj#=82025 tim=261282820216
+WAIT #139986510955536: nam='direct path read' ela= 58 file number=12 first dba=54080 block cnt=64 obj#=82025 tim=261282821991
+WAIT #139986510955536: nam='direct path read' ela= 64 file number=12 first dba=54148 block cnt=60 obj#=82025 tim=261282823781
+WAIT #139986510955536: nam='direct path read' ela= 63 file number=12 first dba=54208 block cnt=64 obj#=82025 tim=261282825555
+WAIT #139986510955536: nam='direct path read' ela= 65 file number=12 first dba=54272 block cnt=64 obj#=82025 tim=261282827288
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=54336 block cnt=64 obj#=82025 tim=261282829066
+WAIT #139986510955536: nam='direct path read' ela= 59 file number=12 first dba=54400 block cnt=64 obj#=82025 tim=261282830826
+WAIT #139986510955536: nam='direct path read' ela= 63 file number=12 first dba=54464 block cnt=64 obj#=82025 tim=261282832651
+WAIT #139986510955536: nam='direct path read' ela= 59 file number=12 first dba=54528 block cnt=64 obj#=82025 tim=261282834430
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=54592 block cnt=64 obj#=82025 tim=261282836250
+WAIT #139986510955536: nam='direct path read' ela= 82 file number=12 first dba=54656 block cnt=64 obj#=82025 tim=261282838038
+WAIT #139986510955536: nam='direct path read' ela= 68 file number=12 first dba=54720 block cnt=64 obj#=82025 tim=261282839847
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=54784 block cnt=64 obj#=82025 tim=261282841621
+WAIT #139986510955536: nam='direct path read' ela= 63 file number=12 first dba=54848 block cnt=64 obj#=82025 tim=261282843446
+WAIT #139986510955536: nam='direct path read' ela= 66 file number=12 first dba=54912 block cnt=64 obj#=82025 tim=261282845233
+WAIT #139986510955536: nam='direct path read' ela= 69 file number=12 first dba=54976 block cnt=64 obj#=82025 tim=261282847043
+WAIT #139986510955536: nam='direct path read' ela= 63 file number=12 first dba=55040 block cnt=64 obj#=82025 tim=261282848820
+WAIT #139986510955536: nam='direct path read' ela= 64 file number=12 first dba=55104 block cnt=64 obj#=82025 tim=261282850604
+WAIT #139986510955536: nam='direct path read' ela= 61 file number=12 first dba=42116 block cnt=60 obj#=82025 tim=261282852427
+WAIT #139986510955536: nam='direct path read' ela= 59 file number=12 first dba=42176 block cnt=64 obj#=82025 tim=261282854199
+WAIT #139986510955536: nam='direct path read' ela= 60 file number=12 first dba=42240 block cnt=64 obj#=82025 tim=261282855908
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=42304 block cnt=64 obj#=82025 tim=261282857689
+WAIT #139986510955536: nam='direct path read' ela= 65 file number=12 first dba=42368 block cnt=64 obj#=82025 tim=261282859513
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=42432 block cnt=64 obj#=82025 tim=261282861275
+WAIT #139986510955536: nam='direct path read' ela= 65 file number=12 first dba=42496 block cnt=64 obj#=82025 tim=261282863084
+WAIT #139986510955536: nam='direct path read' ela= 60 file number=12 first dba=42560 block cnt=64 obj#=82025 tim=261282864860
+WAIT #139986510955536: nam='direct path read' ela= 59 file number=12 first dba=42624 block cnt=64 obj#=82025 tim=261282866639
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=42688 block cnt=64 obj#=82025 tim=261282868447
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=42752 block cnt=64 obj#=82025 tim=261282870208
+WAIT #139986510955536: nam='direct path read' ela= 69 file number=12 first dba=42816 block cnt=64 obj#=82025 tim=261282872025
+WAIT #139986510955536: nam='direct path read' ela= 66 file number=12 first dba=42880 block cnt=64 obj#=82025 tim=261282873805
+WAIT #139986510955536: nam='direct path read' ela= 65 file number=12 first dba=42944 block cnt=64 obj#=82025 tim=261282875635
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=43008 block cnt=64 obj#=82025 tim=261282877398
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=43072 block cnt=64 obj#=82025 tim=261282879219
+WAIT #139986510955536: nam='direct path read' ela= 61 file number=12 first dba=43140 block cnt=60 obj#=82025 tim=261282880993
+WAIT #139986510955536: nam='direct path read' ela= 70 file number=12 first dba=43200 block cnt=64 obj#=82025 tim=261282882785
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=43264 block cnt=64 obj#=82025 tim=261282884489
+WAIT #139986510955536: nam='direct path read' ela= 68 file number=12 first dba=43328 block cnt=64 obj#=82025 tim=261282886276
+WAIT #139986510955536: nam='direct path read' ela= 81 file number=12 first dba=43392 block cnt=64 obj#=82025 tim=261282888072
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=43456 block cnt=64 obj#=82025 tim=261282889840
+WAIT #139986510955536: nam='direct path read' ela= 60 file number=12 first dba=43520 block cnt=64 obj#=82025 tim=261282891647
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=43584 block cnt=64 obj#=82025 tim=261282893412
+WAIT #139986510955536: nam='direct path read' ela= 65 file number=12 first dba=43648 block cnt=64 obj#=82025 tim=261282895210
+WAIT #139986510955536: nam='direct path read' ela= 64 file number=12 first dba=43712 block cnt=64 obj#=82025 tim=261282896952
+WAIT #139986510955536: nam='direct path read' ela= 61 file number=12 first dba=43776 block cnt=64 obj#=82025 tim=261282898682
+WAIT #139986510955536: nam='direct path read' ela= 58 file number=12 first dba=43840 block cnt=64 obj#=82025 tim=261282900514
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43904 block cnt=64 obj#=82025 tim=261282902268
+WAIT #139986510955536: nam='direct path read' ela= 86 file number=12 first dba=43968 block cnt=64 obj#=82025 tim=261282904081
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=44032 block cnt=64 obj#=82025 tim=261282905842
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=44096 block cnt=64 obj#=82025 tim=261282907717
+WAIT #139986510955536: nam='direct path read' ela= 62 file number=12 first dba=44164 block cnt=60 obj#=82025 tim=261282909533
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=44224 block cnt=64 obj#=82025 tim=261282911352
+WAIT #139986510955536: nam='direct path read' ela= 81 file number=12 first dba=44288 block cnt=64 obj#=82025 tim=261282913071
+WAIT #139986510955536: nam='direct path read' ela= 106 file number=12 first dba=44352 block cnt=64 obj#=82025 tim=261282914925
+WAIT #139986510955536: nam='direct path read' ela= 79 file number=12 first dba=44416 block cnt=64 obj#=82025 tim=261282916722
+WAIT #139986510955536: nam='direct path read' ela= 74 file number=12 first dba=44480 block cnt=64 obj#=82025 tim=261282918568
+WAIT #139986510955536: nam='direct path read' ela= 70 file number=12 first dba=44544 block cnt=64 obj#=82025 tim=261282920404
+WAIT #139986510955536: nam='direct path read' ela= 82 file number=12 first dba=44608 block cnt=64 obj#=82025 tim=261282922200
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=44672 block cnt=64 obj#=82025 tim=261282923970
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=44736 block cnt=64 obj#=82025 tim=261282925706
+WAIT #139986510955536: nam='direct path read' ela= 61 file number=12 first dba=44800 block cnt=64 obj#=82025 tim=261282927490
+WAIT #139986510955536: nam='direct path read' ela= 59 file number=12 first dba=44864 block cnt=64 obj#=82025 tim=261282929225
+WAIT #139986510955536: nam='direct path read' ela= 74 file number=12 first dba=44928 block cnt=64 obj#=82025 tim=261282931011
+WAIT #139986510955536: nam='direct path read' ela= 61 file number=12 first dba=44992 block cnt=64 obj#=82025 tim=261282932754
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=45056 block cnt=64 obj#=82025 tim=261282934525
+WAIT #139986510955536: nam='direct path read' ela= 66 file number=12 first dba=45120 block cnt=64 obj#=82025 tim=261282936321
+WAIT #139986510955536: nam='direct path read' ela= 72 file number=12 first dba=45188 block cnt=60 obj#=82025 tim=261282938070
+WAIT #139986510955536: nam='direct path read' ela= 61 file number=12 first dba=45248 block cnt=64 obj#=82025 tim=261282939854
+WAIT #139986510955536: nam='direct path read' ela= 60 file number=12 first dba=45312 block cnt=64 obj#=82025 tim=261282941508
+WAIT #139986510955536: nam='direct path read' ela= 68 file number=12 first dba=45376 block cnt=64 obj#=82025 tim=261282943309
+WAIT #139986510955536: nam='direct path read' ela= 73 file number=12 first dba=45440 block cnt=64 obj#=82025 tim=261282945065
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=45504 block cnt=64 obj#=82025 tim=261282946800
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=45568 block cnt=64 obj#=82025 tim=261282948590
+WAIT #139986510955536: nam='direct path read' ela= 66 file number=12 first dba=45632 block cnt=64 obj#=82025 tim=261282950332
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=45696 block cnt=64 obj#=82025 tim=261282952138
+WAIT #139986510955536: nam='direct path read' ela= 69 file number=12 first dba=45760 block cnt=64 obj#=82025 tim=261282953887
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=45824 block cnt=64 obj#=82025 tim=261282955679
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=45888 block cnt=64 obj#=82025 tim=261282957404
+WAIT #139986510955536: nam='direct path read' ela= 60 file number=12 first dba=45952 block cnt=64 obj#=82025 tim=261282959196
+WAIT #139986510955536: nam='direct path read' ela= 61 file number=12 first dba=46016 block cnt=64 obj#=82025 tim=261282960938
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=46080 block cnt=64 obj#=82025 tim=261282962662
+WAIT #139986510955536: nam='direct path read' ela= 58 file number=12 first dba=46144 block cnt=64 obj#=82025 tim=261282964454
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=46212 block cnt=60 obj#=82025 tim=261282966206
+WAIT #139986510955536: nam='direct path read' ela= 88 file number=12 first dba=46272 block cnt=64 obj#=82025 tim=261282968054
+WAIT #139986510955536: nam='direct path read' ela= 67 file number=12 first dba=46336 block cnt=64 obj#=82025 tim=261282968527
+WAIT #139986510955536: nam='direct path read' ela= 83 file number=12 first dba=46400 block cnt=64 obj#=82025 tim=261282969076
+WAIT #139986510955536: nam='direct path read' ela= 62 file number=12 first dba=46464 block cnt=64 obj#=82025 tim=261282969515
+WAIT #139986510955536: nam='direct path read' ela= 71 file number=12 first dba=46528 block cnt=64 obj#=82025 tim=261282969949
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=46592 block cnt=64 obj#=82025 tim=261282971763
+WAIT #139986510955536: nam='direct path read' ela= 68 file number=12 first dba=46656 block cnt=64 obj#=82025 tim=261282973548
+WAIT #139986510955536: nam='direct path read' ela= 66 file number=12 first dba=46720 block cnt=64 obj#=82025 tim=261282975351
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=46784 block cnt=64 obj#=82025 tim=261282977092
+WAIT #139986510955536: nam='direct path read' ela= 100 file number=12 first dba=46848 block cnt=64 obj#=82025 tim=261282978895
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=46912 block cnt=64 obj#=82025 tim=261282980882
+WAIT #139986510955536: nam='direct path read' ela= 66 file number=12 first dba=46976 block cnt=64 obj#=82025 tim=261282982695
+WAIT #139986510955536: nam='direct path read' ela= 61 file number=12 first dba=47040 block cnt=64 obj#=82025 tim=261282984524
+WAIT #139986510955536: nam='direct path read' ela= 63 file number=12 first dba=47104 block cnt=64 obj#=82025 tim=261282986346
+WAIT #139986510955536: nam='direct path read' ela= 78 file number=12 first dba=47168 block cnt=64 obj#=82025 tim=261282988180
+FETCH #139986510955536:c=329399,e=332377,p=14177,cr=14180,cu=0,mis=0,r=1,dep=0,og=1,plh=1723173041,tim=261282991603
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 230 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261282991871
+FETCH #139986510955536:c=3,e=2,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=1723173041,tim=261282991894
+kkocsCheckStoreStats: sampling execution #1, sampling rate = 1
+ACS: Storing execution stats [sql_id=g89xvwavgqpha]
+  Bind Set:
+    Hash: 3640740885
+  Exec Stats:
+    Rows Processed: 4000002
+    Buffer Gets: 14180
+    CPU Time: 0
+    # Executions: 1
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 3640740885
+  Peeked Bind Bucket: none
+  Execution Histogram:
+    1: 0
+    1000: 0
+    1000000: 1
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 1
+      Buffer Gets: 14180
+      CPU Time: 0
+      # Executions: 1
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261282991967
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 213 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261282992188
+CLOSE #139986510955536:c=4,e=3,dep=0,type=0,tim=261282992212
+WAIT #0: nam='PGA memory operation' ela= 39 which=5 bytes=786432 where=4 obj#=82025 tim=261282992309
+=====================
+PARSING IN CURSOR #139986510955536 len=122 dep=0 uid=157 oct=3 lid=157 tim=261282992361 hv=3069924874 ad='83b489f8' sqlid='g89xvwavgqpha'
+select /*+ gather_plan_statistics */ grp_name, max(id), sum(price) from acs_test a where grp_name = :grp GROUP BY grp_name
+END OF STMT
+PARSE #139986510955536:c=32,e=33,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=1723173041,tim=261282992361
+Checking bind equivalence for child #1
+
+----- Bind Info (kxscoacd) -----
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412830  bln=2000  avl=07  flg=05
+  value="2000000"
+kkslMatchEquivLiterals: initialized range vector, length=1
+kkocsPredSel: cursor matching selectivity: 0.7967
+kkscsFindMatchingRange: Matching ranges so far: [1 ]
+kkscsFindMatchingRange: mysel = 0.796654, cursel_start = 0.716989, cursel_end =0.876319  <- range matches
+kkocsFindMatchingRange: Matching ranges after update: [1 
+kkscsFindMatchingRange: found equivalent bind set
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412830  bln=2000  avl=07  flg=05
+  value="2000000"
+EXEC #139986510955536:c=92,e=92,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=1723173041,tim=261282992476
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261282992489
+WAIT #139986510955536: nam='direct path read' ela= 21 file number=12 first dba=48715 block cnt=13 obj#=82025 tim=261282992587
+WAIT #139986510955536: nam='direct path read' ela= 15 file number=12 first dba=48729 block cnt=15 obj#=82025 tim=261282992616
+WAIT #139986510955536: nam='direct path read' ela= 10 file number=12 first dba=48745 block cnt=15 obj#=82025 tim=261282992665
+WAIT #139986510955536: nam='direct path read' ela= 5 file number=12 first dba=48761 block cnt=7 obj#=82025 tim=261282992706
+WAIT #139986510955536: nam='direct path read' ela= 6 file number=12 first dba=55424 block cnt=8 obj#=82025 tim=261282992749
+WAIT #139986510955536: nam='direct path read' ela= 27 file number=12 first dba=55433 block cnt=15 obj#=82025 tim=261282992797
+WAIT #139986510955536: nam='direct path read' ela= 13 file number=12 first dba=55449 block cnt=15 obj#=82025 tim=261282992836
+WAIT #139986510955536: nam='direct path read' ela= 13 file number=12 first dba=55465 block cnt=15 obj#=82025 tim=261282992884
+WAIT #139986510955536: nam='direct path read' ela= 14 file number=12 first dba=55481 block cnt=15 obj#=82025 tim=261282992934
+WAIT #139986510955536: nam='direct path read' ela= 90 file number=12 first dba=55554 block cnt=62 obj#=82025 tim=261282993059
+WAIT #139986510955536: nam='direct path read' ela= 97 file number=12 first dba=55616 block cnt=64 obj#=82025 tim=261282993208
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=55682 block cnt=62 obj#=82025 tim=261282993392
+WAIT #139986510955536: nam='direct path read' ela= 62 file number=12 first dba=55744 block cnt=64 obj#=82025 tim=261282993585
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=55810 block cnt=62 obj#=82025 tim=261282993765
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=55872 block cnt=64 obj#=82025 tim=261282993948
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=55938 block cnt=62 obj#=82025 tim=261282994137
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=56000 block cnt=64 obj#=82025 tim=261282994329
+WAIT #139986510955536: nam='direct path read' ela= 58 file number=12 first dba=56066 block cnt=62 obj#=82025 tim=261282994511
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=56128 block cnt=64 obj#=82025 tim=261282994694
+WAIT #139986510955536: nam='direct path read' ela= 94 file number=12 first dba=56194 block cnt=62 obj#=82025 tim=261282994913
+WAIT #139986510955536: nam='direct path read' ela= 70 file number=12 first dba=56256 block cnt=64 obj#=82025 tim=261282995166
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=56322 block cnt=62 obj#=82025 tim=261282995348
+WAIT #139986510955536: nam='direct path read' ela= 69 file number=12 first dba=56384 block cnt=64 obj#=82025 tim=261282995546
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=56450 block cnt=62 obj#=82025 tim=261282995727
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=56512 block cnt=64 obj#=82025 tim=261282995913
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=56578 block cnt=62 obj#=82025 tim=261282996096
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=56640 block cnt=64 obj#=82025 tim=261282996297
+WAIT #139986510955536: nam='direct path read' ela= 58 file number=12 first dba=56706 block cnt=62 obj#=82025 tim=261282996479
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=56768 block cnt=64 obj#=82025 tim=261282996662
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=56834 block cnt=62 obj#=82025 tim=261282996839
+WAIT #139986510955536: nam='direct path read' ela= 64 file number=12 first dba=56896 block cnt=64 obj#=82025 tim=261282997032
+WAIT #139986510955536: nam='direct path read' ela= 60 file number=12 first dba=56962 block cnt=62 obj#=82025 tim=261282997220
+WAIT #139986510955536: nam='direct path read' ela= 59 file number=12 first dba=57024 block cnt=64 obj#=82025 tim=261282997416
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=57090 block cnt=62 obj#=82025 tim=261282997593
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=57152 block cnt=64 obj#=82025 tim=261282997780
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=57218 block cnt=62 obj#=82025 tim=261282997961
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=57280 block cnt=64 obj#=82025 tim=261282998155
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=57346 block cnt=62 obj#=82025 tim=261282998353
+WAIT #139986510955536: nam='direct path read' ela= 61 file number=12 first dba=57408 block cnt=64 obj#=82025 tim=261282998548
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=57474 block cnt=62 obj#=82025 tim=261282998724
+WAIT #139986510955536: nam='direct path read' ela= 100 file number=12 first dba=57536 block cnt=64 obj#=82025 tim=261282998958
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=57602 block cnt=62 obj#=82025 tim=261282999144
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=57664 block cnt=64 obj#=82025 tim=261282999349
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=57730 block cnt=62 obj#=82025 tim=261282999527
+WAIT #139986510955536: nam='direct path read' ela= 58 file number=12 first dba=57792 block cnt=64 obj#=82025 tim=261282999714
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=57858 block cnt=62 obj#=82025 tim=261282999891
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=57920 block cnt=64 obj#=82025 tim=261283000078
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=57986 block cnt=62 obj#=82025 tim=261283000261
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=58048 block cnt=64 obj#=82025 tim=261283000443
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=58114 block cnt=62 obj#=82025 tim=261283000619
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=58176 block cnt=64 obj#=82025 tim=261283000799
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=48770 block cnt=62 obj#=82025 tim=261283001557
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=48832 block cnt=64 obj#=82025 tim=261283001744
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=48898 block cnt=62 obj#=82025 tim=261283003591
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=48960 block cnt=64 obj#=82025 tim=261283005407
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=49026 block cnt=62 obj#=82025 tim=261283007256
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=49088 block cnt=64 obj#=82025 tim=261283009107
+WAIT #139986510955536: nam='direct path read' ela= 92 file number=12 first dba=49154 block cnt=62 obj#=82025 tim=261283010909
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=49216 block cnt=64 obj#=82025 tim=261283012728
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=49282 block cnt=62 obj#=82025 tim=261283014501
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=49344 block cnt=64 obj#=82025 tim=261283016346
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=49410 block cnt=62 obj#=82025 tim=261283018118
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=49472 block cnt=64 obj#=82025 tim=261283019964
+
+*** 2026-07-10T14:00:49.100551+00:00 (PDB1(3))
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=49538 block cnt=62 obj#=82025 tim=261283021732
+WAIT #139986510955536: nam='direct path read' ela= 58 file number=12 first dba=49600 block cnt=64 obj#=82025 tim=261283023592
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=49666 block cnt=62 obj#=82025 tim=261283025350
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=49728 block cnt=64 obj#=82025 tim=261283027212
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=49794 block cnt=62 obj#=82025 tim=261283028981
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=49856 block cnt=64 obj#=82025 tim=261283030796
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=49922 block cnt=62 obj#=82025 tim=261283032597
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=49984 block cnt=64 obj#=82025 tim=261283034413
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=50050 block cnt=62 obj#=82025 tim=261283036189
+WAIT #139986510955536: nam='direct path read' ela= 60 file number=12 first dba=50112 block cnt=64 obj#=82025 tim=261283038004
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=50178 block cnt=62 obj#=82025 tim=261283039798
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=50240 block cnt=64 obj#=82025 tim=261283041601
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=50306 block cnt=62 obj#=82025 tim=261283043420
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=50368 block cnt=64 obj#=82025 tim=261283045235
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=50434 block cnt=62 obj#=82025 tim=261283048777
+WAIT #139986510955536: nam='direct path read' ela= 60 file number=12 first dba=50496 block cnt=64 obj#=82025 tim=261283048852
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=50562 block cnt=62 obj#=82025 tim=261283050619
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=50624 block cnt=64 obj#=82025 tim=261283052473
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=50690 block cnt=62 obj#=82025 tim=261283054246
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=50752 block cnt=64 obj#=82025 tim=261283056132
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=50818 block cnt=62 obj#=82025 tim=261283057878
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=50880 block cnt=64 obj#=82025 tim=261283059718
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=50946 block cnt=62 obj#=82025 tim=261283061481
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=51008 block cnt=64 obj#=82025 tim=261283063323
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=51074 block cnt=62 obj#=82025 tim=261283065075
+WAIT #139986510955536: nam='direct path read' ela= 85 file number=12 first dba=51136 block cnt=64 obj#=82025 tim=261283066917
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=51202 block cnt=62 obj#=82025 tim=261283068681
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=51264 block cnt=64 obj#=82025 tim=261283070497
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=51330 block cnt=62 obj#=82025 tim=261283072253
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=51392 block cnt=64 obj#=82025 tim=261283074048
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=51458 block cnt=62 obj#=82025 tim=261283075845
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=51520 block cnt=64 obj#=82025 tim=261283077653
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=51586 block cnt=62 obj#=82025 tim=261283079423
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=51648 block cnt=64 obj#=82025 tim=261283081204
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=51714 block cnt=62 obj#=82025 tim=261283082935
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=51776 block cnt=64 obj#=82025 tim=261283084713
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=51842 block cnt=62 obj#=82025 tim=261283086437
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=51904 block cnt=64 obj#=82025 tim=261283088241
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=51970 block cnt=62 obj#=82025 tim=261283089965
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=52032 block cnt=64 obj#=82025 tim=261283091783
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=52098 block cnt=62 obj#=82025 tim=261283093503
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=52160 block cnt=64 obj#=82025 tim=261283095280
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=52226 block cnt=62 obj#=82025 tim=261283097012
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=52288 block cnt=64 obj#=82025 tim=261283098779
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=52354 block cnt=62 obj#=82025 tim=261283100542
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=52416 block cnt=64 obj#=82025 tim=261283102317
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=52482 block cnt=62 obj#=82025 tim=261283104083
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=52544 block cnt=64 obj#=82025 tim=261283105850
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=52610 block cnt=62 obj#=82025 tim=261283107606
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=52672 block cnt=64 obj#=82025 tim=261283109381
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=52738 block cnt=62 obj#=82025 tim=261283111152
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=52800 block cnt=64 obj#=82025 tim=261283112926
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=52866 block cnt=62 obj#=82025 tim=261283114645
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=52928 block cnt=64 obj#=82025 tim=261283116460
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=52994 block cnt=62 obj#=82025 tim=261283118186
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=53056 block cnt=64 obj#=82025 tim=261283119995
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=53122 block cnt=62 obj#=82025 tim=261283121717
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=53184 block cnt=64 obj#=82025 tim=261283123531
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=53250 block cnt=62 obj#=82025 tim=261283125264
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=53312 block cnt=64 obj#=82025 tim=261283127127
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=53378 block cnt=62 obj#=82025 tim=261283128843
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=53440 block cnt=64 obj#=82025 tim=261283130615
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=53506 block cnt=62 obj#=82025 tim=261283132379
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=53568 block cnt=64 obj#=82025 tim=261283134156
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=53634 block cnt=62 obj#=82025 tim=261283135909
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=53696 block cnt=64 obj#=82025 tim=261283137687
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=53762 block cnt=62 obj#=82025 tim=261283139459
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=53824 block cnt=64 obj#=82025 tim=261283141236
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=53890 block cnt=62 obj#=82025 tim=261283142986
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=53952 block cnt=64 obj#=82025 tim=261283144761
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=54017 block cnt=63 obj#=82025 tim=261283146490
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=54080 block cnt=64 obj#=82025 tim=261283148294
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=54148 block cnt=60 obj#=82025 tim=261283150038
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54208 block cnt=64 obj#=82025 tim=261283151853
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54272 block cnt=64 obj#=82025 tim=261283153529
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54336 block cnt=64 obj#=82025 tim=261283155332
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=54400 block cnt=64 obj#=82025 tim=261283157106
+WAIT #139986510955536: nam='direct path read' ela= 88 file number=12 first dba=54464 block cnt=64 obj#=82025 tim=261283158920
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54528 block cnt=64 obj#=82025 tim=261283160691
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=54592 block cnt=64 obj#=82025 tim=261283162455
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=54656 block cnt=64 obj#=82025 tim=261283164267
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=54720 block cnt=64 obj#=82025 tim=261283166043
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=54784 block cnt=64 obj#=82025 tim=261283167850
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=54848 block cnt=64 obj#=82025 tim=261283169624
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=54912 block cnt=64 obj#=82025 tim=261283171425
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54976 block cnt=64 obj#=82025 tim=261283173197
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=55040 block cnt=64 obj#=82025 tim=261283174965
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=55104 block cnt=64 obj#=82025 tim=261283176741
+WAIT #139986510955536: nam='direct path read' ela= 40 file number=12 first dba=42116 block cnt=60 obj#=82025 tim=261283178494
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=42176 block cnt=64 obj#=82025 tim=261283180303
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=42240 block cnt=64 obj#=82025 tim=261283181975
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=42304 block cnt=64 obj#=82025 tim=261283183783
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=42368 block cnt=64 obj#=82025 tim=261283185539
+WAIT #139986510955536: nam='direct path read' ela= 41 file number=12 first dba=42432 block cnt=64 obj#=82025 tim=261283187342
+WAIT #139986510955536: nam='direct path read' ela= 41 file number=12 first dba=42496 block cnt=64 obj#=82025 tim=261283189111
+WAIT #139986510955536: nam='direct path read' ela= 96 file number=12 first dba=42560 block cnt=64 obj#=82025 tim=261283190930
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=42624 block cnt=64 obj#=82025 tim=261283192655
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=42688 block cnt=64 obj#=82025 tim=261283194393
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=42752 block cnt=64 obj#=82025 tim=261283196187
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=42816 block cnt=64 obj#=82025 tim=261283197908
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=42880 block cnt=64 obj#=82025 tim=261283199735
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=42944 block cnt=64 obj#=82025 tim=261283201470
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=43008 block cnt=64 obj#=82025 tim=261283203286
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=43072 block cnt=64 obj#=82025 tim=261283205010
+WAIT #139986510955536: nam='direct path read' ela= 41 file number=12 first dba=43140 block cnt=60 obj#=82025 tim=261283206736
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43200 block cnt=64 obj#=82025 tim=261283208555
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=43264 block cnt=64 obj#=82025 tim=261283210220
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=43328 block cnt=64 obj#=82025 tim=261283212006
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=43392 block cnt=64 obj#=82025 tim=261283213802
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=43456 block cnt=64 obj#=82025 tim=261283215652
+WAIT #139986510955536: nam='direct path read' ela= 58 file number=12 first dba=43520 block cnt=64 obj#=82025 tim=261283217452
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=43584 block cnt=64 obj#=82025 tim=261283219248
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=43648 block cnt=64 obj#=82025 tim=261283221054
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=43712 block cnt=64 obj#=82025 tim=261283222809
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43776 block cnt=64 obj#=82025 tim=261283224589
+WAIT #139986510955536: nam='direct path read' ela= 185 file number=12 first dba=43840 block cnt=64 obj#=82025 tim=261283226453
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43904 block cnt=64 obj#=82025 tim=261283228246
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=43968 block cnt=64 obj#=82025 tim=261283229971
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=44032 block cnt=64 obj#=82025 tim=261283231758
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=44096 block cnt=64 obj#=82025 tim=261283233487
+WAIT #139986510955536: nam='direct path read' ela= 41 file number=12 first dba=44164 block cnt=60 obj#=82025 tim=261283235254
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=44224 block cnt=64 obj#=82025 tim=261283236982
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=44288 block cnt=64 obj#=82025 tim=261283238625
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=44352 block cnt=64 obj#=82025 tim=261283240407
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=44416 block cnt=64 obj#=82025 tim=261283242143
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=44480 block cnt=64 obj#=82025 tim=261283243927
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=44544 block cnt=64 obj#=82025 tim=261283245661
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=44608 block cnt=64 obj#=82025 tim=261283247430
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=44672 block cnt=64 obj#=82025 tim=261283249162
+WAIT #139986510955536: nam='direct path read' ela= 85 file number=12 first dba=44736 block cnt=64 obj#=82025 tim=261283250953
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=44800 block cnt=64 obj#=82025 tim=261283252677
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=44864 block cnt=64 obj#=82025 tim=261283254416
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=44928 block cnt=64 obj#=82025 tim=261283256234
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=44992 block cnt=64 obj#=82025 tim=261283257965
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=45056 block cnt=64 obj#=82025 tim=261283259739
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=45120 block cnt=64 obj#=82025 tim=261283261510
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=45188 block cnt=60 obj#=82025 tim=261283263378
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45248 block cnt=64 obj#=82025 tim=261283265122
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=45312 block cnt=64 obj#=82025 tim=261283266747
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45376 block cnt=64 obj#=82025 tim=261283268537
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=45440 block cnt=64 obj#=82025 tim=261283270275
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45504 block cnt=64 obj#=82025 tim=261283272062
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45568 block cnt=64 obj#=82025 tim=261283273784
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45632 block cnt=64 obj#=82025 tim=261283275561
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45696 block cnt=64 obj#=82025 tim=261283277298
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=45760 block cnt=64 obj#=82025 tim=261283279087
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45824 block cnt=64 obj#=82025 tim=261283280806
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=45888 block cnt=64 obj#=82025 tim=261283283169
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45952 block cnt=64 obj#=82025 tim=261283284893
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=46016 block cnt=64 obj#=82025 tim=261283286630
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=46080 block cnt=64 obj#=82025 tim=261283288421
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=46144 block cnt=64 obj#=82025 tim=261283290151
+WAIT #139986510955536: nam='direct path read' ela= 40 file number=12 first dba=46212 block cnt=60 obj#=82025 tim=261283291929
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=46272 block cnt=64 obj#=82025 tim=261283293667
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=46336 block cnt=64 obj#=82025 tim=261283294122
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=46400 block cnt=64 obj#=82025 tim=261283294629
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=46464 block cnt=64 obj#=82025 tim=261283295102
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=46528 block cnt=64 obj#=82025 tim=261283295505
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=46592 block cnt=64 obj#=82025 tim=261283297238
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=46656 block cnt=64 obj#=82025 tim=261283299022
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=46720 block cnt=64 obj#=82025 tim=261283300788
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=46784 block cnt=64 obj#=82025 tim=261283302525
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=46848 block cnt=64 obj#=82025 tim=261283304299
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=46912 block cnt=64 obj#=82025 tim=261283306036
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=46976 block cnt=64 obj#=82025 tim=261283307909
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=47040 block cnt=64 obj#=82025 tim=261283309820
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=47104 block cnt=64 obj#=82025 tim=261283311619
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=47168 block cnt=64 obj#=82025 tim=261283313357
+FETCH #139986510955536:c=321974,e=324309,p=14177,cr=14180,cu=0,mis=0,r=1,dep=0,og=1,plh=1723173041,tim=261283316808
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 173 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283317005
+FETCH #139986510955536:c=2,e=2,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=1723173041,tim=261283317029
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 3640740885
+  Peeked Bind Bucket: 2
+  Execution Histogram:
+    1: 0
+    1000: 0
+    1000000: 2
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 2
+      Buffer Gets: 28360
+      CPU Time: 0
+      # Executions: 2
+STAT #139986510955536 id=1 cnt=1 pid=0 pos=1 obj=0 op='SORT GROUP BY NOSORT (cr=14180 pr=14177 pw=0 str=1 time=324311 us cost=3864 size=34 card=1)'
+STAT #139986510955536 id=2 cnt=2000000 pid=1 pos=1 obj=82025 op='TABLE ACCESS FULL ACS_TEST (cr=14180 pr=14177 pw=0 str=1 time=112265 us cost=3864 size=68000000 card=2000000)'
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 1 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283317109
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 168 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283317283
+CLOSE #139986510955536:c=3,e=3,dep=0,type=0,tim=261283317333
+WAIT #0: nam='PGA memory operation' ela= 61 which=5 bytes=262144 where=4 obj#=82025 tim=261283317422
+=====================
+PARSING IN CURSOR #139986510955536 len=122 dep=0 uid=157 oct=3 lid=157 tim=261283317458 hv=3069924874 ad='83b489f8' sqlid='g89xvwavgqpha'
+select /*+ gather_plan_statistics */ grp_name, max(id), sum(price) from acs_test a where grp_name = :grp GROUP BY grp_name
+END OF STMT
+PARSE #139986510955536:c=21,e=21,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=1723173041,tim=261283317458
+Checking bind equivalence for child #1
+
+----- Bind Info (kxscoacd) -----
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412830  bln=2000  avl=07  flg=05
+  value="2000000"
+kkslMatchEquivLiterals: initialized range vector, length=1
+kkocsPredSel: cursor matching selectivity: 0.7967
+kkscsFindMatchingRange: Matching ranges so far: [1 ]
+kkscsFindMatchingRange: mysel = 0.796654, cursel_start = 0.716989, cursel_end =0.876319  <- range matches
+kkocsFindMatchingRange: Matching ranges after update: [1 
+kkscsFindMatchingRange: found equivalent bind set
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412830  bln=2000  avl=07  flg=05
+  value="2000000"
+EXEC #139986510955536:c=77,e=77,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=1723173041,tim=261283317556
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 1 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283317568
+WAIT #139986510955536: nam='direct path read' ela= 14 file number=12 first dba=48715 block cnt=13 obj#=82025 tim=261283317651
+WAIT #139986510955536: nam='direct path read' ela= 14 file number=12 first dba=48729 block cnt=15 obj#=82025 tim=261283317681
+WAIT #139986510955536: nam='direct path read' ela= 11 file number=12 first dba=48745 block cnt=15 obj#=82025 tim=261283317729
+WAIT #139986510955536: nam='direct path read' ela= 5 file number=12 first dba=48761 block cnt=7 obj#=82025 tim=261283317769
+WAIT #139986510955536: nam='direct path read' ela= 6 file number=12 first dba=55424 block cnt=8 obj#=82025 tim=261283317811
+WAIT #139986510955536: nam='direct path read' ela= 10 file number=12 first dba=55433 block cnt=15 obj#=82025 tim=261283317841
+WAIT #139986510955536: nam='direct path read' ela= 14 file number=12 first dba=55449 block cnt=15 obj#=82025 tim=261283317877
+WAIT #139986510955536: nam='direct path read' ela= 12 file number=12 first dba=55465 block cnt=15 obj#=82025 tim=261283317923
+WAIT #139986510955536: nam='direct path read' ela= 31 file number=12 first dba=55481 block cnt=15 obj#=82025 tim=261283317990
+WAIT #139986510955536: nam='direct path read' ela= 88 file number=12 first dba=55554 block cnt=62 obj#=82025 tim=261283318124
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=55616 block cnt=64 obj#=82025 tim=261283318223
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=55682 block cnt=62 obj#=82025 tim=261283318399
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=55744 block cnt=64 obj#=82025 tim=261283318576
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=55810 block cnt=62 obj#=82025 tim=261283318763
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=55872 block cnt=64 obj#=82025 tim=261283318981
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=55938 block cnt=62 obj#=82025 tim=261283319170
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=56000 block cnt=64 obj#=82025 tim=261283319351
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=56066 block cnt=62 obj#=82025 tim=261283319523
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=56128 block cnt=64 obj#=82025 tim=261283319716
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=56194 block cnt=62 obj#=82025 tim=261283319889
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=56256 block cnt=64 obj#=82025 tim=261283320075
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=56322 block cnt=62 obj#=82025 tim=261283320251
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=56384 block cnt=64 obj#=82025 tim=261283320427
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=56450 block cnt=62 obj#=82025 tim=261283320596
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=56512 block cnt=64 obj#=82025 tim=261283320788
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=56578 block cnt=62 obj#=82025 tim=261283320960
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=56640 block cnt=64 obj#=82025 tim=261283321149
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=56706 block cnt=62 obj#=82025 tim=261283321326
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=56768 block cnt=64 obj#=82025 tim=261283321503
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=56834 block cnt=62 obj#=82025 tim=261283321679
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=56896 block cnt=64 obj#=82025 tim=261283321861
+WAIT #139986510955536: nam='direct path read' ela= 59 file number=12 first dba=56962 block cnt=62 obj#=82025 tim=261283322043
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=57024 block cnt=64 obj#=82025 tim=261283322227
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=57090 block cnt=62 obj#=82025 tim=261283322398
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=57152 block cnt=64 obj#=82025 tim=261283322579
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=57218 block cnt=62 obj#=82025 tim=261283322764
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=57280 block cnt=64 obj#=82025 tim=261283323015
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=57346 block cnt=62 obj#=82025 tim=261283323196
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=57408 block cnt=64 obj#=82025 tim=261283323382
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=57474 block cnt=62 obj#=82025 tim=261283323555
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=57536 block cnt=64 obj#=82025 tim=261283323739
+WAIT #139986510955536: nam='direct path read' ela= 67 file number=12 first dba=57602 block cnt=62 obj#=82025 tim=261283323944
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=57664 block cnt=64 obj#=82025 tim=261283324133
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=57730 block cnt=62 obj#=82025 tim=261283324310
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=57792 block cnt=64 obj#=82025 tim=261283324486
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=57858 block cnt=62 obj#=82025 tim=261283324656
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=57920 block cnt=64 obj#=82025 tim=261283324848
+WAIT #139986510955536: nam='direct path read' ela= 61 file number=12 first dba=57986 block cnt=62 obj#=82025 tim=261283325032
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=58048 block cnt=64 obj#=82025 tim=261283325220
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=58114 block cnt=62 obj#=82025 tim=261283325394
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=58176 block cnt=64 obj#=82025 tim=261283325569
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=48770 block cnt=62 obj#=82025 tim=261283326363
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=48832 block cnt=64 obj#=82025 tim=261283326547
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=48898 block cnt=62 obj#=82025 tim=261283328456
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=48960 block cnt=64 obj#=82025 tim=261283330223
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=49026 block cnt=62 obj#=82025 tim=261283331993
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=49088 block cnt=64 obj#=82025 tim=261283333751
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=49154 block cnt=62 obj#=82025 tim=261283335519
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=49216 block cnt=64 obj#=82025 tim=261283337287
+WAIT #139986510955536: nam='direct path read' ela= 59 file number=12 first dba=49282 block cnt=62 obj#=82025 tim=261283339062
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=49344 block cnt=64 obj#=82025 tim=261283340813
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=49410 block cnt=62 obj#=82025 tim=261283342536
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=49472 block cnt=64 obj#=82025 tim=261283344403
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=49538 block cnt=62 obj#=82025 tim=261283346179
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=49600 block cnt=64 obj#=82025 tim=261283347995
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=49666 block cnt=62 obj#=82025 tim=261283349715
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=49728 block cnt=64 obj#=82025 tim=261283351534
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=49794 block cnt=62 obj#=82025 tim=261283353261
+WAIT #139986510955536: nam='direct path read' ela= 62 file number=12 first dba=49856 block cnt=64 obj#=82025 tim=261283355071
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=49922 block cnt=62 obj#=82025 tim=261283356789
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=49984 block cnt=64 obj#=82025 tim=261283358558
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=50050 block cnt=62 obj#=82025 tim=261283360318
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=50112 block cnt=64 obj#=82025 tim=261283362072
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=50178 block cnt=62 obj#=82025 tim=261283363843
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=50240 block cnt=64 obj#=82025 tim=261283365608
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=50306 block cnt=62 obj#=82025 tim=261283367380
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=50368 block cnt=64 obj#=82025 tim=261283369135
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=50434 block cnt=62 obj#=82025 tim=261283372676
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=50496 block cnt=64 obj#=82025 tim=261283372747
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=50562 block cnt=62 obj#=82025 tim=261283374529
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=50624 block cnt=64 obj#=82025 tim=261283376370
+WAIT #139986510955536: nam='direct path read' ela= 65 file number=12 first dba=50690 block cnt=62 obj#=82025 tim=261283378126
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=50752 block cnt=64 obj#=82025 tim=261283379964
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=50818 block cnt=62 obj#=82025 tim=261283381713
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=50880 block cnt=64 obj#=82025 tim=261283383518
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=50946 block cnt=62 obj#=82025 tim=261283385223
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=51008 block cnt=64 obj#=82025 tim=261283387029
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=51074 block cnt=62 obj#=82025 tim=261283388746
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=51136 block cnt=64 obj#=82025 tim=261283390494
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=51202 block cnt=62 obj#=82025 tim=261283392262
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=51264 block cnt=64 obj#=82025 tim=261283394050
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=51330 block cnt=62 obj#=82025 tim=261283395828
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=51392 block cnt=64 obj#=82025 tim=261283397575
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=51458 block cnt=62 obj#=82025 tim=261283399336
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=51520 block cnt=64 obj#=82025 tim=261283401095
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=51586 block cnt=62 obj#=82025 tim=261283402763
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=51648 block cnt=64 obj#=82025 tim=261283404546
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=51714 block cnt=62 obj#=82025 tim=261283406229
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=51776 block cnt=64 obj#=82025 tim=261283408009
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=51842 block cnt=62 obj#=82025 tim=261283409679
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=51904 block cnt=64 obj#=82025 tim=261283411458
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=51970 block cnt=62 obj#=82025 tim=261283413143
+WAIT #139986510955536: nam='direct path read' ela= 72 file number=12 first dba=52032 block cnt=64 obj#=82025 tim=261283414877
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=52098 block cnt=62 obj#=82025 tim=261283416577
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=52160 block cnt=64 obj#=82025 tim=261283418305
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=52226 block cnt=62 obj#=82025 tim=261283420021
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=52288 block cnt=64 obj#=82025 tim=261283421733
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=52354 block cnt=62 obj#=82025 tim=261283423503
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=52416 block cnt=64 obj#=82025 tim=261283425228
+WAIT #139986510955536: nam='direct path read' ela= 73 file number=12 first dba=52482 block cnt=62 obj#=82025 tim=261283426945
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=52544 block cnt=64 obj#=82025 tim=261283428670
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=52610 block cnt=62 obj#=82025 tim=261283430355
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=52672 block cnt=64 obj#=82025 tim=261283432137
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=52738 block cnt=62 obj#=82025 tim=261283433817
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=52800 block cnt=64 obj#=82025 tim=261283435595
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=52866 block cnt=62 obj#=82025 tim=261283437276
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=52928 block cnt=64 obj#=82025 tim=261283439030
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=52994 block cnt=62 obj#=82025 tim=261283440710
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=53056 block cnt=64 obj#=82025 tim=261283442436
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=53122 block cnt=62 obj#=82025 tim=261283444160
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=53184 block cnt=64 obj#=82025 tim=261283445880
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=53250 block cnt=62 obj#=82025 tim=261283447616
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=53312 block cnt=64 obj#=82025 tim=261283449331
+WAIT #139986510955536: nam='direct path read' ela= 66 file number=12 first dba=53378 block cnt=62 obj#=82025 tim=261283451106
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=53440 block cnt=64 obj#=82025 tim=261283452919
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=53506 block cnt=62 obj#=82025 tim=261283454686
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=53568 block cnt=64 obj#=82025 tim=261283456544
+WAIT #139986510955536: nam='direct path read' ela= 63 file number=12 first dba=53634 block cnt=62 obj#=82025 tim=261283458349
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=53696 block cnt=64 obj#=82025 tim=261283460202
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=53762 block cnt=62 obj#=82025 tim=261283461970
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=53824 block cnt=64 obj#=82025 tim=261283463862
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=53890 block cnt=62 obj#=82025 tim=261283465622
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=53952 block cnt=64 obj#=82025 tim=261283467500
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54017 block cnt=63 obj#=82025 tim=261283469273
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54080 block cnt=64 obj#=82025 tim=261283471125
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=54148 block cnt=60 obj#=82025 tim=261283472924
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54208 block cnt=64 obj#=82025 tim=261283474643
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54272 block cnt=64 obj#=82025 tim=261283476325
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=54336 block cnt=64 obj#=82025 tim=261283478053
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=54400 block cnt=64 obj#=82025 tim=261283479802
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54464 block cnt=64 obj#=82025 tim=261283481530
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=54528 block cnt=64 obj#=82025 tim=261283483289
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=54592 block cnt=64 obj#=82025 tim=261283485015
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=54656 block cnt=64 obj#=82025 tim=261283486723
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=54720 block cnt=64 obj#=82025 tim=261283488518
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54784 block cnt=64 obj#=82025 tim=261283490244
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54848 block cnt=64 obj#=82025 tim=261283491990
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=54912 block cnt=64 obj#=82025 tim=261283493715
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54976 block cnt=64 obj#=82025 tim=261283495501
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=55040 block cnt=64 obj#=82025 tim=261283497226
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=55104 block cnt=64 obj#=82025 tim=261283499002
+WAIT #139986510955536: nam='direct path read' ela= 39 file number=12 first dba=42116 block cnt=60 obj#=82025 tim=261283500715
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=42176 block cnt=64 obj#=82025 tim=261283502439
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=42240 block cnt=64 obj#=82025 tim=261283504126
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=42304 block cnt=64 obj#=82025 tim=261283505846
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=42368 block cnt=64 obj#=82025 tim=261283507619
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=42432 block cnt=64 obj#=82025 tim=261283509341
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=42496 block cnt=64 obj#=82025 tim=261283511119
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=42560 block cnt=64 obj#=82025 tim=261283512835
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=42624 block cnt=64 obj#=82025 tim=261283514556
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=42688 block cnt=64 obj#=82025 tim=261283516354
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=42752 block cnt=64 obj#=82025 tim=261283518064
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=42816 block cnt=64 obj#=82025 tim=261283519830
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=42880 block cnt=64 obj#=82025 tim=261283521550
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=42944 block cnt=64 obj#=82025 tim=261283523354
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=43008 block cnt=64 obj#=82025 tim=261283525076
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=43072 block cnt=64 obj#=82025 tim=261283526805
+WAIT #139986510955536: nam='direct path read' ela= 41 file number=12 first dba=43140 block cnt=60 obj#=82025 tim=261283528578
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=43200 block cnt=64 obj#=82025 tim=261283530290
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43264 block cnt=64 obj#=82025 tim=261283531963
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43328 block cnt=64 obj#=82025 tim=261283533684
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=43392 block cnt=64 obj#=82025 tim=261283535430
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=43456 block cnt=64 obj#=82025 tim=261283537148
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=43520 block cnt=64 obj#=82025 tim=261283538864
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43584 block cnt=64 obj#=82025 tim=261283540603
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=43648 block cnt=64 obj#=82025 tim=261283542325
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=43712 block cnt=64 obj#=82025 tim=261283544085
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=43776 block cnt=64 obj#=82025 tim=261283545796
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43840 block cnt=64 obj#=82025 tim=261283547547
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=43904 block cnt=64 obj#=82025 tim=261283549293
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=43968 block cnt=64 obj#=82025 tim=261283551061
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=44032 block cnt=64 obj#=82025 tim=261283552762
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=44096 block cnt=64 obj#=82025 tim=261283554480
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=44164 block cnt=60 obj#=82025 tim=261283556247
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=44224 block cnt=64 obj#=82025 tim=261283557954
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=44288 block cnt=64 obj#=82025 tim=261283559711
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=44352 block cnt=64 obj#=82025 tim=261283561492
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=44416 block cnt=64 obj#=82025 tim=261283563280
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=44480 block cnt=64 obj#=82025 tim=261283564988
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=44544 block cnt=64 obj#=82025 tim=261283566708
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=44608 block cnt=64 obj#=82025 tim=261283568525
+WAIT #139986510955536: nam='direct path read' ela= 41 file number=12 first dba=44672 block cnt=64 obj#=82025 tim=261283570245
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=44736 block cnt=64 obj#=82025 tim=261283572005
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=44800 block cnt=64 obj#=82025 tim=261283573746
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=44864 block cnt=64 obj#=82025 tim=261283575519
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=44928 block cnt=64 obj#=82025 tim=261283577235
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=44992 block cnt=64 obj#=82025 tim=261283579030
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45056 block cnt=64 obj#=82025 tim=261283580749
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=45120 block cnt=64 obj#=82025 tim=261283582473
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=45188 block cnt=60 obj#=82025 tim=261283584283
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=45248 block cnt=64 obj#=82025 tim=261283586069
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45312 block cnt=64 obj#=82025 tim=261283587753
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45376 block cnt=64 obj#=82025 tim=261283589542
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=45440 block cnt=64 obj#=82025 tim=261283591347
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45504 block cnt=64 obj#=82025 tim=261283593138
+WAIT #139986510955536: nam='direct path read' ela= 81 file number=12 first dba=45568 block cnt=64 obj#=82025 tim=261283594932
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45632 block cnt=64 obj#=82025 tim=261283596724
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=45696 block cnt=64 obj#=82025 tim=261283598514
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=45760 block cnt=64 obj#=82025 tim=261283600315
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=45824 block cnt=64 obj#=82025 tim=261283602104
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45888 block cnt=64 obj#=82025 tim=261283603954
+WAIT #139986510955536: nam='direct path read' ela= 62 file number=12 first dba=45952 block cnt=64 obj#=82025 tim=261283605724
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=46016 block cnt=64 obj#=82025 tim=261283607516
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=46080 block cnt=64 obj#=82025 tim=261283609328
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=46144 block cnt=64 obj#=82025 tim=261283611138
+WAIT #139986510955536: nam='direct path read' ela= 40 file number=12 first dba=46212 block cnt=60 obj#=82025 tim=261283612888
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=46272 block cnt=64 obj#=82025 tim=261283614664
+WAIT #139986510955536: nam='direct path read' ela= 62 file number=12 first dba=46336 block cnt=64 obj#=82025 tim=261283615197
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=46400 block cnt=64 obj#=82025 tim=261283615705
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=46464 block cnt=64 obj#=82025 tim=261283616131
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=46528 block cnt=64 obj#=82025 tim=261283616551
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=46592 block cnt=64 obj#=82025 tim=261283618296
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=46656 block cnt=64 obj#=82025 tim=261283620140
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=46720 block cnt=64 obj#=82025 tim=261283621923
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=46784 block cnt=64 obj#=82025 tim=261283623744
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=46848 block cnt=64 obj#=82025 tim=261283625471
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=46912 block cnt=64 obj#=82025 tim=261283627247
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=46976 block cnt=64 obj#=82025 tim=261283628959
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=47040 block cnt=64 obj#=82025 tim=261283630669
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=47104 block cnt=64 obj#=82025 tim=261283632440
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=47168 block cnt=64 obj#=82025 tim=261283634174
+FETCH #139986510955536:c=319069,e=319977,p=14177,cr=14180,cu=0,mis=0,r=1,dep=0,og=1,plh=1723173041,tim=261283637554
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 184 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283637758
+FETCH #139986510955536:c=1,e=1,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=1723173041,tim=261283637778
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 3640740885
+  Peeked Bind Bucket: 2
+  Execution Histogram:
+    1: 0
+    1000: 0
+    1000000: 3
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 3
+      Buffer Gets: 42540
+      CPU Time: 0
+      # Executions: 3
+STAT #139986510955536 id=1 cnt=1 pid=0 pos=1 obj=0 op='SORT GROUP BY NOSORT (cr=14180 pr=14177 pw=0 str=1 time=319980 us cost=3864 size=34 card=1)'
+STAT #139986510955536 id=2 cnt=2000000 pid=1 pos=1 obj=82025 op='TABLE ACCESS FULL ACS_TEST (cr=14180 pr=14177 pw=0 str=1 time=110241 us cost=3864 size=68000000 card=2000000)'
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283637848
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 223 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283638076
+CLOSE #139986510955536:c=2,e=2,dep=0,type=0,tim=261283638123
+WAIT #0: nam='PGA memory operation' ela= 28 which=5 bytes=262144 where=4 obj#=82025 tim=261283638178
+=====================
+PARSING IN CURSOR #139986510955536 len=122 dep=0 uid=157 oct=3 lid=157 tim=261283638209 hv=3069924874 ad='83b489f8' sqlid='g89xvwavgqpha'
+select /*+ gather_plan_statistics */ grp_name, max(id), sum(price) from acs_test a where grp_name = :grp GROUP BY grp_name
+END OF STMT
+PARSE #139986510955536:c=15,e=15,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=1723173041,tim=261283638209
+Checking bind equivalence for child #1
+
+----- Bind Info (kxscoacd) -----
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412830  bln=2000  avl=07  flg=05
+  value="2000000"
+kkslMatchEquivLiterals: initialized range vector, length=1
+kkocsPredSel: cursor matching selectivity: 0.7967
+kkscsFindMatchingRange: Matching ranges so far: [1 ]
+kkscsFindMatchingRange: mysel = 0.796654, cursel_start = 0.716989, cursel_end =0.876319  <- range matches
+kkocsFindMatchingRange: Matching ranges after update: [1 
+kkscsFindMatchingRange: found equivalent bind set
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412830  bln=2000  avl=07  flg=05
+  value="2000000"
+EXEC #139986510955536:c=68,e=68,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=1723173041,tim=261283638299
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283638310
+WAIT #139986510955536: nam='direct path read' ela= 14 file number=12 first dba=48715 block cnt=13 obj#=82025 tim=261283638380
+WAIT #139986510955536: nam='direct path read' ela= 31 file number=12 first dba=48729 block cnt=15 obj#=82025 tim=261283638425
+WAIT #139986510955536: nam='direct path read' ela= 10 file number=12 first dba=48745 block cnt=15 obj#=82025 tim=261283638476
+WAIT #139986510955536: nam='direct path read' ela= 5 file number=12 first dba=48761 block cnt=7 obj#=82025 tim=261283638516
+WAIT #139986510955536: nam='direct path read' ela= 5 file number=12 first dba=55424 block cnt=8 obj#=82025 tim=261283638557
+WAIT #139986510955536: nam='direct path read' ela= 10 file number=12 first dba=55433 block cnt=15 obj#=82025 tim=261283638587
+WAIT #139986510955536: nam='direct path read' ela= 12 file number=12 first dba=55449 block cnt=15 obj#=82025 tim=261283638622
+WAIT #139986510955536: nam='direct path read' ela= 12 file number=12 first dba=55465 block cnt=15 obj#=82025 tim=261283638669
+WAIT #139986510955536: nam='direct path read' ela= 14 file number=12 first dba=55481 block cnt=15 obj#=82025 tim=261283638718
+WAIT #139986510955536: nam='direct path read' ela= 82 file number=12 first dba=55554 block cnt=62 obj#=82025 tim=261283638834
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=55616 block cnt=64 obj#=82025 tim=261283638983
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=55682 block cnt=62 obj#=82025 tim=261283639179
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=55744 block cnt=64 obj#=82025 tim=261283639363
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=55810 block cnt=62 obj#=82025 tim=261283639533
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=55872 block cnt=64 obj#=82025 tim=261283639713
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=55938 block cnt=62 obj#=82025 tim=261283639884
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=56000 block cnt=64 obj#=82025 tim=261283640068
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=56066 block cnt=62 obj#=82025 tim=261283640250
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=56128 block cnt=64 obj#=82025 tim=261283640431
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=56194 block cnt=62 obj#=82025 tim=261283640601
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=56256 block cnt=64 obj#=82025 tim=261283640780
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=56322 block cnt=62 obj#=82025 tim=261283640955
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=56384 block cnt=64 obj#=82025 tim=261283641153
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=56450 block cnt=62 obj#=82025 tim=261283641327
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=56512 block cnt=64 obj#=82025 tim=261283641504
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=56578 block cnt=62 obj#=82025 tim=261283641679
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=56640 block cnt=64 obj#=82025 tim=261283641858
+WAIT #139986510955536: nam='direct path read' ela= 58 file number=12 first dba=56706 block cnt=62 obj#=82025 tim=261283642040
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=56768 block cnt=64 obj#=82025 tim=261283642238
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=56834 block cnt=62 obj#=82025 tim=261283642414
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=56896 block cnt=64 obj#=82025 tim=261283642594
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=56962 block cnt=62 obj#=82025 tim=261283642768
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=57024 block cnt=64 obj#=82025 tim=261283642999
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=57090 block cnt=62 obj#=82025 tim=261283643192
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=57152 block cnt=64 obj#=82025 tim=261283643377
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=57218 block cnt=62 obj#=82025 tim=261283643551
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=57280 block cnt=64 obj#=82025 tim=261283643731
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=57346 block cnt=62 obj#=82025 tim=261283643902
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=57408 block cnt=64 obj#=82025 tim=261283644092
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=57474 block cnt=62 obj#=82025 tim=261283644283
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=57536 block cnt=64 obj#=82025 tim=261283644466
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=57602 block cnt=62 obj#=82025 tim=261283644643
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=57664 block cnt=64 obj#=82025 tim=261283644822
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=57730 block cnt=62 obj#=82025 tim=261283644993
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=57792 block cnt=64 obj#=82025 tim=261283645178
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=57858 block cnt=62 obj#=82025 tim=261283645355
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=57920 block cnt=64 obj#=82025 tim=261283645536
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=57986 block cnt=62 obj#=82025 tim=261283645709
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=58048 block cnt=64 obj#=82025 tim=261283645884
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=58114 block cnt=62 obj#=82025 tim=261283646064
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=58176 block cnt=64 obj#=82025 tim=261283646254
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=48770 block cnt=62 obj#=82025 tim=261283647029
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=48832 block cnt=64 obj#=82025 tim=261283647220
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=48898 block cnt=62 obj#=82025 tim=261283648932
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=48960 block cnt=64 obj#=82025 tim=261283650716
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=49026 block cnt=62 obj#=82025 tim=261283652499
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=49088 block cnt=64 obj#=82025 tim=261283654266
+WAIT #139986510955536: nam='direct path read' ela= 58 file number=12 first dba=49154 block cnt=62 obj#=82025 tim=261283656044
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=49216 block cnt=64 obj#=82025 tim=261283657822
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=49282 block cnt=62 obj#=82025 tim=261283659618
+WAIT #139986510955536: nam='direct path read' ela= 61 file number=12 first dba=49344 block cnt=64 obj#=82025 tim=261283661393
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=49410 block cnt=62 obj#=82025 tim=261283663182
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=49472 block cnt=64 obj#=82025 tim=261283664955
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=49538 block cnt=62 obj#=82025 tim=261283666682
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=49600 block cnt=64 obj#=82025 tim=261283668504
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=49666 block cnt=62 obj#=82025 tim=261283670231
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=49728 block cnt=64 obj#=82025 tim=261283672068
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=49794 block cnt=62 obj#=82025 tim=261283673801
+WAIT #139986510955536: nam='direct path read' ela= 55 file number=12 first dba=49856 block cnt=64 obj#=82025 tim=261283675630
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=49922 block cnt=62 obj#=82025 tim=261283677355
+WAIT #139986510955536: nam='direct path read' ela= 56 file number=12 first dba=49984 block cnt=64 obj#=82025 tim=261283679187
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=50050 block cnt=62 obj#=82025 tim=261283680912
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=50112 block cnt=64 obj#=82025 tim=261283682754
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=50178 block cnt=62 obj#=82025 tim=261283684534
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=50240 block cnt=64 obj#=82025 tim=261283686312
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=50306 block cnt=62 obj#=82025 tim=261283688098
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=50368 block cnt=64 obj#=82025 tim=261283689997
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=50434 block cnt=62 obj#=82025 tim=261283693490
+WAIT #139986510955536: nam='direct path read' ela= 57 file number=12 first dba=50496 block cnt=64 obj#=82025 tim=261283693561
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=50562 block cnt=62 obj#=82025 tim=261283695333
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=50624 block cnt=64 obj#=82025 tim=261283697118
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=50690 block cnt=62 obj#=82025 tim=261283698834
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=50752 block cnt=64 obj#=82025 tim=261283700644
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=50818 block cnt=62 obj#=82025 tim=261283702372
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=50880 block cnt=64 obj#=82025 tim=261283704203
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=50946 block cnt=62 obj#=82025 tim=261283705916
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=51008 block cnt=64 obj#=82025 tim=261283707741
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=51074 block cnt=62 obj#=82025 tim=261283709469
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=51136 block cnt=64 obj#=82025 tim=261283711294
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=51202 block cnt=62 obj#=82025 tim=261283713011
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=51264 block cnt=64 obj#=82025 tim=261283714776
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=51330 block cnt=62 obj#=82025 tim=261283716540
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=51392 block cnt=64 obj#=82025 tim=261283718318
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=51458 block cnt=62 obj#=82025 tim=261283720069
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=51520 block cnt=64 obj#=82025 tim=261283721835
+WAIT #139986510955536: nam='direct path read' ela= 75 file number=12 first dba=51586 block cnt=62 obj#=82025 tim=261283723724
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=51648 block cnt=64 obj#=82025 tim=261283725489
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=51714 block cnt=62 obj#=82025 tim=261283727236
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=51776 block cnt=64 obj#=82025 tim=261283729005
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=51842 block cnt=62 obj#=82025 tim=261283730736
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=51904 block cnt=64 obj#=82025 tim=261283732564
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=51970 block cnt=62 obj#=82025 tim=261283734251
+WAIT #139986510955536: nam='direct path read' ela= 52 file number=12 first dba=52032 block cnt=64 obj#=82025 tim=261283736041
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=52098 block cnt=62 obj#=82025 tim=261283737734
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=52160 block cnt=64 obj#=82025 tim=261283739526
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=52226 block cnt=62 obj#=82025 tim=261283741212
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=52288 block cnt=64 obj#=82025 tim=261283742998
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=52354 block cnt=62 obj#=82025 tim=261283744693
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=52416 block cnt=64 obj#=82025 tim=261283746425
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=52482 block cnt=62 obj#=82025 tim=261283748172
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=52544 block cnt=64 obj#=82025 tim=261283749908
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=52610 block cnt=62 obj#=82025 tim=261283751641
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=52672 block cnt=64 obj#=82025 tim=261283753371
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=52738 block cnt=62 obj#=82025 tim=261283755107
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=52800 block cnt=64 obj#=82025 tim=261283756846
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=52866 block cnt=62 obj#=82025 tim=261283758532
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=52928 block cnt=64 obj#=82025 tim=261283760328
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=52994 block cnt=62 obj#=82025 tim=261283762143
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=53056 block cnt=64 obj#=82025 tim=261283763923
+WAIT #139986510955536: nam='direct path read' ela= 73 file number=12 first dba=53122 block cnt=62 obj#=82025 tim=261283765699
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=53184 block cnt=64 obj#=82025 tim=261283767497
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=53250 block cnt=62 obj#=82025 tim=261283769195
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=53312 block cnt=64 obj#=82025 tim=261283771025
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=53378 block cnt=62 obj#=82025 tim=261283772714
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=53440 block cnt=64 obj#=82025 tim=261283774452
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=53506 block cnt=62 obj#=82025 tim=261283776216
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=53568 block cnt=64 obj#=82025 tim=261283777944
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=53634 block cnt=62 obj#=82025 tim=261283779833
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=53696 block cnt=64 obj#=82025 tim=261283781575
+WAIT #139986510955536: nam='direct path read' ela= 60 file number=12 first dba=53762 block cnt=62 obj#=82025 tim=261283783441
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=53824 block cnt=64 obj#=82025 tim=261283785293
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=53890 block cnt=62 obj#=82025 tim=261283787186
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=53952 block cnt=64 obj#=82025 tim=261283788910
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=54017 block cnt=63 obj#=82025 tim=261283790604
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=54080 block cnt=64 obj#=82025 tim=261283792405
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=54148 block cnt=60 obj#=82025 tim=261283794114
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54208 block cnt=64 obj#=82025 tim=261283795980
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=54272 block cnt=64 obj#=82025 tim=261283797624
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=54336 block cnt=64 obj#=82025 tim=261283799420
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=54400 block cnt=64 obj#=82025 tim=261283801145
+WAIT #139986510955536: nam='direct path read' ela= 118 file number=12 first dba=54464 block cnt=64 obj#=82025 tim=261283802959
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=54528 block cnt=64 obj#=82025 tim=261283804715
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=54592 block cnt=64 obj#=82025 tim=261283806455
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54656 block cnt=64 obj#=82025 tim=261283808215
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54720 block cnt=64 obj#=82025 tim=261283809950
+WAIT #139986510955536: nam='direct path read' ela= 77 file number=12 first dba=54784 block cnt=64 obj#=82025 tim=261283811876
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=54848 block cnt=64 obj#=82025 tim=261283813616
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=54912 block cnt=64 obj#=82025 tim=261283815392
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=54976 block cnt=64 obj#=82025 tim=261283817129
+WAIT #139986510955536: nam='direct path read' ela= 82 file number=12 first dba=55040 block cnt=64 obj#=82025 tim=261283818912
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=55104 block cnt=64 obj#=82025 tim=261283820653
+WAIT #139986510955536: nam='direct path read' ela= 39 file number=12 first dba=42116 block cnt=60 obj#=82025 tim=261283822374
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=42176 block cnt=64 obj#=82025 tim=261283824201
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=42240 block cnt=64 obj#=82025 tim=261283825839
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=42304 block cnt=64 obj#=82025 tim=261283827602
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=42368 block cnt=64 obj#=82025 tim=261283829338
+WAIT #139986510955536: nam='direct path read' ela= 41 file number=12 first dba=42432 block cnt=64 obj#=82025 tim=261283831135
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=42496 block cnt=64 obj#=82025 tim=261283832864
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=42560 block cnt=64 obj#=82025 tim=261283834591
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=42624 block cnt=64 obj#=82025 tim=261283836379
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=42688 block cnt=64 obj#=82025 tim=261283838143
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=42752 block cnt=64 obj#=82025 tim=261283839922
+WAIT #139986510955536: nam='direct path read' ela= 72 file number=12 first dba=42816 block cnt=64 obj#=82025 tim=261283841676
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=42880 block cnt=64 obj#=82025 tim=261283843474
+WAIT #139986510955536: nam='direct path read' ela= 41 file number=12 first dba=42944 block cnt=64 obj#=82025 tim=261283845265
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=43008 block cnt=64 obj#=82025 tim=261283847095
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43072 block cnt=64 obj#=82025 tim=261283848856
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=43140 block cnt=60 obj#=82025 tim=261283850654
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=43200 block cnt=64 obj#=82025 tim=261283852505
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43264 block cnt=64 obj#=82025 tim=261283854181
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43328 block cnt=64 obj#=82025 tim=261283856014
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=43392 block cnt=64 obj#=82025 tim=261283857815
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43456 block cnt=64 obj#=82025 tim=261283859672
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43520 block cnt=64 obj#=82025 tim=261283861437
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43584 block cnt=64 obj#=82025 tim=261283863280
+WAIT #139986510955536: nam='direct path read' ela= 49 file number=12 first dba=43648 block cnt=64 obj#=82025 tim=261283865072
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=43712 block cnt=64 obj#=82025 tim=261283866835
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43776 block cnt=64 obj#=82025 tim=261283868657
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=43840 block cnt=64 obj#=82025 tim=261283870468
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=43904 block cnt=64 obj#=82025 tim=261283872303
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=43968 block cnt=64 obj#=82025 tim=261283874066
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=44032 block cnt=64 obj#=82025 tim=261283875911
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=44096 block cnt=64 obj#=82025 tim=261283877717
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=44164 block cnt=60 obj#=82025 tim=261283879531
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=44224 block cnt=64 obj#=82025 tim=261283881325
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=44288 block cnt=64 obj#=82025 tim=261283883072
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=44352 block cnt=64 obj#=82025 tim=261283884846
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=44416 block cnt=64 obj#=82025 tim=261283886648
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=44480 block cnt=64 obj#=82025 tim=261283888495
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=44544 block cnt=64 obj#=82025 tim=261283890319
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=44608 block cnt=64 obj#=82025 tim=261283892144
+WAIT #139986510955536: nam='direct path read' ela= 41 file number=12 first dba=44672 block cnt=64 obj#=82025 tim=261283893906
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=44736 block cnt=64 obj#=82025 tim=261283895716
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=44800 block cnt=64 obj#=82025 tim=261283897510
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=44864 block cnt=64 obj#=82025 tim=261283899322
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=44928 block cnt=64 obj#=82025 tim=261283901091
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=44992 block cnt=64 obj#=82025 tim=261283902858
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45056 block cnt=64 obj#=82025 tim=261283904619
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=45120 block cnt=64 obj#=82025 tim=261283906389
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=45188 block cnt=60 obj#=82025 tim=261283908194
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45248 block cnt=64 obj#=82025 tim=261283909962
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=45312 block cnt=64 obj#=82025 tim=261283911628
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=45376 block cnt=64 obj#=82025 tim=261283913402
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=45440 block cnt=64 obj#=82025 tim=261283915217
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=45504 block cnt=64 obj#=82025 tim=261283916981
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=45568 block cnt=64 obj#=82025 tim=261283918742
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=45632 block cnt=64 obj#=82025 tim=261283920554
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=45696 block cnt=64 obj#=82025 tim=261283922351
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=45760 block cnt=64 obj#=82025 tim=261283924170
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45824 block cnt=64 obj#=82025 tim=261283925924
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=45888 block cnt=64 obj#=82025 tim=261283927729
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=45952 block cnt=64 obj#=82025 tim=261283929490
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=46016 block cnt=64 obj#=82025 tim=261283931298
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=46080 block cnt=64 obj#=82025 tim=261283933059
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=46144 block cnt=64 obj#=82025 tim=261283934823
+WAIT #139986510955536: nam='direct path read' ela= 41 file number=12 first dba=46212 block cnt=60 obj#=82025 tim=261283936625
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=46272 block cnt=64 obj#=82025 tim=261283938402
+WAIT #139986510955536: nam='direct path read' ela= 50 file number=12 first dba=46336 block cnt=64 obj#=82025 tim=261283938866
+WAIT #139986510955536: nam='direct path read' ela= 47 file number=12 first dba=46400 block cnt=64 obj#=82025 tim=261283939428
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=46464 block cnt=64 obj#=82025 tim=261283939852
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=46528 block cnt=64 obj#=82025 tim=261283940253
+WAIT #139986510955536: nam='direct path read' ela= 51 file number=12 first dba=46592 block cnt=64 obj#=82025 tim=261283942022
+WAIT #139986510955536: nam='direct path read' ela= 44 file number=12 first dba=46656 block cnt=64 obj#=82025 tim=261283943860
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=46720 block cnt=64 obj#=82025 tim=261283945634
+WAIT #139986510955536: nam='direct path read' ela= 45 file number=12 first dba=46784 block cnt=64 obj#=82025 tim=261283947401
+WAIT #139986510955536: nam='direct path read' ela= 53 file number=12 first dba=46848 block cnt=64 obj#=82025 tim=261283949170
+WAIT #139986510955536: nam='direct path read' ela= 43 file number=12 first dba=46912 block cnt=64 obj#=82025 tim=261283950979
+WAIT #139986510955536: nam='direct path read' ela= 42 file number=12 first dba=46976 block cnt=64 obj#=82025 tim=261283952747
+WAIT #139986510955536: nam='direct path read' ela= 46 file number=12 first dba=47040 block cnt=64 obj#=82025 tim=261283954512
+WAIT #139986510955536: nam='direct path read' ela= 48 file number=12 first dba=47104 block cnt=64 obj#=82025 tim=261283956279
+WAIT #139986510955536: nam='direct path read' ela= 54 file number=12 first dba=47168 block cnt=64 obj#=82025 tim=261283958064
+FETCH #139986510955536:c=321848,e=323176,p=14177,cr=14180,cu=0,mis=0,r=1,dep=0,og=1,plh=1723173041,tim=261283961495
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 150 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283961666
+FETCH #139986510955536:c=2,e=2,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=1723173041,tim=261283961683
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 3640740885
+  Peeked Bind Bucket: 2
+  Execution Histogram:
+    1: 0
+    1000: 0
+    1000000: 4
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 4
+      Buffer Gets: 56720
+      CPU Time: 0
+      # Executions: 4
+STAT #139986510955536 id=1 cnt=1 pid=0 pos=1 obj=0 op='SORT GROUP BY NOSORT (cr=14180 pr=14177 pw=0 str=1 time=323177 us cost=3864 size=34 card=1)'
+STAT #139986510955536 id=2 cnt=2000000 pid=1 pos=1 obj=82025 op='TABLE ACCESS FULL ACS_TEST (cr=14180 pr=14177 pw=0 str=1 time=110537 us cost=3864 size=68000000 card=2000000)'
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 1 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283961752
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 123 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283961880
+CLOSE #139986510955536:c=4,e=4,dep=0,type=1,tim=261283961898
+WAIT #0: nam='PGA memory operation' ela= 17 which=5 bytes=262144 where=4 obj#=82025 tim=261283961922
+=====================
+PARSING IN CURSOR #139986510984712 len=29 dep=0 uid=157 oct=47 lid=157 tim=261283961968 hv=3683215466 ad='7ac70a10' sqlid='6f8qm0rdsku3a'
+begin
+    :grp := 10000;
+end;
+END OF STMT
+PARSE #139986510984712:c=32,e=32,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=0,tim=261283961968
+BINDS #139986510984712:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1400000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412418  bln=2000  avl=07  flg=05
+  value="2000000"
+WAIT #139986510984712: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283962047
+EXEC #139986510984712:c=63,e=63,p=0,cr=0,cu=0,mis=0,r=1,dep=0,og=1,plh=0,tim=261283962054
+WAIT #139986510984712: nam='SQL*Net message from client' ela= 135 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283962199
+CLOSE #139986510984712:c=5,e=5,dep=0,type=1,tim=261283962218
+PARSE #139986510955536:c=5,e=5,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=1723173041,tim=261283962233
+Checking bind equivalence for child #1
+
+----- Bind Info (kxscoacd) -----
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412418  bln=2000  avl=05  flg=05
+  value="10000"
+kkslMatchEquivLiterals: initialized range vector, length=1
+kkocsPredSel: cursor matching selectivity: 0.0040
+kkscsFindMatchingRange: Matching ranges so far: [1 ]
+kkscsFindMatchingRange: mysel = 0.003983, cursel_start = 0.716989, cursel_end =0.876319  <- no match
+kkocsFindMatchingRange: Matching ranges after update: [0 
+kkscsFindMatchingRange: found NO equivalent bind set
+Checking bind equivalence for child #1
+
+----- Bind Info (kxscoacd) -----
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412418  bln=2000  avl=05  flg=05
+  value="10000"
+kkslMatchEquivLiterals: initialized range vector, length=1
+kkocsPredSel: cursor matching selectivity: 0.0040
+kkscsFindMatchingRange: Matching ranges so far: [1 ]
+kkscsFindMatchingRange: mysel = 0.003983, cursel_start = 0.716989, cursel_end =0.876319  <- no match
+kkocsFindMatchingRange: Matching ranges after update: [0 
+kkscsFindMatchingRange: found NO equivalent bind set
+****** Begin CFB Hints (APA) [sql_id=g89xvwavgqpha] xsc=0x7f5126424410 ctx=0x7d5bed58 ******
+Dumping Hints
+=============
+*********** End CFB Hints (APA) ***********
+kkocsBindSensCheck: new elements found:1 total:1
+stat found - col=GRP_NAME, sig=1169562901
+kkocsPredSel: cursor matching selectivity: 0.0040
+kkocsInitAdaptiveCtx: initialized Adaptive Sharing Ctx ****
+
+----- Bind Info (kkscoacd) -----
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412418  bln=2000  avl=05  flg=05
+  value="10000"
+----- Current SQL Statement for this session (sql_id=g89xvwavgqpha) -----
+select /*+ gather_plan_statistics */ grp_name, max(id), sum(price) from acs_test a where grp_name = :grp GROUP BY grp_name
+----- Parser State -----
+Parser state1: len1=0 len2=123 pos1=122 pos2=122
+Parser state2: flg=0x0 xflg=0x4380000 xxflg=0x0
+Parser state3: tty=0 tlen=8
+Parser string: prx=0x7f512c7bad60 base=(nil) cur=0x7f512c62bdc2
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 3946951694
+  Peeked Bind Bucket: none
+  Execution Histogram:
+    1: 0
+    1000: 0
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 0
+      Buffer Gets: 0
+      CPU Time: 0
+      # Executions: 0
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412418  bln=2000  avl=05  flg=05
+  value="10000"
+EXEC #139986510955536:c=927,e=1078,p=0,cr=0,cu=0,mis=1,r=0,dep=0,og=1,plh=2366003765,tim=261283963320
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 1 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283963335
+FETCH #139986510955536:c=2918,e=3115,p=0,cr=78,cu=0,mis=0,r=1,dep=0,og=1,plh=2366003765,tim=261283966460
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 117 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283966602
+FETCH #139986510955536:c=1,e=1,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261283966616
+kkocsCheckStoreStats: sampling execution #1, sampling rate = 1
+ACS: Storing execution stats [sql_id=g89xvwavgqpha]
+  Bind Set:
+    Hash: 3946951694
+  Exec Stats:
+    Rows Processed: 40002
+    Buffer Gets: 78
+    CPU Time: 0
+    # Executions: 1
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 3946951694
+  Peeked Bind Bucket: none
+  Execution Histogram:
+    1: 0
+    1000: 1
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 1
+      Buffer Gets: 78
+      CPU Time: 0
+      # Executions: 1
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283966683
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 134 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283966824
+CLOSE #139986510955536:c=2,e=2,dep=0,type=0,tim=261283966844
+=====================
+PARSING IN CURSOR #139986510955536 len=122 dep=0 uid=157 oct=3 lid=157 tim=261283966892 hv=3069924874 ad='83b489f8' sqlid='g89xvwavgqpha'
+select /*+ gather_plan_statistics */ grp_name, max(id), sum(price) from acs_test a where grp_name = :grp GROUP BY grp_name
+END OF STMT
+PARSE #139986510955536:c=15,e=15,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261283966892
+Checking bind equivalence for child #2
+
+----- Bind Info (kxscoacd) -----
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412418  bln=2000  avl=05  flg=05
+  value="10000"
+kkslMatchEquivLiterals: initialized range vector, length=1
+kkocsPredSel: cursor matching selectivity: 0.0040
+kkscsFindMatchingRange: Matching ranges so far: [1 ]
+kkscsFindMatchingRange: mysel = 0.003983, cursel_start = 0.003585, cursel_end =0.004382  <- range matches
+kkocsFindMatchingRange: Matching ranges after update: [1 
+kkscsFindMatchingRange: found equivalent bind set
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412418  bln=2000  avl=05  flg=05
+  value="10000"
+EXEC #139986510955536:c=62,e=62,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261283966997
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283967007
+FETCH #139986510955536:c=2213,e=2863,p=0,cr=78,cu=0,mis=0,r=1,dep=0,og=1,plh=2366003765,tim=261283969878
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 115 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283970012
+FETCH #139986510955536:c=1,e=1,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261283970026
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 3946951694
+  Peeked Bind Bucket: 1
+  Execution Histogram:
+    1: 0
+    1000: 2
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 2
+      Buffer Gets: 156
+      CPU Time: 0
+      # Executions: 2
+STAT #139986510955536 id=1 cnt=1 pid=0 pos=1 obj=0 op='SORT GROUP BY NOSORT (cr=78 pr=0 pw=0 str=1 time=2864 us cost=85 size=34 card=1)'
+STAT #139986510955536 id=2 cnt=10000 pid=1 pos=1 obj=82025 op='TABLE ACCESS BY INDEX ROWID ACS_TEST (cr=78 pr=0 pw=0 str=1 time=1732 us cost=85 size=340000 card=10000)'
+STAT #139986510955536 id=3 cnt=10000 pid=2 pos=1 obj=82027 op='INDEX RANGE SCAN I (cr=26 pr=0 pw=0 str=1 time=675 us cost=29 size=0 card=10000)'
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283970099
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 134 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283970238
+CLOSE #139986510955536:c=2,e=2,dep=0,type=0,tim=261283970252
+=====================
+PARSING IN CURSOR #139986510955536 len=122 dep=0 uid=157 oct=3 lid=157 tim=261283970273 hv=3069924874 ad='83b489f8' sqlid='g89xvwavgqpha'
+select /*+ gather_plan_statistics */ grp_name, max(id), sum(price) from acs_test a where grp_name = :grp GROUP BY grp_name
+END OF STMT
+PARSE #139986510955536:c=10,e=10,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261283970273
+Checking bind equivalence for child #2
+
+----- Bind Info (kxscoacd) -----
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412418  bln=2000  avl=05  flg=05
+  value="10000"
+kkslMatchEquivLiterals: initialized range vector, length=1
+kkocsPredSel: cursor matching selectivity: 0.0040
+kkscsFindMatchingRange: Matching ranges so far: [1 ]
+kkscsFindMatchingRange: mysel = 0.003983, cursel_start = 0.003585, cursel_end =0.004382  <- range matches
+kkocsFindMatchingRange: Matching ranges after update: [1 
+kkscsFindMatchingRange: found equivalent bind set
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412418  bln=2000  avl=05  flg=05
+  value="10000"
+EXEC #139986510955536:c=63,e=63,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261283970356
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283970366
+FETCH #139986510955536:c=3267,e=2845,p=0,cr=78,cu=0,mis=0,r=1,dep=0,og=1,plh=2366003765,tim=261283973219
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 111 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283973348
+FETCH #139986510955536:c=1,e=2,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261283973360
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 3946951694
+  Peeked Bind Bucket: 1
+  Execution Histogram:
+    1: 0
+    1000: 3
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 3
+      Buffer Gets: 234
+      CPU Time: 0
+      # Executions: 3
+STAT #139986510955536 id=1 cnt=1 pid=0 pos=1 obj=0 op='SORT GROUP BY NOSORT (cr=78 pr=0 pw=0 str=1 time=2846 us cost=85 size=34 card=1)'
+STAT #139986510955536 id=2 cnt=10000 pid=1 pos=1 obj=82025 op='TABLE ACCESS BY INDEX ROWID ACS_TEST (cr=78 pr=0 pw=0 str=1 time=1725 us cost=85 size=340000 card=10000)'
+STAT #139986510955536 id=3 cnt=10000 pid=2 pos=1 obj=82027 op='INDEX RANGE SCAN I (cr=26 pr=0 pw=0 str=1 time=621 us cost=29 size=0 card=10000)'
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283973429
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 118 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283973552
+CLOSE #139986510955536:c=2,e=2,dep=0,type=0,tim=261283973617
+=====================
+PARSING IN CURSOR #139986510955536 len=122 dep=0 uid=157 oct=3 lid=157 tim=261283973642 hv=3069924874 ad='83b489f8' sqlid='g89xvwavgqpha'
+select /*+ gather_plan_statistics */ grp_name, max(id), sum(price) from acs_test a where grp_name = :grp GROUP BY grp_name
+END OF STMT
+PARSE #139986510955536:c=11,e=11,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261283973642
+Checking bind equivalence for child #2
+
+----- Bind Info (kxscoacd) -----
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412418  bln=2000  avl=05  flg=05
+  value="10000"
+kkslMatchEquivLiterals: initialized range vector, length=1
+kkocsPredSel: cursor matching selectivity: 0.0040
+kkscsFindMatchingRange: Matching ranges so far: [1 ]
+kkscsFindMatchingRange: mysel = 0.003983, cursel_start = 0.003585, cursel_end =0.004382  <- range matches
+kkocsFindMatchingRange: Matching ranges after update: [1 
+kkscsFindMatchingRange: found equivalent bind set
+BINDS #139986510955536:
+
+ Bind#0
+  oacdty=01 mxl=2000(300) mxlc=00 mal=00 scl=00 pre=00
+  oacflg=03 fl2=1000000 frm=01 csi=873 siz=2000 off=0
+  kxsbbbfp=7f5126412418  bln=2000  avl=05  flg=05
+  value="10000"
+EXEC #139986510955536:c=64,e=64,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261283973726
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283973736
+FETCH #139986510955536:c=2434,e=2828,p=0,cr=78,cu=0,mis=0,r=1,dep=0,og=1,plh=2366003765,tim=261283976572
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 144 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283976733
+FETCH #139986510955536:c=2,e=2,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=1,plh=2366003765,tim=261283976752
+kkocsStoreBindAwareStats: updated Adaptive Sharing Ctx ****
+Adaptive Sharing Context [sql_id=g89xvwavgqpha]
+  Peeked Binds:
+    Bind Set:
+      Hash: 3946951694
+  Peeked Bind Bucket: 1
+  Execution Histogram:
+    1: 0
+    1000: 4
+    1000000: 0
+  Cumulative Execution Stats:
+    Exec Stats:
+      Rows Processed: 4
+      Buffer Gets: 312
+      CPU Time: 0
+      # Executions: 4
+STAT #139986510955536 id=1 cnt=1 pid=0 pos=1 obj=0 op='SORT GROUP BY NOSORT (cr=78 pr=0 pw=0 str=1 time=2829 us cost=85 size=34 card=1)'
+STAT #139986510955536 id=2 cnt=10000 pid=1 pos=1 obj=82025 op='TABLE ACCESS BY INDEX ROWID ACS_TEST (cr=78 pr=0 pw=0 str=1 time=1693 us cost=85 size=340000 card=10000)'
+STAT #139986510955536 id=3 cnt=10000 pid=2 pos=1 obj=82027 op='INDEX RANGE SCAN I (cr=26 pr=0 pw=0 str=1 time=635 us cost=29 size=0 card=10000)'
+WAIT #139986510955536: nam='SQL*Net message to client' ela= 1 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283976830
+WAIT #139986510955536: nam='SQL*Net message from client' ela= 128 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283976963
+CLOSE #139986510955536:c=2,e=2,dep=0,type=1,tim=261283976979
+=====================
+PARSING IN CURSOR #139986510883560 len=55 dep=0 uid=157 oct=42 lid=157 tim=261283977013 hv=1923119987 ad='0' sqlid='2jxwgndta0yvm'
+ALTER SESSION SET EVENTS '10507 trace name context off'
+END OF STMT
+PARSE #139986510883560:c=19,e=19,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=0,plh=0,tim=261283977013
+EXEC #139986510883560:c=106,e=106,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=0,plh=0,tim=261283977140
+WAIT #139986510883560: nam='SQL*Net message to client' ela= 0 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283977150
+WAIT #139986510883560: nam='SQL*Net message from client' ela= 129 driver id=1413697536 #bytes=1 p3=0 obj#=82025 tim=261283977285
+CLOSE #139986510883560:c=1,e=1,dep=0,type=1,tim=261283977298
+=====================
+PARSING IN CURSOR #139986510882232 len=55 dep=0 uid=157 oct=42 lid=157 tim=261283977317 hv=2655499671 ad='0' sqlid='0kjg1c2g4gdcr'
+ALTER SESSION SET EVENTS '10046 trace name context off'
+END OF STMT
+PARSE #139986510882232:c=11,e=10,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=0,plh=0,tim=261283977316
+EXEC #139986510882232:c=108,e=108,p=0,cr=0,cu=0,mis=0,r=0,dep=0,og=0,plh=0,tim=261283977441
