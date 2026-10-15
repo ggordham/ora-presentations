@@ -7,6 +7,19 @@ Everything here is intended for test or lab type use.
 ## 2026
 
 ---
+
+DOAG 2026 Conference + Exhibition - November 17, 2026 - Oracle Database Editions Change everything with no downtime
+
+```/db-editions-DOAG```
+
+nlOUG DB World 2026 - November 13, 2026 - Oracle Adaptive SQL Optimization - Why do things go so bad?
+
+```/adaptive-sql-NLOUG```
+
+nlOUG DB World 2026 - November 13, 2026 - Oracle RAC – Does failover really work?
+
+```/rac-failover-NLOUG```
+
 MOUG and COUG annual joint conference in Chicago on - August 28, 2026 - Oracle Adaptive SQL Optimization - Why do things go so bad?
 
 ```/adaptive-sql-COUG```
