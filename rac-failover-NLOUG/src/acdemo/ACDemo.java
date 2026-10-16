@@ -142,7 +142,7 @@ public class ACDemo extends Thread {
       System.out.println("VCoB Enabled:            " + pds.getValidateConnectionOnBorrow());
       System.out.println("ONS Configuration:       " + pds.getONSConfiguration());
       System.out.println("Enable Intensive Wload:  " + cpuIntensive);
-      System.out.format("Thread think time:        %d ms\n",
+      System.out.format("Thread think time:         %d ms\n",
         threadThinkTime);
       System.out.println("Print AC Statistics:     " + PRINTACSTAT);
       System.out.println("Long Query:              " + LONGQUERY);
@@ -200,7 +200,7 @@ public class ACDemo extends Thread {
 
     for (int i = 0; i < nbOfThreads; ++i) {
         // for the 4th thread check if longquery is enabled
-        if ( i = 4 && LONGQUERY) {
+        if ( i == 4 && LONGQUERY) {
             t[i] = new Thread(new Worker(pds, true));
         } else {
             t[i] = new Thread(new Worker(pds, false));
