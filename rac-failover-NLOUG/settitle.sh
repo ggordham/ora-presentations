@@ -25,14 +25,14 @@ stt_both  () { setTerminalText 0 "$@"; }
 stt_tab   () { setTerminalText 1 "$@"; }
 stt_title () { setTerminalText 2 "$@"; }
 
-case "${what^^}" in
-  "BOTH")
+case "${what}" in
+  "both")
     stt_both "${text}"
     ;;
-  "TAB")
+  "tab")
     stt_tab "${text}"
     ;;
-  "TITLE")
+  "title")
     stt_title "${text}"
     ;;
   *)
