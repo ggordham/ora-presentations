@@ -1,3 +1,3 @@
-connect / as sysdba
-alter session set container=freepdb1;
+connect sys/Oracle_4U@"//localhost/orclpdb1" as sysdba
+-- alter session set container=orclpdb1;
 

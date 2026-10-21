@@ -19,6 +19,15 @@ To run this demonstrtion you will need to VM's, PODs, or servers running Linux.
 
 The demo will use a schema called HR in the database and run two different Python Flask based applications to demonstrate zero downtime application changes.
 
+## Install DB tier
+
+Download the DB code
+
+```bash
+curl -L https://github.com/ggordham/ora-presentations/tarball/master | tar xz --strip=1 --wildcards "ggordham-ora-presentations-???????/db-editions-DOAG/db"
+
+cd db-editions-DOAG/db
+```
 
 # Configuration items
 
@@ -37,7 +46,7 @@ All DB scripts should be run from the ```db``` directory.
 
 Create HR user
 ```sql
-connect / as sysdba
+@connect_sys.sql
 setup/cr_user.sql
 
 ```
@@ -55,7 +64,7 @@ Run the first application in your app server:
 ```
 Navigate to the application URL and verify that everything is working:
 
-http://localhost:5000/
+http://localhost:8000/
 
 ## Prepare for editions
 
@@ -64,10 +73,10 @@ Shutdown the original application (press CTL+C).
 
 Create services and enable editions
 ```sql
-connect system/Ora#42_dbP@"//srvr11/freepdb1"
-connect / as sysdba
+@connect_sys.sql
 @setup/enable_editions.sql
 @setup/mk_services.sql
+@show_services.sql
 
 ```
 Move HR objects to edition based view
@@ -80,8 +89,12 @@ Move HR objects to edition based view
 Deploy BLUE application and run v 0.0 on the application server.
 
 ```bash
-./app_blue.py
+./app-blue.py
 ```
+
+Navigate to the application URL and verify that everything is working:
+
+http://localhost:8000/
 
 ## Deploy v1 edition
 
@@ -89,8 +102,7 @@ _Note we are not shutting down the blue application during this entire process_
 
 Create edition
 ```sql
-connect / as sysdba
-connect system/Ora#42_dbP@"//srvr11/freepdb1"
+@connect_sys.sql
 @v1/v1_dba.sql
 @show_services.sql
 
@@ -114,8 +126,13 @@ Deploy v1 GREEN app
 Run Green application v1.0
 
 ```bash
-./app_green.py
+./app-green.py
 ```
+
+Navigate to the GREEN app url
+
+http://localhost:9000/
+
 
 ## Deploy v1.1 edition
 
@@ -124,8 +141,7 @@ _Note we do not need to shutdown the blue application while deploying the databa
 Create edition
 
 ```sql
-connect sys/Ora#42_dbP@"//srvr11/freepdb1" AS SYSDBA
-connect / as sysdba
+@connect_sys.sql
 @v1_1/v1_1_dba.sql
 @show_services.sql
 ```
@@ -140,10 +156,10 @@ Run blue application v1.1
 
 First we will stop the current blue application (press CTL+C).  Then start the v1.1 version.
 ```bash
-./app_blue_v1.1.py
+./app-blue_v1.1.py
 ```
 
-## Optional drop v1
+## Optional Move everything to v1.1
 
 When ready we can shutdown the green application and 
 Actualize all objects in v1_1

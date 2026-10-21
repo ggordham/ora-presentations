@@ -21,6 +21,14 @@ def get_db_connection():
     """Establishes and returns a connection to the Oracle Database."""
     return oracledb.connect(user=connection.DB_USER, password=connection.DB_PASSWORD, dsn=connection.DB_DSN_GREEN)
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(
+        os.path.join(app.root_path, 'static'),
+        'favicon.ico',
+        mimetype='image/vnd.microsoft.icon'
+    )
+
 # 1. READ ALL & HTML INTERFACE
 @app.route('/')
 def index():

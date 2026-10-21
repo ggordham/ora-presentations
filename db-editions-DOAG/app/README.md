@@ -4,7 +4,7 @@ This is the instructions for a very simple web based application for the Oracle 
 
 This is a python appilcation and will run it's own web server using flask.
 
-## Install
+## Install APP tier
 To run this application you will need python and the required modules installed.
 
 For debian run the following:
@@ -17,10 +17,10 @@ For OEL 8 run the following
 
 ```bash
 dnf -y install oraclelinux-developer-release-el8
-dnf -y install python3-oracledb
+dnf -y install python3-oracledb python3-flask
 ```
 
-Downlaod the application code.
+Download the application code.
 
 ```bash
 curl -L https://github.com/ggordham/ora-presentations/tarball/master | tar xz --strip=1 --wildcards "ggordham-ora-presentations-???????/db-editions-DOAG/app"
@@ -46,8 +46,8 @@ DB_DSN_GREEN = "srvr11:1521/hr_g" # green app tier
 
 # web server information
 SRVR_HOST='192.168.0.102'
-PORT_DEFAULT=5000
-PORT_BLUE=5000
+PORT_DEFAULT=7000
+PORT_BLUE=7000
 PORT_GREEN=8000
 ```
 ## Running the applications
