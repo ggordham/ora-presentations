@@ -64,7 +64,7 @@ Run the first application in your app server:
 ```
 Navigate to the application URL and verify that everything is working:
 
-http://localhost:8000/
+http://localhost:8000/?wait=0
 
 ## Prepare for editions
 
@@ -74,6 +74,7 @@ Shutdown the original application (press CTL+C).
 Create services and enable editions
 ```sql
 @connect_sys.sql
+SET ECHO ON
 @setup/enable_editions.sql
 @setup/mk_services.sql
 @show_services.sql
@@ -83,6 +84,7 @@ Move HR objects to edition based view
 
 ```sql
 @connect_blue.sql
+SET ECHO ON
 @setup/mv_hr.sql
 ```
 
@@ -94,7 +96,15 @@ Deploy BLUE application and run v 0.0 on the application server.
 
 Navigate to the application URL and verify that everything is working:
 
-http://localhost:8000/
+http://localhost:8000/?wait=0
+
+You can run the app with a short delay to show the session info
+
+http://localhost:8000/?wait=20
+
+```sql
+@session_edition.sql
+```
 
 ## Deploy v1 edition
 
@@ -103,6 +113,7 @@ _Note we are not shutting down the blue application during this entire process_
 Create edition
 ```sql
 @connect_sys.sql
+SET ECHO ON
 @v1/v1_dba.sql
 @show_services.sql
 
@@ -112,6 +123,7 @@ Deploy V1 changes
 
 ```sql
 @connect_green.sql
+SET ECHO ON
 @show_ed.sql
 @v1/cr_departments.sql
 @v1/up_employees.sql
@@ -131,8 +143,15 @@ Run Green application v1.0
 
 Navigate to the GREEN app url
 
-http://localhost:9000/
+http://localhost:9000/?wait=0
 
+You can run the app with a short delay to show the session info
+
+http://localhost:9000/?wait=20
+
+```sql
+@session_edition.sql
+```
 
 ## Deploy v1.1 edition
 
@@ -142,6 +161,7 @@ Create edition
 
 ```sql
 @connect_sys.sql
+SET ECHO ON
 @v1_1/v1_1_dba.sql
 @show_services.sql
 ```
@@ -149,6 +169,7 @@ Deploy v1.1 schema changes
 
 ```sql
 @connect_blue.sql
+SET ECHO ON
 @v1_1/up_employees.sql
 ```
 
@@ -166,12 +187,29 @@ Actualize all objects in v1_1
 
 ```sql
 @connect_blue.sql
+SET ECHO ON
 @show_ed.sql
 @actualize_all.sql
 ```
 
 Clean up the v1 edition by removing service and grant.
 ```sql
-connect / as sysdba
+@connect_sys.sql
+SET ECHO ON
 @clean_service_v1.sql 
+```
+
+## Remove demo
+
+You can remove the demo by stopping the applications.  Then drop the HR user, remove the services and remove the created editions.
+
+```sql
+@connect_sys.sql
+SET ECHO ON
+drop user hr cascade;
+@sertup/rm_services.sql
+drop edition v1_1;
+drop edition v1;
+@all_editions.sql
+@show_services.sql
 ```

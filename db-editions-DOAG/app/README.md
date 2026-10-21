@@ -17,15 +17,21 @@ For OEL 8 run the following
 
 ```bash
 dnf -y install oraclelinux-developer-release-el8
-dnf -y install python3-oracledb python3-flask
+dnf -y install python3.11-oracledb python3-pip python3.11
+alternatives --set python3 /usr/bin/python3.11
+pip-3 install flask
+
+python3.11 -m flask --version
 ```
 
 Download the application code.
 
 ```bash
+cd
 curl -L https://github.com/ggordham/ora-presentations/tarball/master | tar xz --strip=1 --wildcards "ggordham-ora-presentations-???????/db-editions-DOAG/app"
 
 cd db-editions-DOAG/app
+chmod +x *.py
 ```
 
 ## Configuration
