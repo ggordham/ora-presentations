@@ -12,6 +12,22 @@ For debian run the following:
 ```bash
 apt install python3-oracledb python3-flask
 ```
+
+For OEL 8 run the following
+
+```bash
+dnf -y install oraclelinux-developer-release-el8
+dnf -y install python3-oracledb
+```
+
+Downlaod the application code.
+
+```bash
+curl -L https://github.com/ggordham/ora-presentations/tarball/master | tar xz --strip=1 --wildcards "ggordham-ora-presentations-???????/db-editions-DOAG/app"
+
+cd db-editions-DOAG/app
+```
+
 ## Configuration
 
 In the ```connection.py``` update the required connection information for the Oracle database.  Also you can update any port numbers and server host IP for accessing the application as needed.
