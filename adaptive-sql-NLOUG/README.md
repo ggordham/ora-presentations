@@ -27,10 +27,10 @@ You need a working podman image with Oracle database installed. These scripts ha
 Once you have the container up and running with a working database you can install the lab scripts with the following command:
 
 ```bash
-podman exec COUG sh -c "curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1"
+podman exec EMEA sh -c "curl -L https://github.com/ggordham/ora-presentations/tarball/main | tar xz --strip=1"
 ```
 
-_Note COUG in the command is the container name, use your container name. You can find your container name with the podman ps command._
+_Note EMEA in the command is the container name, use your container name. You can find your container name with the podman ps command._
 
 Through out the lab you will need a SQL*Plus prompt on the databases. This is done by running the following podman command. (Note this command will put you in the directory with the lab scripts and set your SQL Prompt)
 
@@ -53,7 +53,7 @@ This script creates a user called perflab that will be used throughout the demo.
 export ORACLE_SID=ORCLCDB
 export ORAENV_ASK=NO
 source /usr/local/bin/oraenv -s
-cd adaptive-sql-COUG
+cd adaptive-sql-EMEA
 # if you are using a PDB set the PDB name
 export ORACLE_PDB_SID=orclpdb1
 sqlplus /nolog
@@ -89,7 +89,7 @@ This script creates a user called perflab that will be used throughout the demo.
 ```bash
 # Set your Oracle Environment
 . oraenv
-cd adaptive-sql-COUG
+cd adaptive-sql-EMEA
 # if you are using a PDB set the PDB name
 export ORACLE_PDB_SID=orclpdb1
 sqlplus /nolog
