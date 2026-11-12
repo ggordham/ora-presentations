@@ -37,7 +37,7 @@ Through out the lab you will need a SQL*Plus prompt on the databases. This is do
 ### SQL Prompt
 
 ```bash
-podman exec -it NLOUG sh -c "chmod +x splus.sh; /home/oracle/splus.sh adsl"
+podman exec -it EMEA sh -c "chmod +x splus.sh; /home/oracle/splus.sh adsl"
 ```
 
 
